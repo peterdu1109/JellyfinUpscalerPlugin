@@ -15,7 +15,9 @@ Name: Jellyfin Upscaler
 URL:
 bash
 Code kopieren
+
 https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerRepo/main/repo.json
+
 Save the changes.
 2. Install the Plugin
 Go to Dashboard > Plugins > Catalog.
