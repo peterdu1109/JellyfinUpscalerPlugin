@@ -1,5 +1,4 @@
 {
-    "addOns": [
         {
             "id": "UpscalerPlugin",
             "name": "Jellyfin Upscaler",
