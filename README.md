@@ -8,7 +8,7 @@ Dieses Add-on ermöglicht Upscaling für Videos in Jellyfin, nur auf unterstütz
 
 1. clone that Repository:
 
-https://raw.githubusercontent.com/monyone/JellyfinUpscalerRepo/main/repo.json
+https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerRepo/main/repo.json
 
 Supported Operating Systems:
 Windows
