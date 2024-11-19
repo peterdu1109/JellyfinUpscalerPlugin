@@ -6,7 +6,7 @@ Dieses Add-on ermöglicht Upscaling für Videos in Jellyfin, nur auf unterstütz
 
 ## Installation
 
-1. Klone das Repository:
+1. clone that Repository:
    ```bash
    git clone https://github.com/monyone/JellyfinUpscaler.git
    cd JellyfinUpscaler
