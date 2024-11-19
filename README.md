@@ -11,6 +11,7 @@ INSTALLATION GUIDE
 STEP 1: ADD THE REPOSITORY TO JELLYFIN
 Open Jellyfin and go to Dashboard > Plugins > Repositories.
 Click on Add Repository and fill in the details:
+
 Name: Jellyfin Upscaler
 URL:
 bash
