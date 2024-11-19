@@ -7,7 +7,7 @@
             "description": "A plugin to enhance video quality through real-time upscaling for supported devices.",
             "category": "VideoProcessing",
             "downloadUrl": "https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerRepo/main/addons/UpscalerPlugin/upscaler.zip",
-            "checksum": "SHA256:A045EE6C9E70C945890B36A34D7CFCB0AB1F6448C3D8530407D5EE1CAD98950F",
+            "checksum": "SHA256:28F7EB0CD4789A0F73BF8D35E9EEF7FE580D299EB897B59F7BE889658CAB03E5",
             "imageUrl": "https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerRepo/main/addons/UpscalerPlugin/addon-image.png",
             "updated": "2024-11-19T00:00:00Z"
         }
