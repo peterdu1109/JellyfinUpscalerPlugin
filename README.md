@@ -10,3 +10,10 @@ Dieses Add-on ermöglicht Upscaling für Videos in Jellyfin, nur auf unterstütz
    ```bash
    git clone https://github.com/monyone/JellyfinUpscaler.git
    cd JellyfinUpscaler
+Supported Operating Systems:
+Windows
+Mac OS
+Linux
+Android
+iOS
+TV
