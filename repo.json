@@ -8,6 +8,7 @@
             "category": "VideoProcessing",
             "downloadUrl": "https://raw.githubusercontent.com/monyone/JellyfinUpscalerRepo/main/addons/UpscalerPlugin/upscaler.zip",
             "checksum": "SHA256:A045EE6C9E70C945890B36A34D7CFCB0AB1F6448C3D8530407D5EE1CAD98950F",
+            "imageUrl": "https://raw.githubusercontent.com/monyone/JellyfinUpscalerRepo/main/addons/UpscalerPlugin/addon-image.png",
             "updated": "2024-11-19T00:00:00Z"
         }
     ]
