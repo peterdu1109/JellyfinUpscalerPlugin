@@ -1,16 +1,16 @@
-Jellyfin Upscaler
-Enhance video playback quality in Jellyfin with real-time upscaling on supported devices.
-This plugin dynamically adjusts video resolution based on the hardware capabilities of your device, supporting NVIDIA GPUs, Apple Metal, Vulkan, and software-based solutions.
+JELLYFIN UPSCALER
+ENHANCE YOUR VIDEO PLAYBACK EXPERIENCE!
+Jellyfin Upscaler is a powerful plugin that improves video quality by applying real-time upscaling. It dynamically adapts to your hardware's capabilities and works seamlessly within Jellyfin.
 
-Features
-Real-time video upscaling for sharper playback.
-Compatible with NVIDIA RTX, Apple Metal, and Vulkan-based hardware.
-Automatic fallback to software upscaling if hardware support is unavailable.
-Fully integrated with Jellyfin—no external player needed.
-Installation Guide
-1. Add Repository to Jellyfin
-Open Jellyfin and navigate to Dashboard > Plugins > Repositories.
-Click Add Repository and enter the following details:
+FEATURES
+🖥️ Real-Time Upscaling: Sharpen your video playback quality.
+⚙️ Hardware-Accelerated: Supports NVIDIA RTX, Apple Metal, Vulkan, and more.
+🔄 Automatic Fallback: Switches to software upscaling when no hardware support is detected.
+🌟 Fully Integrated: No need for external players—everything works within Jellyfin.
+INSTALLATION GUIDE
+STEP 1: ADD THE REPOSITORY TO JELLYFIN
+Open Jellyfin and go to Dashboard > Plugins > Repositories.
+Click on Add Repository and fill in the details:
 Name: Jellyfin Upscaler
 URL:
 bash
@@ -18,30 +18,36 @@ Code kopieren
 
 https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerRepo/main/repo.json
 
-Save the changes.
-2. Install the Plugin
-Go to Dashboard > Plugins > Catalog.
-Find Jellyfin Upscaler in the list.
+Click Save to confirm.
+STEP 2: INSTALL THE PLUGIN
+Navigate to Dashboard > Plugins > Catalog.
+Find Jellyfin Upscaler in the plugin list.
 Click Install and follow the instructions.
-3. Enable and Configure
-Restart Jellyfin if necessary.
+STEP 3: ENABLE AND CONFIGURE
+Restart Jellyfin if required.
 Go to Dashboard > Plugins > Installed Plugins and ensure Jellyfin Upscaler is enabled.
-Optional: Adjust settings based on your device's hardware capabilities.
-Supported Devices
-NVIDIA RTX GPUs: Utilizes NVIDIA's CUDA technology for high-quality upscaling.
-Apple Devices (macOS, iOS): Leverages Metal for optimized performance.
-Android Devices: Vulkan API for efficient upscaling.
-Smart TVs and Browsers: Falls back to software-based upscaling when hardware support is unavailable.
-License
+Configure the settings (if necessary) to suit your device's hardware capabilities.
+SUPPORTED DEVICES
+This plugin is compatible with a wide range of devices:
+
+NVIDIA RTX GPUs: Utilizes CUDA for efficient upscaling.
+Apple Devices (macOS, iOS): Powered by Apple Metal for optimal performance.
+Android Devices: Leverages Vulkan for hardware acceleration.
+Smart TVs and Web Browsers: Uses software-based upscaling as a fallback.
+TROUBLESHOOTING
+If you encounter issues, follow these steps:
+
+Plugin Not Appearing in Catalog:
+Ensure the repository URL is added correctly in Dashboard > Plugins > Repositories.
+
+Upscaling Not Working:
+Verify that your device supports the necessary hardware APIs (e.g., NVIDIA CUDA, Apple Metal, Vulkan).
+
+Logs:
+Check the Jellyfin logs under Dashboard > Logs for any plugin-related errors.
+
+LICENSE
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-Troubleshooting
-Plugin does not appear in the catalog:
-Ensure the repository URL is correctly added in Dashboard > Plugins > Repositories.
-Upscaling not working:
-Verify your device supports the necessary hardware APIs (e.g., NVIDIA CUDA, Apple Metal, Vulkan).
-Logs:
-Check Jellyfin logs in Dashboard > Logs for any errors related to the plugin.
-Contributing
-Contributions are welcome! Feel free to open an issue or submit a pull request on the GitHub repository.
-
+CONTRIBUTING
+We welcome contributions! If you would like to improve this plugin or report an issue, feel free to open an issue or submit a pull request on our GitHub Repository.
