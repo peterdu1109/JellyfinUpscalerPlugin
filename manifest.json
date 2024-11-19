@@ -1,0 +1,10 @@
+{
+    "id": "UpscalerPlugin",
+    "name": "Jellyfin Upscaler",
+    "version": "1.0.0",
+    "description": "Upscaling von Videos direkt in der Jellyfin-App",
+    "target": "clients",
+    "authors": ["monyone"],
+    "category": "VideoProcessing",
+    "homepage": "https://github.com/monyone/JellyfinUpscaler"
+}
