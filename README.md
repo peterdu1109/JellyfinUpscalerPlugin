@@ -15,7 +15,7 @@ Click on Add Repository and fill in the details:
 Name: Jellyfin Upscaler
 URL:
 bash
-Code kopieren
+Copy Code 
 
 https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerRepo/main/repo.json
 
