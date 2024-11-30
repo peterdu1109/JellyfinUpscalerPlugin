@@ -2,9 +2,11 @@
     "id": "UpscalerPlugin",
     "name": "Jellyfin Upscaler",
     "version": "1.0.0",
-    "description": "Real-time upscaling of videos on supported devices"
+    "description": "Real-time upscaling of videos on supported devices.",
+    "overview": "Upscale videos to higher resolutions in real-time on supported devices.",
     "category": "VideoProcessing",
     "target": "clients",
+    "targetAbi": "10.9.0.0",
     "authors": ["Kuschel-code"],
     "homepage": "https://github.com/Kuschel-code/JellyfinUpscalerRepo",
     "downloadUrl": "https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerRepo/main/addons/UpscalerPlugin/upscaler.zip",
