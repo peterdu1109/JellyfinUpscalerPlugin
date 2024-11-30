@@ -13,7 +13,7 @@
                 "changelog": "Initial release",
                 "targetAbi": "10.10.0.0",
                 "sourceUrl": "https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerRepo/main/addons/UpscalerPlugin/upscaler.zip",
-                "checksum": "SHA256:DD016F8DA74BA6FBCBAAF6904C70CA6B2C2DB809DC30B21D457D5A4593FEBB90",
+                "checksum": "SHA256:229592F00A8AD25A59C5D542EB64AA665F85447AFD4DDB94DFCC7E0898B9BCCD",
                 "timestamp": "2024-11-20T00:00:00Z"
             }
         ]
