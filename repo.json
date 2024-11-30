@@ -1,7 +1,7 @@
 [
         {   
+            "guid": "d4319aa7-fbb9-45e1-979d-ad0e77e429aa",    
             "id": "UpscalerPlugin",
-            "guid": "d4319aa7-fbb9-45e1-979d-ad0e77e429aa",
             "name": "Jellyfin Upscaler",
             "version": "1.0.0",
             "description": "A plugin to enhance video quality through real-time upscaling for supported devices.",
