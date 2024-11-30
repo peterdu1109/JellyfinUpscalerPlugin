@@ -1,14 +1,21 @@
 [
-        {   
-            "guid": "d4319aa7-fbb9-45e1-979d-ad0e77e429aa",    
-            "id": "UpscalerPlugin",
-            "name": "Jellyfin Upscaler",
-            "version": "1.0.0",
-            "description": "A plugin to enhance video quality through real-time upscaling for supported devices.",
-            "category": "VideoProcessing",
-            "downloadUrl": "https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerRepo/main/addons/UpscalerPlugin/upscaler.zip",
-            "checksum": "SHA256:28F7EB0CD4789A0F73BF8D35E9EEF7FE580D299EB897B59F7BE889658CAB03E5",
-            "imageUrl": "https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerRepo/main/addons/UpscalerPlugin/addon-image.png",
-            "updated": "2024-11-19T00:00:00Z"
-        }
+    {
+        "guid": "d4319aa7-fbb9-45e1-979d-ad0e77e429aa",
+        "name": "Jellyfin Upscaler",
+        "description": "A plugin to enhance video quality through real-time upscaling for supported devices.",
+        "overview": "Enhance video quality with real-time upscaling.",
+        "owner": "Kuschel-code",
+        "category": "VideoProcessing",
+        "imageUrl": "https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerRepo/main/addons/UpscalerPlugin/addon-image.png",
+        "versions": [
+            {
+                "version": "1.0.0",
+                "changelog": "Initial release",
+                "targetAbi": "10.9.0.0",
+                "sourceUrl": "https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerRepo/main/addons/UpscalerPlugin/upscaler.zip",
+                "checksum": "SHA256:28F7EB0CD4789A0F73BF8D35E9EEF7FE580D299EB897B59F7BE889658CAB03E5",
+                "timestamp": "2024-11-20T00:00:00Z"
+            }
+        ]
+    }
 ]
