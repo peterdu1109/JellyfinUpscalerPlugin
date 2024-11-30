@@ -1,5 +1,6 @@
 [
         {
+            "guid": "d4319aa7-fbb9-45e1-979d-ad0e77e429aa",    
             "id": "UpscalerPlugin",
             "name": "Jellyfin Upscaler",
             "version": "1.0.0",
