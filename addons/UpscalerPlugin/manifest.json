@@ -2,7 +2,7 @@
     "id": "UpscalerPlugin",
     "name": "Jellyfin Upscaler",
     "version": "1.0.0",
-    "description": "Upscaling von Videos auf unterstützten Geräten",
+    "description": "Real-time upscaling of videos on supported devices"
     "category": "VideoProcessing",
     "target": "clients",
     "authors": ["Kuschel-code"],
