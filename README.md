@@ -1,56 +1,110 @@
-JELLYFIN UPSCALER
-ENHANCE YOUR VIDEO PLAYBACK EXPERIENCE!
-Jellyfin Upscaler is a powerful plugin that improves video quality by applying real-time upscaling. It dynamically adapts to your hardware's capabilities and works seamlessly within Jellyfin.
+updated and final version
 
-FEATURES
-🖥️ Real-Time Upscaling: Sharpen your video playback quality.
-⚙️ Hardware-Accelerated: Supports NVIDIA RTX, Apple Metal, Vulkan, and more.
-🔄 Automatic Fallback: Switches to software upscaling when no hardware support is detected.
-🌟 Fully Integrated: No need for external players—everything works within Jellyfin.
-INSTALLATION GUIDE
-STEP 1: ADD THE REPOSITORY TO JELLYFIN
-Open Jellyfin and go to Dashboard > Plugins > Repositories.
-Click on Add Repository and fill in the details:
+---
 
-Name: Jellyfin Upscaler
-URL:
-bash
-Copy Code 
+**Jellyfin Upscaler Plugin**
 
-https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerRepo/main/repo.json
+**Description**
 
-Click Save to confirm.
+The Jellyfin Upscaler Plugin enhances video quality in real-time by using AI upscaling and shader-based optimizations. It offers predefined profiles and custom settings to ensure optimal performance and image quality on supported devices.
 
-STEP 2: INSTALL THE PLUGIN
-Navigate to Dashboard > Plugins > Catalog.
-Find Jellyfin Upscaler in the plugin list.
-Click Install and follow the instructions.
-STEP 3: ENABLE AND CONFIGURE
-Restart Jellyfin if required.
-Go to Dashboard > Plugins > Installed Plugins and ensure Jellyfin Upscaler is enabled.
-Configure the settings (if necessary) to suit your device's hardware capabilities.
-SUPPORTED DEVICES
-This plugin is compatible with a wide range of devices:
+---
 
-NVIDIA RTX GPUs: Utilizes CUDA for efficient upscaling.
-Apple Devices (macOS, iOS): Powered by Apple Metal for optimal performance.
-Android Devices: Leverages Vulkan for hardware acceleration.
-Smart TVs and Web Browsers: Uses software-based upscaling as a fallback.
-TROUBLESHOOTING
-If you encounter issues, follow these steps:
+**Features**
 
-Plugin Not Appearing in Catalog:
-Ensure the repository URL is added correctly in Dashboard > Plugins > Repositories.
+1. **AI Upscaling:**
+   - Utilizes models like ESRGAN and Waifu2x to improve video quality.
+   
+2. **Automatic Library Recognition:**
+   - Adjusts settings based on library types such as Anime, Movies, or TV Shows.
 
-Upscaling Not Working:
-Verify that your device supports the necessary hardware APIs (e.g., NVIDIA CUDA, Apple Metal, Vulkan).
+3. **Custom Profiles:**
+   - Create your own profiles with settings for FPS, resolution, sharpness, saturation, contrast, and noise reduction.
 
-Logs:
-Check the Jellyfin logs under Dashboard > Logs for any plugin-related errors.
+4. **Benchmark Test:**
+   - Automatically or manually checks if your device supports AI upscaling.
 
-LICENSE
-This project is licensed under the MIT License. See the LICENSE file for details.
+5. **Traditional Shaders:**
+   - Uses shaders like Bicubic, Bilinear, or Lanczos for devices with limited performance.
 
-CONTRIBUTING
-We welcome contributions! If you would like to improve this plugin or report an issue, feel free to open an issue or submit a pull request on our GitHub Repository.
+---
+
+**Installation**
+
+1. **Download:**
+   - Download the plugin as a ZIP file and unzip it into the Jellyfin plugin directory.
+   - Alternatively, you can clone it directly from GitHub:
+
+   ```bash
+   soon
+   ```
+
+2. **Plugin Directory:**
+   - The plugin should be placed in Jellyfin's plugin directory:
+
+   ```
+   /path/to/jellyfin/plugins/UpscalerPlugin/
+   ```
+
+3. **Restart:**
+   - Restart the Jellyfin server to activate the plugin.
+
+---
+
+**Usage**
+
+1. Go to the settings in Jellyfin and open the Upscaler Plugin section.
+2. Select one of the following profiles:
+   - **Default:** Automatic detection based on library type.
+   - **Anime:** Waifu2x for animations.
+   - **Movies:** ESRGAN for high-quality movie enhancement.
+   - **TV Shows:** Traditional shaders for TV series.
+   - **Custom:** Custom settings.
+   
+3. **Benchmark Test:**
+   - Run an automatic or manual test to check your device's AI upscaling capabilities.
+
+4. **Custom Profile:**
+   - Fine-tune your settings:
+     - **FPS:** Unlimited, 30 FPS, 60 FPS, 120 FPS.
+     - **Resolution:** 480p to 8K.
+     - **Image Quality:** Sharpness, saturation, contrast, noise reduction.
+
+---
+
+**Settings**
+
+- **Profile Selection:**
+  - Default, Anime, Movies, TV Shows, Custom.
+
+- **Custom Profile Settings:**
+
+  1. **FPS Settings:**
+     - Max FPS: Unlimited, 30, 60, 120.
+   
+  2. **Resolution Settings:**
+     - Min. Resolution: 480p to 8K.
+     - Max. Resolution: 480p to 8K.
+     - Shaders for lower/higher resolutions: Bilinear, Bicubic, Lanczos.
+   
+  3. **Image Quality:**
+     - Sharpness (0–5).
+     - Saturation (-1 to 3).
+     - Contrast (0.5–2.0).
+     - Noise Reduction (0–3).
+
+---
+
+**License**
+
+This project is licensed under the MIT License. See LICENSE for more details.
+
+---
+
+**Contact**
+
+- Developed by: Kuschel-Code  
+- GitHub: 
+
+---
 
