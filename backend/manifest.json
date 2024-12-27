@@ -6,5 +6,5 @@
     "category": "Video Processing",
     "targetAbi": "10.7.0.0",
     "imageUrl": "./assets/addon-image.png"
-	"authors": ["Kuschel-Code"]
+    "authors": ["Kuschel-Code"]
 }
