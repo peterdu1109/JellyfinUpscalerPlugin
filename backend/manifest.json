@@ -1,0 +1,10 @@
+{
+    "id": "UpscalerPlugin",
+    "name": "Jellyfin Upscaler",
+    "version": "1.0.0",
+    "description": "Enhance video quality with real-time upscaling for supported devices.",
+    "category": "Video Processing",
+    "targetAbi": "10.7.0.0",
+    "imageUrl": "./assets/addon-image.png"
+	"authors": ["Kuschel-Code"]
+}
