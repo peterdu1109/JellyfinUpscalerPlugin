@@ -9,7 +9,7 @@
             {
                 "version": "1.0.0",
                 "targetAbi": "10.10.0.0",
-                "sourceUrl": "https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/UpscalerPlugin.zip",
+                "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/download/v1.0.0/UpscalerPlugin.zip",
                 "checksum": "SHA256:123456789abcdef123456789abcdef123456789abcdef123456789abcdef1234",
                 "timestamp": "2024-12-27T00:00:00Z"
             }
