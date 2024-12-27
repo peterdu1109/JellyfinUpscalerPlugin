@@ -36,7 +36,7 @@ The Jellyfin Upscaler Plugin enhances video quality in real-time by using AI ups
    - Alternatively, you can clone it directly from GitHub:
 
    ```bash
-   https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/manifest.json
+   soon
    ```
 
 2. **Plugin Directory:**
