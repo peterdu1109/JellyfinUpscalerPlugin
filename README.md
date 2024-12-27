@@ -104,7 +104,22 @@ This project is licensed under the MIT License. See LICENSE for more details.
 **Contact**
 
 - Developed by: Kuschel-Code  
-- GitHub: 
 
 ---
+
+| **Profile**     | **Recommended GPU**                                          | **Recommended CPU**                                          | **Notes**                                                           |
+|-----------------|--------------------------------------------------------------|--------------------------------------------------------------|---------------------------------------------------------------------|
+| **Default**     | NVIDIA GTX 1650 / RTX 2060 or better (or AMD Radeon RX 580 / RX 5700) | Intel i5 (6th or 7th Gen) or AMD Ryzen 5                    | Automatic detection based on library type, moderate requirements.  |
+| **Anime**       | NVIDIA RTX 3070 or better (Waifu2x requires more GPU power)  | Intel i7 or AMD Ryzen 7 or better                            | Waifu2x algorithm needs more power, especially for 1080p+ anime.    |
+| **Movies**      | NVIDIA RTX 3070 / RTX 4080 or AMD Radeon RX 6800 XT or better | Intel i7/i9 or AMD Ryzen 7/9                                 | ESRGAN for high-quality movie enhancement needs more GPU power, especially for 4K/8K. |
+| **TV Shows**    | NVIDIA GTX 1650 or better (no heavy GPU required)            | Intel i5 or AMD Ryzen 5                                      | Traditional shaders are less GPU-intensive, fine for TV series.     |
+| **Custom**      | Depends on settings, especially high resolution and FPS      | Depends on settings. A balanced GPU and CPU are recommended. | Fine-tuning requires more resources depending on selected settings. |
+
+### Additional Notes:
+- **FPS**: Higher frame rates (e.g., 120 FPS) demand significantly more GPU and CPU power, especially at 4K or higher resolution.
+- **Resolution**: For 4K or higher resolutions, a powerful GPU (RTX 3070 or better) is recommended to avoid lag or stuttering.
+- **Image Quality**: Higher image quality settings (sharpness, saturation, contrast) can require more GPU power, especially at higher resolutions.
+
+The choice of GPU and CPU depends largely on the selected upscaling profile and content requirements. It's important to balance both GPU and CPU performance to ensure smooth playback and upscaling, especially for higher resolutions and more complex algorithms like Waifu2x and ESRGAN.
+
 
