@@ -5,7 +5,6 @@
         "description": "Enhance video quality with real-time upscaling for supported devices.",
         "owner": "Kuschel-code",
         "category": "Video Processing",
-        "imageUrl":https://github.com/Kuschel-code/JellyfinUpscalerPlugin/blob/main/assets/addon-image.png
         "versions": [
             {
                 "version": "1.0.0",
