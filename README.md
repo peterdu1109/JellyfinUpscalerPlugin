@@ -48,7 +48,16 @@ The Jellyfin Upscaler Plugin enhances video quality in real-time by using AI ups
    /path/to/jellyfin/plugins/UpscalerPlugin/
    ```
 
-3. **Restart:**
+3. **Download Model Weights:**
+   - The plugin requires weights for ESRGAN and Waifu2x.
+   - Download the pretrained weights from their official repositories or releases:
+     - **ESRGAN:** <https://github.com/xinntao/ESRGAN>
+     - **Waifu2x:** <https://github.com/nagadomi/waifu2x>
+   - Place the downloaded `weights.bin` files into:
+     - `shaders/ESRGAN/weights.bin`
+     - `shaders/Waifu2x/weights.bin`
+
+4. **Restart:**
    - Restart the Jellyfin server to activate the plugin.
 
 ---
