@@ -17,7 +17,7 @@ async function runBenchmarkTest() {
 
     try {
         // Load the AI model
-        const model = await tf.loadGraphModel('./models/ESRGAN/model.json');
+        const model = await tf.loadGraphModel('./shaders/ESRGAN/model.json');
 
         for (let imageUrl of testImages) {
             const testImage = new Image();
