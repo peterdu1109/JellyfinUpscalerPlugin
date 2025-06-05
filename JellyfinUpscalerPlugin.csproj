@@ -1,13 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <AssemblyVersion>10.10.7.0</AssemblyVersion>
     <AssemblyFileVersion>1.0.1.0</AssemblyFileVersion>
     <RootNamespace>JellyfinUpscalerPlugin</RootNamespace>
     <PackageId>JellyfinUpscalerPlugin</PackageId>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MediaBrowser.Common" Version="10.10.7" />
-    <PackageReference Include="MediaBrowser.Controller.Plugins" Version="10.10.7" />
+    <PackageReference Include="Jellyfin.Common" Version="10.10.7" />
+    <PackageReference Include="Jellyfin.Controller" Version="10.10.7" />
+    <PackageReference Include="Jellyfin.Model" Version="10.10.7" />
   </ItemGroup>
 </Project>
