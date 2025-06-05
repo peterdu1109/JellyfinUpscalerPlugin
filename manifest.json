@@ -1,7 +1,7 @@
 [
     {
         "guid": "f87f700e-679d-43e6-9c7c-b3a410dc3f12",
-        "name": "Jellyfin Upscaler",
+        "name": "Upscaling",
         "description": "Enhance video quality with real-time upscaling for supported devices.",
         "owner": "Kuschel-code",
         "category": "Video Processing",
@@ -10,7 +10,7 @@
                 "version": "1.0.1",
                 "targetAbi": "10.10.7.0",
                 "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/download/v1.0.1/JellyfinUpscalerPlugin.zip",
-                "checksum": "8c6972137cfdaa01e19595fba685bcb7",
+                "checksum": "5d532a515a99a1fb7021efe293b9386e",
                 "imageUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/assets/logo.png",
                 "timestamp": "2024-12-31T03:36:00Z"
             }
