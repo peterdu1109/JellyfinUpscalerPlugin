@@ -8,8 +8,8 @@
     "versions": [
       {
         "version": "1.0.1",
-        "targetAbi": "10.10.7.0",
-        "sourceUrl": "https://github.com/user-attachments/files/20607268/JellyfinUpscalerPlugin-main.zip",
+        "targetAbi": "10.10.7",
+        "sourceUrl": "https://codeload.github.com/peterdu1109/JellyfinUpscalerPlugin/zip/refs/tags/tes",
         "checksum": "0ba9a1bc99f270744238a8b96101782e",
         "imageUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/assets/logo.png",
         "timestamp": "2024-12-31T03:36:00Z"
