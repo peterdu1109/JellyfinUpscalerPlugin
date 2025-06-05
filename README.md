@@ -4,6 +4,8 @@ updated and final version
 
 **Jellyfin Upscaler Plugin**
 
+Compatibility: Tested with Jellyfin 10.10.7
+
 **Description**
 
 The Jellyfin Upscaler Plugin enhances video quality in real-time by using AI upscaling and shader-based optimizations. It offers predefined profiles and custom settings to ensure optimal performance and image quality on supported devices.
