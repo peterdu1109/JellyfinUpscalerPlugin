@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using MediaBrowser.Common.Plugins;
 using MediaBrowser.Controller.Plugins;
-using Microsoft.Extensions.DependencyInjection;
+using MediaBrowser.Model.Plugins;
 
 namespace JellyfinUpscalerPlugin
 {
@@ -12,8 +12,8 @@ namespace JellyfinUpscalerPlugin
         public override string Name => "Upscaling";
         public override string Description => "Enhance video quality with real-time upscaling for supported devices.";
 
-        public PluginEntryPoint(IApplicationPaths appPaths, IXmlSerializer xmlSerializer)
-            : base(appPaths, xmlSerializer)
+        public PluginEntryPoint()
+            : base()
         {
         }
 
@@ -22,9 +22,6 @@ namespace JellyfinUpscalerPlugin
             return new PluginPageInfo[] { };
         }
 
-        public override void ConfigureServices(IServiceCollection services)
-        {
-            // Register services if needed
-        }
+        // Additional service registration can be added here if needed
     }
 }
