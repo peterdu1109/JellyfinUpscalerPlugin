@@ -9,7 +9,7 @@
       {
         "version": "1.0.1",
         "targetAbi": "10.10.7.0",
-        "sourceUrl": "https://objects.githubusercontent.com/github-production-repository-file-5c1aeb/996594396/20605497?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250605%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250605T080453Z&X-Amz-Expires=300&X-Amz-Signature=ea7fc01cff9b92a93559b71cf1659b5686b9f87315fbc50eb1ffe67fb98888ca&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3Bfilename%3DJellyfinUpscalerPluginv1.0.1.zip&response-content-type=application%2Fx-zip-compressed",
+        "sourceUrl": "https://objects.githubusercontent.com/github-production-repository-file-5c1aeb/996594396/20605110?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250605%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250605T080734Z&X-Amz-Expires=300&X-Amz-Signature=5da282f1eaf94ae0fc4e25b5ea5efac5243e1cca80ab3807d07ea500748d77dc&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3Bfilename%3DJellyfinUpscalerPlugin-main.zip&response-content-type=application%2Fx-zip-compressed",
         "checksum": "71f0d8500928fedadc1f4b6506356c",
         "imageUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/assets/logo.png",
         "timestamp": "2024-12-31T03:36:00Z"
