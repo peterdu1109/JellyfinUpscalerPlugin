@@ -1,0 +1,9 @@
+{
+  "Id": "f87f700e-679d-43e6-9c7c-b3a410dc3f12",
+  "Name": "Upscaling",
+  "Description": "Enhance video quality with real-time upscaling for supported devices.",
+  "Version": "1.0.1",
+  "AssemblyFileName": "JellyfinUpscalerPlugin.dll",
+  "TargetAbi": "10.10.7.0",
+  "SupportInfoUrl": "https://github.com/peterdu1109/JellyfinUpscalerPlugin"
+}
