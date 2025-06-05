@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>11</LangVersion>
+    <Nullable>enable</Nullable>
+    <AssemblyName>Jellyfin.Plugin.Upscaler</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Jellyfin.Server.Common" Version="10.8.13" />
+    <PackageReference Include="MediaBrowser.Controller" Version="10.8.13" />
+    <PackageReference Include="MediaBrowser.Model" Version="10.8.13" />
+  </ItemGroup>
+</Project>
