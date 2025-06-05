@@ -35,11 +35,12 @@ The Jellyfin Upscaler Plugin enhances video quality in real-time by using AI ups
 
 1. **Download:**
    - Download the plugin as a ZIP file and unzip it into the Jellyfin plugin directory.
-   - Alternatively, you can clone it directly from GitHub:
+   - Alternatively, clone it directly from GitHub:
 
    ```bash
-   soon
+   git clone https://github.com/Kuschel-code/JellyfinUpscalerPlugin.git
    ```
+
 
 2. **Plugin Directory:**
    - The plugin should be placed in Jellyfin's plugin directory:
@@ -47,8 +48,15 @@ The Jellyfin Upscaler Plugin enhances video quality in real-time by using AI ups
    ```
    /path/to/jellyfin/plugins/UpscalerPlugin/
    ```
+3. **Update manifest.json:**
+   - After packaging the plugin into a ZIP file, calculate its MD5 checksum:
+   ```bash
+   md5sum JellyfinUpscalerPluginv1.0.1.zip
+   ```
+   - Copy the resulting hash into the "checksum" field in `manifest.json`.
 
-3. **Restart:**
+
+4. **Restart:**
    - Restart the Jellyfin server to activate the plugin.
 
 ---
