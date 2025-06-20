@@ -1,6 +1,6 @@
-# 🚀 Jellyfin Upscaler Plugin v1.2.0 NATIVE
+# 🔥 Jellyfin AI Upscaler Plugin v1.3.0 PRO
 
-## 🎉 **ALL CRASH.TXT PROBLEMS FIXED! TV-FRIENDLY NATIVE VERSION!**
+## 🎉 **ADVANCED AI UPSCALING: DLSS 3.0 • FSR 3.0 • XeSS • RTX HDR**
 
 ---
 
@@ -10,13 +10,16 @@
 
 The Jellyfin Upscaler Plugin enhances video quality in real-time by using AI upscaling and shader-based optimizations. 
 
-### 🔥 **v1.2.0 NATIVE - ALL PROBLEMS FROM CRASH.TXT SOLVED:**
-- ✅ **NEW GUID: f87f700e-679d-43e6-9c7c-b3a410dc3f21** - No more 00000000 errors!
-- ✅ **MINI LOGO: 32x32 (1.5KB)** - No more "Content-Length mismatch" errors!
-- ✅ **TV-FRIENDLY SETTINGS** - Direct in video player, no extra pages!
-- ✅ **LOCAL INSTALLATION** - No more 404 download errors!
-- ✅ **DLSS/FSR SUPPORT** - Hardware-accelerated upscaling!
-- ✅ **PERSISTENT SETTINGS** - Survives all restarts via localStorage!
+### 🔥 **v1.3.0 ADVANCED PRO - ULTIMATE AI UPSCALING:**
+- 🚀 **DLSS 3.0** - Frame Generation for RTX 40-series
+- 🚀 **FSR 3.0** - Fluid Motion Frames for RX 7000-series  
+- 🚀 **Intel XeSS** - Super Resolution for Arc GPUs
+- 🚀 **NVIDIA RTX HDR** - Auto HDR enhancement
+- 🚀 **Real-ESRGAN** - AI-based super resolution
+- 🚀 **Frame Interpolation** - FPS boost technology
+- 🚀 **Motion Compensation** - Artifact reduction
+- 🚀 **Performance Monitor** - Real-time statistics
+- ✅ **ALL CRASH.TXT PROBLEMS SOLVED** - New GUID, optimized logos, TV-friendly!
 
 It offers predefined profiles and custom settings to ensure optimal performance and image quality on supported devices.
 
@@ -41,22 +44,45 @@ It offers predefined profiles and custom settings to ensure optimal performance 
 
 ---
 
-## 🚀 **ULTRA-EASY INSTALLATION (v1.2.0 NATIVE)**
+## 🚀 **ULTRA-EASY INSTALLATION (Choose Your Version)**
 
-### **🎯 One-Click Native Installation (TV-Friendly)**
+### **🔥 Advanced Pro Installation (Recommended)**
+1. **Download:** [INSTALL-ADVANCED.cmd](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/INSTALL-ADVANCED.cmd)
+2. **Double-click** `INSTALL-ADVANCED.cmd`  
+3. **Done!** Advanced AI upscaling with hardware detection!
+
+### **🎯 Simple Native Installation (TV-Friendly)**
 1. **Download:** [INSTALL-NATIVE.cmd](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/INSTALL-NATIVE.cmd)
 2. **Double-click** `INSTALL-NATIVE.cmd`  
-3. **Done!** TV-friendly plugin with in-player settings installed!
+3. **Done!** Basic upscaling with TV-friendly controls!
 
-### **📦 Manual Download**
-1. **Native Version:** [JellyfinUpscaler-Native.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscaler-Native.zip)
-2. **Legacy Version:** [JellyfinUpscalerPlugin.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscalerPlugin.zip)
+### **📦 Manual Downloads**
+1. **🔥 Advanced Pro v1.3.0:** [JellyfinUpscaler-Advanced.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscaler-Advanced.zip)
+2. **🎯 Native v1.2.0:** [JellyfinUpscaler-Native.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscaler-Native.zip)
+3. **📄 Legacy v1.1.2:** [JellyfinUpscalerPlugin.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscalerPlugin.zip)
 
-### **🎮 HOW TO USE (TV-FRIENDLY):**
+### **🎮 HOW TO USE:**
+
+#### **🔥 Advanced Pro (v1.3.0):**
+1. **Play any video** in Jellyfin
+2. **Look for "🔥 AI Pro" button** in video player (top-right)
+3. **Click** → Advanced settings dialog opens
+4. **Hardware auto-detected** (DLSS/FSR/XeSS available methods shown)
+5. **Configure:**
+   - AI Method (DLSS 3.0, FSR 3.0, XeSS, Real-ESRGAN, etc.)
+   - Scale Factor (1.0x - 4.0x)
+   - RTX HDR Boost
+   - Frame Interpolation
+   - Motion Compensation
+   - AI Color Enhancement
+6. **Save** → Settings persist automatically!
+7. **Performance Monitor** shows real-time stats
+
+#### **🎯 Native (v1.2.0):**
 1. **Play any video** in Jellyfin
 2. **Look for "🎯 Upscaler" button** in video player (top-right)
-3. **Click** → Settings dialog opens
-4. **Configure:** DLSS/FSR/CAS/ESRGAN/Waifu2x
+3. **Click** → Simple settings dialog opens
+4. **Configure:** Basic DLSS/FSR/CAS
 5. **Save** → Settings persist automatically!
    - Alternatively, you can clone it directly from GitHub:
 
