@@ -20,6 +20,7 @@ The Jellyfin Upscaler Plugin enhances video quality in real-time by using AI ups
 - 🚀 **Motion Compensation** - Artifact reduction
 - 🚀 **Performance Monitor** - Real-time statistics
 - ✅ **ALL CRASH.TXT PROBLEMS SOLVED** - New GUID, optimized logos, TV-friendly!
+- 🛠️ **404 DOWNLOAD ERRORS FIXED** - Failsafe installation methods included!
 
 It offers predefined profiles and custom settings to ensure optimal performance and image quality on supported devices.
 
@@ -56,6 +57,12 @@ It offers predefined profiles and custom settings to ensure optimal performance 
 2. **Double-click** `INSTALL-NATIVE.cmd`  
 3. **Done!** Basic upscaling with TV-friendly controls!
 
+### **🛠️ Failsafe Installation (Fixes 404 Errors)**
+**If you're experiencing crash.txt errors with "404 (Not Found)" during installation:**
+1. **Download:** [INSTALL-FAILSAFE.cmd](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/INSTALL-FAILSAFE.cmd)
+2. **Double-click** `INSTALL-FAILSAFE.cmd`  
+3. **Automatically handles network issues and download failures!**
+
 ### **📦 Manual Downloads**
 1. **🔥 Advanced Pro v1.3.0:** [JellyfinUpscaler-Advanced.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscaler-Advanced.zip)
 2. **🎯 Native v1.2.0:** [JellyfinUpscaler-Native.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscaler-Native.zip)
@@ -84,6 +91,23 @@ It offers predefined profiles and custom settings to ensure optimal performance 
 3. **Click** → Simple settings dialog opens
 4. **Configure:** Basic DLSS/FSR/CAS
 5. **Save** → Settings persist automatically!
+
+---
+
+## 🛠️ **TROUBLESHOOTING**
+
+### **🚨 Experiencing crashes or 404 errors?**
+- **crash.txt shows "404 (Not Found)" errors?** → Use [INSTALL-FAILSAFE.cmd](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/INSTALL-FAILSAFE.cmd)
+- **Plugin disappears after restart?** → All versions v1.2.0+ have this fixed
+- **Settings not saving?** → Clear browser cache and try different browser
+- **Button not appearing?** → Wait 30 seconds after video starts, then refresh
+
+📋 **Full troubleshooting guide:** [TROUBLESHOOTING.md](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/blob/main/TROUBLESHOOTING.md)
+
+---
+
+## 📦 **ALTERNATIVE INSTALLATION METHODS**
+
    - Alternatively, you can clone it directly from GitHub:
 
    ```bash
