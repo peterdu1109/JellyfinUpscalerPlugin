@@ -1,0 +1,12 @@
+{
+    "guid": "f87f700e-679d-43e6-9c7c-b3a410dc3f12",
+    "name": "Jellyfin Upscaler",
+    "description": "Real-time video upscaling with new logos - PERSISTENCE FIXED",
+    "version": "1.1.2",
+    "targetAbi": "10.10.3.0",
+    "framework": "net6.0",
+    "owner": "Kuschel-code",
+    "category": "Video Processing",
+    "imageUrl": "assets/logo.png",
+    "changelog": "FINAL FIX: GUID persistence problem resolved, new logos integrated, no more 00000000 error"
+}
