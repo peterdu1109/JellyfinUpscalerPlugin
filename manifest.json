@@ -7,6 +7,15 @@
         "category": "Video Processing",
         "versions": [
             {
+                "version": "1.2.0",
+                "targetAbi": "10.10.6.0",
+                "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscaler-Native.zip",
+                "checksum": "f051e2128f5ab39b1b8ecbe698909a93",
+                "imageUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/assets/logo.png",
+                "timestamp": "2025-01-02T23:00:00Z",
+                "changelog": "NATIVE TV-FRIENDLY: All Crash.txt problems fixed, in-player settings, DLSS/FSR support, 32x32 optimized logo"
+            },
+            {
                 "version": "1.1.2",
                 "targetAbi": "10.10.3.0",
                 "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscalerPlugin.zip",

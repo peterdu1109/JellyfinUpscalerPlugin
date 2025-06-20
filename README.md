@@ -1,6 +1,6 @@
-# 🚀 Jellyfin Upscaler Plugin v1.1.2
+# 🚀 Jellyfin Upscaler Plugin v1.2.0 NATIVE
 
-## ✅ **PERSISTENCE PROBLEM FIXED!**
+## 🎉 **ALL CRASH.TXT PROBLEMS FIXED! TV-FRIENDLY NATIVE VERSION!**
 
 ---
 
@@ -10,11 +10,13 @@
 
 The Jellyfin Upscaler Plugin enhances video quality in real-time by using AI upscaling and shader-based optimizations. 
 
-### 🔧 **v1.1.2 CRITICAL FIXES:**
-- ✅ **GUID persistence problem resolved** - Plugin no longer disappears after restart
-- ✅ **New logos integrated** (Logo.png + Icon.png)
-- ✅ **No more 00000000-0000-0000-0000-000000000000 errors**
-- ✅ **Bulletproof installation process**
+### 🔥 **v1.2.0 NATIVE - ALL PROBLEMS FROM CRASH.TXT SOLVED:**
+- ✅ **NEW GUID: f87f700e-679d-43e6-9c7c-b3a410dc3f21** - No more 00000000 errors!
+- ✅ **MINI LOGO: 32x32 (1.5KB)** - No more "Content-Length mismatch" errors!
+- ✅ **TV-FRIENDLY SETTINGS** - Direct in video player, no extra pages!
+- ✅ **LOCAL INSTALLATION** - No more 404 download errors!
+- ✅ **DLSS/FSR SUPPORT** - Hardware-accelerated upscaling!
+- ✅ **PERSISTENT SETTINGS** - Survives all restarts via localStorage!
 
 It offers predefined profiles and custom settings to ensure optimal performance and image quality on supported devices.
 
@@ -39,16 +41,23 @@ It offers predefined profiles and custom settings to ensure optimal performance 
 
 ---
 
-## 🚀 **EASY INSTALLATION (v1.1.2)**
+## 🚀 **ULTRA-EASY INSTALLATION (v1.2.0 NATIVE)**
 
-### **Option 1: One-Click Installation (Recommended)**
-1. **Download** the plugin files
-2. **Run** `INSTALL-ULTIMATE.cmd` (Double-click)
-3. **Done!** Plugin will be installed with persistence fix
+### **🎯 One-Click Native Installation (TV-Friendly)**
+1. **Download:** [INSTALL-NATIVE.cmd](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/INSTALL-NATIVE.cmd)
+2. **Double-click** `INSTALL-NATIVE.cmd`  
+3. **Done!** TV-friendly plugin with in-player settings installed!
 
-### **Option 2: Manual Installation**
-1. **Download:** [JellyfinUpscalerPlugin.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscalerPlugin.zip)
-2. **Extract** to your Jellyfin plugin directory
+### **📦 Manual Download**
+1. **Native Version:** [JellyfinUpscaler-Native.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscaler-Native.zip)
+2. **Legacy Version:** [JellyfinUpscalerPlugin.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscalerPlugin.zip)
+
+### **🎮 HOW TO USE (TV-FRIENDLY):**
+1. **Play any video** in Jellyfin
+2. **Look for "🎯 Upscaler" button** in video player (top-right)
+3. **Click** → Settings dialog opens
+4. **Configure:** DLSS/FSR/CAS/ESRGAN/Waifu2x
+5. **Save** → Settings persist automatically!
    - Alternatively, you can clone it directly from GitHub:
 
    ```bash
