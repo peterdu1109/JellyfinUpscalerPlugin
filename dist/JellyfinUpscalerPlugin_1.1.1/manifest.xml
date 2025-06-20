@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PluginManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Id>f87f700e-679d-43e6-9c7c-b3a410dc3f12</Id>
+  <Name>Jellyfin Upscaler</Name>
+  <Description>Enhance video quality with real-time upscaling for supported devices.</Description>
+  <Version>1.1.1.0</Version>
+  <Category>Video Processing</Category>
+  <Owner>Kuschel-code</Owner>
+  <Overview>Real-time video upscaling using AI and advanced shaders for better quality playback</Overview>
+  <TargetAbi>10.10.3.0</TargetAbi>
+  <Framework>net6.0</Framework>
+  <ImageUrl>web/assets/logo.png</ImageUrl>
+  <Changelog>CRITICAL FIX: Plugin persistence after restart, updated logos, improved stability</Changelog>
+</PluginManifest>

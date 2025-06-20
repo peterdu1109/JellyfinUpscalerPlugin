@@ -1,0 +1,15 @@
+{
+    "name": "jellyfin-upscaler-plugin",
+    "version": "1.1.1",
+    "description": "Enhance video quality with real-time upscaling for supported devices.",
+    "id": "f87f700e-679d-43e6-9c7c-b3a410dc3f12",
+    "type": "web-plugin",
+    "main": "main.js",
+    "author": "Kuschel-code",
+    "license": "MIT",
+    "jellyfin": {
+        "minVersion": "10.10.3",
+        "webPlugin": true,
+        "configurationPage": "web/configurationpage.html"
+    }
+}

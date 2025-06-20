@@ -7,6 +7,15 @@
         "category": "Video Processing",
         "versions": [
             {
+                "version": "1.1.1",
+                "targetAbi": "10.10.3.0",
+                "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscalerPlugin.zip",
+                "checksum": "7de105418e93ad26c54a65ca9a43b7b8",
+                "imageUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/assets/logo.png",
+                "timestamp": "2025-01-02T21:45:00Z",
+                "changelog": "CRITICAL FIX: Plugin persistence after restart, updated logos, improved stability"
+            },
+            {
                 "version": "1.1.0",
                 "targetAbi": "10.10.3.0",
                 "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscalerPlugin.zip",

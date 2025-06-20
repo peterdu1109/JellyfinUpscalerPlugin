@@ -5,9 +5,9 @@
     "overview": "Real-time video upscaling using AI and advanced shaders for better quality playback",
     "owner": "Kuschel-code",
     "category": "Video Processing",
-    "version": "1.1.1",
+    "version": "1.1.1.0",
     "targetAbi": "10.10.3.0",
     "framework": "net6.0",
-    "imageUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/assets/logo.png",
+    "imageUrl": "assets/logo.png",
     "changelog": "CRITICAL FIX: Plugin persistence after restart, updated logos, improved stability"
 }
