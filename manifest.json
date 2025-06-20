@@ -7,6 +7,15 @@
         "category": "Video Processing",
         "versions": [
             {
+                "version": "1.1.2",
+                "targetAbi": "10.10.3.0",
+                "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscalerPlugin.zip",
+                "checksum": "c36e54a30786fbf167d2eed1b640d7ea",
+                "imageUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/assets/logo.png",
+                "timestamp": "2025-01-02T22:15:00Z",
+                "changelog": "FINAL FIX: GUID persistence problem resolved, new logos integrated, no more 00000000 error"
+            },
+            {
                 "version": "1.1.1",
                 "targetAbi": "10.10.3.0",
                 "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscalerPlugin.zip",

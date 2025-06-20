@@ -1,4 +1,6 @@
-updated and final version
+# 🚀 Jellyfin Upscaler Plugin v1.1.2
+
+## ✅ **PERSISTENCE PROBLEM FIXED!**
 
 ---
 
@@ -6,7 +8,15 @@ updated and final version
 
 **Description**
 
-The Jellyfin Upscaler Plugin enhances video quality in real-time by using AI upscaling and shader-based optimizations. It offers predefined profiles and custom settings to ensure optimal performance and image quality on supported devices.
+The Jellyfin Upscaler Plugin enhances video quality in real-time by using AI upscaling and shader-based optimizations. 
+
+### 🔧 **v1.1.2 CRITICAL FIXES:**
+- ✅ **GUID persistence problem resolved** - Plugin no longer disappears after restart
+- ✅ **New logos integrated** (Logo.png + Icon.png)
+- ✅ **No more 00000000-0000-0000-0000-000000000000 errors**
+- ✅ **Bulletproof installation process**
+
+It offers predefined profiles and custom settings to ensure optimal performance and image quality on supported devices.
 
 ---
 
@@ -29,10 +39,16 @@ The Jellyfin Upscaler Plugin enhances video quality in real-time by using AI ups
 
 ---
 
-**Installation**
+## 🚀 **EASY INSTALLATION (v1.1.2)**
 
-1. **Download:**
-   - Download the plugin as a ZIP file and unzip it into the Jellyfin plugin directory.
+### **Option 1: One-Click Installation (Recommended)**
+1. **Download** the plugin files
+2. **Run** `INSTALL-ULTIMATE.cmd` (Double-click)
+3. **Done!** Plugin will be installed with persistence fix
+
+### **Option 2: Manual Installation**
+1. **Download:** [JellyfinUpscalerPlugin.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscalerPlugin.zip)
+2. **Extract** to your Jellyfin plugin directory
    - Alternatively, you can clone it directly from GitHub:
 
    ```bash
