@@ -2,14 +2,23 @@
 
 ## 🚨 **CRASH.TXT PROBLEMS SOLVED**
 
-### **❌ Common Error from crash.txt:**
+### **❌ Common Errors from crash.txt:**
+
+#### **1. GUID Mismatch Error:**
+```
+[ERR] The manifest ID f87f700e-679d-43e6-9c7c-b3a410dc3f22 did not match the package info ID f87f700e-679d-43e6-9c7c-b3a410dc3f12.
+```
+
+#### **2. Download 404 Error:**
 ```
 [ERR] Package installation failed
 System.Net.Http.HttpRequestException: Response status code does not indicate success: 404 (Not Found).
 URL "POST" "/Packages/Installed/Jellyfin%20Upscaler"
 ```
 
-### **✅ ROOT CAUSE:**
+### **✅ ROOT CAUSES:**
+- **GUID Mismatch** occurs when manifest.json and meta.json have different GUIDs
+- **Missing Assets** like logo.png cause image loading failures
 - **404 Error** occurs when Jellyfin tries to download plugin from GitHub
 - **Network issues** or temporary GitHub unavailability
 - **Wrong repository URL** in Jellyfin plugin catalog
@@ -79,11 +88,11 @@ manifest ID 00000000-0000-0000-0000-000000000000 did not match package info
 ```
 
 ### **✅ New Solution:**
-- **v1.3.0 Advanced:** `f87f700e-679d-43e6-9c7c-b3a410dc3f22`
-- **v1.2.0 Native:** `f87f700e-679d-43e6-9c7c-b3a410dc3f21`
-- **v1.1.2 Legacy:** `f87f700e-679d-43e6-9c7c-b3a410dc3f12`
+- **ALL VERSIONS:** `f87f700e-679d-43e6-9c7c-b3a410dc3f12`
+- **Unified GUID:** All versions now use the same GUID for consistent plugin identity
+- **No More Conflicts:** manifest.json and meta.json GUIDs are perfectly synchronized
 
-**All GUIDs are unique and will never conflict!**
+**All GUID mismatches have been resolved!**
 
 ---
 

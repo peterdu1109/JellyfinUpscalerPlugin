@@ -1,6 +1,6 @@
 [
     {
-        "guid": "f87f700e-679d-43e6-9c7c-b3a410dc3f12",
+        "guid": "f87f700e-679d-43e6-9c7c-b3a410dc3f22",
         "name": "Jellyfin Upscaler",
         "description": "Enhance video quality with real-time upscaling for supported devices.",
         "owner": "Kuschel-code",
@@ -10,7 +10,7 @@
                 "version": "1.3.0",
                 "targetAbi": "10.10.6.0",
                 "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscaler-Advanced.zip",
-                "checksum": "7dbeb44aa51831f0c999c5ea05cd30a8",
+                "checksum": "785aa833f0adb9a541c96479804ad3dd",
                 "imageUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/assets/logo.png",
                 "timestamp": "2025-01-02T23:30:00Z",
                 "changelog": "ADVANCED PRO: DLSS 3.0, FSR 3.0, XeSS, RTX HDR, Real-ESRGAN, Frame Interpolation, Motion Compensation, Performance Monitoring"
@@ -19,7 +19,7 @@
                 "version": "1.2.0",
                 "targetAbi": "10.10.6.0",
                 "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscaler-Native.zip",
-                "checksum": "f051e2128f5ab39b1b8ecbe698909a93",
+                "checksum": "019aeff32ec88cc46efb32dfc4167279",
                 "imageUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/assets/logo.png",
                 "timestamp": "2025-01-02T23:00:00Z",
                 "changelog": "NATIVE TV-FRIENDLY: All Crash.txt problems fixed, in-player settings, DLSS/FSR support, 32x32 optimized logo"
@@ -28,7 +28,7 @@
                 "version": "1.1.2",
                 "targetAbi": "10.10.3.0",
                 "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscalerPlugin.zip",
-                "checksum": "c36e54a30786fbf167d2eed1b640d7ea",
+                "checksum": "2c221e7ba83dde3b9beedc83270ba3f0",
                 "imageUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/assets/logo.png",
                 "timestamp": "2025-01-02T22:15:00Z",
                 "changelog": "FINAL FIX: GUID persistence problem resolved, new logos integrated, no more 00000000 error"

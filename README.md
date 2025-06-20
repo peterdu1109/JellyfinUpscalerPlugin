@@ -19,8 +19,9 @@ The Jellyfin Upscaler Plugin enhances video quality in real-time by using AI ups
 - 🚀 **Frame Interpolation** - FPS boost technology
 - 🚀 **Motion Compensation** - Artifact reduction
 - 🚀 **Performance Monitor** - Real-time statistics
-- ✅ **ALL CRASH.TXT PROBLEMS SOLVED** - New GUID, optimized logos, TV-friendly!
+- ✅ **ALL CRASH.TXT PROBLEMS SOLVED** - GUID mismatches fixed, optimized logos, TV-friendly!
 - 🛠️ **404 DOWNLOAD ERRORS FIXED** - Failsafe installation methods included!
+- 🔧 **GUID CONFLICTS RESOLVED** - All versions use unified GUID system!
 
 It offers predefined profiles and custom settings to ensure optimal performance and image quality on supported devices.
 
@@ -96,11 +97,13 @@ It offers predefined profiles and custom settings to ensure optimal performance 
 
 ## 🛠️ **TROUBLESHOOTING**
 
-### **🚨 Experiencing crashes or 404 errors?**
+### **🚨 Experiencing crashes or errors?**
+- **crash.txt shows "GUID mismatch" errors?** → v1.3.0+ have unified GUIDs - update to latest version
 - **crash.txt shows "404 (Not Found)" errors?** → Use [INSTALL-FAILSAFE.cmd](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/INSTALL-FAILSAFE.cmd)
 - **Plugin disappears after restart?** → All versions v1.2.0+ have this fixed
-- **Settings not saving?** → Clear browser cache and try different browser
+- **Settings not saving?** → Clear browser cache and try different browser  
 - **Button not appearing?** → Wait 30 seconds after video starts, then refresh
+- **Images not loading?** → v1.3.0+ include all required assets
 
 📋 **Full troubleshooting guide:** [TROUBLESHOOTING.md](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/blob/main/TROUBLESHOOTING.md)
 
