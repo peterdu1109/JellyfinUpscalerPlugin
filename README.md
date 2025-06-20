@@ -36,18 +36,49 @@ The Jellyfin Upscaler Plugin enhances video quality in real-time by using AI ups
    - Alternatively, you can clone it directly from GitHub:
 
    ```bash
-   soon
+   git clone https://github.com/Kuschel-code/JellyfinUpscalerPlugin.git
    ```
 
 2. **Plugin Directory:**
    - The plugin should be placed in Jellyfin's plugin directory:
 
    ```
-   /path/to/jellyfin/plugins/UpscalerPlugin/
+   # Windows
+   C:\ProgramData\Jellyfin\Server\plugins\JellyfinUpscalerPlugin_1.0.0\
+
+   # Linux
+   /var/lib/jellyfin/plugins/JellyfinUpscalerPlugin_1.0.0/
+
+   # macOS  
+   /var/lib/jellyfin/plugins/JellyfinUpscalerPlugin_1.0.0/
+
+   # Docker
+   /config/plugins/JellyfinUpscalerPlugin_1.0.0/
    ```
 
-3. **Restart:**
+3. **Set Permissions (Linux/macOS):**
+
+   ```bash
+   sudo chown -R jellyfin:jellyfin /var/lib/jellyfin/plugins/JellyfinUpscalerPlugin_1.0.0/
+   sudo chmod -R 755 /var/lib/jellyfin/plugins/JellyfinUpscalerPlugin_1.0.0/
+   ```
+
+4. **Restart:**
    - Restart the Jellyfin server to activate the plugin.
+
+   ```bash
+   # Windows (as Administrator)
+   net stop JellyfinService && net start JellyfinService
+
+   # Linux systemd
+   sudo systemctl restart jellyfin
+
+   # Docker
+   docker restart jellyfin
+   ```
+
+📖 **For detailed installation instructions, see [INSTALLATION.md](INSTALLATION.md)**  
+⚡ **For performance optimization, see [PERFORMANCE.md](PERFORMANCE.md)**
 
 ---
 
