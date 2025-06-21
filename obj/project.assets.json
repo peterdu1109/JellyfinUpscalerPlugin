@@ -1,0 +1,158 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0": {
+      "Jellyfin.Controller/10.10.3": {
+        "type": "package"
+      },
+      "Jellyfin.Model/10.10.3": {
+        "type": "package"
+      }
+    }
+  },
+  "libraries": {
+    "Jellyfin.Controller/10.10.3": {
+      "sha512": "5QZckQvZirweyY6udGdclFOrqzLloGWVUQhqsd+0HAv9GhN7RDHALhGGeveHEDXc7iL3Ch2vS4kwBqfDt0N50Q==",
+      "type": "package",
+      "path": "jellyfin.controller/10.10.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "jellyfin.controller.10.10.3.nupkg.sha512",
+        "jellyfin.controller.nuspec",
+        "lib/net8.0/MediaBrowser.Controller.dll",
+        "lib/net8.0/MediaBrowser.Controller.xml"
+      ]
+    },
+    "Jellyfin.Model/10.10.3": {
+      "sha512": "mBR59AoRnEM3Oz4ZPtyV4EyHqta+hmKKeolcUZO9u2YdQ+4IKLa8xlAFi7DqBRgu32PkGo1nOAFkGgyT/nqpBQ==",
+      "type": "package",
+      "path": "jellyfin.model/10.10.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "jellyfin.model.10.10.3.nupkg.sha512",
+        "jellyfin.model.nuspec",
+        "lib/net8.0/MediaBrowser.Model.dll",
+        "lib/net8.0/MediaBrowser.Model.xml"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0": [
+      "Jellyfin.Controller >= 10.10.3",
+      "Jellyfin.Model >= 10.10.3",
+      "MediaBrowser.Common >= 10.10.3"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Weltr\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\Weltr\\Desktop\\JellyfinUpscalerPlugin\\JellyfinUpscalerPlugin.csproj",
+      "projectName": "JellyfinUpscalerPlugin",
+      "projectPath": "C:\\Users\\Weltr\\Desktop\\JellyfinUpscalerPlugin\\JellyfinUpscalerPlugin.csproj",
+      "packagesPath": "C:\\Users\\Weltr\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Weltr\\Desktop\\JellyfinUpscalerPlugin\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\Weltr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "allWarningsAsErrors": true,
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.100"
+    },
+    "frameworks": {
+      "net6.0": {
+        "targetAlias": "net6.0",
+        "dependencies": {
+          "Jellyfin.Controller": {
+            "target": "Package",
+            "version": "[10.10.3, )"
+          },
+          "Jellyfin.Model": {
+            "target": "Package",
+            "version": "[10.10.3, )"
+          },
+          "MediaBrowser.Common": {
+            "target": "Package",
+            "version": "[10.10.3, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.36, 6.0.36]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.36, 6.0.36]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[6.0.36, 6.0.36]"
+          }
+        ],
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102\\RuntimeIdentifierGraph.json"
+      }
+    }
+  },
+  "logs": [
+    {
+      "code": "NU1102",
+      "level": "Error",
+      "message": "Unable to find package MediaBrowser.Common with version (>= 10.10.3)\r\n  - Found 970 version(s) in nuget.org [ Nearest version: 4.9.0.52-beta ]\r\n  - Found 0 version(s) in Microsoft Visual Studio Offline Packages\r\n  - Found 0 version(s) in C:\\Program Files\\dotnet\\library-packs",
+      "libraryId": "MediaBrowser.Common",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
+}

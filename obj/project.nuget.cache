@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "dgSpecHash": "3SvMX738+iM=",
+  "success": false,
+  "projectFilePath": "C:\\Users\\Weltr\\Desktop\\JellyfinUpscalerPlugin\\JellyfinUpscalerPlugin.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Weltr\\.nuget\\packages\\jellyfin.controller\\10.10.3\\jellyfin.controller.10.10.3.nupkg.sha512",
+    "C:\\Users\\Weltr\\.nuget\\packages\\jellyfin.model\\10.10.3\\jellyfin.model.10.10.3.nupkg.sha512",
+    "C:\\Users\\Weltr\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.36\\microsoft.netcore.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\Weltr\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.36\\microsoft.windowsdesktop.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\Weltr\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.36\\microsoft.aspnetcore.app.ref.6.0.36.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1102",
+      "level": "Error",
+      "message": "Unable to find package MediaBrowser.Common with version (>= 10.10.3)\r\n  - Found 970 version(s) in nuget.org [ Nearest version: 4.9.0.52-beta ]\r\n  - Found 0 version(s) in Microsoft Visual Studio Offline Packages\r\n  - Found 0 version(s) in C:\\Program Files\\dotnet\\library-packs",
+      "libraryId": "MediaBrowser.Common",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
+}
