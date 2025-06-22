@@ -21,39 +21,279 @@ class JellyfinUpscalerAdvanced {
     }
 
     loadSettings() {
+        try {
+            console.log('📂 Loading settings with ultra-reliable system...');
+            
+            // Method 1: Try modern JSON storage first
+            const storageKeys = [
+                'jellyfin-upscaler-primary',
+                'jellyfin-upscaler-backup', 
+                'jellyfin-upscaler-fallback'
+            ];
+            
+            for (const key of storageKeys) {
+                try {
+                    const stored = localStorage.getItem(key);
+                    if (stored) {
+                        const parsed = JSON.parse(stored);
+                        if (parsed.settings && this.validateSettings(parsed.settings)) {
+                            console.log(`📂 Settings loaded from ${key}`);
+                            return parsed.settings;
+                        }
+                    }
+                } catch (error) {
+                    console.warn(`Failed to load from ${key}:`, error);
+                }
+            }
+            
+            // Method 2: Try SessionStorage
+            try {
+                const sessionData = sessionStorage.getItem('jellyfin-upscaler-session');
+                if (sessionData) {
+                    const parsed = JSON.parse(sessionData);
+                    if (parsed.settings && this.validateSettings(parsed.settings)) {
+                        console.log('📂 Settings loaded from sessionStorage');
+                        return parsed.settings;
+                    }
+                }
+            } catch (error) {
+                console.warn('SessionStorage load failed:', error);
+            }
+            
+            // Method 3: Try Cookie storage
+            try {
+                const cookies = document.cookie.split(';');
+                const upscalerCookie = cookies.find(c => c.trim().startsWith('upscaler_settings='));
+                if (upscalerCookie) {
+                    const compressed = upscalerCookie.split('=')[1];
+                    const decompressed = atob(compressed);
+                    const parsed = JSON.parse(decompressed);
+                    if (parsed.settings && this.validateSettings(parsed.settings)) {
+                        console.log('📂 Settings loaded from cookies');
+                        return parsed.settings;
+                    }
+                }
+            } catch (error) {
+                console.warn('Cookie load failed:', error);
+            }
+            
+            // Method 4: Try Window.name storage
+            try {
+                if (window.name.startsWith('upscaler:')) {
+                    const compressed = window.name.substring(9);
+                    const decompressed = atob(compressed);
+                    const parsed = JSON.parse(decompressed);
+                    if (parsed.settings && this.validateSettings(parsed.settings)) {
+                        console.log('📂 Settings loaded from window.name');
+                        return parsed.settings;
+                    }
+                }
+            } catch (error) {
+                console.warn('Window.name load failed:', error);
+            }
+            
+            // Method 5: Try DOM storage
+            try {
+                const hiddenDiv = document.getElementById('upscaler-storage');
+                if (hiddenDiv) {
+                    const compressed = hiddenDiv.getAttribute('data-settings');
+                    if (compressed) {
+                        const decompressed = atob(compressed);
+                        const parsed = JSON.parse(decompressed);
+                        if (parsed.settings && this.validateSettings(parsed.settings)) {
+                            console.log('📂 Settings loaded from DOM storage');
+                            return parsed.settings;
+                        }
+                    }
+                }
+            } catch (error) {
+                console.warn('DOM storage load failed:', error);
+            }
+            
+            // Method 6: Fallback to legacy individual localStorage items
+            console.log('📂 Falling back to legacy localStorage format...');
+            const legacySettings = {
+                enabled: localStorage.getItem('upscaler_advanced_enabled') === 'true',
+                method: localStorage.getItem('upscaler_advanced_method') || 'DLSS 3.0',
+                preset: localStorage.getItem('upscaler_advanced_preset') || 'High',
+                scale: parseFloat(localStorage.getItem('upscaler_advanced_scale')) || 2.0,
+                sharpness: parseInt(localStorage.getItem('upscaler_advanced_sharpness')) || 70,
+                denoising: parseInt(localStorage.getItem('upscaler_advanced_denoising')) || 50,
+                hdrBoost: localStorage.getItem('upscaler_advanced_hdr') === 'true',
+                motionCompensation: localStorage.getItem('upscaler_advanced_motion') === 'true',
+                realTimeAI: localStorage.getItem('upscaler_advanced_ai') === 'true',
+                customModel: localStorage.getItem('upscaler_custom_model') || '',
+                frameInterpolation: localStorage.getItem('upscaler_frame_interp') === 'true',
+                colorEnhancement: localStorage.getItem('upscaler_color_enhance') === 'true',
+                autoPreset: localStorage.getItem('upscaler_auto_preset') === 'true',
+                tvOptimized: localStorage.getItem('upscaler_tv_optimized') === 'true'
+            };
+            
+            // Check if any legacy settings exist
+            const hasLegacyData = Object.values(legacySettings).some(val => 
+                val !== false && val !== 0 && val !== '' && val !== 'DLSS 3.0' && val !== 'High' && val !== 2.0 && val !== 70 && val !== 50
+            );
+            
+            if (hasLegacyData) {
+                console.log('📂 Legacy settings found - migrating to new format');
+                // Immediately save in new format for next time
+                setTimeout(() => {
+                    this.settings = legacySettings;
+                    this.saveSettings();
+                }, 100);
+                return legacySettings;
+            }
+            
+        } catch (error) {
+            console.warn('⚠️ Settings load error:', error);
+        }
+        
+        // Return defaults if nothing found
+        console.log('📋 Using default settings');
+        return this.getDefaultSettings();
+    }
+
+    getDefaultSettings() {
         return {
-            enabled: localStorage.getItem('upscaler_advanced_enabled') === 'true',
-            method: localStorage.getItem('upscaler_advanced_method') || 'DLSS 3.0',
-            preset: localStorage.getItem('upscaler_advanced_preset') || 'High',
-            scale: parseFloat(localStorage.getItem('upscaler_advanced_scale')) || 2.0,
-            sharpness: parseInt(localStorage.getItem('upscaler_advanced_sharpness')) || 70,
-            denoising: parseInt(localStorage.getItem('upscaler_advanced_denoising')) || 50,
-            hdrBoost: localStorage.getItem('upscaler_advanced_hdr') === 'true',
-            motionCompensation: localStorage.getItem('upscaler_advanced_motion') === 'true',
-            realTimeAI: localStorage.getItem('upscaler_advanced_ai') === 'true',
-            customModel: localStorage.getItem('upscaler_custom_model') || '',
-            frameInterpolation: localStorage.getItem('upscaler_frame_interp') === 'true',
-            colorEnhancement: localStorage.getItem('upscaler_color_enhance') === 'true',
-            autoPreset: localStorage.getItem('upscaler_auto_preset') === 'true',
-            tvOptimized: localStorage.getItem('upscaler_tv_optimized') === 'true'
+            enabled: false,
+            method: 'DLSS 3.0',
+            preset: 'High',
+            scale: 2.0,
+            sharpness: 70,
+            denoising: 50,
+            hdrBoost: false,
+            motionCompensation: false,
+            realTimeAI: true,
+            customModel: '',
+            frameInterpolation: false,
+            colorEnhancement: false,
+            autoPreset: true,
+            tvOptimized: false
         };
     }
 
+    validateSettings(settings) {
+        if (!settings || typeof settings !== 'object') return false;
+        
+        // Check required properties exist
+        const required = ['enabled', 'method', 'preset', 'scale'];
+        if (!required.every(prop => settings.hasOwnProperty(prop))) return false;
+        
+        // Validate ranges
+        if (settings.scale && (settings.scale < 1.0 || settings.scale > 8.0)) return false;
+        if (settings.sharpness && (settings.sharpness < 0 || settings.sharpness > 100)) return false;
+        if (settings.denoising && (settings.denoising < 0 || settings.denoising > 100)) return false;
+        
+        return true;
+    }
+
     saveSettings() {
-        localStorage.setItem('upscaler_advanced_enabled', this.settings.enabled.toString());
-        localStorage.setItem('upscaler_advanced_method', this.settings.method);
-        localStorage.setItem('upscaler_advanced_preset', this.settings.preset);
-        localStorage.setItem('upscaler_advanced_scale', this.settings.scale.toString());
-        localStorage.setItem('upscaler_advanced_sharpness', this.settings.sharpness.toString());
-        localStorage.setItem('upscaler_advanced_denoising', this.settings.denoising.toString());
-        localStorage.setItem('upscaler_advanced_hdr', this.settings.hdrBoost.toString());
-        localStorage.setItem('upscaler_advanced_motion', this.settings.motionCompensation.toString());
-        localStorage.setItem('upscaler_advanced_ai', this.settings.realTimeAI.toString());
-        localStorage.setItem('upscaler_custom_model', this.settings.customModel);
-        localStorage.setItem('upscaler_frame_interp', this.settings.frameInterpolation.toString());
-        localStorage.setItem('upscaler_color_enhance', this.settings.colorEnhancement.toString());
-        localStorage.setItem('upscaler_auto_preset', this.settings.autoPreset.toString());
-        localStorage.setItem('upscaler_tv_optimized', this.settings.tvOptimized.toString());
+        try {
+            console.log('💾 Saving settings with ultra-reliable system...');
+            
+            // Create settings package with metadata
+            const settingsPackage = {
+                settings: this.settings,
+                metadata: {
+                    version: this.version,
+                    timestamp: Date.now(),
+                    userAgent: navigator.userAgent.substring(0, 50)
+                }
+            };
+            
+            let successCount = 0;
+            
+            // Method 1: Multiple localStorage keys for redundancy
+            try {
+                const keys = [
+                    'jellyfin-upscaler-primary',
+                    'jellyfin-upscaler-backup',
+                    'jellyfin-upscaler-fallback'
+                ];
+                
+                for (const key of keys) {
+                    localStorage.setItem(key, JSON.stringify(settingsPackage));
+                    successCount++;
+                }
+            } catch (error) {
+                console.warn('localStorage multiple keys failed:', error);
+            }
+            
+            // Method 2: Individual localStorage items (compatibility)
+            try {
+                localStorage.setItem('upscaler_advanced_enabled', this.settings.enabled.toString());
+                localStorage.setItem('upscaler_advanced_method', this.settings.method);
+                localStorage.setItem('upscaler_advanced_preset', this.settings.preset);
+                localStorage.setItem('upscaler_advanced_scale', this.settings.scale.toString());
+                localStorage.setItem('upscaler_advanced_sharpness', this.settings.sharpness.toString());
+                localStorage.setItem('upscaler_advanced_denoising', this.settings.denoising.toString());
+                localStorage.setItem('upscaler_advanced_hdr', this.settings.hdrBoost.toString());
+                localStorage.setItem('upscaler_advanced_motion', this.settings.motionCompensation.toString());
+                localStorage.setItem('upscaler_advanced_ai', this.settings.realTimeAI.toString());
+                localStorage.setItem('upscaler_custom_model', this.settings.customModel);
+                localStorage.setItem('upscaler_frame_interp', this.settings.frameInterpolation.toString());
+                localStorage.setItem('upscaler_color_enhance', this.settings.colorEnhancement.toString());
+                localStorage.setItem('upscaler_auto_preset', this.settings.autoPreset.toString());
+                localStorage.setItem('upscaler_tv_optimized', this.settings.tvOptimized.toString());
+                successCount++;
+            } catch (error) {
+                console.warn('Individual localStorage failed:', error);
+            }
+            
+            // Method 3: SessionStorage backup
+            try {
+                sessionStorage.setItem('jellyfin-upscaler-session', JSON.stringify(settingsPackage));
+                successCount++;
+            } catch (error) {
+                console.warn('SessionStorage failed:', error);
+            }
+            
+            // Method 4: Cookie storage (compressed)
+            try {
+                const compressed = btoa(JSON.stringify(settingsPackage)).substring(0, 4000); // Cookie size limit
+                const expires = new Date();
+                expires.setFullYear(expires.getFullYear() + 1);
+                document.cookie = `upscaler_settings=${compressed}; expires=${expires.toUTCString()}; path=/; SameSite=Strict`;
+                successCount++;
+            } catch (error) {
+                console.warn('Cookie storage failed:', error);
+            }
+            
+            // Method 5: Window.name storage (hidden)
+            try {
+                const compressed = btoa(JSON.stringify(settingsPackage));
+                window.name = `upscaler:${compressed}`;
+                successCount++;
+            } catch (error) {
+                console.warn('Window.name storage failed:', error);
+            }
+            
+            // Method 6: Hidden DOM element storage
+            try {
+                let hiddenDiv = document.getElementById('upscaler-storage');
+                if (!hiddenDiv) {
+                    hiddenDiv = document.createElement('div');
+                    hiddenDiv.id = 'upscaler-storage';
+                    hiddenDiv.style.display = 'none';
+                    document.body.appendChild(hiddenDiv);
+                }
+                hiddenDiv.setAttribute('data-settings', btoa(JSON.stringify(settingsPackage)));
+                successCount++;
+            } catch (error) {
+                console.warn('DOM storage failed:', error);
+            }
+            
+            if (successCount > 0) {
+                console.log(`✅ Settings saved successfully using ${successCount}/6 methods!`);
+                this.showAdvancedNotification(`💾 Settings saved (${successCount} backups created)`, 2000);
+            } else {
+                throw new Error('All storage methods failed');
+            }
+            
+        } catch (error) {
+            console.error('❌ Critical: Settings save completely failed:', error);
+            this.showAdvancedNotification('❌ Warning: Settings may not persist after restart!', 4000);
+        }
     }
 
     detectAdvancedHardware() {
@@ -545,11 +785,31 @@ class JellyfinUpscalerAdvanced {
     }
 }
 
-// Initialize Advanced Upscaler
+// Auto-save settings on page unload
+window.addEventListener('beforeunload', () => {
+    if (window.upscalerAdvanced) {
+        window.upscalerAdvanced.saveSettings();
+        console.log('💾 Auto-saved settings on page unload');
+    }
+});
+
+// Periodic auto-save every 30 seconds
+setInterval(() => {
+    if (window.upscalerAdvanced) {
+        window.upscalerAdvanced.saveSettings();
+        console.log('💾 Periodic auto-save completed');
+    }
+}, 30000);
+
+// Initialize Advanced Upscaler with Enhanced Persistence
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         window.upscalerAdvanced = new JellyfinUpscalerAdvanced();
+        console.log('🔥 Jellyfin AI Upscaler Advanced v1.3.0 with Ultra-Reliable Persistence loaded!');
     });
 } else {
-    window.upscalerAdvanced = new JellyfinUpscalerAdvanced();
+    setTimeout(() => {
+        window.upscalerAdvanced = new JellyfinUpscalerAdvanced();
+        console.log('🔥 Jellyfin AI Upscaler Advanced v1.3.0 with Ultra-Reliable Persistence loaded!');
+    }, 100);
 }

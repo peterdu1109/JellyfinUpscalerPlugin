@@ -7,5 +7,5 @@
     "framework": "net6.0",
     "owner": "Kuschel-code",
     "category": "Video Processing",
-    "imageUrl": "icon.png"
+    "imageUrl": "https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/assets/icon.svg"
 }
