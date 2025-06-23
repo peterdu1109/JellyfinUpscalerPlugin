@@ -1,4 +1,4 @@
-# 🚀 AI Upscaler Plugin for Jellyfin v1.3.2
+# 🚀 AI Upscaler Plugin for Jellyfin v1.3.3
 
 [![License](https://img.shields.io/github/license/Kuschel-code/JellyfinUpscalerPlugin)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/blob/main/LICENSE)
 [![Release](https://img.shields.io/github/v/release/Kuschel-code/JellyfinUpscalerPlugin)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases)
@@ -8,7 +8,7 @@
 
 ![AI Upscaler Plugin](https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/assets/logo.svg)
 
-## 🎉 **ADVANCED UI & PLAYER INTEGRATION: v1.3.2 - NEW!**
+## 🎉 **INSTANT LANGUAGE SWITCHING: v1.3.3 - NEW!**
 
 ---
 
@@ -18,7 +18,14 @@
 
 The Jellyfin Upscaler Plugin enhances video quality in real-time by using AI upscaling and shader-based optimizations. 
 
-### 🔥 **v1.3.1 ULTIMATE PRO - CROSS-PLATFORM AI UPSCALING:**
+### 🔥 **v1.3.3 INSTANT LANGUAGE SWITCHING - NEW!:**
+- 🌍 **INSTANT LANGUAGE SWITCH** - No save button required, changes immediately
+- 🎯 **PROFESSIONAL TOAST NOTIFICATIONS** - User-friendly feedback system
+- 🔄 **AUTO-SAVE CONFIGURATION** - Settings persist automatically
+- 🛠️ **REPOSITORY FIXES** - GitHub connection restored and stable
+- ✅ **ERROR-FREE BUILD** - All issues resolved, production ready
+
+### 🔥 **v1.3.2 ADVANCED UI & PLAYER INTEGRATION:**
 - 🚀 **DLSS 3.0** - Frame Generation for RTX 40-series
 - 🚀 **FSR 3.0** - Fluid Motion Frames for RX 7000-series  
 - 🚀 **Intel XeSS** - Super Resolution for Arc GPUs
@@ -92,9 +99,10 @@ curl -fsSL https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin
 3. **Automatically handles network issues and download failures!**
 
 ### **📦 Manual Downloads**
-1. **🔥 Advanced Pro v1.3.0:** [JellyfinUpscaler-Advanced.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscaler-Advanced.zip)
-2. **🎯 Native v1.2.0:** [JellyfinUpscaler-Native.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscaler-Native.zip)
-3. **📄 Legacy v1.1.2:** [JellyfinUpscalerPlugin.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscalerPlugin.zip)
+1. **🌍 Latest v1.3.3:** [JellyfinUpscalerPlugin-v1.3.3.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscalerPlugin-v1.3.3.zip) - **INSTANT LANGUAGE SWITCHING**
+2. **🔥 Advanced Pro v1.3.0:** [JellyfinUpscaler-Advanced.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscaler-Advanced.zip)
+3. **🎯 Native v1.2.0:** [JellyfinUpscaler-Native.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscaler-Native.zip)
+4. **📄 Legacy v1.1.2:** [JellyfinUpscalerPlugin.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscalerPlugin.zip)
 
 ### **🎮 HOW TO USE:**
 

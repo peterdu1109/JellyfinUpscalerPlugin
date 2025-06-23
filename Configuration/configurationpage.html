@@ -756,8 +756,11 @@
         };
 
         let currentLanguage = 'en';
+        let pluginId = 'f87f700e-679d-43e6-9c7c-b3a410dc3f22';
+        let isLanguageSwitching = false;
 
         function updateLanguage(lang) {
+            console.log('🌍 Updating language to:', lang);
             currentLanguage = lang;
             const t = translations[lang] || translations.en;
             
@@ -833,22 +836,32 @@
         $('#selectLanguage').on('change', function() {
             const selectedLang = this.value;
             
-            // Sofort UI aktualisieren (ohne Save-Button)
+            // 1. SOFORT UI aktualisieren (ohne Verzögerung)
             updateLanguage(selectedLang);
             
-            // Sprache automatisch in Konfiguration speichern
+            // 2. Configuration sammeln
             const config = getConfigurationFromForm();
             config.Language = selectedLang;
             
-            // Auto-Save der Spracheinstellung
+            // 3. SOFORT speichern (parallel zu UI-Update)
             ApiClient.updatePluginConfiguration(pluginId, config).then(function() {
-                console.log('Language changed to:', selectedLang);
+                console.log('✅ Language instantly changed to:', selectedLang);
                 
-                // Erfolgs-Feedback (kurz und dezent)
-                showSuccessToast('Language updated to ' + getLanguageDisplayName(selectedLang));
+                // 4. Kurze Bestätigung (ohne Störung)
+                showSuccessToast('🌍 ' + getLanguageDisplayName(selectedLang) + ' active');
+                
+                // 5. UI-Elemente noch einmal neu laden für 100% Sicherheit
+                setTimeout(function() {
+                    updateLanguage(selectedLang);
+                }, 100);
+                
             }).catch(function(error) {
-                console.error('Failed to save language:', error);
+                console.error('❌ Failed to save language:', error);
                 showErrorToast('Failed to save language setting');
+                
+                // Bei Fehler: Zurück zur vorherigen Sprache
+                $('#selectLanguage').val(currentLanguage);
+                updateLanguage(currentLanguage);
             });
         });
 
