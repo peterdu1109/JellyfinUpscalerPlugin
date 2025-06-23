@@ -429,7 +429,7 @@
             <div class="content-primary upscaler-config">
                 <h1>
                     <span class="status-indicator"></span>
-                    <span id="pluginTitle">🚀 AI Upscaler Plugin v1.3.2</span>
+                    <span id="pluginTitle">🚀 AI Upscaler Plugin v1.3.3</span>
                 </h1>
                 
                 <div class="info-box">
@@ -666,7 +666,7 @@
         // Language translations
         const translations = {
             en: {
-                pluginTitle: "🚀 AI Upscaler Plugin v1.3.2",
+                pluginTitle: "🚀 AI Upscaler Plugin v1.3.3",
                 successMessage: "Plugin successfully loaded and ready for configuration!",
                 infoMessage: "Configure your AI upscaling settings below. All changes are saved automatically.",
                 coreSettingsTitle: "⚙️ Core Settings",
@@ -710,7 +710,7 @@
                 enableStatus: "Disabled"
             },
             de: {
-                pluginTitle: "🚀 AI Upscaler Plugin v1.3.2",
+                pluginTitle: "🚀 AI Upscaler Plugin v1.3.3",
                 successMessage: "Plugin erfolgreich geladen und konfigurationsbereit!",
                 infoMessage: "Konfigurieren Sie Ihre AI-Upscaling-Einstellungen unten. Alle Änderungen werden automatisch gespeichert.",
                 coreSettingsTitle: "⚙️ Kerneinstellungen",
@@ -752,6 +752,358 @@
                 saveButtonText: "Konfiguration speichern",
                 restartMessage: "Server-Neustart erforderlich, damit einige Änderungen wirksam werden.",
                 enableStatus: "Deaktiviert"
+            },
+            fr: {
+                pluginTitle: "🚀 Plugin AI Upscaler v1.3.3",
+                successMessage: "Plugin chargé avec succès et prêt pour la configuration!",
+                infoMessage: "Configurez vos paramètres d'upscaling AI ci-dessous. Tous les changements sont sauvegardés automatiquement.",
+                coreSettingsTitle: "⚙️ Paramètres Principaux",
+                enableLabel: "Activer le Plugin",
+                enableDesc: "Activer l'upscaling AI pour votre bibliothèque multimédia",
+                languageLabel: "Langue",
+                languageDesc: "Choisissez votre langue préférée",
+                playerButtonLabel: "Afficher le Bouton Lecteur",
+                playerButtonDesc: "Ajouter un bouton d'upscale aux contrôles du lecteur vidéo",
+                notificationsLabel: "Activer les Notifications",
+                notificationsDesc: "Afficher les notifications de progression et d'achèvement de l'upscaling",
+                aiModelTitle: "🤖 Paramètres du Modèle AI",
+                modelLabel: "Modèle AI",
+                modelDesc: "Choisissez le modèle AI pour l'upscaling",
+                scaleLabel: "Facteur d'Upscale",
+                scaleDesc: "Combien de fois augmenter la résolution",
+                qualityLabel: "Qualité de Traitement",
+                qualityDesc: "Équilibre entre vitesse et qualité",
+                advancedLabel: "Paramètres Avancés",
+                advancedDesc: "Activer les options de configuration expert",
+                performanceTitle: "⚡ GPU & Performance",
+                gpuLabel: "Utiliser l'Accélération GPU",
+                gpuDesc: "Activer le traitement GPU pour un upscaling plus rapide",
+                gpuTypeLabel: "Type de GPU",
+                gpuTypeDesc: "Sélectionnez votre architecture GPU",
+                jobsLabel: "Jobs Concurrent Max",
+                jobsDesc: "Nombre de processus d'upscaling simultanés",
+                memoryLabel: "Mémoire Max (MB)",
+                memoryDesc: "Utilisation mémoire maximale par processus",
+                processingTitle: "🎬 Options de Traitement",
+                autoLabel: "Mode Auto",
+                autoDesc: "Upscaler automatiquement le nouveau contenu",
+                lowQualityLabel: "Traiter Seulement la Basse Qualité",
+                lowQualityDesc: "Upscaler seulement les vidéos sous le seuil",
+                thresholdLabel: "Seuil de Résolution Min",
+                thresholdDesc: "Hauteur minimale pour déclencher l'upscaling",
+                formatLabel: "Format de Sortie",
+                formatDesc: "Conteneur vidéo pour les fichiers upscalés",
+                saveButtonText: "Sauvegarder la Configuration",
+                restartMessage: "Redémarrage du serveur requis pour que certains changements prennent effet.",
+                enableStatus: "Désactivé"
+            },
+            es: {
+                pluginTitle: "🚀 Plugin AI Upscaler v1.3.3",
+                successMessage: "¡Plugin cargado con éxito y listo para configuración!",
+                infoMessage: "Configure sus ajustes de upscaling AI a continuación. Todos los cambios se guardan automáticamente.",
+                coreSettingsTitle: "⚙️ Configuración Principal",
+                enableLabel: "Activar Plugin",
+                enableDesc: "Activar upscaling AI para su biblioteca multimedia",
+                languageLabel: "Idioma",
+                languageDesc: "Elija su idioma preferido",
+                playerButtonLabel: "Mostrar Botón del Reproductor",
+                playerButtonDesc: "Agregar botón de upscale a los controles del reproductor de video",
+                notificationsLabel: "Activar Notificaciones",
+                notificationsDesc: "Mostrar notificaciones de progreso y finalización del upscaling",
+                aiModelTitle: "🤖 Configuración del Modelo AI",
+                modelLabel: "Modelo AI",
+                modelDesc: "Elija el modelo AI para upscaling",
+                scaleLabel: "Factor de Upscale",
+                scaleDesc: "Cuántas veces aumentar la resolución",
+                qualityLabel: "Calidad de Procesamiento",
+                qualityDesc: "Equilibrio entre velocidad y calidad",
+                advancedLabel: "Configuración Avanzada",
+                advancedDesc: "Activar opciones de configuración experta",
+                performanceTitle: "⚡ GPU y Rendimiento",
+                gpuLabel: "Usar Aceleración GPU",
+                gpuDesc: "Activar procesamiento GPU para upscaling más rápido",
+                gpuTypeLabel: "Tipo de GPU",
+                gpuTypeDesc: "Seleccione su arquitectura GPU",
+                jobsLabel: "Trabajos Concurrentes Max",
+                jobsDesc: "Número de procesos de upscaling simultáneos",
+                memoryLabel: "Memoria Max (MB)",
+                memoryDesc: "Uso máximo de memoria por proceso",
+                processingTitle: "🎬 Opciones de Procesamiento",
+                autoLabel: "Modo Auto",
+                autoDesc: "Upscalar automáticamente contenido nuevo",
+                lowQualityLabel: "Procesar Solo Baja Calidad",
+                lowQualityDesc: "Upscalar solo videos bajo el umbral",
+                thresholdLabel: "Umbral de Resolución Min",
+                thresholdDesc: "Altura mínima para activar upscaling",
+                formatLabel: "Formato de Salida",
+                formatDesc: "Contenedor de video para archivos upscalados",
+                saveButtonText: "Guardar Configuración",
+                restartMessage: "Se requiere reinicio del servidor para que algunos cambios surtan efecto.",
+                enableStatus: "Desactivado"
+            },
+            it: {
+                pluginTitle: "🚀 Plugin AI Upscaler v1.3.3",
+                successMessage: "Plugin caricato con successo e pronto per la configurazione!",
+                infoMessage: "Configura le tue impostazioni di upscaling AI qui sotto. Tutte le modifiche vengono salvate automaticamente.",
+                coreSettingsTitle: "⚙️ Impostazioni Principali",
+                enableLabel: "Attiva Plugin",
+                enableDesc: "Attiva l'upscaling AI per la tua libreria multimediale",
+                languageLabel: "Lingua",
+                languageDesc: "Scegli la tua lingua preferita",
+                playerButtonLabel: "Mostra Pulsante Player",
+                playerButtonDesc: "Aggiungi pulsante upscale ai controlli del lettore video",
+                notificationsLabel: "Attiva Notifiche",
+                notificationsDesc: "Mostra notifiche di progresso e completamento dell'upscaling",
+                aiModelTitle: "🤖 Impostazioni Modello AI",
+                modelLabel: "Modello AI",
+                modelDesc: "Scegli il modello AI per l'upscaling",
+                scaleLabel: "Fattore di Upscale",
+                scaleDesc: "Quante volte aumentare la risoluzione",
+                qualityLabel: "Qualità di Elaborazione",
+                qualityDesc: "Equilibrio tra velocità e qualità",
+                advancedLabel: "Impostazioni Avanzate",
+                advancedDesc: "Attiva opzioni di configurazione esperte",
+                performanceTitle: "⚡ GPU e Prestazioni",
+                gpuLabel: "Usa Accelerazione GPU",
+                gpuDesc: "Attiva elaborazione GPU per upscaling più veloce",
+                gpuTypeLabel: "Tipo GPU",
+                gpuTypeDesc: "Seleziona la tua architettura GPU",
+                jobsLabel: "Lavori Concorrenti Max",
+                jobsDesc: "Numero di processi di upscaling simultanei",
+                memoryLabel: "Memoria Max (MB)",
+                memoryDesc: "Uso massimo di memoria per processo",
+                processingTitle: "🎬 Opzioni di Elaborazione",
+                autoLabel: "Modalità Auto",
+                autoDesc: "Upscala automaticamente nuovo contenuto",
+                lowQualityLabel: "Elabora Solo Bassa Qualità",
+                lowQualityDesc: "Upscala solo video sotto la soglia",
+                thresholdLabel: "Soglia Risoluzione Min",
+                thresholdDesc: "Altezza minima per attivare l'upscaling",
+                formatLabel: "Formato di Uscita",
+                formatDesc: "Contenitore video per file upscalati",
+                saveButtonText: "Salva Configurazione",
+                restartMessage: "Riavvio del server richiesto per alcune modifiche.",
+                enableStatus: "Disattivato"
+            },
+            pt: {
+                pluginTitle: "🚀 Plugin AI Upscaler v1.3.3",
+                successMessage: "Plugin carregado com sucesso e pronto para configuração!",
+                infoMessage: "Configure suas configurações de upscaling AI abaixo. Todas as alterações são salvas automaticamente.",
+                coreSettingsTitle: "⚙️ Configurações Principais",
+                enableLabel: "Ativar Plugin",
+                enableDesc: "Ativar upscaling AI para sua biblioteca multimídia",
+                languageLabel: "Idioma",
+                languageDesc: "Escolha seu idioma preferido",
+                playerButtonLabel: "Mostrar Botão do Player",
+                playerButtonDesc: "Adicionar botão de upscale aos controles do player de vídeo",
+                notificationsLabel: "Ativar Notificações",
+                notificationsDesc: "Mostrar notificações de progresso e conclusão do upscaling",
+                aiModelTitle: "🤖 Configurações do Modelo AI",
+                modelLabel: "Modelo AI",
+                modelDesc: "Escolha o modelo AI para upscaling",
+                scaleLabel: "Fator de Upscale",
+                scaleDesc: "Quantas vezes aumentar a resolução",
+                qualityLabel: "Qualidade de Processamento",
+                qualityDesc: "Equilíbrio entre velocidade e qualidade",
+                advancedLabel: "Configurações Avançadas",
+                advancedDesc: "Ativar opções de configuração especializada",
+                performanceTitle: "⚡ GPU e Performance",
+                gpuLabel: "Usar Aceleração GPU",
+                gpuDesc: "Ativar processamento GPU para upscaling mais rápido",
+                gpuTypeLabel: "Tipo de GPU",
+                gpuTypeDesc: "Selecione sua arquitetura GPU",
+                jobsLabel: "Jobs Concorrentes Max",
+                jobsDesc: "Número de processos de upscaling simultâneos",
+                memoryLabel: "Memória Max (MB)",
+                memoryDesc: "Uso máximo de memória por processo",
+                processingTitle: "🎬 Opções de Processamento",
+                autoLabel: "Modo Auto",
+                autoDesc: "Fazer upscale automaticamente de novo conteúdo",
+                lowQualityLabel: "Processar Apenas Baixa Qualidade",
+                lowQualityDesc: "Fazer upscale apenas de vídeos abaixo do limite",
+                thresholdLabel: "Limite de Resolução Min",
+                thresholdDesc: "Altura mínima para ativar upscaling",
+                formatLabel: "Formato de Saída",
+                formatDesc: "Container de vídeo para arquivos upscalados",
+                saveButtonText: "Salvar Configuração",
+                restartMessage: "Reinicialização do servidor necessária para algumas alterações terem efeito.",
+                enableStatus: "Desativado"
+            },
+            ru: {
+                pluginTitle: "🚀 AI Upscaler Plugin v1.3.3",
+                successMessage: "Плагин успешно загружен и готов к настройке!",
+                infoMessage: "Настройте параметры AI upscaling ниже. Все изменения сохраняются автоматически.",
+                coreSettingsTitle: "⚙️ Основные Настройки",
+                enableLabel: "Включить Плагин",
+                enableDesc: "Активировать AI upscaling для вашей медиатеки",
+                languageLabel: "Язык",
+                languageDesc: "Выберите предпочитаемый язык",
+                playerButtonLabel: "Показать Кнопку Плеера",
+                playerButtonDesc: "Добавить кнопку upscale в элементы управления видеоплеера",
+                notificationsLabel: "Включить Уведомления",
+                notificationsDesc: "Показывать уведомления о прогрессе и завершении upscaling",
+                aiModelTitle: "🤖 Настройки AI Модели",
+                modelLabel: "AI Модель",
+                modelDesc: "Выберите AI модель для upscaling",
+                scaleLabel: "Коэффициент Upscale",
+                scaleDesc: "Во сколько раз увеличить разрешение",
+                qualityLabel: "Качество Обработки",
+                qualityDesc: "Баланс между скоростью и качеством",
+                advancedLabel: "Дополнительные Настройки",
+                advancedDesc: "Включить экспертные опции конфигурации",
+                performanceTitle: "⚡ GPU и Производительность",
+                gpuLabel: "Использовать GPU Ускорение",
+                gpuDesc: "Включить GPU обработку для более быстрого upscaling",
+                gpuTypeLabel: "Тип GPU",
+                gpuTypeDesc: "Выберите архитектуру вашего GPU",
+                jobsLabel: "Макс. Одновременных Задач",
+                jobsDesc: "Количество одновременных процессов upscaling",
+                memoryLabel: "Макс. Память (МБ)",
+                memoryDesc: "Максимальное использование памяти на процесс",
+                processingTitle: "🎬 Опции Обработки",
+                autoLabel: "Авто Режим",
+                autoDesc: "Автоматически делать upscale нового контента",
+                lowQualityLabel: "Обрабатывать Только Низкое Качество",
+                lowQualityDesc: "Делать upscale только видео ниже порога",
+                thresholdLabel: "Мин. Порог Разрешения",
+                thresholdDesc: "Минимальная высота для запуска upscaling",
+                formatLabel: "Формат Вывода",
+                formatDesc: "Видео контейнер для upscaled файлов",
+                saveButtonText: "Сохранить Конфигурацию",
+                restartMessage: "Требуется перезапуск сервера для применения некоторых изменений.",
+                enableStatus: "Отключено"
+            },
+            ja: {
+                pluginTitle: "🚀 AI Upscaler Plugin v1.3.3",
+                successMessage: "プラグインが正常に読み込まれ、設定の準備ができました！",
+                infoMessage: "以下でAIアップスケーリング設定を構成してください。すべての変更は自動的に保存されます。",
+                coreSettingsTitle: "⚙️ コア設定",
+                enableLabel: "プラグインを有効にする",
+                enableDesc: "メディアライブラリのAIアップスケーリングを有効にする",
+                languageLabel: "言語",
+                languageDesc: "お好みの言語を選択してください",
+                playerButtonLabel: "プレーヤーボタンを表示",
+                playerButtonDesc: "ビデオプレーヤーコントロールにアップスケールボタンを追加",
+                notificationsLabel: "通知を有効にする",
+                notificationsDesc: "アップスケーリングの進行状況と完了通知を表示",
+                aiModelTitle: "🤖 AIモデル設定",
+                modelLabel: "AIモデル",
+                modelDesc: "アップスケーリング用のAIモデルを選択",
+                scaleLabel: "アップスケール係数",
+                scaleDesc: "解像度を何倍に上げるか",
+                qualityLabel: "処理品質",
+                qualityDesc: "速度と品質のバランス",
+                advancedLabel: "詳細設定",
+                advancedDesc: "エキスパート設定オプションを有効にする",
+                performanceTitle: "⚡ GPU とパフォーマンス",
+                gpuLabel: "GPU加速を使用",
+                gpuDesc: "より高速なアップスケーリングのためにGPU処理を有効にする",
+                gpuTypeLabel: "GPUタイプ",
+                gpuTypeDesc: "GPUアーキテクチャを選択",
+                jobsLabel: "最大同時ジョブ",
+                jobsDesc: "同時アップスケーリングプロセス数",
+                memoryLabel: "最大メモリ (MB)",
+                memoryDesc: "プロセスあたりの最大メモリ使用量",
+                processingTitle: "🎬 処理オプション",
+                autoLabel: "オートモード",
+                autoDesc: "新しいコンテンツを自動的にアップスケール",
+                lowQualityLabel: "低品質のみ処理",
+                lowQualityDesc: "閾値以下のビデオのみアップスケール",
+                thresholdLabel: "最小解像度閾値",
+                thresholdDesc: "アップスケーリングをトリガーする最小高さ",
+                formatLabel: "出力形式",
+                formatDesc: "アップスケールされたファイルのビデオコンテナ",
+                saveButtonText: "設定を保存",
+                restartMessage: "一部の変更を有効にするにはサーバーの再起動が必要です。",
+                enableStatus: "無効"
+            },
+            ko: {
+                pluginTitle: "🚀 AI Upscaler Plugin v1.3.3",
+                successMessage: "플러그인이 성공적으로 로드되었고 구성할 준비가 되었습니다!",
+                infoMessage: "아래에서 AI 업스케일링 설정을 구성하세요. 모든 변경사항은 자동으로 저장됩니다.",
+                coreSettingsTitle: "⚙️ 핵심 설정",
+                enableLabel: "플러그인 활성화",
+                enableDesc: "미디어 라이브러리에 대한 AI 업스케일링 활성화",
+                languageLabel: "언어",
+                languageDesc: "선호하는 언어를 선택하세요",
+                playerButtonLabel: "플레이어 버튼 표시",
+                playerButtonDesc: "비디오 플레이어 컨트롤에 업스케일 버튼 추가",
+                notificationsLabel: "알림 활성화",
+                notificationsDesc: "업스케일링 진행 상황 및 완료 알림 표시",
+                aiModelTitle: "🤖 AI 모델 설정",
+                modelLabel: "AI 모델",
+                modelDesc: "업스케일링을 위한 AI 모델 선택",
+                scaleLabel: "업스케일 계수",
+                scaleDesc: "해상도를 몇 배로 증가시킬지",
+                qualityLabel: "처리 품질",
+                qualityDesc: "속도와 품질 간의 균형",
+                advancedLabel: "고급 설정",
+                advancedDesc: "전문가 구성 옵션 활성화",
+                performanceTitle: "⚡ GPU 및 성능",
+                gpuLabel: "GPU 가속 사용",
+                gpuDesc: "더 빠른 업스케일링을 위해 GPU 처리 활성화",
+                gpuTypeLabel: "GPU 타입",
+                gpuTypeDesc: "GPU 아키텍처 선택",
+                jobsLabel: "최대 동시 작업",
+                jobsDesc: "동시 업스케일링 프로세스 수",
+                memoryLabel: "최대 메모리 (MB)",
+                memoryDesc: "프로세스당 최대 메모리 사용량",
+                processingTitle: "🎬 처리 옵션",
+                autoLabel: "자동 모드",
+                autoDesc: "새 콘텐츠를 자동으로 업스케일",
+                lowQualityLabel: "저품질만 처리",
+                lowQualityDesc: "임계값 이하의 비디오만 업스케일",
+                thresholdLabel: "최소 해상도 임계값",
+                thresholdDesc: "업스케일링을 트리거하는 최소 높이",
+                formatLabel: "출력 형식",
+                formatDesc: "업스케일된 파일의 비디오 컨테이너",
+                saveButtonText: "구성 저장",
+                restartMessage: "일부 변경사항이 적용되려면 서버 재시작이 필요합니다.",
+                enableStatus: "비활성화됨"
+            },
+            zh: {
+                pluginTitle: "🚀 AI Upscaler Plugin v1.3.3",
+                successMessage: "插件成功加载并准备配置！",
+                infoMessage: "在下方配置您的AI升频设置。所有更改都会自动保存。",
+                coreSettingsTitle: "⚙️ 核心设置",
+                enableLabel: "启用插件",
+                enableDesc: "为您的媒体库启用AI升频",
+                languageLabel: "语言",
+                languageDesc: "选择您的首选语言",
+                playerButtonLabel: "显示播放器按钮",
+                playerButtonDesc: "在视频播放器控件中添加升频按钮",
+                notificationsLabel: "启用通知",
+                notificationsDesc: "显示升频进度和完成通知",
+                aiModelTitle: "🤖 AI模型设置",
+                modelLabel: "AI模型",
+                modelDesc: "选择用于升频的AI模型",
+                scaleLabel: "升频系数",
+                scaleDesc: "分辨率增加多少倍",
+                qualityLabel: "处理质量",
+                qualityDesc: "速度和质量之间的平衡",
+                advancedLabel: "高级设置",
+                advancedDesc: "启用专家配置选项",
+                performanceTitle: "⚡ GPU和性能",
+                gpuLabel: "使用GPU加速",
+                gpuDesc: "启用GPU处理以获得更快的升频",
+                gpuTypeLabel: "GPU类型",
+                gpuTypeDesc: "选择您的GPU架构",
+                jobsLabel: "最大并发作业",
+                jobsDesc: "同时升频处理的数量",
+                memoryLabel: "最大内存 (MB)",
+                memoryDesc: "每个进程的最大内存使用量",
+                processingTitle: "🎬 处理选项",
+                autoLabel: "自动模式",
+                autoDesc: "自动升频新内容",
+                lowQualityLabel: "仅处理低质量",
+                lowQualityDesc: "仅升频低于阈值的视频",
+                thresholdLabel: "最小分辨率阈值",
+                thresholdDesc: "触发升频的最小高度",
+                formatLabel: "输出格式",
+                formatDesc: "升频文件的视频容器",
+                saveButtonText: "保存配置",
+                restartMessage: "需要重启服务器才能使某些更改生效。",
+                enableStatus: "已禁用"
             }
         };
 
@@ -759,26 +1111,89 @@
         let pluginId = 'f87f700e-679d-43e6-9c7c-b3a410dc3f22';
         let isLanguageSwitching = false;
 
+        // Language display names for user feedback
+        function getLanguageDisplayName(langCode) {
+            const displayNames = {
+                'en': 'English',
+                'de': 'Deutsch', 
+                'fr': 'Français',
+                'es': 'Español',
+                'it': 'Italiano',
+                'pt': 'Português',
+                'ru': 'Русский',
+                'ja': '日本語',
+                'ko': '한국어',
+                'zh': '中文'
+            };
+            return displayNames[langCode] || langCode;
+        }
+
+        // Toast notification functions
+        function showSuccessToast(message) {
+            if (window.Dashboard && window.Dashboard.alert) {
+                window.Dashboard.alert({
+                    message: message,
+                    type: 'success',
+                    timeout: 3000
+                });
+            } else {
+                console.log('✅ SUCCESS:', message);
+            }
+        }
+
+        function showErrorToast(message) {
+            if (window.Dashboard && window.Dashboard.alert) {
+                window.Dashboard.alert({
+                    message: message,
+                    type: 'error',
+                    timeout: 5000
+                });
+            } else {
+                console.error('❌ ERROR:', message);
+            }
+        }
+
         function updateLanguage(lang) {
-            console.log('🌍 Updating language to:', lang);
+            console.log('🌍 Starting language update to:', lang);
             currentLanguage = lang;
             const t = translations[lang] || translations.en;
             
+            console.log('📋 Translation object loaded:', Object.keys(t).length, 'keys');
+            
+            // Update all elements with translation keys
+            let updatedCount = 0;
             Object.keys(t).forEach(key => {
                 const element = document.getElementById(key);
                 if (element) {
                     element.textContent = t[key];
+                    updatedCount++;
+                    console.log('✅ Updated:', key, '→', t[key]);
+                } else {
+                    console.log('❌ Element not found:', key);
                 }
             });
             
-            // Update enable status
+            console.log('📊 Updated', updatedCount, 'elements out of', Object.keys(t).length);
+            
+            // Update enable status with current checkbox state
             const enableStatus = document.getElementById('enableStatus');
-            const enabled = document.getElementById('chkEnabled').checked;
-            if (enableStatus) {
-                enableStatus.textContent = enabled ? 
+            const enabledCheckbox = document.getElementById('chkEnabled');
+            if (enableStatus && enabledCheckbox) {
+                const isEnabled = enabledCheckbox.checked;
+                enableStatus.textContent = isEnabled ? 
                     (lang === 'de' ? 'Aktiviert' : 'Enabled') : 
                     (lang === 'de' ? 'Deaktiviert' : 'Disabled');
+                console.log('🔘 Status updated:', isEnabled ? 'Enabled' : 'Disabled');
             }
+            
+            // Update language dropdown to show current selection
+            const languageSelect = document.getElementById('selectLanguage');
+            if (languageSelect && languageSelect.value !== lang) {
+                languageSelect.value = lang;
+                console.log('🔽 Dropdown synchronized to:', lang);
+            }
+            
+            console.log('✅ Language update completed for:', lang);
         }
 
         $('.upscalerConfigPage').on('pageshow', function () {
@@ -832,37 +1247,53 @@
             }
         }
 
-        // Language change handler - SOFORTIGE ÄNDERUNG
+        // Language change handler - SOFORTIGE ÄNDERUNG MIT DEBUG
         $('#selectLanguage').on('change', function() {
             const selectedLang = this.value;
+     console.log('🌍 User selected language:', selectedLang);
             
-            // 1. SOFORT UI aktualisieren (ohne Verzögerung)
-            updateLanguage(selectedLang);
+            // 1. SOFORT UI aktualisieren (mit Validierung)
+            if (translations[selectedLang]) {
+                updateLanguage(selectedLang);
+                console.log('✅ UI updated to:', selectedLang);
+            } else {
+                console.error('❌ Language not found:', selectedLang);
+                return;
+            }
             
-            // 2. Configuration sammeln
-            const config = getConfigurationFromForm();
-            config.Language = selectedLang;
-            
-            // 3. SOFORT speichern (parallel zu UI-Update)
-            ApiClient.updatePluginConfiguration(pluginId, config).then(function() {
-                console.log('✅ Language instantly changed to:', selectedLang);
+            // 2. Configuration sammeln (mit Error-Check)
+            try {
+                       const config = getConfigurationFromForm();
+                config.Language = selectedLang;
+                console.log('📋 Config prepared for save:', config);
                 
-                // 4. Kurze Bestätigung (ohne Störung)
-                showSuccessToast('🌍 ' + getLanguageDisplayName(selectedLang) + ' active');
+                // 3. SOFORT speichern (mit detailliertem Feedback)
+                ApiClient.updatePluginConfiguration(pluginId, config).then(function() {
+                    console.log('💾 Language saved successfully:', selectedLang);
+                    
+                    // 4. Erfolgs-Toast mit Sprachname
+                    const langName = getLanguageDisplayName(selectedLang);
+                    showSuccessToast('🌍 Language switched to ' + langName);
+                    
+                    // 5. Noch einmal sicherstellen dass UI aktualisiert ist
+                    setTimeout(function() {
+                        updateLanguage(selectedLang);
+                        console.log('🔄 UI double-checked for:', selectedLang);
+                    }, 150);
+                    
+                }).catch(function(error) {
+                    console.error('❌ Save failed:', error);
+                    showErrorToast('Failed to save language: ' + error.message);
+                    
+                    // Rollback zu vorheriger Sprache
+                    $('#selectLanguage').val(currentLanguage);
+                    updateLanguage(currentLanguage);
+                });
                 
-                // 5. UI-Elemente noch einmal neu laden für 100% Sicherheit
-                setTimeout(function() {
-                    updateLanguage(selectedLang);
-                }, 100);
-                
-            }).catch(function(error) {
-                console.error('❌ Failed to save language:', error);
-                showErrorToast('Failed to save language setting');
-                
-                // Bei Fehler: Zurück zur vorherigen Sprache
-                $('#selectLanguage').val(currentLanguage);
-                updateLanguage(currentLanguage);
-            });
+            } catch (error) {
+                console.error('❌ Config preparation failed:', error);
+                showErrorToast('Configuration error: ' + error.message);
+            }
         });
 
         // Helper function für Language Display Namen
