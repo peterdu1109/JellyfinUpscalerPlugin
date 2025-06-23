@@ -349,8 +349,8 @@ namespace JellyfinUpscalerPlugin
             {
                 new PluginPageInfo
                 {
-                    Name = this.Name,
-                    EmbeddedResourcePath = string.Format(CultureInfo.InvariantCulture, "{0}.web.configurationpage.html", GetType().Namespace),
+                    Name = "🚀 AI Upscaler",
+                    EmbeddedResourcePath = string.Format(CultureInfo.InvariantCulture, "{0}.Configuration.configurationpage.html", GetType().Namespace),
                     MenuSection = "server",
                     MenuIcon = "auto_awesome"
                 }

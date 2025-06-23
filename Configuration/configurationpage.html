@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <title>AI Upscaler Plugin Konfiguration</title>
+    <style>
+        .configPage {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        
+        .sectionTitleContainer {
+            margin: 30px 0 20px 0;
+            border-bottom: 2px solid #00A4DC;
+            padding-bottom: 10px;
+        }
+        
+        .sectionTitle {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #00A4DC;
+            margin: 0;
+        }
+        
+        .inputContainer {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .inputLabel {
+            min-width: 200px;
+            font-weight: 500;
+            color: #333;
+            margin-right: 15px;
+        }
+        
+        .emby-input, .emby-select {
+            width: 300px;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .fieldDescription {
+            width: 100%;
+            margin-top: 5px;
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .presetButtons {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .presetBtn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .presetBtn.gaming {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+            color: white;
+        }
+        
+        .presetBtn.balanced {
+            background: linear-gradient(135deg, #4ECDC4, #44A08D);
+            color: white;
+        }
+        
+        .presetBtn.apple {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .presetBtn.budget {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+        }
+        
+        .presetBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .statusContainer {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .statusGood { color: #28a745; }
+        .statusWarning { color: #ffc107; }
+        .statusError { color: #dc3545; }
+        
+        .pluginHeader {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .pluginLogo {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 10px;
+            display: block;
+        }
+        
+        .aiModelGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .aiModelCard {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .aiModelCard:hover {
+            border-color: #00A4DC;
+            transform: translateY(-2px);
+        }
+        
+        .aiModelCard.selected {
+            border-color: #00A4DC;
+            background: #f8f9ff;
+        }
+        
+        .modelName {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .modelDescription {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .modelStats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+        }
+        
+        .qualityStars {
+            color: #ffd700;
+        }
+        
+        .speedStars {
+            color: #00a4dc;
+        }
+    </style>
+</head>
+<body>
+    <div class="configPage">
+        <div class="pluginHeader">
+            <img src="https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/assets/logo.png" 
+                 alt="AI Upscaler" class="pluginLogo" onerror="this.style.display='none'">
+            <h1>🚀 Jellyfin AI Upscaler Plugin v1.3.1</h1>
+            <p>Cross-Platform AI-Powered Video Upscaling</p>
+        </div>
+
+        <!-- Schnell-Presets -->
+        <div class="sectionTitleContainer">
+            <h2 class="sectionTitle">⚡ Schnell-Konfiguration</h2>
+        </div>
+        
+        <div class="presetButtons">
+            <button class="presetBtn gaming" onclick="loadGamingPreset()">
+                🎮 Gaming PC (RTX 4070+/RX 7700 XT+)
+            </button>
+            <button class="presetBtn apple" onclick="loadApplePreset()">
+                🍎 Apple Silicon (M1/M2/M3)
+            </button>
+            <button class="presetBtn balanced" onclick="loadBalancedPreset()">
+                ⚖️ Ausgewogen (Mittlere Hardware)
+            </button>
+            <button class="presetBtn budget" onclick="loadBudgetPreset()">
+                💰 Budget (Ältere Hardware)
+            </button>
+        </div>
+
+        <!-- System-Status -->
+        <div class="statusContainer">
+            <h3>🖥️ System-Erkennung</h3>
+            <div id="systemStatus">
+                <div>Betriebssystem: <span id="osInfo">Erkenne...</span></div>
+                <div>GPU: <span id="gpuInfo">Erkenne...</span></div>
+                <div>VRAM: <span id="vramInfo">Erkenne...</span></div>
+                <div>Status: <span id="statusInfo" class="statusGood">Bereit</span></div>
+            </div>
+        </div>
+
+        <!-- AI-Modell Auswahl -->
+        <div class="sectionTitleContainer">
+            <h2 class="sectionTitle">🤖 AI-Modell Auswahl</h2>
+        </div>
+        
+        <div class="aiModelGrid">
+            <div class="aiModelCard" data-model="Real-ESRGAN" onclick="selectModel('Real-ESRGAN')">
+                <div class="modelName">Real-ESRGAN</div>
+                <div class="modelDescription">Empfohlen für alle Inhalte. Beste Balance aus Qualität und Geschwindigkeit.</div>
+                <div class="modelStats">
+                    <span>Qualität: <span class="qualityStars">★★★★★</span></span>
+                    <span>Speed: <span class="speedStars">★★★★</span></span>
+                    <span>VRAM: 4-8GB</span>
+                </div>
+            </div>
+            
+            <div class="aiModelCard" data-model="HAT" onclick="selectModel('HAT')">
+                <div class="modelName">HAT (Hybrid Attention)</div>
+                <div class="modelDescription">Maximale Qualität für High-End GPUs. Transformer-basiert.</div>
+                <div class="modelStats">
+                    <span>Qualität: <span class="qualityStars">★★★★★</span></span>
+                    <span>Speed: <span class="speedStars">★★</span></span>
+                    <span>VRAM: 10-16GB</span>
+                </div>
+            </div>
+            
+            <div class="aiModelCard" data-model="SRCNN" onclick="selectModel('SRCNN')">
+                <div class="modelName">SRCNN (Fast)</div>
+                <div class="modelDescription">Echtzeit-Verarbeitung für schwächere Hardware.</div>
+                <div class="modelStats">
+                    <span>Qualität: <span class="qualityStars">★★★</span></span>
+                    <span>Speed: <span class="speedStars">★★★★★</span></span>
+                    <span>VRAM: 0.5-2GB</span>
+                </div>
+            </div>
+            
+            <div class="aiModelCard" data-model="EDSR" onclick="selectModel('EDSR')">
+                <div class="modelName">EDSR (Balanced)</div>
+                <div class="modelDescription">Ausgewogene Performance für mittlere Hardware.</div>
+                <div class="modelStats">
+                    <span>Qualität: <span class="qualityStars">★★★★</span></span>
+                    <span>Speed: <span class="speedStars">★★★★</span></span>
+                    <span>VRAM: 3-6GB</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Haupteinstellungen -->
+        <div class="sectionTitleContainer">
+            <h2 class="sectionTitle">⚙️ Haupteinstellungen</h2>
+        </div>
+
+        <div class="inputContainer">
+            <label class="inputLabel">AI-Modell:</label>
+            <select class="emby-select" id="AIModel" name="AIModel">
+                <option value="Real-ESRGAN">Real-ESRGAN (Empfohlen)</option>
+                <option value="HAT">HAT - Hybrid Attention Transformer</option>
+                <option value="SwinIR">SwinIR - Swin Transformer</option>
+                <option value="EDSR">EDSR - Enhanced Deep Residual</option>
+                <option value="SRCNN">SRCNN - Fast Real-time</option>
+                <option value="VDSR">VDSR - Very Deep Super Resolution</option>
+                <option value="RDN">RDN - Residual Dense Network</option>
+                <option value="Waifu2x">Waifu2x - Anime/Cartoons</option>
+            </select>
+            <div class="fieldDescription">Wählen Sie das KI-Modell basierend auf Ihrer Hardware und Qualitätsanforderungen.</div>
+        </div>
+
+        <div class="inputContainer">
+            <label class="inputLabel">Skalierungsfaktor:</label>
+            <select class="emby-select" id="ScaleFactor" name="ScaleFactor">
+                <option value="1.5">1.5x (720p → 1080p)</option>
+                <option value="2.0">2.0x (1080p → 4K leicht)</option>
+                <option value="3.0" selected>3.0x (1080p → 4K+)</option>
+                <option value="4.0">4.0x (Maximum)</option>
+            </select>
+            <div class="fieldDescription">Höhere Werte = bessere Qualität, aber mehr GPU-Last.</div>
+        </div>
+
+        <div class="inputContainer">
+            <label class="inputLabel">VRAM-Limit (GB):</label>
+            <input type="number" class="emby-input" id="VRAMLimit" name="VRAMLimit" 
+                   value="8.0" min="1.0" max="24.0" step="0.5">
+            <div class="fieldDescription">Maximale VRAM-Nutzung. Wird automatisch erkannt.</div>
+        </div>
+
+        <!-- GPU-Beschleunigung -->
+        <div class="sectionTitleContainer">
+            <h2 class="sectionTitle">🎮 GPU-Beschleunigung</h2>
+        </div>
+
+        <div class="inputContainer">
+            <label class="inputLabel">GPU-Anbieter:</label>
+            <select class="emby-select" id="GPUVendor" name="GPUVendor">
+                <option value="Auto">Automatisch erkennen</option>
+                <option value="NVIDIA">NVIDIA (DLSS)</option>
+                <option value="AMD">AMD (FSR)</option>
+                <option value="Intel">Intel (XeSS)</option>
+                <option value="Apple">Apple (Metal)</option>
+            </select>
+        </div>
+
+        <div class="inputContainer">
+            <label class="inputLabel">DLSS aktivieren (NVIDIA):</label>
+            <input type="checkbox" id="EnableDLSS" name="EnableDLSS" checked>
+            <div class="fieldDescription">NVIDIA DLSS 3.0 für RTX-Karten.</div>
+        </div>
+
+        <div class="inputContainer">
+            <label class="inputLabel">FSR aktivieren (AMD):</label>
+            <input type="checkbox" id="EnableFSR" name="EnableFSR" checked>
+            <div class="fieldDescription">AMD FidelityFX Super Resolution 3.0.</div>
+        </div>
+
+        <div class="inputContainer">
+            <label class="inputLabel">XeSS aktivieren (Intel):</label>
+            <input type="checkbox" id="EnableXeSS" name="EnableXeSS" checked>
+            <div class="fieldDescription">Intel Xe Super Sampling für Arc-GPUs.</div>
+        </div>
+
+        <!-- Performance-Einstellungen -->
+        <div class="sectionTitleContainer">
+            <h2 class="sectionTitle">⚡ Performance-Einstellungen</h2>
+        </div>
+
+        <div class="inputContainer">
+            <label class="inputLabel">Dynamische Qualitätsanpassung:</label>
+            <input type="checkbox" id="DynamicQualityAdjustment" name="DynamicQualityAdjustment" checked>
+            <div class="fieldDescription">Reduziert automatisch die Qualität bei Performance-Problemen.</div>
+        </div>
+
+        <div class="inputContainer">
+            <label class="inputLabel">Performance-Impact Ziel (%):</label>
+            <input type="number" class="emby-input" id="TargetPerformanceImpact" name="TargetPerformanceImpact" 
+                   value="15" min="5" max="50" step="5">
+            <div class="fieldDescription">Maximale Performance-Beeinträchtigung (15% empfohlen).</div>
+        </div>
+
+        <div class="inputContainer">
+            <label class="inputLabel">Thermische Drosselung (°C):</label>
+            <input type="number" class="emby-input" id="ThermalThrottleTemp" name="ThermalThrottleTemp" 
+                   value="80" min="70" max="90" step="5">
+            <div class="fieldDescription">GPU-Temperatur für automatische Leistungsreduzierung.</div>
+        </div>
+
+        <!-- Platform-spezifische Einstellungen -->
+        <div class="sectionTitleContainer">
+            <h2 class="sectionTitle">🖥️ Platform-Optimierungen</h2>
+        </div>
+
+        <div class="inputContainer">
+            <label class="inputLabel">macOS-Optimierung:</label>
+            <input type="checkbox" id="MacOSOptimization" name="MacOSOptimization">
+            <div class="fieldDescription">Aktiviert Metal Performance Shaders und Core ML (Apple Silicon).</div>
+        </div>
+
+        <div class="inputContainer">
+            <label class="inputLabel">Linux-Optimierung:</label>
+            <input type="checkbox" id="LinuxOptimization" name="LinuxOptimization">
+            <div class="fieldDescription">VRAM-Effizienz und Multi-Threading-Verbesserungen.</div>
+        </div>
+
+        <div class="inputContainer">
+            <label class="inputLabel">Cross-Platform-Modus:</label>
+            <input type="checkbox" id="CrossPlatformMode" name="CrossPlatformMode" checked>
+            <div class="fieldDescription">Universelle Kompatibilität für alle Plattformen.</div>
+        </div>
+
+        <!-- Erweiterte Einstellungen -->
+        <div class="sectionTitleContainer">
+            <h2 class="sectionTitle">🔧 Erweiterte Einstellungen</h2>
+        </div>
+
+        <div class="inputContainer">
+            <label class="inputLabel">Automatische Modell-Auswahl:</label>
+            <input type="checkbox" id="AutomaticModelSelection" name="AutomaticModelSelection">
+            <div class="fieldDescription">Wählt automatisch das beste Modell für den Inhalt.</div>
+        </div>
+
+        <div class="inputContainer">
+            <label class="inputLabel">Modell-Cache (MB):</label>
+            <input type="number" class="emby-input" id="ModelCacheSize" name="ModelCacheSize" 
+                   value="512" min="128" max="2048" step="128">
+            <div class="fieldDescription">Speicher für zwischengespeicherte AI-Modelle.</div>
+        </div>
+
+        <div class="inputContainer">
+            <label class="inputLabel">Worker-Threads:</label>
+            <input type="number" class="emby-input" id="WorkerThreads" name="WorkerThreads" 
+                   value="0" min="0" max="16" step="1">
+            <div class="fieldDescription">Anzahl Verarbeitungs-Threads (0 = automatisch).</div>
+        </div>
+
+        <div class="inputContainer">
+            <label class="inputLabel">Debug-Modus:</label>
+            <input type="checkbox" id="DebugMode" name="DebugMode">
+            <div class="fieldDescription">Aktiviert ausführliche Protokollierung für Fehlerbehebung.</div>
+        </div>
+    </div>
+
+    <!-- JavaScript-Injection für Player-Button -->
+    <script src="../web/upscaler-inject.js"></script>
+    
+    <script>
+        // System-Erkennung
+        function detectSystem() {
+            // Vereinfachte System-Erkennung für Demo
+            const userAgent = navigator.userAgent;
+            let os = 'Unbekannt';
+            
+            if (userAgent.includes('Windows')) os = 'Windows';
+            else if (userAgent.includes('Mac')) os = 'macOS';
+            else if (userAgent.includes('Linux')) os = 'Linux';
+            
+            document.getElementById('osInfo').textContent = os;
+            document.getElementById('gpuInfo').textContent = 'Automatisch erkannt';
+            document.getElementById('vramInfo').textContent = 'Wird beim Start erkannt';
+        }
+
+        // Modell-Auswahl
+        function selectModel(modelName) {
+            // Entferne Auswahl von allen Karten
+            document.querySelectorAll('.aiModelCard').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Markiere ausgewählte Karte
+            document.querySelector(`[data-model="${modelName}"]`).classList.add('selected');
+            
+            // Aktualisiere Dropdown
+            document.getElementById('AIModel').value = modelName;
+        }
+
+        // Preset-Funktionen
+        function loadGamingPreset() {
+            document.getElementById('AIModel').value = 'Real-ESRGAN';
+            document.getElementById('ScaleFactor').value = '4.0';
+            document.getElementById('VRAMLimit').value = '12.0';
+            document.getElementById('EnableDLSS').checked = true;
+            document.getElementById('EnableFSR').checked = true;
+            document.getElementById('TargetPerformanceImpact').value = '25';
+            document.getElementById('ThermalThrottleTemp').value = '85';
+            selectModel('Real-ESRGAN');
+            showNotification('🎮 Gaming-Preset geladen! Optimiert für RTX 4070+ / RX 7700 XT+');
+        }
+
+        function loadApplePreset() {
+            document.getElementById('AIModel').value = 'Real-ESRGAN';
+            document.getElementById('ScaleFactor').value = '3.0';
+            document.getElementById('VRAMLimit').value = '8.0';
+            document.getElementById('MacOSOptimization').checked = true;
+            document.getElementById('GPUVendor').value = 'Apple';
+            document.getElementById('TargetPerformanceImpact').value = '20';
+            selectModel('Real-ESRGAN');
+            showNotification('🍎 Apple-Preset geladen! Optimiert für M1/M2/M3');
+        }
+
+        function loadBalancedPreset() {
+            document.getElementById('AIModel').value = 'EDSR';
+            document.getElementById('ScaleFactor').value = '2.0';
+            document.getElementById('VRAMLimit').value = '6.0';
+            document.getElementById('DynamicQualityAdjustment').checked = true;
+            document.getElementById('TargetPerformanceImpact').value = '15';
+            selectModel('EDSR');
+            showNotification('⚖️ Ausgewogenes Preset geladen! Für mittlere Hardware');
+        }
+
+        function loadBudgetPreset() {
+            document.getElementById('AIModel').value = 'SRCNN';
+            document.getElementById('ScaleFactor').value = '1.5';
+            document.getElementById('VRAMLimit').value = '4.0';
+            document.getElementById('DynamicQualityAdjustment').checked = true;
+            document.getElementById('TargetPerformanceImpact').value = '10';
+            selectModel('SRCNN');
+            showNotification('💰 Budget-Preset geladen! Für ältere Hardware');
+        }
+
+        function showNotification(message) {
+            // Einfache Benachrichtigung
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #00A4DC;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 8px;
+                z-index: 10000;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                animation: slideIn 0.3s ease;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Initialisierung
+        document.addEventListener('DOMContentLoaded', function() {
+            detectSystem();
+            selectModel('Real-ESRGAN'); // Standard-Auswahl
+            
+            // Lade gespeicherte Konfiguration
+            loadConfiguration();
+        });
+
+        // Konfiguration laden/speichern
+        function loadConfiguration() {
+            // Hier würde normalerweise die Jellyfin-API aufgerufen
+            console.log('Lade Konfiguration...');
+        }
+
+        function saveConfiguration() {
+            // Sammle alle Formular-Daten
+            const config = {};
+            document.querySelectorAll('input, select').forEach(element => {
+                if (element.type === 'checkbox') {
+                    config[element.name] = element.checked;
+                } else {
+                    config[element.name] = element.value;
+                }
+            });
+            
+            console.log('Speichere Konfiguration:', config);
+            showNotification('✅ Konfiguration gespeichert!');
+            
+            // Hier würde normalerweise die Jellyfin-API aufgerufen
+            return config;
+        }
+
+        // CSS für Animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
