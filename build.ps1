@@ -1,13 +1,25 @@
-# Jellyfin Upscaler Plugin Build Script
+# Jellyfin AI Upscaler Plugin - Windows Build Script
 # Creates a distributable ZIP package for the plugin
+# Version: 1.3.1
 
 param(
-    [string]$Version = "1.1.0",
+    [string]$Version = "1.3.1",
     [string]$OutputDir = ".\dist",
-    [switch]$Clean = $false
+    [switch]$Clean = $false,
+    [switch]$Help
 )
 
-Write-Host "🚀 Building Jellyfin Upscaler Plugin v$Version" -ForegroundColor Green
+if ($Help) {
+    Write-Host "Usage: .\build.ps1 [options]"
+    Write-Host "Options:"
+    Write-Host "  -Version VERSION   Set version (default: 1.3.1)"
+    Write-Host "  -OutputDir DIR     Set output directory (default: .\dist)"
+    Write-Host "  -Clean             Clean output directory before build"
+    Write-Host "  -Help              Show this help message"
+    exit 0
+}
+
+Write-Host "🚀 Building Jellyfin AI Upscaler Plugin v$Version" -ForegroundColor Blue
 
 # Clean output directory if requested
 if ($Clean -and (Test-Path $OutputDir)) {

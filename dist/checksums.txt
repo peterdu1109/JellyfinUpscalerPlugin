@@ -1,0 +1,4 @@
+JellyfinUpscalerPlugin-v1.3.1.zip
+Size: 1.13 MB
+MD5: 0cd20f102b50f7a6770f954909803184
+SHA256: 7ee0a9a8c78bfe2b88aba7cde2738070ee43b3fb42050a0a09d0794efb6711c6

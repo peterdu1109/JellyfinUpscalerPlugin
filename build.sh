@@ -4,7 +4,7 @@
 
 set -e
 
-VERSION="1.1.0"
+VERSION="1.3.1"
 OUTPUT_DIR="./dist"
 CLEAN=false
 
@@ -39,7 +39,7 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-echo "🚀 Building Jellyfin Upscaler Plugin v$VERSION"
+echo "🚀 Building Jellyfin AI Upscaler Plugin v$VERSION"
 
 # Clean output directory if requested
 if [ "$CLEAN" = true ] && [ -d "$OUTPUT_DIR" ]; then
@@ -52,16 +52,33 @@ mkdir -p "$OUTPUT_DIR"
 
 # Define files to include in the package
 FILES_TO_INCLUDE=(
+    "Plugin.cs"
+    "PluginConfiguration.cs"
+    "AssemblyInfo.cs"
+    "JellyfinUpscalerPlugin.csproj"
     "manifest.json"
+    "meta.json"
+    "plugin.json"
     "schema.json" 
     "upscale.js"
+    "userscript.js"
+    "main.js"
     "LICENSE"
     "README.md"
     "CHANGELOG.md"
     "INSTALLATION.md"
     "PERFORMANCE.md"
+    "TROUBLESHOOTING.md"
     "assets"
     "shaders"
+    "web"
+    "src"
+    "Configuration"
+    "wiki"
+    "install-linux.sh"
+    "install-macos.sh"
+    "test-linux-compatibility.sh"
+    "LINUX-SUPPORT-SUMMARY.md"
 )
 
 echo "📦 Creating package structure..."

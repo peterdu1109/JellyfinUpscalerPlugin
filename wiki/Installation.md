@@ -14,9 +14,13 @@
 curl -O https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/INSTALL-ADVANCED.cmd
 INSTALL-ADVANCED.cmd
 
-# Linux/macOS
-curl -O https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/install-advanced.sh
-chmod +x install-advanced.sh && ./install-advanced.sh
+# Linux (Ubuntu/Debian/CentOS)
+curl -O https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/install-linux.sh
+chmod +x install-linux.sh && ./install-linux.sh
+
+# macOS
+curl -O https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/install-macos.sh
+chmod +x install-macos.sh && ./install-macos.sh
 ```
 
 **Features:**
@@ -132,6 +136,339 @@ sudo systemctl restart docker
 
 # Test NVIDIA support
 docker run --rm --gpus all nvidia/cuda:11.0-base nvidia-smi
+```
+
+---
+
+## 🐧 **Linux Installation Guide**
+
+### **🚀 Automated Linux Installation**
+
+Our Linux installer supports major distributions and automatically detects your GPU for optimal configuration.
+
+#### **Supported Distributions:**
+- ✅ **Ubuntu 20.04/22.04/24.04 LTS** (Recommended)
+- ✅ **Debian 11/12** (Tested)
+- ✅ **CentOS 8/9** (Enterprise)
+- ✅ **RHEL 8/9** (Enterprise)
+- ⚠️ **Fedora 38/39/40** (Community)
+- ⚠️ **Arch Linux** (Community)
+
+#### **One-Command Installation:**
+```bash
+# Download and run installer
+curl -fsSL https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/install-linux.sh | bash
+
+# Or download first for inspection
+curl -O https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/install-linux.sh
+chmod +x install-linux.sh
+./install-linux.sh
+```
+
+#### **What the installer does:**
+1. **🔍 System Detection** - OS, GPU, Jellyfin installation
+2. **📦 Dependencies** - Installs required packages
+3. **🎮 GPU Drivers** - NVIDIA/AMD/Intel driver setup
+4. **⬇️ Plugin Download** - Latest version from GitHub
+5. **⚙️ Configuration** - Linux-optimized settings
+6. **🔄 Service Restart** - Jellyfin service management
+7. **🔥 Firewall Setup** - Configure port access
+
+### **🛠️ Manual Linux Installation**
+
+#### **Ubuntu/Debian Manual Steps:**
+
+##### **Step 1: Install Dependencies**
+```bash
+# Update package repository
+sudo apt update
+
+# Install Jellyfin (if not already installed)
+sudo apt install jellyfin -y
+
+# Install build dependencies
+sudo apt install curl wget unzip build-essential cmake pkg-config -y
+
+# Install GPU drivers (choose one)
+# NVIDIA:
+sudo apt install nvidia-driver-535 nvidia-utils-535 -y
+
+# AMD:
+sudo apt install rocm-dkms rocm-utils -y
+sudo usermod -a -G render $USER
+
+# Intel:
+sudo apt install intel-media-va-driver vainfo -y
+```
+
+##### **Step 2: Download Plugin**
+```bash
+# Create temporary directory
+mkdir -p /tmp/jellyfin-upscaler
+cd /tmp/jellyfin-upscaler
+
+# Download plugin
+wget https://github.com/Kuschel-code/JellyfinUpscalerPlugin/archive/main.zip -O plugin.zip
+
+# Extract plugin
+unzip plugin.zip
+cd JellyfinUpscalerPlugin-main
+```
+
+##### **Step 3: Install Plugin**
+```bash
+# Find Jellyfin plugin directory
+PLUGIN_DIRS=(
+    "/var/lib/jellyfin/plugins"
+    "/usr/share/jellyfin/plugins"
+    "/etc/jellyfin/plugins"
+    "/opt/jellyfin/plugins"
+)
+
+for dir in "${PLUGIN_DIRS[@]}"; do
+    if [[ -d "$dir" ]]; then
+        JELLYFIN_PLUGIN_DIR="$dir"
+        echo "Found Jellyfin plugin directory: $JELLYFIN_PLUGIN_DIR"
+        break
+    fi
+done
+
+# Create plugin directory
+PLUGIN_INSTALL_DIR="$JELLYFIN_PLUGIN_DIR/JellyfinUpscalerPlugin_1.3.0"
+sudo mkdir -p "$PLUGIN_INSTALL_DIR"
+
+# Copy files
+sudo cp -r . "$PLUGIN_INSTALL_DIR/"
+
+# Set permissions
+sudo chown -R jellyfin:jellyfin "$PLUGIN_INSTALL_DIR"
+sudo chmod -R 755 "$PLUGIN_INSTALL_DIR"
+```
+
+##### **Step 4: Configure for Linux**
+```bash
+# Create Linux-optimized configuration
+sudo tee "$PLUGIN_INSTALL_DIR/linux-config.json" > /dev/null <<EOF
+{
+  "LinuxOptimization": true,
+  "GPUAcceleration": "auto",
+  "VRAMLimit": 4.0,
+  "EnableRealESRGAN": true,
+  "SystemPaths": {
+    "models": "/var/lib/jellyfin/plugins/JellyfinUpscalerPlugin_1.3.0/shaders",
+    "cache": "/tmp/jellyfin-upscaler-cache",
+    "logs": "/var/log/jellyfin"
+  }
+}
+EOF
+
+# Set correct permissions
+sudo chown jellyfin:jellyfin "$PLUGIN_INSTALL_DIR/linux-config.json"
+sudo chmod 644 "$PLUGIN_INSTALL_DIR/linux-config.json"
+```
+
+##### **Step 5: Restart Jellyfin**
+```bash
+# Check if Jellyfin is running as systemd service
+if systemctl is-active --quiet jellyfin; then
+    echo "Restarting Jellyfin service..."
+    sudo systemctl restart jellyfin
+    
+    # Wait for service to start
+    sleep 5
+    
+    # Check status
+    sudo systemctl status jellyfin
+else
+    echo "Jellyfin service not found. Manual restart may be required."
+fi
+```
+
+#### **CentOS/RHEL Manual Steps:**
+
+##### **Step 1: Install Dependencies**
+```bash
+# Enable EPEL repository
+sudo yum install epel-release -y
+
+# Install Jellyfin
+sudo yum-config-manager --add-repo https://repo.jellyfin.org/jellyfin-server.repo
+sudo yum install jellyfin-server -y
+
+# Install dependencies
+sudo yum install curl wget unzip gcc gcc-c++ cmake -y
+
+# Install GPU drivers (NVIDIA example)
+sudo yum install nvidia-driver nvidia-utils -y
+```
+
+##### **Step 2-5: Same as Ubuntu/Debian**
+Follow the same steps 2-5 as above, but use `yum` instead of `apt` where applicable.
+
+### **🐳 Docker Installation**
+
+#### **Docker Compose with GPU Support**
+
+##### **NVIDIA GPU Setup:**
+```yaml
+# docker-compose.yml
+version: '3.8'
+
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin-upscaler
+    
+    # NVIDIA GPU support
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,video,utility
+      - JELLYFIN_UPSCALER_ENABLED=true
+      - JELLYFIN_UPSCALER_GPU=nvidia
+    
+    volumes:
+      - ./config:/config
+      - ./cache:/cache
+      - ./media:/media
+      - ./plugins:/config/plugins
+    
+    ports:
+      - "8096:8096"
+      - "8920:8920"
+      - "7359:7359/udp"
+      - "1900:1900/udp"
+    
+    devices:
+      - /dev/nvidia0:/dev/nvidia0
+      - /dev/nvidiactl:/dev/nvidiactl
+      - /dev/nvidia-modeset:/dev/nvidia-modeset
+    
+    restart: unless-stopped
+
+# Install plugin
+  upscaler-init:
+    image: alpine:latest
+    volumes:
+      - ./plugins:/plugins
+    command: >
+      sh -c "
+        apk add --no-cache curl unzip &&
+        cd /plugins &&
+        curl -L https://github.com/Kuschel-code/JellyfinUpscalerPlugin/archive/main.zip -o plugin.zip &&
+        unzip -o plugin.zip &&
+        mv JellyfinUpscalerPlugin-main JellyfinUpscalerPlugin_1.3.0 &&
+        rm plugin.zip
+      "
+```
+
+##### **AMD GPU Setup:**
+```yaml
+# docker-compose.yml for AMD
+version: '3.8'
+
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin-upscaler-amd
+    
+    # AMD GPU support
+    devices:
+      - /dev/dri:/dev/dri
+      - /dev/kfd:/dev/kfd
+    
+    group_add:
+      - video
+      - render
+    
+    environment:
+      - JELLYFIN_UPSCALER_ENABLED=true
+      - JELLYFIN_UPSCALER_GPU=amd
+      - HSA_OVERRIDE_GFX_VERSION=10.3.0
+    
+    volumes:
+      - ./config:/config
+      - ./cache:/cache
+      - ./media:/media
+      - ./plugins:/config/plugins
+    
+    ports:
+      - "8096:8096"
+    
+    restart: unless-stopped
+```
+
+#### **Run Docker Container:**
+```bash
+# Start services
+docker-compose up -d
+
+# Check logs
+docker-compose logs -f jellyfin
+
+# Access Jellyfin
+# Open browser to http://localhost:8096
+```
+
+### **🔧 Linux Troubleshooting**
+
+#### **Common Issues & Solutions:**
+
+##### **Permission Denied Errors:**
+```bash
+# Fix Jellyfin plugin permissions
+sudo chown -R jellyfin:jellyfin /var/lib/jellyfin/plugins/
+sudo chmod -R 755 /var/lib/jellyfin/plugins/
+
+# Check Jellyfin user
+id jellyfin
+
+# Add current user to jellyfin group (if needed)
+sudo usermod -a -G jellyfin $USER
+```
+
+##### **GPU Not Detected:**
+```bash
+# Check NVIDIA GPU
+nvidia-smi
+lspci | grep -i nvidia
+
+# Check AMD GPU
+rocm-smi
+lspci | grep -i amd
+
+# Check Intel GPU
+intel_gpu_top
+lspci | grep -i intel
+```
+
+##### **Service Issues:**
+```bash
+# Check Jellyfin service status
+sudo systemctl status jellyfin
+
+# View logs
+sudo journalctl -u jellyfin -f
+
+# Restart service
+sudo systemctl restart jellyfin
+
+# Enable auto-start
+sudo systemctl enable jellyfin
+```
+
+##### **Firewall Configuration:**
+```bash
+# UFW (Ubuntu)
+sudo ufw allow 8096/tcp
+sudo ufw reload
+
+# firewalld (CentOS/RHEL)
+sudo firewall-cmd --permanent --add-port=8096/tcp
+sudo firewall-cmd --reload
+
+# iptables (manual)
+sudo iptables -A INPUT -p tcp --dport 8096 -j ACCEPT
 ```
 
 ---

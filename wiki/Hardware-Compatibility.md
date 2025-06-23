@@ -508,6 +508,268 @@ const hardwareDetection = {
 
 ---
 
+## 🐧 **Linux Platform Support**
+
+### **✅ Supported Linux Distributions**
+
+| Distribution | Version | Support Level | AI Models | Installation Method |
+|--------------|---------|---------------|-----------|-------------------|
+| **Ubuntu** | 20.04 LTS | ✅ Full | All models | `install-linux.sh` |
+| **Ubuntu** | 22.04 LTS | ✅ Full | All models | `install-linux.sh` |
+| **Ubuntu** | 24.04 LTS | ✅ Full | All models | `install-linux.sh` |
+| **Debian** | 11 (Bullseye) | ✅ Full | All models | Manual install |
+| **Debian** | 12 (Bookworm) | ✅ Full | All models | Manual install |
+| **CentOS** | 8/9 | ✅ Full | All models | Manual install |
+| **RHEL** | 8/9 | ✅ Full | All models | Manual install |
+| **Fedora** | 38/39/40 | ⚠️ Community | Most models | Manual install |
+| **Arch Linux** | Rolling | ⚠️ Community | Most models | AUR package |
+| **openSUSE** | Leap/Tumbleweed | ⚠️ Community | Most models | Manual install |
+
+### **🔧 Linux GPU Driver Requirements**
+
+#### **NVIDIA on Linux**
+```bash
+# Ubuntu/Debian - Proprietary drivers (recommended)
+sudo apt update
+sudo apt install nvidia-driver-535 nvidia-utils-535
+sudo reboot
+
+# Check installation
+nvidia-smi
+
+# For older GPUs
+sudo apt install nvidia-driver-470
+
+# For development (CUDA)
+sudo apt install nvidia-cuda-toolkit
+```
+
+#### **AMD on Linux (ROCm)**
+```bash
+# Ubuntu 20.04/22.04
+wget -qO- https://repo.radeon.com/rocm/rocm.gpg.key | sudo apt-key add -
+echo 'deb [arch=amd64] https://repo.radeon.com/rocm/apt/5.7/ ubuntu main' | sudo tee /etc/apt/sources.list.d/rocm.list
+
+sudo apt update
+sudo apt install rocm-dkms rocm-utils
+
+# Add user to render group
+sudo usermod -a -G render $USER
+sudo reboot
+
+# Check installation
+rocm-smi
+```
+
+#### **Intel Arc on Linux**
+```bash
+# Ubuntu - Install Intel GPU drivers
+sudo apt update
+sudo apt install intel-media-va-driver intel-media-va-driver-non-free
+sudo apt install intel-gpu-tools vainfo
+
+# Check installation
+sudo intel_gpu_top
+vainfo
+```
+
+### **🚀 Linux Performance Optimizations**
+
+#### **System-Level Optimizations**
+```bash
+# Increase file descriptor limits
+echo "jellyfin soft nofile 65536" | sudo tee -a /etc/security/limits.conf
+echo "jellyfin hard nofile 65536" | sudo tee -a /etc/security/limits.conf
+
+# Optimize kernel parameters
+echo "vm.swappiness=10" | sudo tee -a /etc/sysctl.conf
+echo "vm.vfs_cache_pressure=50" | sudo tee -a /etc/sysctl.conf
+
+# Apply changes
+sudo sysctl -p
+```
+
+#### **GPU-Specific Linux Optimizations**
+```json
+{
+  "nvidia_linux": {
+    "power_management": "prefer maximum performance",
+    "threaded_optimizations": "on",
+    "texture_filtering": "high performance",
+    "environment_variables": {
+      "__GL_THREADED_OPTIMIZATIONS": "1",
+      "__GL_SHADER_DISK_CACHE": "1",
+      "__GL_SHADER_DISK_CACHE_PATH": "/tmp/nvidia_shader_cache"
+    }
+  },
+  
+  "amd_linux": {
+    "power_profile": "high",
+    "gpu_scaling": "on",
+    "tear_free": "off",
+    "environment_variables": {
+      "AMD_VULKAN_ICD": "RADV",
+      "RADV_PERFTEST": "aco,llvm"
+    }
+  },
+  
+  "intel_linux": {
+    "vp9_decode": "enabled",
+    "av1_decode": "enabled", 
+    "variable_refresh_rate": "enabled",
+    "environment_variables": {
+      "INTEL_DEBUG": "",
+      "ANV_ENABLE_PIPELINE_CACHE": "1"
+    }
+  }
+}
+```
+
+### **📦 Docker & Container Support**
+
+#### **Docker Compose with GPU Acceleration**
+```yaml
+# docker-compose.yml for NVIDIA
+version: '3.8'
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    environment:
+      - JELLYFIN_UPSCALER_ENABLED=true
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,video,utility
+    runtime: nvidia
+    volumes:
+      - ./config:/config
+      - ./plugins:/config/plugins
+      - ./media:/media
+    ports:
+      - "8096:8096"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+# For AMD GPUs (ROCm)
+  jellyfin-amd:
+    image: jellyfin/jellyfin:latest
+    devices:
+      - /dev/dri:/dev/dri
+      - /dev/kfd:/dev/kfd
+    group_add:
+      - video
+      - render
+    environment:
+      - JELLYFIN_UPSCALER_GPU=amd
+      - HSA_OVERRIDE_GFX_VERSION=10.3.0
+```
+
+#### **Kubernetes Deployment**
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jellyfin-upscaler
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jellyfin
+  template:
+    metadata:
+      labels:
+        app: jellyfin
+    spec:
+      containers:
+      - name: jellyfin
+        image: jellyfin/jellyfin:latest
+        env:
+        - name: JELLYFIN_UPSCALER_ENABLED
+          value: "true"
+        resources:
+          limits:
+            nvidia.com/gpu: 1
+          requests:
+            nvidia.com/gpu: 1
+        volumeMounts:
+        - name: jellyfin-config
+          mountPath: /config
+        - name: jellyfin-plugins
+          mountPath: /config/plugins
+      volumes:
+      - name: jellyfin-config
+        persistentVolumeClaim:
+          claimName: jellyfin-config-pvc
+      - name: jellyfin-plugins
+        persistentVolumeClaim:
+          claimName: jellyfin-plugins-pvc
+```
+
+### **🔍 Linux System Monitoring**
+
+#### **GPU Monitoring Commands**
+```bash
+# NVIDIA monitoring
+watch -n 1 nvidia-smi
+
+# Detailed NVIDIA info
+nvidia-smi --query-gpu=timestamp,name,temperature.gpu,utilization.gpu,memory.used,memory.total --format=csv -l 1
+
+# AMD monitoring  
+watch -n 1 rocm-smi
+
+# Intel monitoring
+sudo intel_gpu_top
+
+# General system monitoring
+htop
+iotop
+nethogs
+```
+
+#### **Performance Monitoring Script**
+```bash
+#!/bin/bash
+# jellyfin-gpu-monitor.sh
+
+echo "🔍 Jellyfin Upscaler GPU Monitoring"
+echo "=================================="
+
+# Detect GPU type
+if command -v nvidia-smi &> /dev/null; then
+    echo "📊 NVIDIA GPU Status:"
+    nvidia-smi --query-gpu=name,temperature.gpu,utilization.gpu,memory.used,memory.total,power.draw --format=csv,noheader,nounits
+    
+elif command -v rocm-smi &> /dev/null; then
+    echo "📊 AMD GPU Status:"
+    rocm-smi --showtemp --showuse --showmemuse --showpower
+    
+elif command -v intel_gpu_top &> /dev/null; then
+    echo "📊 Intel GPU Status:"
+    timeout 2s intel_gpu_top | head -20
+fi
+
+# Jellyfin process info
+echo ""
+echo "📈 Jellyfin Process Info:"
+ps aux | grep jellyfin | grep -v grep
+
+# Memory usage
+echo ""
+echo "🧠 Memory Usage:"
+free -h
+
+# Load average
+echo ""
+echo "⚡ System Load:"
+uptime
+```
+
+---
+
 ## 🛠️ **Troubleshooting Hardware Issues**
 
 ### **Common GPU Problems**
