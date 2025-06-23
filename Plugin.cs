@@ -13,9 +13,9 @@ namespace JellyfinUpscalerPlugin
     /// </summary>
     public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
     {
-        public override string Name => "AI Upscaler Plugin";
+        public override string Name => "🚀 AI Upscaler Plugin v1.3.2";
         public override Guid Id => new Guid("f87f700e-679d-43e6-9c7c-b3a410dc3f22");
-        public override string Description => "AI-powered video upscaling with GPU acceleration";
+        public override string Description => "Professional AI upscaling with multilingual support, 9 AI models, cross-platform GPU acceleration, and advanced player integration.";
 
         public Plugin(IApplicationPaths applicationPaths, IXmlSerializer xmlSerializer) 
             : base(applicationPaths, xmlSerializer)

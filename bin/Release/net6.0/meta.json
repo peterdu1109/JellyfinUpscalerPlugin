@@ -11,5 +11,5 @@
     "imageUrl": "https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/assets/logo.png",
     "changelog": "ADVANCED UI & PLAYER INTEGRATION: Multilingual support (10 languages), Advanced configuration with 25+ settings, Video player button integration, Blue box design, GPU acceleration (DLSS/FSR/XeSS/Metal)",
     "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscalerPlugin-v1.3.2.zip",
-    "checksum": "95774425f07a5b433743eaa11f29df82"
+    "checksum": "82ecd3cf9b516a99de9b2fb61f3f113a"
 }

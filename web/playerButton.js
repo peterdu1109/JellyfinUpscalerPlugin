@@ -53,9 +53,14 @@
         playerButton.className = 'paper-icon-button-light';
         playerButton.title = 'AI Upscale Video';
         playerButton.innerHTML = `
-            <span class="material-icons" style="color: #00d4ff; font-size: 20px;">
-                auto_awesome
-            </span>
+            <div style="position: relative; display: flex; align-items: center; justify-content: center;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    <polyline points="3.29,7 12,12 20.71,7"/>
+                    <line x1="12" y1="22" x2="12" y2="12"/>
+                </svg>
+                <div style="position: absolute; top: -2px; right: -2px; background: #00d4ff; color: white; border-radius: 50%; width: 12px; height: 12px; font-size: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold;">AI</div>
+            </div>
         `;
         
         // Style the button
