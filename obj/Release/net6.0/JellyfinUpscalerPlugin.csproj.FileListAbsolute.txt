@@ -1,0 +1,13 @@
+C:\Users\Weltr\Desktop\JellyfinUpscalerPlugin\bin\Release\net6.0\thumb.jpg
+C:\Users\Weltr\Desktop\JellyfinUpscalerPlugin\bin\Release\net6.0\meta.json
+C:\Users\Weltr\Desktop\JellyfinUpscalerPlugin\bin\Release\net6.0\JellyfinUpscalerPlugin.deps.json
+C:\Users\Weltr\Desktop\JellyfinUpscalerPlugin\bin\Release\net6.0\JellyfinUpscalerPlugin.dll
+C:\Users\Weltr\Desktop\JellyfinUpscalerPlugin\bin\Release\net6.0\JellyfinUpscalerPlugin.pdb
+C:\Users\Weltr\Desktop\JellyfinUpscalerPlugin\obj\Release\net6.0\JellyfinUpscalerPlugin.csproj.AssemblyReference.cache
+C:\Users\Weltr\Desktop\JellyfinUpscalerPlugin\obj\Release\net6.0\JellyfinUpscalerPlugin.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Weltr\Desktop\JellyfinUpscalerPlugin\obj\Release\net6.0\JellyfinUpscalerPlugin.csproj.CoreCompileInputs.cache
+C:\Users\Weltr\Desktop\JellyfinUpscalerPlugin\obj\Release\net6.0\JellyfinUpscalerPlugin.sourcelink.json
+C:\Users\Weltr\Desktop\JellyfinUpscalerPlugin\obj\Release\net6.0\JellyfinUpscalerPlugin.dll
+C:\Users\Weltr\Desktop\JellyfinUpscalerPlugin\obj\Release\net6.0\refint\JellyfinUpscalerPlugin.dll
+C:\Users\Weltr\Desktop\JellyfinUpscalerPlugin\obj\Release\net6.0\JellyfinUpscalerPlugin.pdb
+C:\Users\Weltr\Desktop\JellyfinUpscalerPlugin\obj\Release\net6.0\ref\JellyfinUpscalerPlugin.dll

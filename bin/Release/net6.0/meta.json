@@ -11,5 +11,5 @@
     "imageUrl": "https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/assets/logo.png",
     "changelog": "CROSS-PLATFORM RELEASE: Full macOS support (Apple Silicon M1/M2/M3), Enhanced Linux compatibility, 9 AI models, 50+ configuration options, GPU acceleration (DLSS 3.0/FSR 3.0/XeSS/Metal)",
     "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscalerPlugin-v1.3.1.zip",
-    "checksum": "95774425f07a5b433743eaa11f29df82"
+    "checksum": "fa6c28302e0a90aeadf3dfdb5d1d3e09"
 }

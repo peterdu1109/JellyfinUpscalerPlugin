@@ -53,15 +53,11 @@
           "dependencies": {
             "Jellyfin.Controller": {
               "target": "Package",
-              "version": "[10.10.3, )"
+              "version": "[10.8.0, )"
             },
-            "Jellyfin.Model": {
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
               "target": "Package",
-              "version": "[10.10.3, )"
-            },
-            "MediaBrowser.Common": {
-              "target": "Package",
-              "version": "[10.10.3, )"
+              "version": "[6.0.0, )"
             }
           },
           "imports": [

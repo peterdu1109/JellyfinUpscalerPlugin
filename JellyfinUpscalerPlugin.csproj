@@ -9,12 +9,15 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <AssemblyTitle>AI Upscaler Plugin</AssemblyTitle>
+    <AssemblyDescription>AI-powered video upscaling with GPU acceleration</AssemblyDescription>
+    <AssemblyCompany>Kuschel-code</AssemblyCompany>
+    <AssemblyProduct>Jellyfin AI Upscaler Plugin</AssemblyProduct>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Jellyfin.Controller" Version="10.10.3" />
-    <PackageReference Include="Jellyfin.Model" Version="10.10.3" />
-    <PackageReference Include="MediaBrowser.Common" Version="10.10.3" />
+    <PackageReference Include="Jellyfin.Controller" Version="10.8.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
