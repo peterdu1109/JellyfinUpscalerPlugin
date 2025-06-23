@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "3SvMX738+iM=",
+  "dgSpecHash": "CeBBx0jI2hY=",
   "success": false,
   "projectFilePath": "C:\\Users\\Weltr\\Desktop\\JellyfinUpscalerPlugin\\JellyfinUpscalerPlugin.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Weltr\\.nuget\\packages\\jellyfin.controller\\10.10.3\\jellyfin.controller.10.10.3.nupkg.sha512",
     "C:\\Users\\Weltr\\.nuget\\packages\\jellyfin.model\\10.10.3\\jellyfin.model.10.10.3.nupkg.sha512",
+    "C:\\Users\\Weltr\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\Weltr\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\Weltr\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.36\\microsoft.netcore.app.ref.6.0.36.nupkg.sha512",
     "C:\\Users\\Weltr\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.36\\microsoft.windowsdesktop.app.ref.6.0.36.nupkg.sha512",
     "C:\\Users\\Weltr\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.36\\microsoft.aspnetcore.app.ref.6.0.36.nupkg.sha512"
