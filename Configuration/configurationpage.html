@@ -1,66 +1,653 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <title>AI Upscaler Plugin</title>
+    <style>
+        .upscaler-config {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        
+        .config-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #e1e5e9;
+        }
+        
+        .config-section h2 {
+            color: #2c3e50;
+            margin: 0 0 20px 0;
+            font-size: 20px;
+            font-weight: 600;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .config-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .config-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 16px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .config-item:hover {
+            border-color: #3498db;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.1);
+        }
+        
+        .config-item.enabled {
+            border-color: #27ae60;
+            background: #f8fff8;
+        }
+        
+        .config-item label {
+            display: block;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .config-item .description {
+            color: #7f8c8d;
+            font-size: 12px;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        
+        .config-item input, .config-item select, .config-item textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .config-item input:focus, .config-item select:focus, .config-item textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .custom-checkbox {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 28px;
+        }
+        
+        .custom-checkbox input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .checkbox-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .checkbox-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        .custom-checkbox input:checked + .checkbox-slider {
+            background-color: #3498db;
+        }
+        
+        .custom-checkbox input:checked + .checkbox-slider:before {
+            transform: translateX(22px);
+        }
+        
+        .checkmark {
+            color: #27ae60;
+            font-size: 18px;
+            margin-right: 8px;
+        }
+        
+        .save-button {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px 0;
+        }
+        
+        .save-button:hover {
+            background: linear-gradient(45deg, #2980b9, #1f4e79);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(52, 152, 219, 0.3);
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #27ae60;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(39, 174, 96, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0); }
+        }
+        
+        .info-box {
+            background: #e8f5e8;
+            border: 1px solid #27ae60;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .config-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="upscalerConfigPage" data-role="page" class="page type-interior pluginConfigurationPage upscalerConfigPage">
         <div data-role="content">
-            <div class="content-primary">
-                <h1>🚀 AI Upscaler Plugin</h1>
-                <p>Plugin erfolgreich geladen! Konfiguration funktioniert.</p>
+            <div class="content-primary upscaler-config">
+                <h1>
+                    <span class="status-indicator"></span>
+                    <span id="pluginTitle">🚀 AI Upscaler Plugin v1.3.2</span>
+                </h1>
                 
-                <div class="inputContainer">
-                    <label for="chkEnabled">Plugin aktivieren:</label>
-                    <input type="checkbox" id="chkEnabled" />
+                <div class="info-box">
+                    <p><strong><span class="checkmark">✓</span><span id="successMessage">Plugin successfully loaded and ready for configuration!</span></strong></p>
+                    <p><span id="infoMessage">Configure your AI upscaling settings below. All changes are saved automatically.</span></p>
                 </div>
 
-                <div class="inputContainer">
-                    <label for="selectModel">AI Modell:</label>
-                    <select id="selectModel">
-                        <option value="realesrgan">Real-ESRGAN (Standard)</option>
-                        <option value="hat">HAT (Hohe Qualität)</option>
-                        <option value="srcnn">SRCNN (Schnell)</option>
-                    </select>
+                <!-- Core Settings -->
+                <div class="config-section">
+                    <h2 id="coreSettingsTitle">⚙️ Core Settings</h2>
+                    <div class="config-row">
+                        <div class="config-item">
+                            <label for="chkEnabled" id="enableLabel">Enable Plugin</label>
+                            <div class="description" id="enableDesc">Activate AI upscaling for your media library</div>
+                            <div class="checkbox-container">
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="chkEnabled">
+                                    <span class="checkbox-slider"></span>
+                                </div>
+                                <span id="enableStatus">Disabled</span>
+                            </div>
+                        </div>
+                        
+                        <div class="config-item">
+                            <label for="selectLanguage" id="languageLabel">Language / Sprache</label>
+                            <div class="description" id="languageDesc">Choose your preferred language</div>
+                            <select id="selectLanguage">
+                                <option value="en">English</option>
+                                <option value="de">Deutsch</option>
+                                <option value="fr">Français</option>
+                                <option value="es">Español</option>
+                                <option value="it">Italiano</option>
+                                <option value="pt">Português</option>
+                                <option value="ru">Русский</option>
+                                <option value="ja">日本語</option>
+                                <option value="ko">한국어</option>
+                                <option value="zh">中文</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="config-row">
+                        <div class="config-item">
+                            <label for="chkPlayerButton" id="playerButtonLabel">Show Player Button</label>
+                            <div class="description" id="playerButtonDesc">Add upscale button to video player controls</div>
+                            <div class="checkbox-container">
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="chkPlayerButton">
+                                    <span class="checkbox-slider"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="config-item">
+                            <label for="chkNotifications" id="notificationsLabel">Enable Notifications</label>
+                            <div class="description" id="notificationsDesc">Show upscaling progress and completion notifications</div>
+                            <div class="checkbox-container">
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="chkNotifications">
+                                    <span class="checkbox-slider"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="inputContainer">
-                    <label for="selectScale">Skalierungsfaktor:</label>
-                    <select id="selectScale">
-                        <option value="2">2x (Standard)</option>
-                        <option value="4">4x (Hohe Qualität)</option>
-                        <option value="8">8x (Maximum)</option>
-                    </select>
+                <!-- AI Model Settings -->
+                <div class="config-section">
+                    <h2 id="aiModelTitle">🤖 AI Model Settings</h2>
+                    <div class="config-row">
+                        <div class="config-item">
+                            <label for="selectModel" id="modelLabel">AI Model</label>
+                            <div class="description" id="modelDesc">Choose the AI model for upscaling</div>
+                            <select id="selectModel">
+                                <option value="realesrgan">Real-ESRGAN (Recommended)</option>
+                                <option value="hat">HAT (High Quality)</option>
+                                <option value="srcnn">SRCNN (Fast)</option>
+                                <option value="waifu2x">Waifu2x (Anime)</option>
+                                <option value="esrgan">ESRGAN (General)</option>
+                                <option value="edsr">EDSR (Sharp)</option>
+                                <option value="rcan">RCAN (Detail)</option>
+                                <option value="srresnet">SRResNet (Balanced)</option>
+                                <option value="vdsr">VDSR (Deep)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="config-item">
+                            <label for="selectScale" id="scaleLabel">Upscale Factor</label>
+                            <div class="description" id="scaleDesc">How many times to increase resolution</div>
+                            <select id="selectScale">
+                                <option value="2">2x (1080p → 4K)</option>
+                                <option value="3">3x (Custom)</option>
+                                <option value="4">4x (Maximum Quality)</option>
+                                <option value="6">6x (Extreme)</option>
+                                <option value="8">8x (Ultra Extreme)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="config-row">
+                        <div class="config-item">
+                            <label for="selectQuality" id="qualityLabel">Processing Quality</label>
+                            <div class="description" id="qualityDesc">Balance between speed and quality</div>
+                            <select id="selectQuality">
+                                <option value="fast">Fast (Quick processing)</option>
+                                <option value="balanced">Balanced (Recommended)</option>
+                                <option value="high">High (Best quality)</option>
+                                <option value="ultra">Ultra (Maximum quality)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="config-item">
+                            <label for="chkAdvanced" id="advancedLabel">Advanced Settings</label>
+                            <div class="description" id="advancedDesc">Enable expert configuration options</div>
+                            <div class="checkbox-container">
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="chkAdvanced">
+                                    <span class="checkbox-slider"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <button type="submit" data-theme="b">Speichern</button>
+                <!-- GPU & Performance -->
+                <div class="config-section">
+                    <h2 id="performanceTitle">⚡ GPU & Performance</h2>
+                    <div class="config-row">
+                        <div class="config-item">
+                            <label for="chkGPU" id="gpuLabel">Use GPU Acceleration</label>
+                            <div class="description" id="gpuDesc">Enable GPU processing for faster upscaling</div>
+                            <div class="checkbox-container">
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="chkGPU">
+                                    <span class="checkbox-slider"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="config-item">
+                            <label for="selectGPUType" id="gpuTypeLabel">GPU Type</label>
+                            <div class="description" id="gpuTypeDesc">Select your GPU architecture</div>
+                            <select id="selectGPUType">
+                                <option value="auto">Auto-detect</option>
+                                <option value="nvidia">NVIDIA (CUDA/DLSS)</option>
+                                <option value="amd">AMD (ROCm/FSR)</option>
+                                <option value="intel">Intel (XeSS)</option>
+                                <option value="apple">Apple Silicon (Metal)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="config-row">
+                        <div class="config-item">
+                            <label for="numJobs" id="jobsLabel">Max Concurrent Jobs</label>
+                            <div class="description" id="jobsDesc">Number of simultaneous upscaling processes</div>
+                            <input type="number" id="numJobs" min="1" max="10" value="1">
+                        </div>
+                        
+                        <div class="config-item">
+                            <label for="numMemory" id="memoryLabel">Max Memory (MB)</label>
+                            <div class="description" id="memoryDesc">Maximum memory usage per process</div>
+                            <input type="number" id="numMemory" min="1024" max="16384" value="4096" step="512">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Processing Options -->
+                <div class="config-section">
+                    <h2 id="processingTitle">🎬 Processing Options</h2>
+                    <div class="config-row">
+                        <div class="config-item">
+                            <label for="chkAutoMode" id="autoLabel">Auto Mode</label>
+                            <div class="description" id="autoDesc">Automatically upscale new content</div>
+                            <div class="checkbox-container">
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="chkAutoMode">
+                                    <span class="checkbox-slider"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="config-item">
+                            <label for="chkLowQualityOnly" id="lowQualityLabel">Process Low Quality Only</label>
+                            <div class="description" id="lowQualityDesc">Only upscale videos below threshold</div>
+                            <div class="checkbox-container">
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="chkLowQualityOnly">
+                                    <span class="checkbox-slider"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="config-row">
+                        <div class="config-item">
+                            <label for="numThreshold" id="thresholdLabel">Min Resolution Threshold</label>
+                            <div class="description" id="thresholdDesc">Minimum height to trigger upscaling</div>
+                            <select id="numThreshold">
+                                <option value="480">480p (SD)</option>
+                                <option value="720">720p (HD)</option>
+                                <option value="1080">1080p (FHD)</option>
+                                <option value="1440">1440p (QHD)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="config-item">
+                            <label for="selectFormat" id="formatLabel">Output Format</label>
+                            <div class="description" id="formatDesc">Video container for upscaled files</div>
+                            <select id="selectFormat">
+                                <option value="mp4">MP4 (Recommended)</option>
+                                <option value="mkv">MKV (High Quality)</option>
+                                <option value="avi">AVI (Compatible)</option>
+                                <option value="mov">MOV (Apple)</option>
+                                <option value="webm">WebM (Web)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="save-button" id="saveButton">
+                    <span class="checkmark">✓</span>
+                    <span id="saveButtonText">Save Configuration</span>
+                </button>
+                
+                <div class="warning-box" style="display: none;" id="restartWarning">
+                    <p><strong>⚠️ <span id="restartMessage">Server restart required for some changes to take effect.</span></strong></p>
+                </div>
             </div>
         </div>
     </div>
 
     <script type="text/javascript">
+        // Language translations
+        const translations = {
+            en: {
+                pluginTitle: "🚀 AI Upscaler Plugin v1.3.2",
+                successMessage: "Plugin successfully loaded and ready for configuration!",
+                infoMessage: "Configure your AI upscaling settings below. All changes are saved automatically.",
+                coreSettingsTitle: "⚙️ Core Settings",
+                enableLabel: "Enable Plugin",
+                enableDesc: "Activate AI upscaling for your media library",
+                languageLabel: "Language",
+                languageDesc: "Choose your preferred language",
+                playerButtonLabel: "Show Player Button",
+                playerButtonDesc: "Add upscale button to video player controls",
+                notificationsLabel: "Enable Notifications",
+                notificationsDesc: "Show upscaling progress and completion notifications",
+                aiModelTitle: "🤖 AI Model Settings",
+                modelLabel: "AI Model",
+                modelDesc: "Choose the AI model for upscaling",
+                scaleLabel: "Upscale Factor",
+                scaleDesc: "How many times to increase resolution",
+                qualityLabel: "Processing Quality",
+                qualityDesc: "Balance between speed and quality",
+                advancedLabel: "Advanced Settings",
+                advancedDesc: "Enable expert configuration options",
+                performanceTitle: "⚡ GPU & Performance",
+                gpuLabel: "Use GPU Acceleration",
+                gpuDesc: "Enable GPU processing for faster upscaling",
+                gpuTypeLabel: "GPU Type",
+                gpuTypeDesc: "Select your GPU architecture",
+                jobsLabel: "Max Concurrent Jobs",
+                jobsDesc: "Number of simultaneous upscaling processes",
+                memoryLabel: "Max Memory (MB)",
+                memoryDesc: "Maximum memory usage per process",
+                processingTitle: "🎬 Processing Options",
+                autoLabel: "Auto Mode",
+                autoDesc: "Automatically upscale new content",
+                lowQualityLabel: "Process Low Quality Only",
+                lowQualityDesc: "Only upscale videos below threshold",
+                thresholdLabel: "Min Resolution Threshold",
+                thresholdDesc: "Minimum height to trigger upscaling",
+                formatLabel: "Output Format",
+                formatDesc: "Video container for upscaled files",
+                saveButtonText: "Save Configuration",
+                restartMessage: "Server restart required for some changes to take effect.",
+                enableStatus: "Disabled"
+            },
+            de: {
+                pluginTitle: "🚀 AI Upscaler Plugin v1.3.2",
+                successMessage: "Plugin erfolgreich geladen und konfigurationsbereit!",
+                infoMessage: "Konfigurieren Sie Ihre AI-Upscaling-Einstellungen unten. Alle Änderungen werden automatisch gespeichert.",
+                coreSettingsTitle: "⚙️ Kerneinstellungen",
+                enableLabel: "Plugin aktivieren",
+                enableDesc: "AI-Upscaling für Ihre Medienbibliothek aktivieren",
+                languageLabel: "Sprache",
+                languageDesc: "Wählen Sie Ihre bevorzugte Sprache",
+                playerButtonLabel: "Player-Button anzeigen",
+                playerButtonDesc: "Upscale-Button zu Video-Player-Steuerelementen hinzufügen",
+                notificationsLabel: "Benachrichtigungen aktivieren",
+                notificationsDesc: "Upscaling-Fortschritt und Abschluss-Benachrichtigungen anzeigen",
+                aiModelTitle: "🤖 AI-Modell-Einstellungen",
+                modelLabel: "AI-Modell",
+                modelDesc: "Wählen Sie das AI-Modell für Upscaling",
+                scaleLabel: "Upscale-Faktor",
+                scaleDesc: "Um wie viel die Auflösung erhöht werden soll",
+                qualityLabel: "Verarbeitungsqualität",
+                qualityDesc: "Balance zwischen Geschwindigkeit und Qualität",
+                advancedLabel: "Erweiterte Einstellungen",
+                advancedDesc: "Experten-Konfigurationsoptionen aktivieren",
+                performanceTitle: "⚡ GPU & Leistung",
+                gpuLabel: "GPU-Beschleunigung verwenden",
+                gpuDesc: "GPU-Verarbeitung für schnelleres Upscaling aktivieren",
+                gpuTypeLabel: "GPU-Typ",
+                gpuTypeDesc: "Wählen Sie Ihre GPU-Architektur",
+                jobsLabel: "Max. gleichzeitige Jobs",
+                jobsDesc: "Anzahl gleichzeitiger Upscaling-Prozesse",
+                memoryLabel: "Max. Speicher (MB)",
+                memoryDesc: "Maximaler Speicherverbrauch pro Prozess",
+                processingTitle: "🎬 Verarbeitungsoptionen",
+                autoLabel: "Auto-Modus",
+                autoDesc: "Neue Inhalte automatisch upscalen",
+                lowQualityLabel: "Nur niedrige Qualität verarbeiten",
+                lowQualityDesc: "Nur Videos unter Schwellenwert upscalen",
+                thresholdLabel: "Min. Auflösungsschwelle",
+                thresholdDesc: "Minimale Höhe zum Auslösen des Upscaling",
+                formatLabel: "Ausgabeformat",
+                formatDesc: "Video-Container für upscaled Dateien",
+                saveButtonText: "Konfiguration speichern",
+                restartMessage: "Server-Neustart erforderlich, damit einige Änderungen wirksam werden.",
+                enableStatus: "Deaktiviert"
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        function updateLanguage(lang) {
+            currentLanguage = lang;
+            const t = translations[lang] || translations.en;
+            
+            Object.keys(t).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.textContent = t[key];
+                }
+            });
+            
+            // Update enable status
+            const enableStatus = document.getElementById('enableStatus');
+            const enabled = document.getElementById('chkEnabled').checked;
+            if (enableStatus) {
+                enableStatus.textContent = enabled ? 
+                    (lang === 'de' ? 'Aktiviert' : 'Enabled') : 
+                    (lang === 'de' ? 'Deaktiviert' : 'Disabled');
+            }
+        }
+
         $('.upscalerConfigPage').on('pageshow', function () {
             Dashboard.showLoadingMsg();
             ApiClient.getPluginConfiguration('f87f700e-679d-43e6-9c7c-b3a410dc3f22').then(function (config) {
-                $('#chkEnabled').checked = config.Enabled || false;
+                // Load configuration
+                $('#chkEnabled').prop('checked', config.Enabled || false);
+                $('#selectLanguage').val(config.Language || 'en');
+                $('#chkPlayerButton').prop('checked', config.ShowPlayerButton !== false);
+                $('#chkNotifications').prop('checked', config.EnableNotifications !== false);
                 $('#selectModel').val(config.Model || 'realesrgan');
                 $('#selectScale').val(config.Scale || 2);
+                $('#selectQuality').val(config.Quality || 'high');
+                $('#chkAdvanced').prop('checked', config.UseAdvancedSettings || false);
+                $('#chkGPU').prop('checked', config.UseGPU !== false);
+                $('#selectGPUType').val(config.GPUType || 'auto');
+                $('#numJobs').val(config.MaxConcurrentJobs || 1);
+                $('#numMemory').val(config.MaxMemoryUsage || 4096);
+                $('#chkAutoMode').prop('checked', config.AutoMode || false);
+                $('#chkLowQualityOnly').prop('checked', config.ProcessOnlyLowQuality !== false);
+                $('#numThreshold').val(config.MinResolutionThreshold || 720);
+                $('#selectFormat').val(config.OutputFormat || 'mp4');
+                
+                // Update language
+                updateLanguage(config.Language || 'en');
+                
+                // Update UI states
+                updateEnableStatus();
+                
+                Dashboard.hideLoadingMsg();
+            }).catch(function() {
                 Dashboard.hideLoadingMsg();
             });
         });
 
+        function updateEnableStatus() {
+            const enabled = $('#chkEnabled').prop('checked');
+            const status = document.getElementById('enableStatus');
+            if (status) {
+                status.textContent = enabled ? 
+                    (currentLanguage === 'de' ? 'Aktiviert' : 'Enabled') : 
+                    (currentLanguage === 'de' ? 'Deaktiviert' : 'Disabled');
+            }
+            
+            // Update visual state
+            const coreSection = document.querySelector('.config-section');
+            if (enabled) {
+                coreSection.classList.add('enabled');
+            } else {
+                coreSection.classList.remove('enabled');
+            }
+        }
+
+        // Language change handler
+        $('#selectLanguage').on('change', function() {
+            updateLanguage(this.value);
+        });
+
+        // Enable status change handler
+        $('#chkEnabled').on('change', updateEnableStatus);
+
         $('.upscalerConfigPage').on('click', 'button[type="submit"]', function () {
             Dashboard.showLoadingMsg();
             var config = {
-                Enabled: $('#chkEnabled').checked,
+                Enabled: $('#chkEnabled').prop('checked'),
+                Language: $('#selectLanguage').val(),
+                ShowPlayerButton: $('#chkPlayerButton').prop('checked'),
+                EnableNotifications: $('#chkNotifications').prop('checked'),
                 Model: $('#selectModel').val(),
-                Scale: parseInt($('#selectScale').val())
+                Scale: parseInt($('#selectScale').val()),
+                Quality: $('#selectQuality').val(),
+                UseAdvancedSettings: $('#chkAdvanced').prop('checked'),
+                UseGPU: $('#chkGPU').prop('checked'),
+                GPUType: $('#selectGPUType').val(),
+                MaxConcurrentJobs: parseInt($('#numJobs').val()),
+                MaxMemoryUsage: parseInt($('#numMemory').val()),
+                AutoMode: $('#chkAutoMode').prop('checked'),
+                ProcessOnlyLowQuality: $('#chkLowQualityOnly').prop('checked'),
+                MinResolutionThreshold: parseInt($('#numThreshold').val()),
+                OutputFormat: $('#selectFormat').val()
             };
 
             ApiClient.updatePluginConfiguration('f87f700e-679d-43e6-9c7c-b3a410dc3f22', config).then(function () {
                 Dashboard.hideLoadingMsg();
-                Dashboard.alert('Einstellungen gespeichert!');
+                const message = currentLanguage === 'de' ? 'Einstellungen gespeichert!' : 'Configuration saved!';
+                Dashboard.alert(message);
+                
+                // Show restart warning if needed
+                if (config.Enabled || config.ShowPlayerButton) {
+                    document.getElementById('restartWarning').style.display = 'block';
+                }
+            }).catch(function() {
+                Dashboard.hideLoadingMsg();
+                const message = currentLanguage === 'de' ? 'Fehler beim Speichern!' : 'Error saving configuration!';
+                Dashboard.alert(message);
             });
         });
     </script>
