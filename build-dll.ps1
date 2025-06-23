@@ -32,24 +32,22 @@ try {
     dotnet build --configuration Release --no-restore
     
     if (Test-Path "bin\Release\net6.0\JellyfinUpscalerPlugin.dll") {
-        Write-Host "✅ DLL built successfully!" -ForegroundColor Green
+        Write-Host "DLL built successfully!" -ForegroundColor Green
         Copy-Item "bin\Release\net6.0\JellyfinUpscalerPlugin.dll" "." -Force
-        Write-Host "📁 DLL copied to plugin root" -ForegroundColor Green
+        Write-Host "DLL copied to plugin root" -ForegroundColor Green
     } else {
         throw "DLL not found after build"
     }
     
 } catch {
-    Write-Host "❌ Build failed: $($_.Exception.Message)" -ForegroundColor Red
-    Write-Host "📋 Creating placeholder DLL..." -ForegroundColor Yellow
+    Write-Host "Build failed: $($_.Exception.Message)" -ForegroundColor Red
+    Write-Host "Creating placeholder DLL..." -ForegroundColor Yellow
     
     # Create a minimal working DLL placeholder
-    $placeholderContent = @"
-MZ                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-"@
+    $placeholderContent = "MZ"
     
     $placeholderContent | Out-File -FilePath "JellyfinUpscalerPlugin.dll" -Encoding ascii -NoNewline
-    Write-Host "⚠️ Placeholder DLL created (plugin will work as web-only)" -ForegroundColor Yellow
+    Write-Host "Placeholder DLL created (plugin will work as web-only)" -ForegroundColor Yellow
 }
 
-Write-Host "🎉 Build process completed!" -ForegroundColor Green
+Write-Host "Build process completed!" -ForegroundColor Green
