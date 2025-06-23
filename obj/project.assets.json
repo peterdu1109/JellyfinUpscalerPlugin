@@ -1129,7 +1129,7 @@
       "code": "NU1903",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Jellyfin.Controller' 10.8.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-9p5f-5x8v-x65m",
+      "message": "Das Paket \"Jellyfin.Controller\" 10.8.0 weist eine bekannte Hoch Schweregrad-Sicherheitsanfälligkeit auf, https://github.com/advisories/GHSA-9p5f-5x8v-x65m.",
       "libraryId": "Jellyfin.Controller",
       "targetGraphs": [
         "net6.0"
