@@ -62,14 +62,6 @@
             "MediaBrowser.Common": {
               "target": "Package",
               "version": "[10.10.3, )"
-            },
-            "Microsoft.Extensions.DependencyInjection.Abstractions": {
-              "target": "Package",
-              "version": "[6.0.0, )"
-            },
-            "Microsoft.Extensions.Logging.Abstractions": {
-              "target": "Package",
-              "version": "[6.0.0, )"
             }
           },
           "imports": [

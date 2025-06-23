@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JellyfinUpscalerPlugin")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.3.1.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.3.1+cefea17c89d3b0c8a7248cbafc8514d438730128")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.3.1+00bcf4db2b01689df45cc09dc3f171451e90afbc")]
 [assembly: System.Reflection.AssemblyProductAttribute("JellyfinUpscalerPlugin")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JellyfinUpscalerPlugin")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.3.1.0")]
