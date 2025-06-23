@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KEk0uqW8l/U=",
+  "dgSpecHash": "mWHR6bEK+rk=",
   "success": true,
   "projectFilePath": "C:\\Users\\Weltr\\Desktop\\JellyfinUpscalerPlugin\\JellyfinUpscalerPlugin.csproj",
   "expectedPackageFiles": [
@@ -36,7 +36,7 @@
       "code": "NU1903",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Das Paket \"Jellyfin.Controller\" 10.8.0 weist eine bekannte Hoch Schweregrad-Sicherheitsanfälligkeit auf, https://github.com/advisories/GHSA-9p5f-5x8v-x65m.",
+      "message": "Package 'Jellyfin.Controller' 10.8.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-9p5f-5x8v-x65m",
       "libraryId": "Jellyfin.Controller",
       "targetGraphs": [
         "net6.0"

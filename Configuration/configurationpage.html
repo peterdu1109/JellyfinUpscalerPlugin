@@ -829,10 +829,90 @@
             }
         }
 
-        // Language change handler
+        // Language change handler - SOFORTIGE ÄNDERUNG
         $('#selectLanguage').on('change', function() {
-            updateLanguage(this.value);
+            const selectedLang = this.value;
+            
+            // Sofort UI aktualisieren (ohne Save-Button)
+            updateLanguage(selectedLang);
+            
+            // Sprache automatisch in Konfiguration speichern
+            const config = getConfigurationFromForm();
+            config.Language = selectedLang;
+            
+            // Auto-Save der Spracheinstellung
+            ApiClient.updatePluginConfiguration(pluginId, config).then(function() {
+                console.log('Language changed to:', selectedLang);
+                
+                // Erfolgs-Feedback (kurz und dezent)
+                showSuccessToast('Language updated to ' + getLanguageDisplayName(selectedLang));
+            }).catch(function(error) {
+                console.error('Failed to save language:', error);
+                showErrorToast('Failed to save language setting');
+            });
         });
+
+        // Helper function für Language Display Namen
+        function getLanguageDisplayName(langCode) {
+            const langNames = {
+                'en': 'English',
+                'de': 'Deutsch', 
+                'fr': 'Français',
+                'es': 'Español',
+                'it': 'Italiano',
+                'pt': 'Português',
+                'ru': 'Русский',
+                'ja': '日本語',
+                'ko': '한국어',
+                'zh': '中文'
+            };
+            return langNames[langCode] || langCode;
+        }
+
+        // Toast Notification Helper
+        function showSuccessToast(message) {
+            require(['toast'], function(Toast) {
+                Toast.success(message);
+            });
+        }
+
+        function showErrorToast(message) {
+            require(['toast'], function(Toast) {
+                Toast.error(message);
+            });
+        }
+
+        // Configuration collector function
+        function getConfigurationFromForm() {
+            return {
+                IsEnabled: $('#chkEnabled').prop('checked'),
+                Language: $('#selectLanguage').val(),
+                ShowPlayerButton: $('#chkPlayerButton').prop('checked'),
+                EnableNotifications: $('#chkNotifications').prop('checked'),
+                SelectedModel: $('#selectModel').val(),
+                UpscaleFactor: $('#selectFactor').val(),
+                QualityLevel: $('#selectQuality').val(),
+                EnableAdvancedSettings: $('#chkAdvanced').prop('checked'),
+                EnableGpuAcceleration: $('#chkGpuAcceleration').prop('checked'),
+                GpuType: $('#selectGpuType').val(),
+                EnableAutoDetection: $('#chkAutoDetection').prop('checked'),
+                MaxConcurrentJobs: $('#maxJobsSlider').val(),
+                MemoryLimit: $('#memorySlider').val(),
+                EnableTurboMode: $('#chkTurboMode').prop('checked'),
+                EnableAutoMode: $('#chkAutoMode').prop('checked'),
+                OnlyLowQuality: $('#chkOnlyLowQuality').prop('checked'),
+                ResolutionThreshold: $('#selectResolution').val(),
+                OutputFormat: $('#selectOutput').val(),
+                KeepOriginal: $('#chkKeepOriginal').prop('checked'),
+                EnableBatchProcessing: $('#chkBatchProcessing').prop('checked'),
+                EnableScheduled: $('#chkScheduled').prop('checked'),
+                LoggingLevel: $('#selectLogging').val(),
+                ThreadPoolSize: $('#threadPoolSlider').val(),
+                EnableTemperatureMonitoring: $('#chkTemperatureMonitoring').prop('checked'),
+                CollectStatistics: $('#chkStatistics').prop('checked'),
+                EnableDebugMode: $('#chkDebugMode').prop('checked')
+            };
+        }
 
         // Enable status change handler
         $('#chkEnabled').on('change', updateEnableStatus);
