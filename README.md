@@ -1,6 +1,14 @@
-# 🔥 Jellyfin AI Upscaler Plugin v1.3.0 PRO
+# 🚀 AI Upscaler Plugin for Jellyfin v1.3.2
 
-## 🎉 **ADVANCED AI UPSCALING: DLSS 3.0 • FSR 3.0 • XeSS • RTX HDR**
+[![License](https://img.shields.io/github/license/Kuschel-code/JellyfinUpscalerPlugin)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/blob/main/LICENSE)
+[![Release](https://img.shields.io/github/v/release/Kuschel-code/JellyfinUpscalerPlugin)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases)
+[![Downloads](https://img.shields.io/github/downloads/Kuschel-code/JellyfinUpscalerPlugin/total)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases)
+
+**Professional AI-powered video upscaling with multilingual support, 9 AI models, cross-platform GPU acceleration, and advanced player integration.**
+
+![AI Upscaler Plugin](https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/assets/logo.svg)
+
+## 🎉 **ADVANCED UI & PLAYER INTEGRATION: v1.3.2 - NEW!**
 
 ---
 
