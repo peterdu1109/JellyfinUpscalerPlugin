@@ -1,29 +1,58 @@
-# 🚀 AI Upscaler Plugin for Jellyfin v1.3.3
+# 🚀 AI Upscaler Plugin for Jellyfin v1.3.4 - Enterprise Edition
 
 [![License](https://img.shields.io/github/license/Kuschel-code/JellyfinUpscalerPlugin)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/blob/main/LICENSE)
 [![Release](https://img.shields.io/github/v/release/Kuschel-code/JellyfinUpscalerPlugin)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases)
 [![Downloads](https://img.shields.io/github/downloads/Kuschel-code/JellyfinUpscalerPlugin/total)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases)
 
-**Professional AI-powered video upscaling with multilingual support, 9 AI models, cross-platform GPU acceleration, and advanced player integration.**
+**Enterprise-grade AI video upscaling with Light Mode, UI Model Manager, Frame Interpolation, and Mobile Support - Works on ANY hardware!**
 
 ![AI Upscaler Plugin](https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/assets/logo.svg)
 
-## 🎉 **INSTANT LANGUAGE SWITCHING: v1.3.3 - NEW!**
+## 🔧 **ENTERPRISE EDITION v1.3.4 - ALL USER FEEDBACK IMPLEMENTED!**
 
 ---
 
-**Jellyfin Upscaler Plugin**
+**Jellyfin Upscaler Plugin - Enterprise Edition**
 
 **Description**
 
-The Jellyfin Upscaler Plugin enhances video quality in real-time by using AI upscaling and shader-based optimizations. 
+The Jellyfin Upscaler Plugin enhances video quality in real-time by using AI upscaling and shader-based optimizations. **v1.3.4 Enterprise Edition** solves ALL user feedback issues and works on every hardware configuration.
 
-### 🔥 **v1.3.3 INSTANT LANGUAGE SWITCHING - NEW!:**
-- 🌍 **INSTANT LANGUAGE SWITCH** - No save button required, changes immediately
-- 🎯 **PROFESSIONAL TOAST NOTIFICATIONS** - User-friendly feedback system
-- 🔄 **AUTO-SAVE CONFIGURATION** - Settings persist automatically
-- 🛠️ **REPOSITORY FIXES** - GitHub connection restored and stable
-- ✅ **ERROR-FREE BUILD** - All issues resolved, production ready
+### ✨ **v1.3.4 ENTERPRISE FEATURES - NEW!:**
+
+#### 🔋 **Light Mode System** - Automatic Hardware Optimization
+- ✅ **Weak Hardware Support:** Automatic detection of <8GB RAM or no GPU
+- ✅ **Thermal Throttling:** Temperature monitoring with 85°C protection
+- ✅ **CPU Limit Management:** Limits CPU cores for weak systems
+- ✅ **Light AI Models:** SRCNN Light (12MB) for minimal resources
+- ✅ **Battery Mode:** Optimization for Mobile/Laptop devices
+
+#### 🤖 **UI-based Model Manager** - No Manual Downloads Required
+- ✅ **6 AI Models Available:** Real-ESRGAN, ESRGAN Pro, SwinIR, SRCNN Light, Waifu2x, HAT
+- ✅ **Smart Download System:** Progress display, queue management
+- ✅ **Intelligent Cache:** 10GB cache with automatic cleanup
+- ✅ **Hardware Verification:** Checks RAM/GPU requirements before download
+- ✅ **One-Click Install:** Automatically installs recommended models
+
+#### 🎬 **Optional Frame Interpolation** - Cinematography Protection
+- ✅ **Default OFF:** Respects 24fps movies automatically
+- ✅ **Smart FPS Detection:** Recognizes 23.976, 24, 25, 29.97, 30, 50, 59.94, 60 FPS
+- ✅ **Cinema Mode Protection:** Automatically skips 24fps content
+- ✅ **3 Interpolation Methods:** Motion Compensation, Optical Flow, Frame Blending
+- ✅ **User Notifications:** Notifies when cinema content is detected
+
+#### 📱 **Mobile & Server-side Support** - Complete Mobile Support
+- ✅ **Server-side Processing:** Offloads computation to server
+- ✅ **Pre-upscaling Cache:** Cached content for fast mobile streaming
+- ✅ **Mobile Device Detection:** Automatic mobile device recognition
+- ✅ **Adaptive Streaming:** Quality adjustment based on device
+- ✅ **Battery Optimization:** Reduces performance during battery operation
+
+### 🎯 **USER IMPACT: Plugin now works on EVERY hardware!**
+1. **Weak Hardware:** Light Mode activates automatically
+2. **Model Installation:** Completely UI-based, no technical knowledge needed
+3. **Film Enthusiasts:** 24fps movies remain untouched
+4. **Mobile Users:** Complete server-side processing support
 
 ### 🔥 **v1.3.2 ADVANCED UI & PLAYER INTEGRATION:**
 - 🚀 **DLSS 3.0** - Frame Generation for RTX 40-series
@@ -99,7 +128,8 @@ curl -fsSL https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin
 3. **Automatically handles network issues and download failures!**
 
 ### **📦 Manual Downloads**
-1. **🌍 Latest v1.3.3:** [JellyfinUpscalerPlugin-v1.3.3.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscalerPlugin-v1.3.3.zip) - **INSTANT LANGUAGE SWITCHING**
+1. **🔧 Latest v1.3.4:** [JellyfinUpscalerPlugin-v1.3.4.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscalerPlugin-v1.3.4.zip) - **ENTERPRISE EDITION**
+2. **🌍 Previous v1.3.3:** [JellyfinUpscalerPlugin-v1.3.3.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscalerPlugin-v1.3.3.zip) - **INSTANT LANGUAGE SWITCHING**
 2. **🔥 Advanced Pro v1.3.0:** [JellyfinUpscaler-Advanced.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscaler-Advanced.zip)
 3. **🎯 Native v1.2.0:** [JellyfinUpscaler-Native.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscaler-Native.zip)
 4. **📄 Legacy v1.1.2:** [JellyfinUpscalerPlugin.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/dist/JellyfinUpscalerPlugin.zip)
