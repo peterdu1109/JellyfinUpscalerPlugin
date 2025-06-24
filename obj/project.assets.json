@@ -1037,9 +1037,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Weltr\\Desktop\\JellyfinUpscalerPlugin\\JellyfinUpscalerPlugin-CLEAN.csproj",
-      "projectName": "JellyfinUpscalerPlugin-CLEAN",
-      "projectPath": "C:\\Users\\Weltr\\Desktop\\JellyfinUpscalerPlugin\\JellyfinUpscalerPlugin-CLEAN.csproj",
+      "projectUniqueName": "C:\\Users\\Weltr\\Desktop\\JellyfinUpscalerPlugin\\JellyfinUpscalerPlugin.csproj",
+      "projectName": "JellyfinUpscalerPlugin",
+      "projectPath": "C:\\Users\\Weltr\\Desktop\\JellyfinUpscalerPlugin\\JellyfinUpscalerPlugin.csproj",
       "packagesPath": "C:\\Users\\Weltr\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Weltr\\Desktop\\JellyfinUpscalerPlugin\\obj\\",
       "projectStyle": "PackageReference",
