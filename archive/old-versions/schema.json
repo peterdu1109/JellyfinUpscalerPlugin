@@ -1,0 +1,89 @@
+{
+    "type": "object",
+    "properties": {
+        "selectedProfile": {
+            "type": "string",
+            "title": "Selected Profile",
+            "description": "Choose a pre-configured profile or use custom settings.",
+            "default": "Default",
+            "enum": ["Default", "Anime", "Movies", "TV Shows", "Custom"]
+        },
+        "enableBenchmark": {
+            "type": "boolean",
+            "title": "Enable Benchmark Test",
+            "description": "Run a benchmark test to determine if the device can handle AI upscaling.",
+            "default": true
+        },
+        "customSettings": {
+            "type": "object",
+            "title": "Custom Profile Settings",
+            "properties": {
+                "enableFPSRule": {
+                    "type": "boolean",
+                    "title": "Enable FPS Rule",
+                    "description": "Consider FPS when applying AI upscaling.",
+                    "default": false
+                },
+                "maxFPSForAI": {
+                    "type": "string",
+                    "title": "Max FPS for AI Upscaling",
+                    "description": "Maximum FPS allowed for AI upscaling.",
+                    "default": "Unlimited",
+                    "enum": ["Unlimited", "30 FPS", "60 FPS", "120 FPS"]
+                },
+                "minResolutionForAI": {
+                    "type": "string",
+                    "title": "Min Resolution for AI",
+                    "description": "Minimum resolution required for AI upscaling.",
+                    "default": "1080p",
+                    "enum": ["480p", "720p", "1080p", "1440p", "2160p", "4320p"]
+                },
+                "maxResolutionForAI": {
+                    "type": "string",
+                    "title": "Max Resolution for AI",
+                    "description": "Maximum resolution allowed for AI upscaling.",
+                    "default": "4320p",
+                    "enum": ["480p", "720p", "1080p", "1440p", "2160p", "4320p"]
+                },
+                "defaultShaderBelowMinResolution": {
+                    "type": "string",
+                    "title": "Shader Below Min Resolution",
+                    "description": "Shader to use for videos below minimum resolution.",
+                    "default": "Bicubic",
+                    "enum": ["Bilinear", "Bicubic", "Lanczos"]
+                },
+                "defaultShaderAboveMaxResolution": {
+                    "type": "string",
+                    "title": "Shader Above Max Resolution",
+                    "description": "Shader to use for videos above maximum resolution.",
+                    "default": "Lanczos",
+                    "enum": ["Bilinear", "Bicubic", "Lanczos"]
+                },
+                "sharpness": {
+                    "type": "number",
+                    "title": "Sharpness",
+                    "description": "Adjust sharpness of the video output (0 = none, 5 = max).",
+                    "default": 2
+                },
+                "saturation": {
+                    "type": "number",
+                    "title": "Saturation",
+                    "description": "Adjust color saturation (-1 = desaturated, 3 = vivid colors).",
+                    "default": 1
+                },
+                "contrast": {
+                    "type": "number",
+                    "title": "Contrast",
+                    "description": "Adjust contrast (0.5 = low, 2.0 = high).",
+                    "default": 1.0
+                },
+                "denoising": {
+                    "type": "number",
+                    "title": "Denoising",
+                    "description": "Reduce noise in the video (0 = none, 3 = max).",
+                    "default": 1
+                }
+            }
+        }
+    }
+}
