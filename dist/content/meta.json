@@ -1,0 +1,9 @@
+﻿{
+    "version":  "1.3.5",
+    "name":  "AI Upscaler Plugin v1.3.5",
+    "framework":  "net8.0",
+    "description":  "Professional AI upscaling with AV1 codec support",
+    "targetAbi":  "10.10.3.0",
+    "timestamp":  "2025-06-27T21:22:55Z",
+    "guid":  "f87f700e-679d-43e6-9c7c-b3a410dc3f22"
+}

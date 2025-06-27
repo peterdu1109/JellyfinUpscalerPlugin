@@ -82,5 +82,71 @@ namespace JellyfinUpscalerPlugin
         public int CPUCoreLimit { get; set; } = 0; // 0 = auto
         public bool TemperatureThrottling { get; set; } = true;
         public int MaxTemperature { get; set; } = 85; // Celsius
+        
+        // v1.3.5 NEW FEATURES - AV1 CODEC SUPPORT
+        
+        // 1. AV1 Codec Support
+        public bool EnableAV1Support { get; set; } = true;
+        public bool AV1HardwareAcceleration { get; set; } = true;
+        public string AV1Encoder { get; set; } = "auto"; // auto, nvenc_av1, qsv_av1, vaapi_av1
+        public string AV1Decoder { get; set; } = "auto"; // auto, av1_nvdec, av1_qsv, av1_vaapi
+        public int AV1CRF { get; set; } = 32; // Quality setting (lower = better quality)
+        public string AV1Preset { get; set; } = "medium"; // ultrafast, superfast, veryfast, faster, fast, medium, slow, slower, veryslow
+        public bool AV1Film { get; set; } = false; // Film grain synthesis
+        public int AV1Threads { get; set; } = 0; // 0 = auto
+        
+        // 2. Enhanced Subtitle Support
+        public bool EnableAdvancedSubtitles { get; set; } = true;
+        public bool AutoEmbedSubtitles { get; set; } = false;
+        public bool ConvertPGSSubtitles { get; set; } = true;
+        public string SubtitleFormat { get; set; } = "srt"; // srt, ass, vtt
+        public bool DownloadMissingSubtitles { get; set; } = false;
+        public string SubtitleLanguages { get; set; } = "en,de,fr,es"; // Comma-separated language codes
+        
+        // 3. Remote Streaming Optimization
+        public bool EnableRemoteOptimization { get; set; } = true;
+        public bool DynamicBitrateAdjustment { get; set; } = true;
+        public int RemoteMaxBitrate { get; set; } = 8000; // kbps
+        public int RemoteMinBitrate { get; set; } = 1000; // kbps
+        public bool EnableLowLatencyStreaming { get; set; } = false;
+        public int NetworkBufferSize { get; set; } = 5; // seconds
+        public bool AdaptiveQualityForMobile { get; set; } = true;
+        
+        // 4. Enhanced Mobile Support
+        public bool MobileOptimizedUI { get; set; } = true;
+        public bool TouchFriendlyControls { get; set; } = true;
+        public int MobileMaxResolution { get; set; } = 1080; // p
+        public string MobilePreferredCodec { get; set; } = "h264"; // h264, hevc, av1
+        public bool MobileBatteryMode { get; set; } = true;
+        public int MobileFrameRate { get; set; } = 30; // fps
+        
+        // 5. Enhanced Error Handling & Diagnostics
+        public bool EnableAdvancedDiagnostics { get; set; } = true;
+        public bool AutoErrorReporting { get; set; } = false;
+        public bool DetailedLogging { get; set; } = false;
+        public int LogRetentionDays { get; set; } = 7;
+        public bool EnablePerformanceMetrics { get; set; } = true;
+        public bool ShowHardwareInfo { get; set; } = true;
+        
+        // 6. HDR and Advanced Video Features
+        public bool EnableHDRSupport { get; set; } = true;
+        public bool HDR10Support { get; set; } = true;
+        public bool DolbyVisionSupport { get; set; } = false; // Experimental
+        public bool EnableToneMapping { get; set; } = true;
+        public string ToneMappingAlgorithm { get; set; } = "hable"; // hable, mobius, reinhard, bt2390
+        
+        // 7. Audio Enhancement
+        public bool EnableAudioPassthrough { get; set; } = true;
+        public bool DolbyAtmosSupport { get; set; } = false;
+        public bool DTSHDSupport { get; set; } = false;
+        public bool AutoDownmixAudio { get; set; } = true;
+        public string AudioChannelLayout { get; set; } = "auto"; // auto, stereo, 5.1, 7.1
+        
+        // 8. Quick Settings UI Enhancement
+        public bool EnableQuickSettings { get; set; } = true;
+        public bool ShowQuickSettingsInPlayer { get; set; } = true;
+        public string QuickSettingsPosition { get; set; } = "top-right"; // top-right, top-left, bottom-right, bottom-left
+        public bool QuickSettingsAutoHide { get; set; } = true;
+        public int QuickSettingsTimeout { get; set; } = 5; // seconds
     }
 }
