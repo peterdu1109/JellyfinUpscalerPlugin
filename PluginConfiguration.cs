@@ -153,6 +153,20 @@ namespace JellyfinUpscalerPlugin
         public bool EnableWebSocketStats { get; set; } = true;
         
         // ========================================
+        // CACHE MANAGEMENT SETTINGS
+        // ========================================
+        public int CacheSizeMB { get; set; } = 10240; // 10GB default cache
+        public bool EnableSmartCache { get; set; } = true;
+        public bool AutoCleanupCache { get; set; } = true;
+        public int MaxCacheAgeDays { get; set; } = 30;
+        
+        // ========================================
+        // MISSING PROPERTIES FOR COMPATIBILITY
+        // ========================================
+        public bool EnableAutomaticZonedUpscaling { get; set; } = true;
+        public bool EnableDynamicModelSwitching { get; set; } = false;
+        
+        // ========================================
         // ENHANCED AV1 SETTINGS
         // ========================================
         public bool EnableAV1 { get; set; } = true;

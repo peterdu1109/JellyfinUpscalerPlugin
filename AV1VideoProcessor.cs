@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -72,7 +72,7 @@ namespace JellyfinUpscalerPlugin
                     TimeSpan.FromMilliseconds(_config.StatsUpdateInterval));
             }
             
-            _logger.LogInformation("🚀 Enhanced AV1VideoProcessor initialized with 14 AI models and 7 shaders");
+            _logger.LogInformation("ðŸš€ Enhanced AV1VideoProcessor initialized with 14 AI models and 7 shaders");
         }
         
         /// <summary>
@@ -100,7 +100,7 @@ namespace JellyfinUpscalerPlugin
             try
             {
                 await _processingSemaphore.WaitAsync(cancellationToken);
-                _logger.LogInformation($"🚀 Starting enhanced AV1 processing: {Path.GetFileName(inputPath)}");
+                _logger.LogInformation($"ðŸš€ Starting enhanced AV1 processing: {Path.GetFileName(inputPath)}");
                 
                 // 1. Enhanced hardware detection and optimization
                 var hardwareProfile = await _upscalerCore.DetectHardwareAsync();
@@ -165,20 +165,20 @@ namespace JellyfinUpscalerPlugin
                 // 13. Update performance history
                 UpdatePerformanceHistory(job);
                 
-                _logger.LogInformation($"✅ Enhanced AV1 processing completed: {result.Success}, " +
+                _logger.LogInformation($"âœ… Enhanced AV1 processing completed: {result.Success}, " +
                     $"Time: {job.ProcessingTime.TotalSeconds:F1}s, Model: {optimalModel}, Shader: {optimalShader}");
                 
-                return result;
+                return await Task.FromResult(result);
             }
             catch (OperationCanceledException)
             {
-                _logger.LogInformation($"⏹️ AV1 processing cancelled: {jobId}");
+                _logger.LogInformation($"â¹ï¸ AV1 processing cancelled: {jobId}");
                 job.Status = ProcessingStatus.Cancelled;
-                return new ProcessingResult { Success = false, Error = "Processing cancelled" };
+                return await Task.FromResult(new ProcessingResult { Success = false, Error = "Processing cancelled" });
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"❌ Enhanced AV1 processing failed: {jobId}");
+                _logger.LogError(ex, $"âŒ Enhanced AV1 processing failed: {jobId}");
                 job.Status = ProcessingStatus.Failed;
                 job.Error = ex.Message;
                 return new ProcessingResult { Success = false, Error = ex.Message };
@@ -221,15 +221,15 @@ namespace JellyfinUpscalerPlugin
                 info.ColorSpace = ExtractColorSpace(stderr);
                 info.DynamicRange = ExtractDynamicRange(stderr);
                 
-                _logger.LogInformation($"📊 Enhanced analysis: {info.Width}x{info.Height} {info.FrameRate}fps, " +
+                _logger.LogInformation($"ðŸ“Š Enhanced analysis: {info.Width}x{info.Height} {info.FrameRate}fps, " +
                     $"{info.Codec}, {info.BitRate}kbps, Quality: {info.EstimatedQuality}, " +
                     $"ColorSpace: {info.ColorSpace}, HDR: {info.DynamicRange}");
                 
-                return info;
+                return await Task.FromResult(info);
             }
             catch (Exception ex)
             {
-                _logger.LogWarning(ex, "⚠️ Enhanced input analysis failed, using defaults");
+                _logger.LogWarning(ex, "âš ï¸ Enhanced input analysis failed, using defaults");
                 return new VideoInfo(); // Default values
             }
         }
@@ -242,7 +242,7 @@ namespace JellyfinUpscalerPlugin
             try
             {
                 if (!_config.EnableAutomaticContentDetection)
-                    return "general";
+                    return await Task.FromResult("general");
                 
                 var filename = Path.GetFileName(inputPath).ToLowerInvariant();
                 
@@ -251,7 +251,7 @@ namespace JellyfinUpscalerPlugin
                     inputInfo.FrameRate <= 24.5 && inputInfo.Width <= 1920 && 
                     (filename.Contains("episode") || filename.Contains("ep")))
                 {
-                    return "anime";
+                    return await Task.FromResult("anime");
                 }
                 
                 // Movie detection
@@ -282,7 +282,7 @@ namespace JellyfinUpscalerPlugin
                     return "music-videos";
                 }
                 
-                return "general";
+                return await Task.FromResult(await Task.FromResult("general"));
             }
             catch (Exception ex)
             {
@@ -299,7 +299,7 @@ namespace JellyfinUpscalerPlugin
             try
             {
                 if (!_config.EnableAIColorCorrection)
-                    return new ColorProfile(); // Default/no correction
+                    return await Task.FromResult(new ColorProfile()); // Default/no correction
                 
                 if (_config.ContentColorProfiles?.ContainsKey(contentType) == true)
                 {
@@ -373,13 +373,13 @@ namespace JellyfinUpscalerPlugin
                     optimized.AIModel = _config.AV1CompatibleModel;
                 }
                 
-                _logger.LogInformation($"🔥 Using AV1 hardware encoder: {hardware.Av1Encoder}");
+                _logger.LogInformation($"ðŸ”¥ Using AV1 hardware encoder: {hardware.Av1Encoder}");
             }
             else
             {
                 // Fallback codec selection
                 optimized.VideoCodec = SelectFallbackCodec(hardware, deviceOpts);
-                _logger.LogInformation($"📺 Using fallback codec: {optimized.VideoCodec}");
+                _logger.LogInformation($"ðŸ“º Using fallback codec: {optimized.VideoCodec}");
             }
             
             // Device-specific optimizations
@@ -526,7 +526,7 @@ namespace JellyfinUpscalerPlugin
             args.Add($"\"{outputPath}\"");
             
             var command = string.Join(" ", args);
-            _logger.LogInformation($"🔧 Enhanced FFmpeg command: {command}");
+            _logger.LogInformation($"ðŸ”§ Enhanced FFmpeg command: {command}");
             
             return command;
         }
@@ -827,7 +827,11 @@ namespace JellyfinUpscalerPlugin
         {
             try
             {
-                if (!_config.EnableCrossDeviceSync) return;
+                if (!_config.EnableCrossDeviceSync) 
+                {
+                    await Task.CompletedTask;
+                    return;
+                }
                 
                 var deviceProfile = new DeviceProfile
                 {
@@ -873,7 +877,7 @@ namespace JellyfinUpscalerPlugin
                 // Save configuration
                 Plugin.Instance?.SaveConfiguration();
                 
-                _logger.LogInformation($"📱 Cross-device sync updated for device: {deviceProfile.DeviceName}");
+                _logger.LogInformation($"ðŸ“± Cross-device sync updated for device: {deviceProfile.DeviceName}");
             }
             catch (Exception ex)
             {
@@ -914,10 +918,10 @@ namespace JellyfinUpscalerPlugin
                 // Log performance data if enabled
                 if (_config.LogPerformanceData)
                 {
-                    _logger.LogInformation($"📊 Stats: Jobs: {stats.ActiveJobs}, " +
+                    _logger.LogInformation($"ðŸ“Š Stats: Jobs: {stats.ActiveJobs}, " +
                         $"GPU: {stats.CurrentGPUUsage:F1}%, " +
                         $"Mem: {stats.CurrentMemoryUsage:F1}MB, " +
-                        $"Temp: {stats.CurrentTemperature:F1}°C");
+                        $"Temp: {stats.CurrentTemperature:F1}Â°C");
                 }
             }
             catch (Exception ex)
@@ -941,8 +945,8 @@ namespace JellyfinUpscalerPlugin
                     .Select(p => p.ProcessingTime)
                     .DefaultIfEmpty(0)
                     .Average(),
-                SupportedAIModels = _config.AvailableAIModels?.Count ?? 0,
-                SupportedShaders = _config.AvailableShaders?.Count ?? 0,
+                SupportedAIModels = _config.AvailableAIModels ?? new List<string>(),
+                SupportedShaders = _config.AvailableShaders ?? new List<string>(),
                 EnhancedFeaturesEnabled = _config.EnableZonedUpscaling && 
                                         _config.EnableAIColorCorrection && 
                                         _config.EnableCrossDeviceSync && 
@@ -1000,10 +1004,10 @@ namespace JellyfinUpscalerPlugin
                 if (!_config.EnableWebSocketStats) return;
                 
                 // Log statistics instead of WebSocket (for now)
-                _logger.LogDebug($"📊 Stats: Active: {stats.ActiveJobs}, " +
+                _logger.LogDebug($"ðŸ“Š Stats: Active: {stats.ActiveJobs}, " +
                     $"GPU: {stats.CurrentGPUUsage:F1}%, " +
                     $"Memory: {stats.CurrentMemoryUsage:F1}MB, " +
-                    $"Temp: {stats.CurrentTemperature:F1}°C");
+                    $"Temp: {stats.CurrentTemperature:F1}Â°C");
             }
             catch (Exception ex)
             {
@@ -1146,25 +1150,6 @@ namespace JellyfinUpscalerPlugin
             }
         }
         
-        private void AddHardwareAccelerationArgs(List<string> args, VideoProcessingOptions options, HardwareProfile hardware)
-        {
-            if (!options.UseHardwareAcceleration) return;
-            
-            if (hardware.GpuVendor == "NVIDIA")
-                args.Add("-hwaccel cuda");
-            else if (hardware.GpuVendor == "Intel")
-                args.Add("-hwaccel qsv");
-            else if (hardware.GpuVendor == "AMD")
-                args.Add("-hwaccel vaapi");
-        }
-        
-        private void AddVideoCodecArgs(List<string> args, VideoProcessingOptions options, HardwareProfile hardware)
-        {
-            args.Add($"-c:v {options.VideoCodec}");
-            args.Add($"-crf {options.CRF}");
-            args.Add($"-preset {options.Preset}");
-        }
-        
         private void AddAudioProcessingArgs(List<string> args, VideoProcessingOptions options, HardwareProfile hardware)
         {
             if (_config.EnableAudioPassthrough)
@@ -1221,7 +1206,7 @@ namespace JellyfinUpscalerPlugin
                     ShaderUsed = job.SelectedShader
                 };
                 
-                return result;
+                return await Task.FromResult(result);
             }
             catch (Exception ex)
             {
@@ -1240,7 +1225,7 @@ namespace JellyfinUpscalerPlugin
                     result.QualityScore = 8.0; // Placeholder quality score
                 }
                 
-                return result;
+                return await Task.FromResult(result);
             }
             catch (Exception ex)
             {
@@ -1305,6 +1290,7 @@ namespace JellyfinUpscalerPlugin
         public string VideoCodec { get; set; } = "libx264";
         public bool UseAIUpscaling { get; set; } = true;
         public bool UseHardwareAcceleration { get; set; } = true;
+        public bool EnableHardwareAcceleration { get; set; } = true;
         public int UpscaleFactor { get; set; } = 2;
         public int TargetWidth { get; set; } = 1920;
         public int TargetHeight { get; set; } = 1080;
@@ -1362,6 +1348,7 @@ namespace JellyfinUpscalerPlugin
         public TimeSpan ProcessingTime { get; set; }
         public long InputFileSize { get; set; }
         public long OutputFileSize { get; set; }
+        public long OutputSize => OutputFileSize; // Alias for compatibility
         public double CompressionRatio => InputFileSize > 0 ? (double)OutputFileSize / InputFileSize : 0;
         public string AIModelUsed { get; set; } = "";
         public string ShaderUsed { get; set; } = "";
@@ -1393,8 +1380,13 @@ namespace JellyfinUpscalerPlugin
         public string Platform { get; set; } = "Windows";
         public string GpuVendor { get; set; } = "NVIDIA";
         public string GpuModel { get; set; } = "Generic";
+        public string DriverVersion { get; set; } = "";
         public int SystemRAM { get; set; } = 8192;
+        public int SystemRamMB { get; set; } = 8192;
         public int VRAM { get; set; } = 2048;
+        public int VramMB { get; set; } = 2048;
+        public int CpuCores { get; set; } = Environment.ProcessorCount;
+        public int TempDiskSpaceGB { get; set; } = 10;
         public int HardwareScore { get; set; } = 5;
         public bool SupportsAV1 { get; set; } = true;
         public bool SupportsHEVC { get; set; } = true;
@@ -1403,7 +1395,18 @@ namespace JellyfinUpscalerPlugin
         public bool SupportsQuickSync { get; set; } = false;
         public bool SupportsVCE { get; set; } = false;
         public string Av1Encoder { get; set; } = "av1_nvenc";
+        public string Av1Decoder { get; set; } = "av1";
+        public string MaxAV1Resolution { get; set; } = "1080p";
+        public bool Av1TestPassed { get; set; } = true;
         public List<string> SupportedCodecs { get; set; } = new List<string> { "av1", "hevc", "h264" };
+        public List<string> AvailableHwAccels { get; set; } = new();
+        public bool LightModeRecommended { get; set; }
+        public bool IsMobile { get; set; }
+        public bool BatteryOptimization { get; set; }
+        public int MaxConcurrentStreams { get; set; } = 1;
+        public string RecommendedPreset { get; set; } = "fast";
+        public string OptimalResolution { get; set; } = "1080p";
+        public DateTime LastDetection { get; set; } = DateTime.Now;
     }
     
     public class DeviceOptimizations
@@ -1427,20 +1430,31 @@ namespace JellyfinUpscalerPlugin
         public bool BatteryOptimized { get; set; }
     }
     
-    public class UpscalerCore
+    public class ProcessingStatistics
     {
-        public async Task<HardwareProfile> DetectHardwareAsync()
-        {
-            // Simplified hardware detection
-            return new HardwareProfile
-            {
-                Platform = OperatingSystem.IsWindows() ? "Windows" : "Linux",
-                GpuVendor = "NVIDIA", // Default assumption
-                VRAM = 4096,
-                HardwareScore = 7,
-                SupportsAV1 = true
-            };
-        }
+        public int ActiveJobs { get; set; }
+        public int QueuedJobs { get; set; }
+        public int CompletedJobs { get; set; }
+        public int FailedJobs { get; set; }
+        public int TotalJobsProcessed { get; set; }
+        public double AverageProcessingTime { get; set; }
+        public string CurrentGPUUsage { get; set; } = "N/A";
+        public string CurrentMemoryUsage { get; set; } = "N/A";
+        public string CurrentTemperature { get; set; } = "N/A";
+        public List<string> SupportedAIModels { get; set; } = new();
+        public List<string> SupportedShaders { get; set; } = new();
+        public bool EnhancedFeaturesEnabled { get; set; } = true;
+        public DateTime LastUpdate { get; set; } = DateTime.Now;
+    }
+    
+    public enum ProcessingStatus
+    {
+        Starting,
+        Analyzing,
+        Processing,
+        Completed,
+        Failed,
+        Cancelled
     }
     
     public class DeviceCompatibilityHandler
@@ -1456,11 +1470,11 @@ namespace JellyfinUpscalerPlugin
         
         public async Task<DeviceOptimizations> GetDeviceOptimizationsAsync(HardwareProfile hardware)
         {
-            return new DeviceOptimizations
+            return await Task.FromResult(new DeviceOptimizations
             {
                 HardwareProfile = hardware,
                 PreferredUseCase = "general"
-            };
+            });
         }
     }
     
@@ -1478,10 +1492,10 @@ namespace JellyfinUpscalerPlugin
         public async Task<string> SelectOptimalModelAsync(string contentType, HardwareProfile hardware, VideoInfo inputInfo)
         {
             // Simplified model selection
-            if (contentType == "anime") return "waifu2x";
-            if (hardware.VRAM < 1024) return "fsrcnn";
-            if (hardware.VRAM < 2048) return "srcnn-light";
-            return "realesrgan";
+            if (contentType == "anime") return await Task.FromResult("waifu2x");
+            if (hardware.VRAM < 1024) return await Task.FromResult("fsrcnn");
+            if (hardware.VRAM < 2048) return await Task.FromResult("srcnn-light");
+            return await Task.FromResult("realesrgan");
         }
     }
     
@@ -1498,19 +1512,9 @@ namespace JellyfinUpscalerPlugin
         
         public async Task<string> SelectOptimalShaderAsync(HardwareProfile hardware, DeviceOptimizations deviceOpts)
         {
-            if (hardware.HardwareScore <= 3) return "bilinear";
-            if (hardware.HardwareScore >= 8) return "lanczos";
-            return "bicubic";
+            if (hardware.HardwareScore <= 3) return await Task.FromResult("bilinear");
+            if (hardware.HardwareScore >= 8) return await Task.FromResult("lanczos");
+            return await Task.FromResult("bicubic");
         }
-    }
-    
-    public enum ProcessingStatus
-    {
-        Starting,
-        Analyzing,
-        Processing,
-        Completed,
-        Failed,
-        Cancelled
     }
 }

@@ -504,7 +504,7 @@ namespace JellyfinUpscalerPlugin
         /// <summary>
         /// Plugin version for compatibility checks
         /// </summary>
-        public override string Version => "1.3.5";
+        public static string PluginVersion => "1.3.5";
         
         /// <summary>
         /// Check if plugin is compatible with current Jellyfin version
