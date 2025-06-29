@@ -267,16 +267,16 @@
 
 ### 📦 **QUICK INSTALL** (Recommended)
 
-[![Download](https://img.shields.io/badge/📥%20Download-v1.3.5%20Enhanced-success?style=for-the-badge&logo=github)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/latest/download/JellyfinUpscalerPlugin-v1.3.5-Enhanced.zip)
+[![Download](https://img.shields.io/badge/📥%20Download-v1.3.6%20Ultimate-gold?style=for-the-badge&logo=github)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/latest)
 
 </div>
 
 ```bash
 # 1. Download latest release
-wget https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/latest/download/JellyfinUpscalerPlugin-v1.3.5-Enhanced.zip
+wget https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/latest/download/JellyfinUpscalerPlugin-v1.3.6-Ultimate.zip
 
 # 2. Extract to Jellyfin plugins directory
-unzip JellyfinUpscalerPlugin-v1.3.5-Enhanced.zip -d /path/to/jellyfin/plugins/
+unzip JellyfinUpscalerPlugin-v1.3.6-Ultimate.zip -d /path/to/jellyfin/plugins/
 
 # 3. Restart Jellyfin
 systemctl restart jellyfin
