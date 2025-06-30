@@ -25,6 +25,8 @@ Thumbs.db
 # archive/
 
 # Backup directories (nested git repos)
+.backups/
+.archive/
 JellyfinUpscalerPlugin-Backup*/
 JellyfinUpscalerPlugin_Backup_*/
 JellyfinUpscalerPlugin-v1.3.5/
