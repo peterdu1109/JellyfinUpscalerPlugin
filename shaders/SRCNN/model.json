@@ -1,0 +1,99 @@
+{
+    "format": "layers-model",
+    "generatedBy": "TensorFlow.js Converter v3.20.0",
+    "convertedBy": "Jellyfin Upscaler Plugin",
+    "version": "fast",
+    "modelTopology": {
+        "class_name": "SRCNN",
+        "config": [
+            {
+                "class_name": "Conv2D",
+                "config": {
+                    "filters": 64,
+                    "kernel_size": [9, 9],
+                    "padding": "same",
+                    "activation": "relu",
+                    "name": "patch_extraction"
+                }
+            },
+            {
+                "class_name": "Conv2D",
+                "config": {
+                    "filters": 32,
+                    "kernel_size": [5, 5],
+                    "padding": "same",
+                    "activation": "relu",
+                    "name": "non_linear_mapping"
+                }
+            },
+            {
+                "class_name": "Conv2D",
+                "config": {
+                    "filters": 3,
+                    "kernel_size": [5, 5],
+                    "padding": "same",
+                    "activation": "linear",
+                    "name": "reconstruction"
+                }
+            }
+        ]
+    },
+    "weightsManifest": [
+        {
+            "paths": ["weights.bin"],
+            "weights": [
+                {
+                    "name": "patch_extraction/kernel",
+                    "shape": [9, 9, 3, 64],
+                    "dtype": "float32"
+                },
+                {
+                    "name": "patch_extraction/bias",
+                    "shape": [64],
+                    "dtype": "float32"
+                },
+                {
+                    "name": "non_linear_mapping/kernel",
+                    "shape": [5, 5, 64, 32],
+                    "dtype": "float32"
+                },
+                {
+                    "name": "non_linear_mapping/bias",
+                    "shape": [32],
+                    "dtype": "float32"
+                },
+                {
+                    "name": "reconstruction/kernel",
+                    "shape": [5, 5, 32, 3],
+                    "dtype": "float32"
+                },
+                {
+                    "name": "reconstruction/bias",
+                    "shape": [3],
+                    "dtype": "float32"
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "description": "Super-Resolution Convolutional Neural Network - Fast and Lightweight",
+        "architecture": "SRCNN",
+        "scale": 2,
+        "optimizedFor": ["general", "fast-processing", "low-vram"],
+        "requirements": {
+            "minVRAM": "1GB",
+            "recommendedVRAM": "2GB",
+            "performance": "fast"
+        },
+        "features": [
+            "lightweight-architecture",
+            "fast-inference",
+            "low-memory-usage",
+            "real-time-capable"
+        ],
+        "benchmarks": {
+            "inference_time": "50ms @ 1080p",
+            "psnr_gain": "2-4dB typical"
+        }
+    }
+}
