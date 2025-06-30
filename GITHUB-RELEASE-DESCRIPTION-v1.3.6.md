@@ -55,9 +55,29 @@
 
 ## 📊 **PACKAGE DETAILS:**
 - **File:** `JellyfinUpscalerPlugin-v1.3.6-Ultimate.zip`
-- **Size:** 315,680 bytes (308 KB)
-- **SHA256:** `A048238B5CABAC9F70FBB2E01A24BE4200BB3D3D`
+- **Size:** 316,082 bytes (308 KB)
+- **SHA256:** `9309882356F65D74522A06ED9A440607F13BCC94`
 - **Target ABI:** 10.10.0.0
+
+## 🔗 **INSTALLATION METHODS:**
+
+### 📦 **Method 1: Standard ZIP Installation (Recommended)**
+```bash
+# Download and extract to your Jellyfin plugins directory
+wget https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/download/v1.3.6-ultimate/JellyfinUpscalerPlugin-v1.3.6-Ultimate.zip
+```
+
+### 🔧 **Method 2: Git Installation (For NAS & Auto-Updates)**
+```bash
+# One-line installation script
+curl -sSL https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/install-git.sh | bash
+```
+
+### 📋 **Method 3: Jellyfin Repository (One-Click)**
+Add this repository URL to Jellyfin Dashboard → Plugins → Repositories:
+```
+https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/repository-jellyfin.json
+```
 
 ## 🎉 **WHAT MAKES THIS ULTIMATE:**
 
