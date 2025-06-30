@@ -301,7 +301,7 @@ namespace JellyfinUpscalerPlugin
             try
             {
                 // RAM Detection
-                var totalRam = GC.GetTotalMemory(false);
+                var totalRam = await Task.Run(() => GC.GetTotalMemory(false));
                 profile.SystemRamMB = (int)(totalRam / 1024 / 1024);
                 
                 // CPU Detection

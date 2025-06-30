@@ -65,9 +65,9 @@ namespace JellyfinUpscalerPlugin
                 _logger.LogInformation($"🎬 Creating preview session {sessionId} for {Path.GetFileName(videoPath)}");
                 
                 // Start preview generation in background
-                _ = Task.Run(() => GeneratePreviewsAsync(session));
+                _ = Task.Run(async () => await GeneratePreviewsAsync(session));
                 
-                return session;
+                return await Task.FromResult(session);
             }
             catch (Exception ex)
             {
