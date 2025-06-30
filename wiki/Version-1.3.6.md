@@ -2,7 +2,7 @@
 
 ## 🎉 **RELEASE INFORMATION**
 
-- **Release Date:** December 30, 2024
+- **Release Date:** July 1, 2025
 - **Version:** 1.3.6.0 ULTIMATE
 - **Package Size:** 315,680 bytes (308 KB)
 - **Target ABI:** 10.10.0.0

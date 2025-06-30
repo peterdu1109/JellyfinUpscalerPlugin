@@ -24,10 +24,10 @@
 - ⚙️ **90% Easier Configuration** - Beginner-friendly presets
 - 📞 **80% Fewer Support Requests** - Auto-diagnostic system
 
-**Release Date:** 27. Juni 2025  
+**Release Date:** 1. Juli 2025  
 **Status:** ✅ Stabil  
-**DLL Size:** 504KB  
-**Download:** [JellyfinUpscalerPlugin-v1.3.5-RealFeatures.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/download/v1.3.5/JellyfinUpscalerPlugin-v1.3.5-RealFeatures.zip)
+**Plugin Size:** 316KB  
+**Download:** [JellyfinUpscalerPlugin-v1.3.6-Ultimate.zip](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/download/v1.3.6-ultimate/JellyfinUpscalerPlugin-v1.3.6-Ultimate.zip)
 
 ---
 

@@ -173,6 +173,19 @@
 Pick the installation method that best fits your setup from the table above.
 
 ### **Step 2: Install Plugin**
+
+#### **📋 Method 1: Jellyfin Plugin Catalog (Recommended)**
+```
+🎯 Add Repository in Jellyfin Dashboard:
+Dashboard → Plugins → Repositories → Add Repository
+
+Repository URL:
+https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/repository-jellyfin.json
+
+Then install "AI Upscaler Plugin - Ultimate v1.3.6" from catalog
+```
+
+#### **🔧 Method 2: Manual Installation**
 ```bash
 # For Git Installation (NAS Users)
 curl -sSL https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/install-git.sh | bash
