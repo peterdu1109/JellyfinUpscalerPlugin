@@ -1,20 +1,38 @@
-// JellyfinUpscalerPlugin v1.3.5 - Enhanced Quick Settings with AV1 Support
-// Advanced video player integration with modern codec support
+// JellyfinUpscalerPlugin v1.3.5 - REAL Jellyfin Player Integration  
+// Hardware-accelerated AV1 processing with live video enhancement
 
 (function() {
     'use strict';
     
-    console.log('🚀 AI Upscaler v1.3.5 Quick Settings mit AV1-Unterstützung wird geladen...');
+    console.log('🚀 AI Upscaler v1.3.5 - Starting real Jellyfin integration...');
     
+    // Jellyfin API integration
+    let apiClient = null;
+    let playbackManager = null;
+    let currentPlayer = null;
+    let mediaInfo = null;
     let quickSettingsMenu = null;
+    
+    // Enhanced settings with hardware detection
     let currentSettings = {
-        profile: 'default',
-        resolution: '1080p',
+        profile: 'auto',
+        resolution: 'auto',
         sharpness: 50,
         av1Transcode: 'auto',
         hdrMode: 'auto',
         audioMode: 'passthrough',
-        enabled: false
+        enabled: false,
+        hardwareAccel: true,
+        batteryMode: false
+    };
+    
+    // Hardware profile cache
+    let hardwareProfile = {
+        supportsAV1: false,
+        gpuVendor: 'unknown',
+        gpuModel: 'unknown',
+        maxResolution: '1080p',
+        encoder: 'software'
     };
     
     // Enhanced CSS with AV1 theming
@@ -764,6 +782,7 @@
                     );
                     
                     if (hasVideoPlayer) {
+                        initializeJellyfinIntegration();
                         setTimeout(initializeQuickSettings, 1000);
                     }
                 }
@@ -777,7 +796,258 @@
         
         // Also try to initialize immediately if player exists
         if (document.querySelector('.videoPlayerContainer')) {
+            initializeJellyfinIntegration();
             setTimeout(initializeQuickSettings, 500);
+        }
+    }
+    
+    /**
+     * REAL JELLYFIN API INTEGRATION
+     * Connect to actual Jellyfin playback manager and hardware detection
+     */
+    function initializeJellyfinIntegration() {
+        try {
+            // Get Jellyfin API client
+            if (window.ApiClient) {
+                apiClient = window.ApiClient;
+                console.log('✅ Jellyfin API Client connected');
+            }
+            
+            // Get playback manager
+            if (window.playbackManager) {
+                playbackManager = window.playbackManager;
+                console.log('✅ Jellyfin Playback Manager connected');
+                
+                // Hook into playback events
+                bindPlaybackEvents();
+            }
+            
+            // Detect hardware capabilities
+            detectHardwareCapabilities();
+            
+        } catch (error) {
+            console.warn('⚠️ Jellyfin integration failed, using standalone mode:', error);
+        }
+    }
+    
+    /**
+     * Bind to Jellyfin playback events
+     */
+    function bindPlaybackEvents() {
+        if (!playbackManager) return;
+        
+        // Monitor playback start
+        Events.on(playbackManager, 'playbackstart', (e, player) => {
+            currentPlayer = player;
+            mediaInfo = playbackManager.currentMediaInfo;
+            
+            console.log('🎬 Playback started:', mediaInfo);
+            
+            // Auto-detect optimal settings
+            autoDetectOptimalSettings();
+            
+            // Apply upscaling if enabled
+            if (currentSettings.enabled) {
+                applyUpscalingToStream();
+            }
+        });
+        
+        // Monitor playback stop
+        Events.on(playbackManager, 'playbackstop', () => {
+            console.log('⏹️ Playback stopped');
+            currentPlayer = null;
+            mediaInfo = null;
+        });
+        
+        // Monitor quality changes
+        Events.on(playbackManager, 'qualitychange', (e, data) => {
+            console.log('📊 Quality changed:', data);
+            
+            if (currentSettings.enabled) {
+                // Reapply upscaling for new quality
+                setTimeout(applyUpscalingToStream, 1000);
+            }
+        });
+    }
+    
+    /**
+     * Detect actual hardware capabilities via API
+     */
+    async function detectHardwareCapabilities() {
+        try {
+            console.log('🔍 Detecting hardware capabilities...');
+            
+            // Call our plugin's hardware detection API
+            const response = await fetch(apiClient.serverAddress() + '/api/upscaler/hardware', {
+                headers: {
+                    'Authorization': `MediaBrowser Client="${apiClient.appName()}", Device="${apiClient.deviceName()}", DeviceId="${apiClient.deviceId()}", Version="${apiClient.appVersion()}", Token="${apiClient.accessToken()}"`
+                }
+            });
+            
+            if (response.ok) {
+                hardwareProfile = await response.json();
+                console.log('✅ Hardware profile loaded:', hardwareProfile);
+                
+                // Update UI based on capabilities
+                updateHardwareUI();
+            } else {
+                console.warn('⚠️ Hardware detection API failed, using fallback');
+                useFallbackHardwareProfile();
+            }
+        } catch (error) {
+            console.warn('⚠️ Hardware detection failed:', error);
+            useFallbackHardwareProfile();
+        }
+    }
+    
+    /**
+     * Auto-detect optimal settings based on current media
+     */
+    function autoDetectOptimalSettings() {
+        if (!mediaInfo) return;
+        
+        const mediaSource = mediaInfo.MediaSources?.[0];
+        if (!mediaSource) return;
+        
+        console.log('🎯 Auto-detecting optimal settings for:', mediaSource);
+        
+        // Detect content type
+        const isAnime = mediaInfo.Name?.toLowerCase().includes('anime') || 
+                       mediaInfo.Genres?.some(g => g.toLowerCase().includes('anime'));
+        const isMovie = mediaInfo.Type === 'Movie';
+        const isLowRes = mediaSource.Width < 1280;
+        
+        // Apply content-specific optimizations
+        if (isAnime) {
+            currentSettings.sharpness = 65;
+            currentSettings.profile = 'anime';
+        } else if (isMovie) {
+            currentSettings.sharpness = 55;
+            currentSettings.profile = 'movies';
+        }
+        
+        // Resolution-based optimization
+        if (isLowRes && hardwareProfile.supportsAV1) {
+            currentSettings.resolution = '1440p';
+            currentSettings.av1Transcode = 'force-av1';
+        }
+        
+        // Mobile optimization
+        if (isMobileDevice()) {
+            currentSettings.resolution = '1080p';
+            currentSettings.av1Transcode = 'force-h264';
+            currentSettings.batteryMode = true;
+        }
+        
+        updateUI();
+        console.log('🎯 Optimal settings applied:', currentSettings);
+    }
+    
+    /**
+     * Apply upscaling to current video stream
+     */
+    async function applyUpscalingToStream() {
+        if (!currentPlayer || !mediaInfo) return;
+        
+        try {
+            console.log('🚀 Applying upscaling to stream...');
+            
+            const upscaleRequest = {
+                mediaSourceId: mediaInfo.MediaSourceId,
+                itemId: mediaInfo.Id,
+                settings: currentSettings,
+                hardwareProfile: hardwareProfile
+            };
+            
+            // Call plugin's upscaling API
+            const response = await fetch(apiClient.serverAddress() + '/api/upscaler/process', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `MediaBrowser Client="${apiClient.appName()}", Device="${apiClient.deviceName()}", DeviceId="${apiClient.deviceId()}", Version="${apiClient.appVersion()}", Token="${apiClient.accessToken()}"`
+                },
+                body: JSON.stringify(upscaleRequest)
+            });
+            
+            if (response.ok) {
+                const result = await response.json();
+                console.log('✅ Upscaling applied successfully:', result);
+                
+                showNotification(`🚀 AI-Upscaling aktiviert (${result.method})`, 'success');
+                
+                // Update player if needed
+                if (result.newStreamUrl) {
+                    updatePlayerStream(result.newStreamUrl);
+                }
+            } else {
+                throw new Error(`API error: ${response.status}`);
+            }
+            
+        } catch (error) {
+            console.error('❌ Failed to apply upscaling:', error);
+            showNotification('❌ Upscaling-Fehler: ' + error.message, 'error');
+        }
+    }
+    
+    /**
+     * Update hardware-dependent UI elements
+     */
+    function updateHardwareUI() {
+        const menu = quickSettingsMenu;
+        if (!menu) return;
+        
+        // Show AV1 options only if supported
+        const av1Select = menu.querySelector('#av1-transcode');
+        if (av1Select) {
+            const av1Option = av1Select.querySelector('option[value="force-av1"]');
+            if (av1Option) {
+                av1Option.style.display = hardwareProfile.supportsAV1 ? 'block' : 'none';
+                av1Option.textContent = hardwareProfile.supportsAV1 ? 
+                    `🔥 AV1 (${hardwareProfile.encoder})` : '🔥 AV1 (nicht verfügbar)';
+            }
+        }
+        
+        // Update hardware info display
+        const hardwareInfo = menu.querySelector('.hardware-info');
+        if (hardwareInfo) {
+            hardwareInfo.innerHTML = `
+                <strong>Hardware:</strong> ${hardwareProfile.gpuVendor} ${hardwareProfile.gpuModel}<br>
+                <strong>AV1:</strong> ${hardwareProfile.supportsAV1 ? '✅ Unterstützt' : '❌ Nicht verfügbar'}<br>
+                <strong>Max. Auflösung:</strong> ${hardwareProfile.maxResolution}
+            `;
+        }
+    }
+    
+    /**
+     * Fallback hardware profile for unknown systems
+     */
+    function useFallbackHardwareProfile() {
+        hardwareProfile = {
+            supportsAV1: false,
+            gpuVendor: 'Unknown',
+            gpuModel: 'Generic GPU',
+            maxResolution: '1080p',
+            encoder: 'software'
+        };
+        
+        console.log('📱 Using fallback hardware profile');
+    }
+    
+    /**
+     * Detect if running on mobile device
+     */
+    function isMobileDevice() {
+        return /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+               window.innerWidth < 768;
+    }
+    
+    /**
+     * Update player with new stream URL
+     */
+    function updatePlayerStream(newStreamUrl) {
+        if (currentPlayer && currentPlayer.setSource) {
+            currentPlayer.setSource(newStreamUrl);
+            console.log('🔄 Player stream updated');
         }
     }
     
