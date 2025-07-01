@@ -85,19 +85,37 @@
 ---
 
 <!-- Jellyfin Plugin Catalog Integration -->
-<h3>🎯 ONE-CLICK JELLYFIN INSTALLATION</h3>
+<h2>🎯 JELLYFIN PLUGIN CATALOG - ONE-CLICK INSTALLATION</h2>
 
-<div align="center" style="background: #6366f1; padding: 20px; border-radius: 10px; margin: 20px 0;">
+<div align="center">
 
-**📋 Copy this URL into your Jellyfin Dashboard:**
+**🔥 OFFICIAL JELLYFIN REPOSITORY INTEGRATION**
+
+[![Add to Jellyfin](https://img.shields.io/badge/🎯%20Add%20to-Jellyfin%20Catalog-success?style=for-the-badge&logo=jellyfin)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/raw/main/repository-jellyfin.json)
+
+</div>
+
+### **📋 COPY & PASTE REPOSITORY URL:**
 
 ```
 https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/repository-jellyfin.json
 ```
 
-**🔧 Steps:** Dashboard → Plugins → Repositories → Add Repository → Paste URL → Install Plugin
+### **🚀 INSTALLATION STEPS:**
+1. **Open Jellyfin Dashboard** → **Plugins** → **Repositories** 
+2. **Click "Add Repository"** 
+3. **Paste URL above** → **Save**
+4. **Go to Catalog** → **Find "AI Upscaler Plugin - Ultimate v1.3.6"**
+5. **Click Install** → **Restart Jellyfin** → **Done!** 🎉
 
-</div>
+### **⚡ ALTERNATIVE: DIRECT REPOSITORY LINK**
+For advanced users or automation:
+```bash
+# Direct repository JSON for Jellyfin API
+curl -H "Content-Type: application/json" \
+  -d '{"url": "https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/repository-jellyfin.json"}' \
+  http://your-jellyfin-server:8096/api/repositories
+```
 
 <!-- Support Links -->
 <h3>📚 RESOURCES & SUPPORT</h3>

@@ -16,9 +16,14 @@ namespace JellyfinUpscalerPlugin
     public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
     {
         /// <summary>
+        /// Plugin version constant
+        /// </summary>
+        public const string PLUGIN_VERSION = "1.3.6";
+        
+        /// <summary>
         /// Plugin display name with version
         /// </summary>
-        public override string Name => "🚀 AI Upscaler Plugin v1.3.6 ULTIMATE";
+        public override string Name => $"🚀 AI Upscaler Plugin v{PLUGIN_VERSION} ULTIMATE";
         
         /// <summary>
         /// Unique plugin identifier - NEVER change this!
