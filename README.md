@@ -84,6 +84,21 @@
 
 ---
 
+<!-- Jellyfin Plugin Catalog Integration -->
+<h3>🎯 ONE-CLICK JELLYFIN INSTALLATION</h3>
+
+<div align="center" style="background: #6366f1; padding: 20px; border-radius: 10px; margin: 20px 0;">
+
+**📋 Copy this URL into your Jellyfin Dashboard:**
+
+```
+https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/repository-jellyfin.json
+```
+
+**🔧 Steps:** Dashboard → Plugins → Repositories → Add Repository → Paste URL → Install Plugin
+
+</div>
+
 <!-- Support Links -->
 <h3>📚 RESOURCES & SUPPORT</h3>
 
