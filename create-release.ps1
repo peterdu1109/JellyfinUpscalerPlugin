@@ -34,6 +34,7 @@ gh release create "v$Version" `
     --title "$Title" `
     --notes-file "$NotesFile" `
     --latest `
+    --generate-notes `
     "$ZipFile" `
     "dist\SHA256SUMS.txt" `
     "dist\RELEASE-NOTES-v1.3.6.md"

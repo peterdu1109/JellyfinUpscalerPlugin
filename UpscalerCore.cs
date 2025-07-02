@@ -91,13 +91,227 @@ namespace JellyfinUpscalerPlugin
         }
 
         /// <summary>
-        /// Real GPU detection using FFmpeg and system queries
+        /// Enhanced GPU detection using multiple methods (FFmpeg + System + Fallback simulation)
         /// </summary>
         private async Task DetectGpuCapabilities(HardwareProfile profile)
         {
             try
             {
-                // FFmpeg hardware enumeration
+                _logger.LogInformation("🔍 Starting enhanced GPU detection...");
+                
+                // Method 1: Try real FFmpeg hardware enumeration
+                var realGpus = await TryDetectRealGPUs();
+                if (realGpus != null && realGpus.Count > 0)
+                {
+                    ApplyRealGPUProfile(profile, realGpus);
+                    _logger.LogInformation($"✅ Real GPU detection successful: {realGpus.Count} devices");
+                    return;
+                }
+                
+                // Method 2: Try system-level detection
+                var systemGpus = await TryDetectSystemGPUs();
+                if (systemGpus != null && systemGpus.Count > 0)
+                {
+                    ApplySystemGPUProfile(profile, systemGpus);
+                    _logger.LogInformation($"✅ System GPU detection successful: {systemGpus.Count} devices");
+                    return;
+                }
+                
+                // Method 3: Fallback to intelligent simulation (existing method)
+                _logger.LogInformation("⚠️ Real detection failed, using intelligent simulation");
+                await DetectGpuCapabilitiesSimulated(profile);
+                
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "❌ Enhanced GPU detection failed, using fallback");
+                await DetectGpuCapabilitiesSimulated(profile);
+            }
+        }
+        
+        /// <summary>
+        /// Try to detect real GPUs using FFmpeg
+        /// </summary>
+        private async Task<List<string>> TryDetectRealGPUs()
+        {
+            try
+            {
+                var process = new System.Diagnostics.Process
+                {
+                    StartInfo = new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = "ffmpeg",
+                        Arguments = "-f lavfi -i testsrc2=duration=1:size=320x240:rate=1 -f null -",
+                        UseShellExecute = false,
+                        RedirectStandardError = true,
+                        CreateNoWindow = true
+                    }
+                };
+                
+                process.Start();
+                var output = await process.StandardError.ReadToEndAsync();
+                await process.WaitForExitAsync();
+                
+                var gpus = new List<string>();
+                if (output.Contains("cuda"))
+                    gpus.Add("NVIDIA CUDA");
+                if (output.Contains("dxva2"))
+                    gpus.Add("DirectX Video Acceleration");
+                if (output.Contains("qsv"))
+                    gpus.Add("Intel Quick Sync");
+                if (output.Contains("vaapi"))
+                    gpus.Add("VA-API");
+                
+                return gpus;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        
+        /// <summary>
+        /// Try to detect GPUs using system queries
+        /// </summary>
+        private async Task<List<string>> TryDetectSystemGPUs()
+        {
+            try
+            {
+                var gpus = new List<string>();
+                
+                // Windows: Try WMI query
+                if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+                {
+                    var process = new System.Diagnostics.Process
+                    {
+                        StartInfo = new System.Diagnostics.ProcessStartInfo
+                        {
+                            FileName = "wmic",
+                            Arguments = "path win32_VideoController get name",
+                            UseShellExecute = false,
+                            RedirectStandardOutput = true,
+                            CreateNoWindow = true
+                        }
+                    };
+                    
+                    process.Start();
+                    var output = await process.StandardOutput.ReadToEndAsync();
+                    await process.WaitForExitAsync();
+                    
+                    var lines = output.Split('\n');
+                    foreach (var line in lines)
+                    {
+                        var trimmed = line.Trim();
+                        if (!string.IsNullOrEmpty(trimmed) && !trimmed.Equals("Name", StringComparison.OrdinalIgnoreCase))
+                        {
+                            gpus.Add(trimmed);
+                        }
+                    }
+                }
+                // Linux: Try lspci
+                else if (Environment.OSVersion.Platform == PlatformID.Unix)
+                {
+                    var process = new System.Diagnostics.Process
+                    {
+                        StartInfo = new System.Diagnostics.ProcessStartInfo
+                        {
+                            FileName = "lspci",
+                            Arguments = "-mm",
+                            UseShellExecute = false,
+                            RedirectStandardOutput = true,
+                            CreateNoWindow = true
+                        }
+                    };
+                    
+                    process.Start();
+                    var output = await process.StandardOutput.ReadToEndAsync();
+                    await process.WaitForExitAsync();
+                    
+                    var lines = output.Split('\n');
+                    foreach (var line in lines)
+                    {
+                        if (line.Contains("VGA") || line.Contains("3D"))
+                        {
+                            gpus.Add(line);
+                        }
+                    }
+                }
+                
+                return gpus.Count > 0 ? gpus : null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        
+        /// <summary>
+        /// Apply real GPU detection results to profile
+        /// </summary>
+        private void ApplyRealGPUProfile(HardwareProfile profile, List<string> gpus)
+        {
+            foreach (var gpu in gpus)
+            {
+                if (gpu.Contains("NVIDIA") || gpu.Contains("CUDA"))
+                {
+                    profile.GpuVendor = "NVIDIA";
+                    profile.SupportsNVENC = true;
+                    profile.SupportsAV1 = true;
+                }
+                else if (gpu.Contains("AMD") || gpu.Contains("Radeon"))
+                {
+                    profile.GpuVendor = "AMD";
+                    profile.SupportsVCE = true;
+                    profile.SupportsAV1 = true;
+                }
+                else if (gpu.Contains("Intel") || gpu.Contains("QSV"))
+                {
+                    profile.GpuVendor = "Intel";
+                    profile.SupportsQuickSync = true;
+                    profile.SupportsAV1 = true;
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Apply system GPU detection results to profile
+        /// </summary>
+        private void ApplySystemGPUProfile(HardwareProfile profile, List<string> gpus)
+        {
+            profile.GpuModel = string.Join(", ", gpus.Take(3));
+            
+            foreach (var gpu in gpus)
+            {
+                var gpuLower = gpu.ToLower();
+                if (gpuLower.Contains("nvidia") || gpuLower.Contains("geforce") || gpuLower.Contains("rtx"))
+                {
+                    profile.GpuVendor = "NVIDIA";
+                    profile.SupportsNVENC = true;
+                    profile.SupportsAV1 = gpuLower.Contains("rtx") || gpuLower.Contains("40");
+                }
+                else if (gpuLower.Contains("amd") || gpuLower.Contains("radeon"))
+                {
+                    profile.GpuVendor = "AMD";
+                    profile.SupportsVCE = true;
+                    profile.SupportsAV1 = gpuLower.Contains("rx 7") || gpuLower.Contains("rx 6");
+                }
+                else if (gpuLower.Contains("intel"))
+                {
+                    profile.GpuVendor = "Intel";
+                    profile.SupportsQuickSync = true;
+                    profile.SupportsAV1 = gpuLower.Contains("arc") || gpuLower.Contains("xe");
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Fallback simulated GPU detection (preserves original logic)
+        /// </summary>
+        private async Task DetectGpuCapabilitiesSimulated(HardwareProfile profile)
+        {
+            try
+            {
+                // Original FFmpeg hardware enumeration (preserved)
                 var ffmpegPath = _mediaEncoder.EncoderPath;
                 var processInfo = new ProcessStartInfo
                 {
@@ -480,6 +694,4 @@ namespace JellyfinUpscalerPlugin
             };
         }
     }
-
-
 }

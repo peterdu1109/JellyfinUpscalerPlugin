@@ -1385,6 +1385,7 @@ namespace JellyfinUpscalerPlugin
         public int SystemRamMB { get; set; } = 8192;
         public int VRAM { get; set; } = 2048;
         public int VramMB { get; set; } = 2048;
+        public int TotalVramMB { get; set; } = 2048;
         public int CpuCores { get; set; } = Environment.ProcessorCount;
         public int TempDiskSpaceGB { get; set; } = 10;
         public int HardwareScore { get; set; } = 5;

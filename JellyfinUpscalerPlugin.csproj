@@ -39,6 +39,15 @@
     <Compile Remove="docs/**" />
     <Compile Remove="**/archive/**" />
     
+    <!-- CRITICAL: Exclude duplicate directories that cause conflicts -->
+    <Compile Remove="dist/**" />
+    <Compile Remove="GitHub-Upload/**" />
+    <Compile Remove="publish-output/**" />
+    <Compile Remove="release-build/**" />
+    <Compile Remove="bin/**" />
+    <Compile Remove="obj/**" />
+    <Compile Remove=".backups/**" />
+    
     <!-- Include only the main enhanced files -->
     <Compile Remove="Plugin-Enhanced-v1.3.5.cs" />
     <Compile Remove="PluginConfiguration-Enhanced-v1.3.5.cs" />

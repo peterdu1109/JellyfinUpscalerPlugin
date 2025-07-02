@@ -5,6 +5,8 @@ using MediaBrowser.Common.Configuration;
 using MediaBrowser.Common.Plugins;
 using MediaBrowser.Model.Plugins;
 using MediaBrowser.Model.Serialization;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace JellyfinUpscalerPlugin
 {
@@ -13,7 +15,7 @@ namespace JellyfinUpscalerPlugin
     /// Features: 12 Revolutionary Manager Classes, 14 AI-Models, Cross-Platform
     /// Compatible with: Jellyfin 10.10.0+, Enterprise-grade performance
     /// </summary>
-    public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
+    public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages, IPluginServiceRegistrator
     {
         /// <summary>
         /// Plugin version constant
@@ -64,6 +66,33 @@ namespace JellyfinUpscalerPlugin
         /// </summary>
         public static Plugin Instance { get; private set; }
         
+        /// <summary>
+        /// Register services for dependency injection
+        /// </summary>
+        /// <param name="serviceCollection">Service collection to register with</param>
+        public void RegisterServices(IServiceCollection serviceCollection)
+        {
+            // Register all 12 revolutionary manager classes for DI
+            serviceCollection.AddSingleton<MultiGPUManager>();
+            serviceCollection.AddSingleton<AIArtifactReducer>();
+            serviceCollection.AddSingleton<DynamicModelSwitcher>();
+            serviceCollection.AddSingleton<SmartCacheManager>();
+            serviceCollection.AddSingleton<ClientAdaptiveUpscaler>();
+            serviceCollection.AddSingleton<InteractivePreviewManager>();
+            serviceCollection.AddSingleton<MetadataBasedRecommendations>();
+            serviceCollection.AddSingleton<BandwidthAdaptiveUpscaler>();
+            serviceCollection.AddSingleton<EcoModeManager>();
+            serviceCollection.AddSingleton<AV1ProfileManager>();
+            serviceCollection.AddSingleton<DiagnosticSystem>(); // NEW: Auto-troubleshooting system
+            
+            // Register core services
+            serviceCollection.AddSingleton<UpscalerCore>();
+            serviceCollection.AddSingleton<AV1VideoProcessor>();
+            
+            // Register API service (Jellyfin-compatible)
+            serviceCollection.AddSingleton<UpscalerApiService>();
+        }
+
         /// <summary>
         /// Get web pages for plugin configuration
         /// </summary>

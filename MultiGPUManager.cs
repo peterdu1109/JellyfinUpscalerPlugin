@@ -587,6 +587,88 @@ namespace JellyfinUpscalerPlugin
             
             return stats;
         }
+        
+        /// <summary>
+        /// Get current multi-GPU status for API reporting
+        /// </summary>
+        public MultiGPUStatus GetCurrentStatus()
+        {
+            try
+            {
+                var gpuStatuses = new List<GPUStatus>();
+                
+                foreach (var gpu in _availableGPUs.Values)
+                {
+                    var workload = _gpuWorkloads[gpu.DeviceId];
+                    
+                    gpuStatuses.Add(new GPUStatus
+                    {
+                        DeviceId = gpu.DeviceId,
+                        Name = gpu.Name,
+                        Vendor = gpu.Vendor.ToString(),
+                        MemoryMB = gpu.MemoryMB,
+                        CurrentTasks = workload.CurrentTasks.Count,
+                        MaxConcurrentTasks = gpu.MaxConcurrentTasks,
+                        PerformanceIndex = gpu.PerformanceIndex,
+                        PowerEfficiency = gpu.PowerEfficiency,
+                        CurrentMemoryUsage = CalculateCurrentMemoryUsage(gpu.DeviceId),
+                        TotalProcessingTime = workload.TotalProcessingTime,
+                        TaskCount = workload.TaskCount
+                    });
+                }
+                
+                return new MultiGPUStatus
+                {
+                    IsEnabled = _isEnabled,
+                    TotalGPUs = _availableGPUs.Count,
+                    ActiveGPUs = _availableGPUs.Values.Count(g => _gpuWorkloads[g.DeviceId].CurrentTasks.Count > 0),
+                    QueuedTasks = _taskQueue.Count,
+                    GPUs = gpuStatuses,
+                    LastUpdated = DateTime.UtcNow
+                };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to get multi-GPU status");
+                return new MultiGPUStatus
+                {
+                    IsEnabled = false,
+                    TotalGPUs = 0,
+                    ActiveGPUs = 0,
+                    QueuedTasks = 0,
+                    GPUs = new List<GPUStatus>(),
+                    LastUpdated = DateTime.UtcNow,
+                    ErrorMessage = ex.Message
+                };
+            }
+        }
+    }
+    
+    // Data Transfer Objects for API compatibility
+    public class MultiGPUStatus
+    {
+        public bool IsEnabled { get; set; }
+        public int TotalGPUs { get; set; }
+        public int ActiveGPUs { get; set; }
+        public int QueuedTasks { get; set; }
+        public List<GPUStatus> GPUs { get; set; } = new List<GPUStatus>();
+        public DateTime LastUpdated { get; set; }
+        public string ErrorMessage { get; set; }
+    }
+    
+    public class GPUStatus
+    {
+        public int DeviceId { get; set; }
+        public string Name { get; set; }
+        public string Vendor { get; set; }
+        public int MemoryMB { get; set; }
+        public int CurrentTasks { get; set; }
+        public int MaxConcurrentTasks { get; set; }
+        public float PerformanceIndex { get; set; }
+        public float PowerEfficiency { get; set; }
+        public float CurrentMemoryUsage { get; set; }
+        public TimeSpan TotalProcessingTime { get; set; }
+        public int TaskCount { get; set; }
     }
     
     #region Supporting Classes and Enums
