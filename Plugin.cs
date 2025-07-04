@@ -20,7 +20,7 @@ namespace JellyfinUpscalerPlugin
         /// <summary>
         /// Plugin version constant
         /// </summary>
-        public const string PLUGIN_VERSION = "1.3.6";
+        public const string PLUGIN_VERSION = "1.3.6.1";
         
         /// <summary>
         /// Plugin display name with version
@@ -72,25 +72,36 @@ namespace JellyfinUpscalerPlugin
         /// <param name="serviceCollection">Service collection to register with</param>
         public void RegisterServices(IServiceCollection serviceCollection)
         {
-            // Register all 12 revolutionary manager classes for DI
-            serviceCollection.AddSingleton<MultiGPUManager>();
-            serviceCollection.AddSingleton<AIArtifactReducer>();
-            serviceCollection.AddSingleton<DynamicModelSwitcher>();
-            serviceCollection.AddSingleton<SmartCacheManager>();
-            serviceCollection.AddSingleton<ClientAdaptiveUpscaler>();
-            serviceCollection.AddSingleton<InteractivePreviewManager>();
-            serviceCollection.AddSingleton<MetadataBasedRecommendations>();
-            serviceCollection.AddSingleton<BandwidthAdaptiveUpscaler>();
-            serviceCollection.AddSingleton<EcoModeManager>();
-            serviceCollection.AddSingleton<AV1ProfileManager>();
-            serviceCollection.AddSingleton<DiagnosticSystem>(); // NEW: Auto-troubleshooting system
-            
-            // Register core services
-            serviceCollection.AddSingleton<UpscalerCore>();
-            serviceCollection.AddSingleton<AV1VideoProcessor>();
-            
-            // Register API service (Jellyfin-compatible)
-            serviceCollection.AddSingleton<UpscalerApiService>();
+            try
+            {
+                // Register platform compatibility first (CasaOS/ARM64 detection)
+                serviceCollection.AddSingleton<PlatformCompatibility>();
+                
+                // Register core services first (required dependencies)
+                serviceCollection.AddSingleton<UpscalerCore>();
+                serviceCollection.AddSingleton<AV1VideoProcessor>();
+                
+                // Register manager classes with error handling
+                serviceCollection.AddSingleton<MultiGPUManager>();
+                serviceCollection.AddSingleton<AIArtifactReducer>();
+                serviceCollection.AddSingleton<DynamicModelSwitcher>();
+                serviceCollection.AddSingleton<SmartCacheManager>();
+                serviceCollection.AddSingleton<ClientAdaptiveUpscaler>();
+                serviceCollection.AddSingleton<InteractivePreviewManager>();
+                serviceCollection.AddSingleton<MetadataBasedRecommendations>();
+                serviceCollection.AddSingleton<BandwidthAdaptiveUpscaler>();
+                serviceCollection.AddSingleton<EcoModeManager>();
+                serviceCollection.AddSingleton<AV1ProfileManager>();
+                serviceCollection.AddSingleton<DiagnosticSystem>();
+                
+                // Register API service (Jellyfin-compatible)
+                serviceCollection.AddSingleton<UpscalerApiService>();
+            }
+            catch (Exception ex)
+            {
+                // Log error but don't crash plugin initialization
+                System.Diagnostics.Debug.WriteLine($"Service registration error: {ex.Message}");
+            }
         }
 
         /// <summary>

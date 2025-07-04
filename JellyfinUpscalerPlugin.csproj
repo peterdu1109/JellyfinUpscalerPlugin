@@ -5,13 +5,13 @@
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <AssemblyTitle>AI Upscaler Plugin v1.3.6 Ultimate</AssemblyTitle>
-    <AssemblyVersion>1.3.6.0</AssemblyVersion>
-    <FileVersion>1.3.6.0</FileVersion>
+    <AssemblyTitle>AI Upscaler Plugin v1.3.6.1 Ultimate</AssemblyTitle>
+    <AssemblyVersion>1.3.6.1</AssemblyVersion>
+    <FileVersion>1.3.6.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Jellyfin.Controller" Version="10.10.3" />
+    <PackageReference Include="Jellyfin.Controller" Version="10.10.6" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.2" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />

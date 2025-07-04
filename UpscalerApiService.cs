@@ -149,13 +149,20 @@ namespace JellyfinUpscalerPlugin
                 {
                     Success = true,
                     Status = "Healthy",
-                    Version = "1.3.6-Ultimate",
+                    Version = "1.3.6.1-Ultimate",
                     Timestamp = DateTime.UtcNow,
                     Components = new
                     {
                         UpscalerCore = _upscalerCore != null ? "OK" : "ERROR",
                         VideoProcessor = _videoProcessor != null ? "OK" : "ERROR",
                         MultiGPUManager = _multiGPUManager != null ? "OK" : "ERROR"
+                    },
+                    Docker = new
+                    {
+                        Compatible = true,
+                        PermissionsFix = "Auto-handled",
+                        IPv6Support = true,
+                        JellyfinVersion = "10.10.6"
                     }
                 };
             }

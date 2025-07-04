@@ -693,5 +693,71 @@ namespace JellyfinUpscalerPlugin
                 OptimalResolution = "1080p"
             };
         }
+
+        /// <summary>
+        /// Apply CasaOS/ARM64 platform optimizations
+        /// </summary>
+        private void ApplyPlatformOptimizations(PlatformConfiguration platformConfig)
+        {
+            try
+            {
+                if (platformConfig.IsCasaOS)
+                {
+                    _logger.LogInformation("🏠 Applying CasaOS optimizations");
+                    
+                    // Conservative resource usage for CasaOS
+                    _config.CacheSizeMB = Math.Min(_config.CacheSizeMB, platformConfig.RecommendedCacheSize);
+                    _config.MaxConcurrentStreams = Math.Min(_config.MaxConcurrentStreams, platformConfig.RecommendedConcurrentStreams);
+                    
+                    // Use recommended model for platform
+                    if (platformConfig.IsARM64)
+                    {
+                        _config.Model = platformConfig.RecommendedModel;
+                        _logger.LogInformation($"🔧 ARM64 detected, using model: {_config.Model}");
+                    }
+                    
+                    // Enable eco mode for ARM devices
+                    if (platformConfig.EnableEcoMode)
+                    {
+                        _config.EnableLightMode = true;
+                        _logger.LogInformation("🔋 Eco mode enabled for ARM platform");
+                    }
+                    
+                    // Disable hardware acceleration if not recommended
+                    if (!platformConfig.EnableHardwareAcceleration)
+                    {
+                        _config.AutoDetectHardware = false;
+                        _config.PreferredEncoder = "software";
+                        _logger.LogInformation("💻 Hardware acceleration disabled for compatibility");
+                    }
+                }
+                
+                if (platformConfig.IsRaspberryPi)
+                {
+                    _logger.LogInformation("🥧 Applying Raspberry Pi optimizations");
+                    
+                    // Very conservative settings for Raspberry Pi
+                    _config.CacheSizeMB = 256;
+                    _config.MaxConcurrentStreams = 1;
+                    _config.Model = "fsrcnn"; // Fastest model
+                    _config.Scale = 2; // Conservative scaling
+                    _config.EnableLightMode = true;
+                }
+                
+                if (platformConfig.IsZimaboard)
+                {
+                    _logger.LogInformation("💻 Applying Zimaboard optimizations");
+                    
+                    // Zimaboard-specific optimizations
+                    _config.CacheSizeMB = 512;
+                    _config.MaxConcurrentStreams = 2;
+                    _config.EnableIntelQuickSync = true; // Zimaboard has Intel CPU
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to apply platform optimizations");
+            }
+        }
     }
 }

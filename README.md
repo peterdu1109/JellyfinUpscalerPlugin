@@ -1,13 +1,15 @@
 <div align="center">
 
-# 🚀 AI UPSCALER PLUGIN v1.3.6 ULTIMATE
+# 🚀 AI UPSCALER PLUGIN v1.3.6.1 ULTIMATE
 
-### *The Revolutionary Jellyfin Upscaling Solution*
+### *The Revolutionary Jellyfin Upscaling Solution with Full CasaOS & ARM64 Support*
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge&logo=opensource)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-1.3.6%20Ultimate-gold.svg?style=for-the-badge&logo=semantic-release)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases)
-[![Jellyfin](https://img.shields.io/badge/Jellyfin-10.10.0%2B-purple.svg?style=for-the-badge&logo=jellyfin)](https://jellyfin.org)
+[![Version](https://img.shields.io/badge/Version-1.3.6.1%20Ultimate-gold.svg?style=for-the-badge&logo=semantic-release)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases)
+[![Jellyfin](https://img.shields.io/badge/Jellyfin-10.10.6%2B-purple.svg?style=for-the-badge&logo=jellyfin)](https://jellyfin.org)
 [![.NET](https://img.shields.io/badge/.NET-8.0-orange.svg?style=for-the-badge&logo=dotnet)](https://dotnet.microsoft.com)
+[![CasaOS](https://img.shields.io/badge/CasaOS-Compatible-green.svg?style=for-the-badge&logo=linux)](https://casaos.io)
+[![ARM64](https://img.shields.io/badge/ARM64-Optimized-red.svg?style=for-the-badge&logo=arm)](https://www.arm.com)
 
 ---
 

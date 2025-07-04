@@ -57,10 +57,10 @@
           }
         }
       },
-      "Jellyfin.Common/10.10.3": {
+      "Jellyfin.Common/10.10.6": {
         "type": "package",
         "dependencies": {
-          "Jellyfin.Model": "10.10.3",
+          "Jellyfin.Model": "10.10.6",
           "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2"
         },
@@ -78,12 +78,12 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "Jellyfin.Controller/10.10.3": {
+      "Jellyfin.Controller/10.10.6": {
         "type": "package",
         "dependencies": {
-          "Jellyfin.Common": "10.10.3",
-          "Jellyfin.Model": "10.10.3",
-          "Jellyfin.Naming": "10.10.3",
+          "Jellyfin.Common": "10.10.6",
+          "Jellyfin.Model": "10.10.6",
+          "Jellyfin.Naming": "10.10.6",
           "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
           "Microsoft.Extensions.Configuration.Binder": "8.0.2",
           "System.Threading.Tasks.Dataflow": "8.0.1"
@@ -99,7 +99,7 @@
           }
         }
       },
-      "Jellyfin.Data/10.10.3": {
+      "Jellyfin.Data/10.10.6": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Logging": "8.0.1"
@@ -115,7 +115,7 @@
           }
         }
       },
-      "Jellyfin.Extensions/10.10.3": {
+      "Jellyfin.Extensions/10.10.6": {
         "type": "package",
         "dependencies": {
           "Diacritics": "3.3.29",
@@ -132,11 +132,11 @@
           }
         }
       },
-      "Jellyfin.Model/10.10.3": {
+      "Jellyfin.Model/10.10.6": {
         "type": "package",
         "dependencies": {
-          "Jellyfin.Data": "10.10.3",
-          "Jellyfin.Extensions": "10.10.3",
+          "Jellyfin.Data": "10.10.6",
+          "Jellyfin.Extensions": "10.10.6",
           "Microsoft.Extensions.Logging.Abstractions": "8.0.2",
           "System.Globalization": "4.3.0",
           "System.Text.Json": "8.0.5"
@@ -155,11 +155,11 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "Jellyfin.Naming/10.10.3": {
+      "Jellyfin.Naming/10.10.6": {
         "type": "package",
         "dependencies": {
-          "Jellyfin.Common": "10.10.3",
-          "Jellyfin.Model": "10.10.3"
+          "Jellyfin.Common": "10.10.6",
+          "Jellyfin.Model": "10.10.6"
         },
         "compile": {
           "lib/net8.0/Emby.Naming.dll": {
@@ -623,79 +623,79 @@
         "readme.md"
       ]
     },
-    "Jellyfin.Common/10.10.3": {
-      "sha512": "AJLT3isPwGgOjzZSVaFBHh2Izf0uJbbyIc3ck9GaVp/+0d4xw5rRxRMDwWJcY6DsAFhuKKGR+LA1UOAtkAaWhg==",
+    "Jellyfin.Common/10.10.6": {
+      "sha512": "eae834eYfsbmpCu8l4TXmdfRvDiN1+LmmkMxB6l0oPfSc9147RnIhPJtO3KJY/sy6rnqIW73xJlfbpS8/ImxwA==",
       "type": "package",
-      "path": "jellyfin.common/10.10.3",
+      "path": "jellyfin.common/10.10.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "jellyfin.common.10.10.3.nupkg.sha512",
+        "jellyfin.common.10.10.6.nupkg.sha512",
         "jellyfin.common.nuspec",
         "lib/net8.0/MediaBrowser.Common.dll",
         "lib/net8.0/MediaBrowser.Common.xml"
       ]
     },
-    "Jellyfin.Controller/10.10.3": {
-      "sha512": "5QZckQvZirweyY6udGdclFOrqzLloGWVUQhqsd+0HAv9GhN7RDHALhGGeveHEDXc7iL3Ch2vS4kwBqfDt0N50Q==",
+    "Jellyfin.Controller/10.10.6": {
+      "sha512": "drpTBiEZT26VSZBLqAP2P6x8ch1Ew5w70U5xfD5EkKF5BCD7S5CFtL4dNIpi0l98YwxYbYHour/1p4jlyq8ESA==",
       "type": "package",
-      "path": "jellyfin.controller/10.10.3",
+      "path": "jellyfin.controller/10.10.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "jellyfin.controller.10.10.3.nupkg.sha512",
+        "jellyfin.controller.10.10.6.nupkg.sha512",
         "jellyfin.controller.nuspec",
         "lib/net8.0/MediaBrowser.Controller.dll",
         "lib/net8.0/MediaBrowser.Controller.xml"
       ]
     },
-    "Jellyfin.Data/10.10.3": {
-      "sha512": "Lxqsa3iiVEAkV9Pb7kaAor7DR2iudpP28/QvilCs9Jwrcls9ZQ/3nKJe6kH3cJmomXCtSUOYQQ/zzcwnNwYi6A==",
+    "Jellyfin.Data/10.10.6": {
+      "sha512": "X+yQY4qDvYGv2kXvnYPO4p/EczuSaqgYIOtcoL6UXZgqcPCKg6IS6kzwJvNrIMPe2R4Q+7UXSHEYrcADFdzYbQ==",
       "type": "package",
-      "path": "jellyfin.data/10.10.3",
+      "path": "jellyfin.data/10.10.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "jellyfin.data.10.10.3.nupkg.sha512",
+        "jellyfin.data.10.10.6.nupkg.sha512",
         "jellyfin.data.nuspec",
         "lib/net8.0/Jellyfin.Data.dll",
         "lib/net8.0/Jellyfin.Data.xml"
       ]
     },
-    "Jellyfin.Extensions/10.10.3": {
-      "sha512": "9R73ji9KnI6YDxnwm5W0bk/ORAkY7poD94urIbMd26J1KLMf2znajc/niG9PR5KiPWimdSk5MDBIiakiYuHHuA==",
+    "Jellyfin.Extensions/10.10.6": {
+      "sha512": "QNbQiClTtz7EQDrrBDYvhHREZbNzEhEkAsQaxWN9HtfPW6TCRxucpM114qIQ7f1cZDw025BjSd2QAkrOCrTu2A==",
       "type": "package",
-      "path": "jellyfin.extensions/10.10.3",
+      "path": "jellyfin.extensions/10.10.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "jellyfin.extensions.10.10.3.nupkg.sha512",
+        "jellyfin.extensions.10.10.6.nupkg.sha512",
         "jellyfin.extensions.nuspec",
         "lib/net8.0/Jellyfin.Extensions.dll",
         "lib/net8.0/Jellyfin.Extensions.xml"
       ]
     },
-    "Jellyfin.Model/10.10.3": {
-      "sha512": "mBR59AoRnEM3Oz4ZPtyV4EyHqta+hmKKeolcUZO9u2YdQ+4IKLa8xlAFi7DqBRgu32PkGo1nOAFkGgyT/nqpBQ==",
+    "Jellyfin.Model/10.10.6": {
+      "sha512": "vRb3bAkd0MH4Y58C1K+t5eldyZvUEcMwFRjhNuwgJQKCCoe1Lxi/V2ufpn81otg/9gntf10aoiwJqBd87BR/Xg==",
       "type": "package",
-      "path": "jellyfin.model/10.10.3",
+      "path": "jellyfin.model/10.10.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "jellyfin.model.10.10.3.nupkg.sha512",
+        "jellyfin.model.10.10.6.nupkg.sha512",
         "jellyfin.model.nuspec",
         "lib/net8.0/MediaBrowser.Model.dll",
         "lib/net8.0/MediaBrowser.Model.xml"
       ]
     },
-    "Jellyfin.Naming/10.10.3": {
-      "sha512": "PA6BOkbCfQp6d1cVB0E+CpdgvW6mJCo2rKt2lQ+sU/mtZX5GRV5aXONjuhYUCHkxaLhux5k/pScBc0a9Wa8Tvw==",
+    "Jellyfin.Naming/10.10.6": {
+      "sha512": "rICmYq8XjfhFb3YhZVEnMTCrdwm5qa5P6Z+8NZgwvXKYQYzwp+jVz4twFrXHo48zIAHO57cTJkccXBxfbVJ7Zw==",
       "type": "package",
-      "path": "jellyfin.naming/10.10.3",
+      "path": "jellyfin.naming/10.10.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "jellyfin.naming.10.10.3.nupkg.sha512",
+        "jellyfin.naming.10.10.6.nupkg.sha512",
         "jellyfin.naming.nuspec",
         "lib/net8.0/Emby.Naming.dll",
         "lib/net8.0/Emby.Naming.xml"
@@ -1489,7 +1489,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "Jellyfin.Controller >= 10.10.3",
+      "Jellyfin.Controller >= 10.10.6",
       "Microsoft.Extensions.DependencyInjection.Abstractions >= 8.0.2",
       "Microsoft.Extensions.Http >= 8.0.1",
       "Microsoft.Extensions.Logging.Abstractions >= 8.0.2",
@@ -1549,7 +1549,7 @@
         "dependencies": {
           "Jellyfin.Controller": {
             "target": "Package",
-            "version": "[10.10.3, )"
+            "version": "[10.10.6, )"
           },
           "Microsoft.Extensions.DependencyInjection.Abstractions": {
             "target": "Package",
