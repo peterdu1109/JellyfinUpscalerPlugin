@@ -55,7 +55,8 @@ namespace JellyfinUpscalerPlugin
             "fsrcnn"                // Fast small model for limited resources
         };
         
-        // Model-specific settings
+        // Model-specific settings - XML-Serializer kompatibel
+        [System.Xml.Serialization.XmlIgnore]
         public Dictionary<string, ModelSettings> ModelConfigurations { get; set; } = new Dictionary<string, ModelSettings>
         {
             ["realesrgan"] = new ModelSettings { RequiredVRAM = 2048, OptimalScale = 4, ContentType = "general" },
@@ -96,7 +97,8 @@ namespace JellyfinUpscalerPlugin
             "nearest-neighbor"      // Ultra-fast, lowest quality (emergency fallback)
         };
         
-        // Shader-specific settings
+        // Shader-specific settings - XML-Serializer kompatibel
+        [System.Xml.Serialization.XmlIgnore]
         public Dictionary<string, ShaderSettings> ShaderConfigurations { get; set; } = new Dictionary<string, ShaderSettings>
         {
             ["bicubic"] = new ShaderSettings { PerformanceCost = 2, Quality = 3, UseCase = "general" },
@@ -114,6 +116,7 @@ namespace JellyfinUpscalerPlugin
         public bool EnableAIColorCorrection { get; set; } = true;
         public string ColorCorrectionModel { get; set; } = "auto"; // auto, swinir-color, hat-color
         public bool AutoDetectContentType { get; set; } = true;
+        [System.Xml.Serialization.XmlIgnore]
         public Dictionary<string, ColorProfile> ContentColorProfiles { get; set; } = new Dictionary<string, ColorProfile>
         {
             ["anime"] = new ColorProfile { Saturation = 1.15f, Contrast = 1.1f, Brightness = 1.0f },
