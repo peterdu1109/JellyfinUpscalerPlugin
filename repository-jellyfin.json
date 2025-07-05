@@ -6,7 +6,7 @@
     "overview": "🚀 **ULTIMATE v1.3.6.1 - ALL ISSUES FIXED** Transform your Jellyfin media server with 12 revolutionary manager classes, full CasaOS & ARM64 support, and critical Docker compatibility fixes.",
     "owner": "Kuschel-code",
     "category": "Media Enhancement",
-    "imageUrl": "https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/assets/plugin-icon.png",
+    "imageUrl": "https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/assets/logo.png",
     "versions": [
       {
         "version": "1.3.6.1",
