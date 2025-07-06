@@ -11,11 +11,11 @@ namespace JellyfinUpscalerPlugin
     public class PluginConfiguration : BasePluginConfiguration
     {
         // ========================================
-        // CORE SETTINGS
+        // CORE SETTINGS - STANDARDMÄSSIG AKTIVIERT
         // ========================================
-        public bool Enabled { get; set; } = false;
-        public bool EnablePlugin { get; set; } = false; // Alias for HTML compatibility
-        public string Language { get; set; } = "en";
+        public bool Enabled { get; set; } = true;
+        public bool EnablePlugin { get; set; } = true; // Alias for HTML compatibility
+        public string Language { get; set; } = "de";
         public bool ShowPlayerButton { get; set; } = true;
         public bool EnableNotifications { get; set; } = true;
         

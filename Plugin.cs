@@ -20,7 +20,7 @@ namespace JellyfinUpscalerPlugin
         /// <summary>
         /// Plugin version constant
         /// </summary>
-        public const string PLUGIN_VERSION = "1.3.6.1";
+        public const string PLUGIN_VERSION = "1.3.6.2";
         
         /// <summary>
         /// Plugin display name with version

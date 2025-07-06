@@ -15,7 +15,7 @@
 **✅ JETZT BEHOBEN:**
 - ✅ Plugin-Installation funktioniert aus CasaOS Plugin Store
 - ✅ Manuelle Installation funktioniert ohne Fehler
-- ✅ Checksum korrekt: MD5 `A8653481F03F026B18C9BE8266A5B743`
+- ✅ Checksum korrekt: MD5 `DCD85E6C00995A6C814327EE83548F9E`
 - ✅ DLL-Kompatibilität: JellyfinUpscalerPlugin.Plugin lädt korrekt
 - ✅ XML-Serializer: Dictionary-Problem mit [XmlIgnore] gelöst
 - ✅ ABI-Kompatibilität: targetAbi auf 10.10.6.0 aktualisiert
@@ -25,7 +25,7 @@
 ```
 📁 Dateiname: JellyfinUpscalerPlugin-v1.3.6.1-Ultimate.zip
 📏 Größe: 327 KB (334.855 Bytes)
-🔐 MD5: A8653481F03F026B18C9BE8266A5B743
+🔐 MD5: DCD85E6C00995A6C814327EE83548F9E
 🎯 Kompatibilität: Jellyfin 10.10.6+
 📅 Datum: 2025-07-05T01:45:43Z
 ```
@@ -35,7 +35,7 @@
 ### **1. CHECKSUM-PROBLEM BEHOBEN**
 ```
 ❌ Vorher: SHA-256 (nicht unterstützt)
-✅ Jetzt: MD5 A8653481F03F026B18C9BE8266A5B743
+✅ Jetzt: MD5 DCD85E6C00995A6C814327EE83548F9E
 ```
 
 ### **2. XML-SERIALIZER DICTIONARY-PROBLEM BEHOBEN**
