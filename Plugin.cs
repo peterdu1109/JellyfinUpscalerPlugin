@@ -25,7 +25,7 @@ namespace JellyfinUpscalerPlugin
         /// <summary>
         /// Plugin display name with version
         /// </summary>
-        public override string Name => $"🚀 AI Upscaler Plugin v{PLUGIN_VERSION} ULTIMATE";
+        public override string Name => $"🎮 AI Upscaler Plugin v{PLUGIN_VERSION} FUNCTIONAL";
         
         /// <summary>
         /// Unique plugin identifier - NEVER change this!
