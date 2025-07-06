@@ -14,10 +14,10 @@ namespace JellyfinUpscalerPlugin
         private readonly ILogger<AV1ProfileManager> _logger;
         private readonly PluginConfiguration _config;
         
-        public AV1ProfileManager(ILogger<AV1ProfileManager> logger, PluginConfiguration config)
+        public AV1ProfileManager(ILogger<AV1ProfileManager> logger)
         {
             _logger = logger;
-            _config = config;
+            _config = Plugin.Instance?.Configuration ?? new PluginConfiguration();
         }
         
         /// <summary>

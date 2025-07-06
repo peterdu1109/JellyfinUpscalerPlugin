@@ -16,10 +16,10 @@ namespace JellyfinUpscalerPlugin
         private readonly Dictionary<string, GenreProfile> _genreProfiles;
         private readonly Dictionary<string, ContentTypeProfile> _contentTypeProfiles;
         
-        public MetadataBasedRecommendations(ILogger<MetadataBasedRecommendations> logger, PluginConfiguration config)
+        public MetadataBasedRecommendations(ILogger<MetadataBasedRecommendations> logger)
         {
             _logger = logger;
-            _config = config;
+            _config = Plugin.Instance?.Configuration ?? new PluginConfiguration();
             _genreProfiles = InitializeGenreProfiles();
             _contentTypeProfiles = InitializeContentTypeProfiles();
         }

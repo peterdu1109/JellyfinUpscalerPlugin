@@ -19,10 +19,10 @@ namespace JellyfinUpscalerPlugin
         private readonly Dictionary<string, PreviewSession> _activeSessions;
         private readonly string _previewCacheDir;
         
-        public InteractivePreviewManager(ILogger<InteractivePreviewManager> logger, PluginConfiguration config)
+        public InteractivePreviewManager(ILogger<InteractivePreviewManager> logger)
         {
             _logger = logger;
-            _config = config;
+            _config = Plugin.Instance?.Configuration ?? new PluginConfiguration();
             _activeSessions = new Dictionary<string, PreviewSession>();
             _previewCacheDir = Path.Combine(Path.GetTempPath(), "JellyfinUpscaler", "Previews");
             

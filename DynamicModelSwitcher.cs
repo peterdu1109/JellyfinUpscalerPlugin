@@ -20,10 +20,10 @@ namespace JellyfinUpscalerPlugin
         private readonly SemaphoreSlim _switchingSemaphore;
         private bool _isEnabled;
         
-        public DynamicModelSwitcher(ILogger<DynamicModelSwitcher> logger, PluginConfiguration config)
+        public DynamicModelSwitcher(ILogger<DynamicModelSwitcher> logger)
         {
             _logger = logger;
-            _config = config;
+            _config = Plugin.Instance?.Configuration ?? new PluginConfiguration();
             _sceneModelProfiles = InitializeSceneModelProfiles();
             _sceneQueue = new Queue<SceneAnalysis>();
             _switchingSemaphore = new SemaphoreSlim(1, 1);

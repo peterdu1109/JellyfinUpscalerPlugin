@@ -19,10 +19,10 @@ namespace JellyfinUpscalerPlugin
         private readonly Dictionary<string, NetworkProfile> _clientProfiles;
         private readonly NetworkMonitor _networkMonitor;
         
-        public BandwidthAdaptiveUpscaler(ILogger<BandwidthAdaptiveUpscaler> logger, PluginConfiguration config)
+        public BandwidthAdaptiveUpscaler(ILogger<BandwidthAdaptiveUpscaler> logger)
         {
             _logger = logger;
-            _config = config;
+            _config = Plugin.Instance?.Configuration ?? new PluginConfiguration();
             _clientProfiles = new Dictionary<string, NetworkProfile>();
             _networkMonitor = new NetworkMonitor(logger);
         }

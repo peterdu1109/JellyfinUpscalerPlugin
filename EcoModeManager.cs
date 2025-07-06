@@ -20,10 +20,10 @@ namespace JellyfinUpscalerPlugin
         // Removed unused field _lastOptimization
         private readonly PowerMonitor _powerMonitor;
         
-        public EcoModeManager(ILogger<EcoModeManager> logger, PluginConfiguration config)
+        public EcoModeManager(ILogger<EcoModeManager> logger)
         {
             _logger = logger;
-            _config = config;
+            _config = Plugin.Instance?.Configuration ?? new PluginConfiguration();
             _ecoProfiles = InitializeEcoProfiles();
             _currentStatus = new EcoModeStatus();
             _powerMonitor = new PowerMonitor(logger);

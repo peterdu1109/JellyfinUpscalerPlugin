@@ -26,12 +26,11 @@ namespace JellyfinUpscalerPlugin
         
         public DiagnosticSystem(
             ILogger<DiagnosticSystem> logger,
-            PluginConfiguration config,
             UpscalerCore upscalerCore,
             MultiGPUManager multiGPUManager)
         {
             _logger = logger;
-            _config = config;
+            _config = Plugin.Instance?.Configuration ?? new PluginConfiguration();
             _upscalerCore = upscalerCore;
             _multiGPUManager = multiGPUManager;
             

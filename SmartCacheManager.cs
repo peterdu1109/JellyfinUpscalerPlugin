@@ -23,10 +23,10 @@ namespace JellyfinUpscalerPlugin
         private Dictionary<string, CacheEntry> _cacheIndex;
         private Dictionary<string, MediaUsageStats> _usageStats;
         
-        public SmartCacheManager(ILogger<SmartCacheManager> logger, PluginConfiguration config)
+        public SmartCacheManager(ILogger<SmartCacheManager> logger)
         {
             _logger = logger;
-            _config = config;
+            _config = Plugin.Instance?.Configuration ?? new PluginConfiguration();
             _cacheDirectory = Path.Combine(Path.GetTempPath(), "jellyfin-upscaler-cache");
             _cacheIndex = new Dictionary<string, CacheEntry>();
             _usageStats = new Dictionary<string, MediaUsageStats>();

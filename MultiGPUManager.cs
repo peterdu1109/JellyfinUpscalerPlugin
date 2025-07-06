@@ -22,10 +22,10 @@ namespace JellyfinUpscalerPlugin
         private readonly SemaphoreSlim _schedulerSemaphore;
         private bool _isEnabled;
         
-        public MultiGPUManager(ILogger<MultiGPUManager> logger, PluginConfiguration config)
+        public MultiGPUManager(ILogger<MultiGPUManager> logger)
         {
             _logger = logger;
-            _config = config;
+            _config = Plugin.Instance?.Configuration ?? new PluginConfiguration();
             _availableGPUs = new Dictionary<int, GPUDevice>();
             _taskQueue = new ConcurrentQueue<UpscalingTask>();
             _gpuWorkloads = new Dictionary<int, GPUWorkload>();

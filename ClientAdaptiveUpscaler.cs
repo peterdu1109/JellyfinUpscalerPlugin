@@ -17,10 +17,10 @@ namespace JellyfinUpscalerPlugin
         private readonly Dictionary<string, ClientProfile> _clientProfiles;
         private readonly Dictionary<string, DeviceCapabilities> _deviceDatabase;
         
-        public ClientAdaptiveUpscaler(ILogger<ClientAdaptiveUpscaler> logger, PluginConfiguration config)
+        public ClientAdaptiveUpscaler(ILogger<ClientAdaptiveUpscaler> logger)
         {
             _logger = logger;
-            _config = config;
+            _config = Plugin.Instance?.Configuration ?? new PluginConfiguration();
             _clientProfiles = new Dictionary<string, ClientProfile>();
             _deviceDatabase = InitializeDeviceDatabase();
         }

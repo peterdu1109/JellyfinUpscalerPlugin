@@ -36,14 +36,13 @@ namespace JellyfinUpscalerPlugin
             ILogger<UpscalerCore> logger,
             IMediaEncoder mediaEncoder,
             IFileSystem fileSystem,
-            IApplicationPaths appPaths,
-            PluginConfiguration config)
+            IApplicationPaths appPaths)
         {
             _logger = logger;
             _mediaEncoder = mediaEncoder;
             _fileSystem = fileSystem;
             _appPaths = appPaths;
-            _config = config;
+            _config = Plugin.Instance?.Configuration ?? new PluginConfiguration();
         }
 
         /// <summary>

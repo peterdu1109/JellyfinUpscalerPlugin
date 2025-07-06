@@ -18,10 +18,10 @@ namespace JellyfinUpscalerPlugin
         private readonly Dictionary<ArtifactType, ArtifactDetector> _detectors;
         private readonly Dictionary<ArtifactType, ArtifactReducer> _reducers;
         
-        public AIArtifactReducer(ILogger<AIArtifactReducer> logger, PluginConfiguration config)
+        public AIArtifactReducer(ILogger<AIArtifactReducer> logger)
         {
             _logger = logger;
-            _config = config;
+            _config = Plugin.Instance?.Configuration ?? new PluginConfiguration();
             _detectors = InitializeArtifactDetectors();
             _reducers = InitializeArtifactReducers();
         }
