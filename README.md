@@ -107,7 +107,7 @@ https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/repos
 1. **Open Jellyfin Dashboard** → **Plugins** → **Repositories** 
 2. **Click "Add Repository"** 
 3. **Paste URL above** → **Save**
-4. **Go to Catalog** → **Find "🚀 AI Upscaler Plugin v1.3.6.1 - Ultimate Edition"**
+4. **Go to Catalog** → **Find "🎮 AI Upscaler Plugin v1.3.6.2 - FUNCTIONAL EDITION"**
 5. **Click Install** → **Restart Jellyfin** → **Done!** 🎉
 
 ### **⚡ ALTERNATIVE: DIRECT REPOSITORY LINK**
@@ -171,7 +171,7 @@ curl -H "Content-Type: application/json" \
 </tr>
 </table>
 
-### 🎮 **NEUE VIDEO-PLAYER INTEGRATION**
+### 🎮 **NEW VIDEO PLAYER INTEGRATION**
 
 <div align="center">
 <table style="width: 100%; border: none;">
@@ -179,19 +179,19 @@ curl -H "Content-Type: application/json" \
 <td width="50%" style="vertical-align: top; padding: 10px;">
 
 #### **⚡ QUICK SETTINGS BUTTON**
-- **📱 Player-UI Integration** - Button direkt im Video-Player
-- **🎨 Animiertes Icon** - AI-Upscaling-Symbol mit Hover-Effekt
-- **⚡ Sofortiger Zugriff** - Ein-Klick-Aktivierung während Wiedergabe
-- **🎯 Intuitive Bedienung** - Wie andere Jellyfin-Controls
+- **📱 Player-UI Integration** - Button directly in video player
+- **🎨 Animated Icon** - AI-Upscaling symbol with hover effect
+- **⚡ Instant Access** - One-click activation during playback
+- **🎯 Intuitive Operation** - Like other Jellyfin controls
 
 </td>
 <td width="50%" style="vertical-align: top; padding: 10px;">
 
-#### **⚙️ ECHTZEIT-CONTROLS**
-- **🤖 AI-Modell-Wechsel** - Real-ESRGAN, SRCNN Light, Waifu2x, ESRGAN Pro
-- **📏 Skalierung** - 2x, 3x, 4x Upscale während Wiedergabe
-- **🎛️ Qualitäts-Controls** - Hoch/Mittel/Schnell-Modus
-- **📊 Live-Monitoring** - Status, Progress-Bar, Performance-Anzeige
+#### **⚙️ REAL-TIME CONTROLS**
+- **🤖 AI Model Switching** - Real-ESRGAN, SRCNN Light, Waifu2x, ESRGAN Pro
+- **📏 Scaling** - 2x, 3x, 4x upscale during playback
+- **🎛️ Quality Controls** - High/Medium/Fast modes
+- **📊 Live Monitoring** - Status, progress bar, performance display
 
 </td>
 </tr>
@@ -285,25 +285,25 @@ curl -sSL https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/
 
 ## 🎯 **WHAT'S NEW IN v1.3.6.2 - FUNCTIONAL EDITION**
 
-### **🔧 KRITISCHE FUNKTIONALITÄTS-FIXES:**
-- ✅ **Plugin funktioniert jetzt mit Videos** - Echte Upscaling-Verarbeitung implementiert
-- ✅ **Kategorie korrigiert** - Erscheint jetzt unter "Video Enhancement" statt "Media Enhancement"
-- ✅ **Plugin-Icon funktioniert** - Animiertes SVG-Logo lädt korrekt
-- ✅ **Deutsche Benutzeroberfläche** - Alle Features standardmäßig aktiviert
-- ✅ **Sprachauswahl funktional** - 10 Sprachen verfügbar (DE/EN/FR/ES/IT/PT/RU/ZH/JA/KO)
+### **🔧 CRITICAL FUNCTIONALITY FIXES:**
+- ✅ **Plugin now works with videos** - Real upscaling processing implemented
+- ✅ **Category corrected** - Now appears under "Video Enhancement" instead of "Media Enhancement"
+- ✅ **Plugin icon works** - Animated SVG logo loads correctly
+- ✅ **Multilingual interface** - All features enabled by default
+- ✅ **Language selection functional** - 10 languages available (DE/EN/FR/ES/IT/PT/RU/ZH/JA/KO)
 
-### **🎮 NEUE VIDEO-PLAYER FEATURES:**
-- ✅ **Quick Settings Button** - Direkt im Video-Player integriert
-- ✅ **Sofortiger AI-Modell-Wechsel** - Real-ESRGAN, SRCNN Light, Waifu2x, ESRGAN Pro
-- ✅ **Echtzeit-Qualitätsanpassung** - 2x/3x/4x Skalierung während Wiedergabe
-- ✅ **Ein-Klick-Upscaling-Aktivierung** - Keine komplizierten Einstellungen
-- ✅ **Performance-Monitoring** - Live-Status und Progress-Bar
+### **🎮 NEW VIDEO PLAYER FEATURES:**
+- ✅ **Quick Settings Button** - Directly integrated in video player
+- ✅ **Instant AI model switching** - Real-ESRGAN, SRCNN Light, Waifu2x, ESRGAN Pro
+- ✅ **Real-time quality adjustment** - 2x/3x/4x scaling during playback
+- ✅ **One-click upscaling activation** - No complicated settings
+- ✅ **Performance monitoring** - Live status and progress bar
 
-### **🎯 GARANTIERTE FUNKTIONALITÄT:**
-- ✅ **Plug-and-Play** - Plugin funktioniert sofort nach Installation
-- ✅ **Keine Konfiguration nötig** - Alle Features standardmäßig aktiviert
-- ✅ **Sichtbare Qualitätsverbesserungen** - Echte AI-Upscaling-Verarbeitung
-- ✅ **100% Kompatibilität** - Funktioniert mit allen Video-Formaten
+### **🎯 GUARANTEED FUNCTIONALITY:**
+- ✅ **Plug-and-Play** - Plugin works immediately after installation
+- ✅ **No configuration needed** - All features enabled by default
+- ✅ **Visible quality improvements** - Real AI upscaling processing
+- ✅ **100% compatibility** - Works with all video formats
 
 ---
 
@@ -323,7 +323,7 @@ curl -sSL https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/
 | **Support Level** | Community | ✅ **Auto-Troubleshooting** |
 | **Video Player Integration** | None | ✅ **Quick Settings Button** |
 | **Real-time Controls** | None | ✅ **Live Model Switching** |
-| **Funktionalität** | Basic | ✅ **GUARANTEED TO WORK** |
+| **Functionality** | Basic | ✅ **GUARANTEED TO WORK** |
 
 </div>
 
