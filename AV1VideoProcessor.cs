@@ -346,7 +346,10 @@ namespace JellyfinUpscalerPlugin
             
             // AI Model optimization
             optimized.AIModel = selectedModel;
-            optimized.UseAIUpscaling = _config.ModelConfigurations[selectedModel].IsHardwareAccelerated;
+            if (_config.ModelConfigurations.ContainsKey(selectedModel) && _config.ModelConfigurations[selectedModel] is ModelSettings modelSettings)
+            {
+                optimized.UseAIUpscaling = modelSettings.IsHardwareAccelerated;
+            }
             
             // Shader optimization
             optimized.Shader = selectedShader;
@@ -362,9 +365,12 @@ namespace JellyfinUpscalerPlugin
                 optimized.UseHardwareAcceleration = true;
                 
                 // AV1-specific settings
-                optimized.CRF = _config.AV1Quality;
+                if (int.TryParse(_config.AV1Quality, out int crfValue))
+                {
+                    optimized.CRF = crfValue;
+                }
                 optimized.Preset = _config.AV1Preset;
-                optimized.FilmGrain = _config.AV1FilmGrain;
+                optimized.FilmGrain = _config.AV1FilmGrain ? 1 : 0;
                 
                 // Use AV1-optimized model if available
                 if (_config.EnableAV1OptimizedUpscaling && !string.IsNullOrEmpty(_config.AV1CompatibleModel))

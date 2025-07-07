@@ -184,11 +184,11 @@ namespace JellyfinUpscalerPlugin
         {
             if (Configuration.ModelConfigurations == null)
             {
-                Configuration.ModelConfigurations = new Dictionary<string, ModelSettings>();
+                Configuration.ModelConfigurations = new Dictionary<string, object>();
             }
             
             // Add missing model configurations
-            var modelConfigs = new Dictionary<string, ModelSettings>
+            var modelConfigs = new Dictionary<string, object>
             {
                 // Existing models with enhanced settings
                 ["realesrgan"] = new ModelSettings 
@@ -282,47 +282,47 @@ namespace JellyfinUpscalerPlugin
         {
             if (Configuration.ShaderConfigurations == null)
             {
-                Configuration.ShaderConfigurations = new Dictionary<string, ShaderSettings>();
+                Configuration.ShaderConfigurations = new Dictionary<string, object>();
             }
             
-            var shaderConfigs = new Dictionary<string, ShaderSettings>
+            var shaderConfigs = new Dictionary<string, object>
             {
                 // Existing shaders
                 ["bicubic"] = new ShaderSettings 
                 { 
-                    PerformanceCost = 2, Quality = 3, UseCase = "general", 
+                    PerformanceCost = 2, Quality = "3", UseCase = "general", 
                     SupportsHardwareAcceleration = true 
                 },
                 ["bilinear"] = new ShaderSettings 
                 { 
-                    PerformanceCost = 1, Quality = 2, UseCase = "weak-hardware", 
+                    PerformanceCost = 1, Quality = "2", UseCase = "weak-hardware", 
                     SupportsHardwareAcceleration = true 
                 },
                 ["lanczos"] = new ShaderSettings 
                 { 
-                    PerformanceCost = 3, Quality = 4, UseCase = "detailed", 
+                    PerformanceCost = 3, Quality = "4", UseCase = "detailed", 
                     SupportsHardwareAcceleration = true 
                 },
                 
                 // New shaders
                 ["mitchell-netravali"] = new ShaderSettings 
                 { 
-                    PerformanceCost = 2, Quality = 4, UseCase = "movies", 
+                    PerformanceCost = 2, Quality = "4", UseCase = "movies", 
                     SupportsHardwareAcceleration = true 
                 },
                 ["catmull-rom"] = new ShaderSettings 
                 { 
-                    PerformanceCost = 3, Quality = 4, UseCase = "high-res", 
+                    PerformanceCost = 3, Quality = "4", UseCase = "high-res", 
                     SupportsHardwareAcceleration = true 
                 },
                 ["sinc"] = new ShaderSettings 
                 { 
-                    PerformanceCost = 5, Quality = 5, UseCase = "maximum-quality", 
+                    PerformanceCost = 5, Quality = "5", UseCase = "maximum-quality", 
                     SupportsHardwareAcceleration = false 
                 },
                 ["nearest-neighbor"] = new ShaderSettings 
                 { 
-                    PerformanceCost = 1, Quality = 1, UseCase = "emergency", 
+                    PerformanceCost = 1, Quality = "1", UseCase = "emergency", 
                     SupportsHardwareAcceleration = true 
                 }
             };
@@ -437,11 +437,11 @@ namespace JellyfinUpscalerPlugin
                 
                 foreach (var model in Configuration.ModelConfigurations)
                 {
-                    if (model.Value.RequiredVRAM <= availableVRAM)
+                    if (model.Value is ModelSettings modelSettings && modelSettings.RequiredVRAM <= availableVRAM)
                     {
                         // Prefer content-specific models
-                        if (model.Value.ContentType == contentType || 
-                            model.Value.ContentType == "general" ||
+                        if (modelSettings.ContentType == contentType || 
+                            modelSettings.ContentType == "general" ||
                             contentType == "general")
                         {
                             suitableModels.Add(model.Key);

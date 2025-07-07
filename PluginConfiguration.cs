@@ -108,6 +108,32 @@ namespace JellyfinUpscalerPlugin
         public bool EnablePlugin { get; set; } = true;
         public bool EnableChromecastFix { get; set; } = true;
         public Dictionary<string, object> ShaderConfigurations { get; set; } = new Dictionary<string, object>();
+        
+        // Cache and Performance Settings
+        public bool AutoCleanupCache { get; set; } = true;
+        public int MaxCacheAgeDays { get; set; } = 7;
+        public bool EnableCache { get; set; } = true;
+        public int CacheSize { get; set; } = 1024;
+        public bool EnableLowLatencyMode { get; set; } = false;
+        public bool EnableQuickSettings { get; set; } = true;
+        public string DefaultPreset { get; set; } = "balanced";
+        public bool EnableTooltips { get; set; } = true;
+        public string UITheme { get; set; } = "auto";
+        public bool EnableDebugLogging { get; set; } = false;
+        public bool EnablePerformanceMetrics { get; set; } = false;
+        public bool EnableAPIAccess { get; set; } = true;
+        public bool ShowProgressInDashboard { get; set; } = true;
+        public string TempDirectory { get; set; } = "";
+        public bool EnableAnimeOptimization { get; set; } = false;
+        public bool EnableMovieOptimization { get; set; } = false;
+        public bool EnableTVOptimization { get; set; } = false;
+        
+        // Hardware Acceleration Settings
+        public bool EnableNVIDIANVENC { get; set; } = true;
+        public bool EnableAMDVCE { get; set; } = true;
+        public bool EnableAppleVideoToolbox { get; set; } = true;
+        public bool EnableVAAPI { get; set; } = true;
+        public bool EnableMediaFoundation { get; set; } = true;
     }
     
     /// <summary>
@@ -133,6 +159,12 @@ namespace JellyfinUpscalerPlugin
         public int PreferredScale { get; set; } = 2;
         public string PreferredQuality { get; set; } = "balanced";
         public bool IsActive { get; set; } = true;
+        
+        // Additional properties for AV1VideoProcessor compatibility
+        public string DeviceName { get; set; } = "";
+        public string PreferredShader { get; set; } = "bicubic";
+        public DateTime LastSync { get; set; } = DateTime.Now;
+        public Dictionary<string, object> Settings { get; set; } = new Dictionary<string, object>();
     }
     
     /// <summary>
@@ -146,6 +178,13 @@ namespace JellyfinUpscalerPlugin
         public string ContentType { get; set; } = "general";
         public bool IsEnabled { get; set; } = true;
         public Dictionary<string, object> Parameters { get; set; } = new Dictionary<string, object>();
+        
+        // Additional properties for Plugin.cs compatibility
+        public int OptimalScale { get; set; } = 2;
+        public int PerformanceCost { get; set; } = 5;
+        public string UseCase { get; set; } = "general";
+        public bool SupportsHardwareAcceleration { get; set; } = false;
+        public string Quality { get; set; } = "balanced";
     }
     
     /// <summary>
@@ -156,5 +195,11 @@ namespace JellyfinUpscalerPlugin
         public string Name { get; set; } = "";
         public bool IsEnabled { get; set; } = true;
         public Dictionary<string, object> Parameters { get; set; } = new Dictionary<string, object>();
+        
+        // Additional properties for Plugin.cs compatibility
+        public int PerformanceCost { get; set; } = 3;
+        public string Quality { get; set; } = "balanced";
+        public string UseCase { get; set; } = "general";
+        public bool SupportsHardwareAcceleration { get; set; } = false;
     }
 }
