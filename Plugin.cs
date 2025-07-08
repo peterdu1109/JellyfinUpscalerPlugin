@@ -115,8 +115,14 @@ namespace JellyfinUpscalerPlugin
                 // Main configuration page
                 new PluginPageInfo
                 {
-                    Name = "🚀 AI Upscaler Configuration",
+                    Name = "AI Upscaler Configuration",
                     EmbeddedResourcePath = GetType().Namespace + ".Configuration.configurationpage.html"
+                },
+                // Video player integration script
+                new PluginPageInfo
+                {
+                    Name = "AI Upscaler Player Script",
+                    EmbeddedResourcePath = GetType().Namespace + ".web.player-integration.js"
                 }
             };
         }

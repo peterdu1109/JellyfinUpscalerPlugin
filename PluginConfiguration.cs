@@ -134,6 +134,9 @@ namespace JellyfinUpscalerPlugin
         public bool EnableAppleVideoToolbox { get; set; } = true;
         public bool EnableVAAPI { get; set; } = true;
         public bool EnableMediaFoundation { get; set; } = true;
+        
+        // Player Integration Settings
+        public bool AutoModelSelection { get; set; } = true;
     }
     
     /// <summary>

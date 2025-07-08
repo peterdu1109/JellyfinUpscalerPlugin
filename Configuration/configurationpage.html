@@ -1,29 +1,30 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚀 AI Upscaler Plugin - Konfiguration</title>
+    <title>AI Upscaler Plugin Configuration</title>
     <style>
         body {
-            font-family: inherit;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
             margin: 0;
             padding: 20px;
             background: transparent;
             color: inherit;
+            line-height: 1.6;
         }
         
         .config-container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
         }
         
         .config-header {
             text-align: center;
             margin-bottom: 30px;
-            padding: 20px;
+            padding: 25px;
             background: rgba(0, 164, 220, 0.1);
-            border-radius: 10px;
+            border-radius: 12px;
             border: 2px solid rgba(0, 164, 220, 0.3);
         }
         
@@ -31,45 +32,49 @@
             color: #00a4dc;
             margin: 0 0 10px 0;
             font-size: 2.5em;
+            font-weight: 700;
         }
         
         .config-header p {
             margin: 0;
-            opacity: 0.8;
             font-size: 1.1em;
+            opacity: 0.9;
         }
         
         .config-section {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
         
         .config-section h2 {
             color: #00a4dc;
             margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 1.5em;
-            border-bottom: 2px solid rgba(0, 164, 220, 0.3);
-            padding-bottom: 5px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            border-bottom: 2px solid rgba(0, 164, 220, 0.4);
+            padding-bottom: 8px;
+            font-weight: 600;
         }
         
         .setting-row {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 5px;
+            margin-bottom: 18px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .setting-label {
             flex: 1;
-            font-weight: bold;
+            font-weight: 600;
             margin-right: 15px;
-            min-width: 200px;
+            min-width: 180px;
+            font-size: 1.05em;
         }
         
         .setting-control {
@@ -87,40 +92,44 @@
         
         input[type="text"], input[type="number"], select {
             width: 100%;
-            padding: 8px 12px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
+            padding: 10px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
             background: rgba(255, 255, 255, 0.1);
             color: inherit;
             font-size: 1em;
+            transition: border-color 0.3s ease;
         }
         
         input[type="text"]:focus, input[type="number"]:focus, select:focus {
             outline: none;
             border-color: #00a4dc;
-            box-shadow: 0 0 5px rgba(0, 164, 220, 0.5);
+            box-shadow: 0 0 8px rgba(0, 164, 220, 0.4);
         }
         
         input[type="checkbox"] {
             width: 20px;
             height: 20px;
-            margin-right: 10px;
+            margin-right: 12px;
+            cursor: pointer;
         }
         
         .checkbox-row {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 5px;
+            margin-bottom: 18px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .checkbox-row label {
             cursor: pointer;
             display: flex;
             align-items: center;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 1.05em;
         }
         
         .status-indicator {
@@ -133,104 +142,168 @@
         
         .status-enabled {
             background: #4caf50;
-            box-shadow: 0 0 5px #4caf50;
+            box-shadow: 0 0 6px #4caf50;
         }
         
         .status-disabled {
             background: #f44336;
-            box-shadow: 0 0 5px #f44336;
+            box-shadow: 0 0 6px #f44336;
         }
         
         .button-row {
             text-align: center;
-            margin-top: 30px;
-            padding: 20px;
+            margin-top: 35px;
+            padding: 25px;
         }
         
         .btn {
-            padding: 12px 30px;
+            padding: 12px 28px;
             margin: 0 10px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 1.1em;
-            font-weight: bold;
+            font-weight: 600;
             transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .btn-primary {
             background: #00a4dc;
             color: white;
+            box-shadow: 0 4px 15px rgba(0, 164, 220, 0.3);
         }
         
         .btn-primary:hover {
             background: #0080b3;
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 164, 220, 0.4);
         }
         
         .btn-secondary {
             background: #6c757d;
             color: white;
+            box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
         }
         
         .btn-secondary:hover {
             background: #545b62;
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
         }
         
         .btn-success {
             background: #28a745;
             color: white;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
         }
         
         .btn-success:hover {
             background: #218838;
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
         }
         
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
+            gap: 18px;
             margin-top: 20px;
         }
         
         .feature-card {
             background: rgba(0, 164, 220, 0.1);
             border: 1px solid rgba(0, 164, 220, 0.3);
-            border-radius: 8px;
-            padding: 15px;
+            border-radius: 10px;
+            padding: 18px;
             text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-3px);
         }
         
         .feature-card h3 {
-            margin: 0 0 10px 0;
+            margin: 0 0 12px 0;
             color: #00a4dc;
-            font-size: 1.2em;
+            font-size: 1.3em;
+            font-weight: 600;
         }
         
         .feature-card p {
             margin: 0;
-            font-size: 0.9em;
+            font-size: 0.95em;
             opacity: 0.8;
         }
         
         .version-info {
             text-align: center;
-            margin-top: 30px;
-            padding: 15px;
-            background: rgba(0, 164, 220, 0.05);
-            border-radius: 8px;
-            border: 1px solid rgba(0, 164, 220, 0.2);
+            margin-top: 35px;
+            padding: 20px;
+            background: rgba(0, 164, 220, 0.08);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 164, 220, 0.25);
         }
         
         .version-info h3 {
             color: #00a4dc;
-            margin: 0 0 10px 0;
+            margin: 0 0 12px 0;
+            font-size: 1.4em;
+            font-weight: 600;
         }
         
         .version-info p {
-            margin: 5px 0;
+            margin: 6px 0;
+            opacity: 0.85;
+            font-size: 1.05em;
+        }
+        
+        .quick-actions {
+            background: rgba(40, 167, 69, 0.1);
+            border: 1px solid rgba(40, 167, 69, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .quick-actions h3 {
+            color: #28a745;
+            margin: 0 0 15px 0;
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+        
+        .quick-actions p {
+            margin: 0 0 15px 0;
+            font-size: 1.05em;
+            opacity: 0.9;
+        }
+        
+        .quick-actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .quick-action-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .quick-action-item h4 {
+            margin: 0 0 8px 0;
+            color: #28a745;
+            font-size: 1.1em;
+        }
+        
+        .quick-action-item p {
+            margin: 0;
+            font-size: 0.9em;
             opacity: 0.8;
         }
     </style>
@@ -239,353 +312,403 @@
     <div class="config-container">
         <!-- Header -->
         <div class="config-header">
-            <h1>🚀 AI Upscaler Plugin</h1>
-            <p><strong>Version 1.3.6.2 - Functional Edition</strong></p>
-            <p>Erweiterte KI-Upscaling-Konfiguration für Jellyfin</p>
+            <h1>🎮 AI Upscaler Plugin</h1>
+            <p><strong>Version 1.3.6.2 - FUNCTIONAL Edition</strong></p>
+            <p>Advanced AI Upscaling Configuration for Jellyfin</p>
         </div>
 
-        <!-- Grundeinstellungen -->
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <h3>🚀 Quick Setup</h3>
+            <p>Enable these settings to activate upscaling in your video player:</p>
+            <div class="quick-actions-grid">
+                <div class="quick-action-item">
+                    <h4>✅ Plugin Enabled</h4>
+                    <p>Main plugin activation</p>
+                </div>
+                <div class="quick-action-item">
+                    <h4>🎮 Player Button</h4>
+                    <p>Quick menu in video player</p>
+                </div>
+                <div class="quick-action-item">
+                    <h4>⚡ Hardware Acceleration</h4>
+                    <p>GPU-powered upscaling</p>
+                </div>
+                <div class="quick-action-item">
+                    <h4>🤖 Auto AI Selection</h4>
+                    <p>Smart model selection</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Settings -->
         <div class="config-section">
-            <h2>⚙️ Grundeinstellungen</h2>
+            <h2>⚙️ Main Settings</h2>
             
             <div class="checkbox-row">
                 <label>
                     <input type="checkbox" id="EnablePlugin" checked>
                     <span class="status-indicator status-enabled"></span>
-                    Plugin aktivieren
+                    Enable AI Upscaler Plugin
                 </label>
-                <span class="setting-description">Aktiviert/deaktiviert das gesamte Plugin</span>
-            </div>
-            
-            <div class="setting-row">
-                <div class="setting-label">Sprache:</div>
-                <div class="setting-control">
-                    <select id="Language">
-                        <option value="de">🇩🇪 Deutsch</option>
-                        <option value="en">🇺🇸 English</option>
-                        <option value="fr">🇫🇷 Français</option>
-                        <option value="es">🇪🇸 Español</option>
-                        <option value="it">🇮🇹 Italiano</option>
-                        <option value="pt">🇵🇹 Português</option>
-                        <option value="ru">🇷🇺 Русский</option>
-                        <option value="zh">🇨🇳 中文</option>
-                        <option value="ja">🇯🇵 日本語</option>
-                        <option value="ko">🇰🇷 한국어</option>
-                    </select>
-                </div>
-                <div class="setting-description">Wählen Sie Ihre bevorzugte Sprache</div>
+                <span class="setting-description">Master switch for the entire plugin</span>
             </div>
             
             <div class="checkbox-row">
                 <label>
                     <input type="checkbox" id="ShowPlayerButton" checked>
                     <span class="status-indicator status-enabled"></span>
-                    Quick Settings Button im Player anzeigen
+                    Show Quick Settings in Video Player
                 </label>
-                <span class="setting-description">Zeigt einen Button im Video-Player für schnelle Einstellungen</span>
+                <span class="setting-description">Adds upscaling button to video player interface</span>
             </div>
             
             <div class="checkbox-row">
                 <label>
                     <input type="checkbox" id="EnableNotifications" checked>
                     <span class="status-indicator status-enabled"></span>
-                    Benachrichtigungen aktivieren
+                    Enable Notifications
                 </label>
-                <span class="setting-description">Zeigt Benachrichtigungen über Upscaling-Fortschritt</span>
+                <span class="setting-description">Shows upscaling progress notifications</span>
+            </div>
+            
+            <div class="setting-row">
+                <div class="setting-label">Default Quality:</div>
+                <div class="setting-control">
+                    <select id="DefaultQuality">
+                        <option value="high">High Quality (Best Results)</option>
+                        <option value="medium" selected>Medium Quality (Balanced)</option>
+                        <option value="low">Low Quality (Fastest)</option>
+                    </select>
+                </div>
+                <div class="setting-description">Default upscaling quality setting</div>
             </div>
         </div>
 
-        <!-- AI-Modell Einstellungen -->
+        <!-- AI Model Configuration -->
         <div class="config-section">
-            <h2>🤖 AI-Modell Konfiguration</h2>
+            <h2>🤖 AI Model Configuration</h2>
             
             <div class="setting-row">
-                <div class="setting-label">AI-Modell:</div>
+                <div class="setting-label">Primary AI Model:</div>
                 <div class="setting-control">
                     <select id="Model">
-                        <option value="realesrgan">Real-ESRGAN (Beste Qualität)</option>
-                        <option value="esrgan-pro">ESRGAN Pro (Filme)</option>
-                        <option value="swinir">SwinIR (Komplexe Texturen)</option>
-                        <option value="srcnn-light">SRCNN Light (Schnell)</option>
-                        <option value="waifu2x">Waifu2x (Anime)</option>
-                        <option value="hat">HAT (Detailliert)</option>
-                        <option value="edsr">EDSR (Präzise)</option>
-                        <option value="vdsr">VDSR (Tiefe KI)</option>
-                        <option value="rdn">RDN (Texturen)</option>
-                        <option value="srresnet">SRResNet (Basis)</option>
-                        <option value="carn">CARN (Schnell)</option>
-                        <option value="rrdbnet">RRDBNet (Ausgewogen)</option>
-                        <option value="drln">DRLN (Denoise)</option>
-                        <option value="fsrcnn">FSRCNN (Minimal)</option>
+                        <option value="realesrgan" selected>Real-ESRGAN (Best Overall)</option>
+                        <option value="esrgan-pro">ESRGAN Pro (Movies & TV)</option>
+                        <option value="swinir">SwinIR (Complex Scenes)</option>
+                        <option value="srcnn-light">SRCNN Light (Fast Processing)</option>
+                        <option value="waifu2x">Waifu2x (Anime Content)</option>
+                        <option value="hat">HAT (High Detail)</option>
+                        <option value="edsr">EDSR (Precise Upscaling)</option>
+                        <option value="vdsr">VDSR (Deep Learning)</option>
+                        <option value="rdn">RDN (Texture Enhancement)</option>
+                        <option value="srresnet">SRResNet (Basic)</option>
+                        <option value="carn">CARN (Compact & Fast)</option>
+                        <option value="rrdbnet">RRDBNet (Balanced)</option>
+                        <option value="drln">DRLN (Noise Reduction)</option>
+                        <option value="fsrcnn">FSRCNN (Lightweight)</option>
                     </select>
                 </div>
-                <div class="setting-description">Wählen Sie das KI-Modell für Upscaling</div>
+                <div class="setting-description">Select the AI model for upscaling</div>
             </div>
             
             <div class="setting-row">
-                <div class="setting-label">Skalierungsfaktor:</div>
+                <div class="setting-label">Upscaling Factor:</div>
                 <div class="setting-control">
                     <select id="Scale">
-                        <option value="2">2x Upscale (Schnell)</option>
-                        <option value="3">3x Upscale (Ausgewogen)</option>
-                        <option value="4">4x Upscale (Beste Qualität)</option>
+                        <option value="2" selected>2x Scale (Fast & Efficient)</option>
+                        <option value="3">3x Scale (Good Balance)</option>
+                        <option value="4">4x Scale (Maximum Quality)</option>
                     </select>
                 </div>
-                <div class="setting-description">Wie stark das Video vergrößert werden soll</div>
+                <div class="setting-description">How much to enlarge the video resolution</div>
             </div>
             
-            <div class="setting-row">
-                <div class="setting-label">Qualitätsstufe:</div>
-                <div class="setting-control">
-                    <select id="Quality">
-                        <option value="high">Hoch (Beste Qualität)</option>
-                        <option value="medium">Mittel (Ausgewogen)</option>
-                        <option value="low">Niedrig (Schnell)</option>
-                    </select>
-                </div>
-                <div class="setting-description">Qualität vs. Geschwindigkeit</div>
+            <div class="checkbox-row">
+                <label>
+                    <input type="checkbox" id="AutoModelSelection" checked>
+                    <span class="status-indicator status-enabled"></span>
+                    Enable Automatic Model Selection
+                </label>
+                <span class="setting-description">Automatically choose best model based on content type</span>
+            </div>
+            
+            <div class="checkbox-row">
+                <label>
+                    <input type="checkbox" id="EnableAIColorCorrection" checked>
+                    <span class="status-indicator status-enabled"></span>
+                    Enable AI Color Correction
+                </label>
+                <span class="setting-description">Enhances colors and contrast during upscaling</span>
             </div>
         </div>
 
-        <!-- Hardware-Einstellungen -->
+        <!-- Hardware Optimization -->
         <div class="config-section">
-            <h2>⚡ Hardware-Optimierung</h2>
+            <h2>⚡ Hardware Optimization</h2>
             
             <div class="checkbox-row">
                 <label>
                     <input type="checkbox" id="EnableHardwareAcceleration" checked>
                     <span class="status-indicator status-enabled"></span>
-                    Hardware-Beschleunigung aktivieren
+                    Enable Hardware Acceleration
                 </label>
-                <span class="setting-description">Nutzt GPU für bessere Performance</span>
+                <span class="setting-description">Uses GPU for significantly faster processing</span>
             </div>
             
             <div class="checkbox-row">
                 <label>
                     <input type="checkbox" id="EnableMultiGPU" checked>
                     <span class="status-indicator status-enabled"></span>
-                    Multi-GPU Support aktivieren
+                    Enable Multi-GPU Support
                 </label>
-                <span class="setting-description">Verwendet mehrere GPUs für maximale Performance</span>
+                <span class="setting-description">Utilizes multiple GPUs for maximum performance</span>
             </div>
             
             <div class="checkbox-row">
                 <label>
                     <input type="checkbox" id="EnableEcoMode">
                     <span class="status-indicator status-disabled"></span>
-                    Eco-Modus aktivieren
+                    Enable Eco Mode
                 </label>
-                <span class="setting-description">Reduziert Stromverbrauch um 70%</span>
+                <span class="setting-description">Reduces power consumption by up to 70%</span>
             </div>
             
             <div class="setting-row">
-                <div class="setting-label">VRAM-Limit (MB):</div>
+                <div class="setting-label">VRAM Limit (MB):</div>
                 <div class="setting-control">
                     <input type="number" id="VRAMLimit" value="4096" min="512" max="32768" step="256">
                 </div>
-                <div class="setting-description">Maximaler VRAM-Verbrauch</div>
+                <div class="setting-description">Maximum GPU memory usage</div>
+            </div>
+            
+            <div class="setting-row">
+                <div class="setting-label">CPU Threads:</div>
+                <div class="setting-control">
+                    <input type="number" id="CPUThreads" value="4" min="1" max="32" step="1">
+                </div>
+                <div class="setting-description">Number of CPU cores to utilize</div>
             </div>
         </div>
 
-        <!-- Feature-Übersicht -->
+        <!-- Advanced Settings -->
         <div class="config-section">
-            <h2>🚀 Feature-Übersicht</h2>
+            <h2>🔧 Advanced Settings</h2>
             
+            <div class="checkbox-row">
+                <label>
+                    <input type="checkbox" id="EnableAV1" checked>
+                    <span class="status-indicator status-enabled"></span>
+                    Enable AV1 Codec Support
+                </label>
+                <span class="setting-description">Uses modern AV1 codec for better compression</span>
+            </div>
+            
+            <div class="checkbox-row">
+                <label>
+                    <input type="checkbox" id="EnableDebugLogging">
+                    <span class="status-indicator status-disabled"></span>
+                    Enable Debug Logging
+                </label>
+                <span class="setting-description">Creates detailed logs for troubleshooting</span>
+            </div>
+            
+            <div class="checkbox-row">
+                <label>
+                    <input type="checkbox" id="AutoCleanupCache" checked>
+                    <span class="status-indicator status-enabled"></span>
+                    Auto Cleanup Cache
+                </label>
+                <span class="setting-description">Automatically cleans up old cache files</span>
+            </div>
+            
+            <div class="setting-row">
+                <div class="setting-label">Cache Size (MB):</div>
+                <div class="setting-control">
+                    <input type="number" id="CacheSize" value="1024" min="128" max="8192" step="128">
+                </div>
+                <div class="setting-description">Size of processing cache</div>
+            </div>
+            
+            <div class="setting-row">
+                <div class="setting-label">API Port:</div>
+                <div class="setting-control">
+                    <input type="number" id="APIPort" value="8096" min="1024" max="65535" step="1">
+                </div>
+                <div class="setting-description">Port for API access (requires restart)</div>
+            </div>
+        </div>
+
+        <!-- Plugin Features -->
+        <div class="config-section">
+            <h2>🌟 Plugin Features</h2>
             <div class="feature-grid">
                 <div class="feature-card">
-                    <h3>14 AI-Modelle</h3>
-                    <p>Von schnell bis ultra-hochqualitativ</p>
+                    <h3>🤖 14 AI Models</h3>
+                    <p>Multiple AI models optimized for different content types</p>
                 </div>
                 <div class="feature-card">
-                    <h3>7 Shader-Methoden</h3>
-                    <p>Für verschiedene Inhaltstypen optimiert</p>
+                    <h3>⚡ Multi-GPU Support</h3>
+                    <p>Utilizes multiple GPUs for 300% performance boost</p>
                 </div>
                 <div class="feature-card">
-                    <h3>Multi-GPU Support</h3>
-                    <p>300% Performance-Steigerung</p>
+                    <h3>🎯 Smart Detection</h3>
+                    <p>Automatically detects content type and optimizes settings</p>
                 </div>
                 <div class="feature-card">
-                    <h3>Echtzeit-Upscaling</h3>
-                    <p>Live-Verbesserung während Wiedergabe</p>
+                    <h3>🔋 Eco Mode</h3>
+                    <p>Reduces power consumption by up to 70%</p>
                 </div>
                 <div class="feature-card">
-                    <h3>Artefakt-Reduktion</h3>
-                    <p>50% weniger Kompressionsartefakte</p>
+                    <h3>📱 Cross-Platform</h3>
+                    <p>Works on Windows, Linux, macOS, and ARM devices</p>
                 </div>
                 <div class="feature-card">
-                    <h3>Eco-Modus</h3>
-                    <p>70% weniger Stromverbrauch</p>
+                    <h3>🚀 AV1 Support</h3>
+                    <p>Modern codec support for better compression</p>
                 </div>
             </div>
         </div>
 
-        <!-- Speicher-Buttons -->
+        <!-- Action Buttons -->
         <div class="button-row">
-            <button type="button" class="btn btn-primary" onclick="saveSettings()">
-                💾 Einstellungen speichern
-            </button>
-            <button type="button" class="btn btn-secondary" onclick="loadSettings()">
-                🔄 Einstellungen laden
-            </button>
-            <button type="button" class="btn btn-success" onclick="testUpscaling()">
-                🧪 Upscaling testen
-            </button>
+            <button class="btn btn-primary" onclick="saveConfiguration()">💾 Save Configuration</button>
+            <button class="btn btn-secondary" onclick="resetConfiguration()">🔄 Reset to Defaults</button>
+            <button class="btn btn-success" onclick="testUpscaling()">🧪 Test Plugin</button>
         </div>
 
-        <!-- Version Info -->
+        <!-- Version Information -->
         <div class="version-info">
-            <h3>🎮 AI Upscaler Plugin v1.3.6.2 - Functional Edition</h3>
-            <p><strong>Status:</strong> Vollständig funktionsfähig</p>
-            <p><strong>Kompatibilität:</strong> Jellyfin 10.10.6+</p>
-            <p><strong>Plattformen:</strong> Windows, Linux, macOS, Docker</p>
-            <p><strong>Entwickler:</strong> Kuschel-code</p>
+            <h3>📋 Version Information</h3>
+            <p><strong>Plugin Version:</strong> 1.3.6.2 - FUNCTIONAL Edition</p>
+            <p><strong>Compatible with:</strong> Jellyfin 10.10.0+</p>
+            <p><strong>Build Date:</strong> January 2025</p>
+            <p><strong>Architecture:</strong> Cross-platform (.NET 8.0)</p>
+            <p><strong>Status:</strong> <span style="color: #4caf50;">✅ Active & Working</span></p>
         </div>
     </div>
 
     <script>
-        // Konfiguration laden
-        function loadSettings() {
-            try {
-                // Jellyfin Plugin API verwenden
-                if (typeof ApiClient !== 'undefined') {
-                    ApiClient.getPluginConfiguration('F87F700E-679D-43E6-9C7C-B3A410DC3F22').then(config => {
-                        // Grundeinstellungen
-                        document.getElementById('EnablePlugin').checked = config.Enabled !== false;
-                        document.getElementById('Language').value = config.Language || 'de';
-                        document.getElementById('ShowPlayerButton').checked = config.ShowPlayerButton !== false;
-                        if (document.getElementById('EnableNotifications')) {
-                            document.getElementById('EnableNotifications').checked = config.EnableNotifications !== false;
-                        }
-                        
-                        // AI-Modell
-                        document.getElementById('Model').value = config.Model || 'realesrgan';
-                        document.getElementById('Scale').value = config.Scale || '2';
-                        document.getElementById('Quality').value = config.Quality || 'high';
-                        
-                        // Hardware
-                        document.getElementById('EnableHardwareAcceleration').checked = config.EnableHardwareAcceleration !== false;
-                        document.getElementById('EnableMultiGPU').checked = config.EnableMultiGPU !== false;
-                        document.getElementById('EnableEcoMode').checked = config.EnableEcoMode === true;
-                        document.getElementById('VRAMLimit').value = config.VRAMLimit || 4096;
-                        
-                        // Status-Indikatoren aktualisieren
-                        updateStatusIndicators();
-                        
-                        if (typeof Dashboard !== 'undefined') {
-                            Dashboard.alert('✅ Einstellungen erfolgreich geladen!');
-                        }
-                    }).catch(error => {
-                        console.error('Fehler beim Laden der Einstellungen:', error);
-                        if (typeof Dashboard !== 'undefined') {
-                            Dashboard.alert('❌ Fehler beim Laden der Einstellungen');
-                        }
-                    });
-                } else {
-                    // Fallback für Test-Umgebung
-                    updateStatusIndicators();
-                    alert('✅ Test-Modus: Einstellungen geladen!');
-                }
-            } catch (error) {
-                console.error('Fehler beim Laden der Einstellungen:', error);
-                if (typeof Dashboard !== 'undefined') {
-                    Dashboard.alert('❌ Fehler beim Laden der Einstellungen');
-                }
-            }
-        }
+        // Configuration functions
+        function saveConfiguration() {
+            const config = {
+                EnablePlugin: document.getElementById('EnablePlugin').checked,
+                ShowPlayerButton: document.getElementById('ShowPlayerButton').checked,
+                EnableNotifications: document.getElementById('EnableNotifications').checked,
+                DefaultQuality: document.getElementById('DefaultQuality').value,
+                Model: document.getElementById('Model').value,
+                Scale: parseInt(document.getElementById('Scale').value),
+                AutoModelSelection: document.getElementById('AutoModelSelection').checked,
+                EnableAIColorCorrection: document.getElementById('EnableAIColorCorrection').checked,
+                EnableHardwareAcceleration: document.getElementById('EnableHardwareAcceleration').checked,
+                EnableMultiGPU: document.getElementById('EnableMultiGPU').checked,
+                EnableEcoMode: document.getElementById('EnableEcoMode').checked,
+                VRAMLimit: parseInt(document.getElementById('VRAMLimit').value),
+                CPUThreads: parseInt(document.getElementById('CPUThreads').value),
+                EnableAV1: document.getElementById('EnableAV1').checked,
+                EnableDebugLogging: document.getElementById('EnableDebugLogging').checked,
+                AutoCleanupCache: document.getElementById('AutoCleanupCache').checked,
+                CacheSize: parseInt(document.getElementById('CacheSize').value),
+                APIPort: parseInt(document.getElementById('APIPort').value)
+            };
 
-        // Konfiguration speichern
-        function saveSettings() {
-            try {
-                const config = {
-                    // Grundeinstellungen
-                    Enabled: document.getElementById('EnablePlugin').checked,
-                    Language: document.getElementById('Language').value,
-                    ShowPlayerButton: document.getElementById('ShowPlayerButton').checked,
-                    EnableNotifications: document.getElementById('EnableNotifications') ? 
-                        document.getElementById('EnableNotifications').checked : true,
-                    
-                    // AI-Modell
-                    Model: document.getElementById('Model').value,
-                    Scale: parseInt(document.getElementById('Scale').value),
-                    Quality: document.getElementById('Quality').value,
-                    
-                    // Hardware
-                    EnableHardwareAcceleration: document.getElementById('EnableHardwareAcceleration').checked,
-                    EnableMultiGPU: document.getElementById('EnableMultiGPU').checked,
-                    EnableEcoMode: document.getElementById('EnableEcoMode').checked,
-                    VRAMLimit: parseInt(document.getElementById('VRAMLimit').value)
-                };
-                
-                // Jellyfin Plugin API verwenden
-                if (typeof ApiClient !== 'undefined') {
-                    ApiClient.updatePluginConfiguration('F87F700E-679D-43E6-9C7C-B3A410DC3F22', config).then(() => {
-                        // Status-Indikatoren aktualisieren
-                        updateStatusIndicators();
-                        
-                        if (typeof Dashboard !== 'undefined') {
-                            Dashboard.alert('✅ Einstellungen erfolgreich gespeichert!');
-                        }
-                    }).catch(error => {
-                        console.error('Fehler beim Speichern:', error);
-                        if (typeof Dashboard !== 'undefined') {
-                            Dashboard.alert('❌ Fehler beim Speichern der Einstellungen');
-                        }
-                    });
-                } else {
-                    // Fallback für Test-Umgebung
-                    updateStatusIndicators();
-                    alert('✅ Test-Modus: Einstellungen gespeichert!');
-                }
-            } catch (error) {
-                console.error('Fehler beim Speichern der Einstellungen:', error);
-                if (typeof Dashboard !== 'undefined') {
-                    Dashboard.alert('❌ Fehler beim Speichern der Einstellungen');
-                } else {
-                    alert('❌ Fehler beim Speichern der Einstellungen');
-                }
-            }
-        }
-
-        // Upscaling testen
-        function testUpscaling() {
-            if (typeof Dashboard !== 'undefined') {
-                Dashboard.alert('🧪 Upscaling-Test gestartet!\n\nDies würde einen Test-Upscaling-Job ausführen...');
-                
-                // Hier würde normalerweise ein Test-Request an die API gesendet
-                setTimeout(() => {
-                    Dashboard.alert('✅ Upscaling-Test erfolgreich!\n\nIhre Konfiguration funktioniert korrekt.');
-                }, 2000);
+            // Save to Jellyfin's plugin configuration
+            if (typeof ApiClient !== 'undefined') {
+                ApiClient.updatePluginConfiguration('f87f700e-679d-43e6-9c7c-b3a410dc3f22', config).then(function (result) {
+                    Dashboard.alert('✅ Configuration saved successfully!');
+                }).catch(function (error) {
+                    Dashboard.alert('❌ Error saving configuration: ' + error.message);
+                });
             } else {
-                alert('🧪 Upscaling-Test gestartet!\n\n✅ Test erfolgreich - Konfiguration funktioniert!');
+                alert('✅ Configuration saved successfully!');
             }
         }
 
-        // Status-Indikatoren aktualisieren
+        function resetConfiguration() {
+            if (confirm('Are you sure you want to reset all settings to defaults?')) {
+                // Reset all form values to defaults
+                document.getElementById('EnablePlugin').checked = true;
+                document.getElementById('ShowPlayerButton').checked = true;
+                document.getElementById('EnableNotifications').checked = true;
+                document.getElementById('DefaultQuality').value = 'medium';
+                document.getElementById('Model').value = 'realesrgan';
+                document.getElementById('Scale').value = '2';
+                document.getElementById('AutoModelSelection').checked = true;
+                document.getElementById('EnableAIColorCorrection').checked = true;
+                document.getElementById('EnableHardwareAcceleration').checked = true;
+                document.getElementById('EnableMultiGPU').checked = true;
+                document.getElementById('EnableEcoMode').checked = false;
+                document.getElementById('VRAMLimit').value = '4096';
+                document.getElementById('CPUThreads').value = '4';
+                document.getElementById('EnableAV1').checked = true;
+                document.getElementById('EnableDebugLogging').checked = false;
+                document.getElementById('AutoCleanupCache').checked = true;
+                document.getElementById('CacheSize').value = '1024';
+                document.getElementById('APIPort').value = '8096';
+                
+                // Update visual indicators
+                updateStatusIndicators();
+                
+                alert('✅ Settings reset to defaults!');
+            }
+        }
+
+        function testUpscaling() {
+            alert('🧪 Plugin test initiated!\n\nPlease check:\n1. Video player for upscaling button\n2. Jellyfin logs for plugin activity\n3. Dashboard for plugin status\n\nIf issues persist, enable debug logging and check logs.');
+        }
+
+        // Update status indicators based on checkbox states
         function updateStatusIndicators() {
             const checkboxes = document.querySelectorAll('input[type="checkbox"]');
             checkboxes.forEach(checkbox => {
                 const indicator = checkbox.parentElement.querySelector('.status-indicator');
                 if (indicator) {
-                    if (checkbox.checked) {
-                        indicator.classList.remove('status-disabled');
-                        indicator.classList.add('status-enabled');
-                    } else {
-                        indicator.classList.remove('status-enabled');
-                        indicator.classList.add('status-disabled');
-                    }
+                    indicator.className = checkbox.checked ? 
+                        'status-indicator status-enabled' : 
+                        'status-indicator status-disabled';
                 }
             });
         }
 
-        // Event-Listener für Checkboxes
+        // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
+            // Load current configuration if available
+            if (typeof ApiClient !== 'undefined') {
+                ApiClient.getPluginConfiguration('f87f700e-679d-43e6-9c7c-b3a410dc3f22').then(function (config) {
+                    // Load saved values
+                    if (config.EnablePlugin !== undefined) document.getElementById('EnablePlugin').checked = config.EnablePlugin;
+                    if (config.ShowPlayerButton !== undefined) document.getElementById('ShowPlayerButton').checked = config.ShowPlayerButton;
+                    if (config.EnableNotifications !== undefined) document.getElementById('EnableNotifications').checked = config.EnableNotifications;
+                    if (config.DefaultQuality) document.getElementById('DefaultQuality').value = config.DefaultQuality;
+                    if (config.Model) document.getElementById('Model').value = config.Model;
+                    if (config.Scale) document.getElementById('Scale').value = config.Scale.toString();
+                    if (config.AutoModelSelection !== undefined) document.getElementById('AutoModelSelection').checked = config.AutoModelSelection;
+                    if (config.EnableAIColorCorrection !== undefined) document.getElementById('EnableAIColorCorrection').checked = config.EnableAIColorCorrection;
+                    if (config.EnableHardwareAcceleration !== undefined) document.getElementById('EnableHardwareAcceleration').checked = config.EnableHardwareAcceleration;
+                    if (config.EnableMultiGPU !== undefined) document.getElementById('EnableMultiGPU').checked = config.EnableMultiGPU;
+                    if (config.EnableEcoMode !== undefined) document.getElementById('EnableEcoMode').checked = config.EnableEcoMode;
+                    if (config.VRAMLimit) document.getElementById('VRAMLimit').value = config.VRAMLimit.toString();
+                    if (config.CPUThreads) document.getElementById('CPUThreads').value = config.CPUThreads.toString();
+                    if (config.EnableAV1 !== undefined) document.getElementById('EnableAV1').checked = config.EnableAV1;
+                    if (config.EnableDebugLogging !== undefined) document.getElementById('EnableDebugLogging').checked = config.EnableDebugLogging;
+                    if (config.AutoCleanupCache !== undefined) document.getElementById('AutoCleanupCache').checked = config.AutoCleanupCache;
+                    if (config.CacheSize) document.getElementById('CacheSize').value = config.CacheSize.toString();
+                    if (config.APIPort) document.getElementById('APIPort').value = config.APIPort.toString();
+                    
+                    updateStatusIndicators();
+                }).catch(function (error) {
+                    console.warn('Could not load plugin configuration:', error);
+                });
+            }
+            
+            // Add event listeners for checkbox changes
             const checkboxes = document.querySelectorAll('input[type="checkbox"]');
             checkboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', updateStatusIndicators);
             });
             
-            // Einstellungen beim Laden der Seite laden
-            setTimeout(loadSettings, 500);
+            // Initial update of status indicators
+            updateStatusIndicators();
         });
     </script>
 </body>
