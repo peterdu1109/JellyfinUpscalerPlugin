@@ -9,7 +9,7 @@
     "owner": "Kuschel-code",
     "category": "Media Enhancement",
     "imageUrl": "https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/assets/plugin-icon.png",
-    "changelog": "CRITICAL FIXES v1.3.6.1: Docker & Plugin-Katalog problems solved, Malfunctioned status fixed, Dependency Injection improved, IPv6 compatibility, Jellyfin 10.10.6 support, all Manager classes implemented with fail-safe mechanisms",
-    "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/download/v1.3.6.1-ultimate/JellyfinUpscalerPlugin-v1.3.6.1-Ultimate.zip",
-    "checksum": "1A6CD57FDF34E3E19A7BA901F1A15AC6"
+    "changelog": "CRITICAL FIXES v1.3.6.3: Plugin configuration opens properly, Video player quick menu (🎮 AI button) working, JavaScript integration optimized, All build errors resolved, Production-ready AI upscaling with 14 models, 7 shaders, and 12 revolutionary manager classes",
+    "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/download/v1.3.6.3-ultimate/JellyfinUpscalerPlugin-v1.3.6.3-Ultimate.zip",
+    "checksum": "2CB3081521789C3A5F33CB07C0D53CA0"
 }
