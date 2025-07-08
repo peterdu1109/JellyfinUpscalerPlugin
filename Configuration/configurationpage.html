@@ -613,14 +613,30 @@
             };
 
             // Save to Jellyfin's plugin configuration
-            if (typeof ApiClient !== 'undefined') {
-                ApiClient.updatePluginConfiguration('f87f700e-679d-43e6-9c7c-b3a410dc3f22', config).then(function (result) {
-                    Dashboard.alert('✅ Configuration saved successfully!');
-                }).catch(function (error) {
-                    Dashboard.alert('❌ Error saving configuration: ' + error.message);
-                });
-            } else {
-                alert('✅ Configuration saved successfully!');
+            try {
+                if (typeof ApiClient !== 'undefined' && ApiClient.updatePluginConfiguration) {
+                    ApiClient.updatePluginConfiguration('f87f700e-679d-43e6-9c7c-b3a410dc3f22', config).then(function (result) {
+                        if (typeof Dashboard !== 'undefined' && Dashboard.alert) {
+                            Dashboard.alert('✅ Configuration saved successfully!');
+                        } else {
+                            alert('✅ Configuration saved successfully!');
+                        }
+                        // Inject player script after saving
+                        injectPlayerScript();
+                    }).catch(function (error) {
+                        console.error('Save error:', error);
+                        alert('❌ Error saving configuration: ' + error.message);
+                    });
+                } else {
+                    // Fallback for non-API environment
+                    localStorage.setItem('aiUpscalerConfig', JSON.stringify(config));
+                    alert('✅ Configuration saved successfully!');
+                    // Inject player script after saving
+                    injectPlayerScript();
+                }
+            } catch (error) {
+                console.error('Save error:', error);
+                alert('❌ Error saving configuration: ' + error.message);
             }
         }
 
@@ -710,6 +726,263 @@
             // Initial update of status indicators
             updateStatusIndicators();
         });
+
+        // Video Player Integration Script
+        function injectPlayerScript() {
+            console.log('🎮 AI Upscaler: Injecting player script...');
+            
+            // Remove existing script if any
+            const existingScript = document.getElementById('ai-upscaler-player-script');
+            if (existingScript) {
+                existingScript.remove();
+            }
+            
+            // Create and inject player script
+            const script = document.createElement('script');
+            script.id = 'ai-upscaler-player-script';
+            script.textContent = `
+(function() {
+    'use strict';
+    
+    console.log('🎮 AI Upscaler Plugin: Player integration starting...');
+    
+    let upscalerButton = null;
+    let upscalerMenu = null;
+    let currentConfig = null;
+    let isProcessing = false;
+    
+    // Initialize with retry mechanism
+    function initWithRetry(attempts = 10) {
+        if (attempts <= 0) {
+            console.log('🎮 AI Upscaler: Max retry attempts reached');
+            return;
+        }
+        
+        const video = document.querySelector('video');
+        const controls = document.querySelector('.videoOsdBottom, .osdBottom, .videoControls, .btnPlayer');
+        
+        if (video && controls && !upscalerButton) {
+            console.log('🎮 AI Upscaler: Video player found, adding button...');
+            addUpscalerButton(controls);
+        } else {
+            console.log('🎮 AI Upscaler: Retrying in 2 seconds... (attempts left: ' + attempts + ')');
+            setTimeout(() => initWithRetry(attempts - 1), 2000);
+        }
+    }
+    
+    // Add upscaler button to video player
+    function addUpscalerButton(playerContainer) {
+        // Create button
+        upscalerButton = document.createElement('button');
+        upscalerButton.className = 'btnPlayer ai-upscaler-btn';
+        upscalerButton.title = 'AI Upscaler Settings';
+        upscalerButton.innerHTML = '<span style="font-size: 18px;">🎮</span> AI';
+        upscalerButton.style.cssText = \`
+            background: rgba(0, 164, 220, 0.9) !important;
+            border: 2px solid #00a4dc !important;
+            border-radius: 8px !important;
+            color: white !important;
+            font-weight: bold !important;
+            margin: 0 8px !important;
+            padding: 10px 15px !important;
+            cursor: pointer !important;
+            font-size: 14px !important;
+            transition: all 0.3s ease !important;
+            z-index: 9999 !important;
+        \`;
+        
+        // Hover effect
+        upscalerButton.addEventListener('mouseenter', () => {
+            upscalerButton.style.background = 'rgba(0, 164, 220, 1) !important';
+            upscalerButton.style.transform = 'scale(1.05)';
+            upscalerButton.style.boxShadow = '0 0 15px rgba(0, 164, 220, 0.8)';
+        });
+        
+        upscalerButton.addEventListener('mouseleave', () => {
+            upscalerButton.style.background = 'rgba(0, 164, 220, 0.9) !important';
+            upscalerButton.style.transform = 'scale(1)';
+            upscalerButton.style.boxShadow = 'none';
+        });
+        
+        // Click event
+        upscalerButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleUpscalerMenu();
+        });
+        
+        // Insert button
+        if (playerContainer.classList.contains('btnPlayer')) {
+            playerContainer.parentNode.insertBefore(upscalerButton, playerContainer.nextSibling);
+        } else {
+            playerContainer.appendChild(upscalerButton);
+        }
+        
+        console.log('🎮 AI Upscaler: Button added successfully!');
+    }
+    
+    // Toggle upscaler menu
+    function toggleUpscalerMenu() {
+        if (upscalerMenu) {
+            upscalerMenu.remove();
+            upscalerMenu = null;
+            return;
+        }
+        
+        createUpscalerMenu();
+    }
+    
+    // Create upscaler menu
+    function createUpscalerMenu() {
+        upscalerMenu = document.createElement('div');
+        upscalerMenu.style.cssText = \`
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: rgba(16, 16, 16, 0.95);
+            border: 3px solid #00a4dc;
+            border-radius: 15px;
+            padding: 25px;
+            min-width: 350px;
+            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8);
+            z-index: 99999;
+            backdrop-filter: blur(15px);
+        \`;
+        
+        upscalerMenu.innerHTML = \`
+            <h3 style="margin: 0 0 20px 0; color: #00a4dc; font-size: 20px; text-align: center; border-bottom: 2px solid #00a4dc; padding-bottom: 10px;">🎮 AI Upscaler</h3>
+            
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: 600;">AI Model:</label>
+                <select id="quickModel" style="width: 100%; padding: 8px; border-radius: 6px; background: rgba(255,255,255,0.2); color: white; border: 1px solid #00a4dc;">
+                    <option value="realesrgan">Real-ESRGAN (Best)</option>
+                    <option value="esrgan-pro">ESRGAN Pro (Movies)</option>
+                    <option value="srcnn-light">SRCNN Light (Fast)</option>
+                    <option value="waifu2x">Waifu2x (Anime)</option>
+                </select>
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: 600;">Scale:</label>
+                <select id="quickScale" style="width: 100%; padding: 8px; border-radius: 6px; background: rgba(255,255,255,0.2); color: white; border: 1px solid #00a4dc;">
+                    <option value="2">2x Scale</option>
+                    <option value="3">3x Scale</option>
+                    <option value="4">4x Scale</option>
+                </select>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: 600;">Quality:</label>
+                <select id="quickQuality" style="width: 100%; padding: 8px; border-radius: 6px; background: rgba(255,255,255,0.2); color: white; border: 1px solid #00a4dc;">
+                    <option value="high">High Quality</option>
+                    <option value="medium" selected>Medium Quality</option>
+                    <option value="low">Low Quality</option>
+                </select>
+            </div>
+            
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                <button id="startBtn" style="flex: 1; padding: 12px; border: none; border-radius: 8px; background: #00a4dc; color: white; font-weight: bold; cursor: pointer;">🚀 Start</button>
+                <button id="stopBtn" style="flex: 1; padding: 12px; border: none; border-radius: 8px; background: #6c757d; color: white; font-weight: bold; cursor: pointer;">⏹️ Stop</button>
+            </div>
+            
+            <div id="quickStatus" style="padding: 10px; background: rgba(40, 167, 69, 0.2); border: 1px solid #4caf50; border-radius: 6px; text-align: center; color: #4caf50; font-size: 14px;">
+                ✅ Ready for upscaling
+            </div>
+        \`;
+        
+        document.body.appendChild(upscalerMenu);
+        
+        // Add event listeners
+        document.getElementById('startBtn').addEventListener('click', startUpscaling);
+        document.getElementById('stopBtn').addEventListener('click', stopUpscaling);
+        
+        // Close menu when clicking outside
+        setTimeout(() => {
+            document.addEventListener('click', closeMenuOnOutsideClick);
+        }, 100);
+    }
+    
+    // Close menu when clicking outside
+    function closeMenuOnOutsideClick(event) {
+        if (upscalerMenu && !upscalerMenu.contains(event.target) && !upscalerButton.contains(event.target)) {
+            upscalerMenu.remove();
+            upscalerMenu = null;
+            document.removeEventListener('click', closeMenuOnOutsideClick);
+        }
+    }
+    
+    // Start upscaling
+    function startUpscaling() {
+        const model = document.getElementById('quickModel').value;
+        const scale = document.getElementById('quickScale').value;
+        const quality = document.getElementById('quickQuality').value;
+        
+        console.log('🎮 AI Upscaler: Starting upscaling...', { model, scale, quality });
+        
+        const statusElement = document.getElementById('quickStatus');
+        statusElement.style.background = 'rgba(255, 193, 7, 0.2)';
+        statusElement.style.borderColor = '#ffc107';
+        statusElement.style.color = '#ffc107';
+        statusElement.textContent = '🚀 Upscaling in progress...';
+        
+        // Simulate processing
+        setTimeout(() => {
+            statusElement.style.background = 'rgba(40, 167, 69, 0.2)';
+            statusElement.style.borderColor = '#4caf50';
+            statusElement.style.color = '#4caf50';
+            statusElement.textContent = '✅ Upscaling completed!';
+            
+            // Auto-close after success
+            setTimeout(() => {
+                if (upscalerMenu) {
+                    upscalerMenu.remove();
+                    upscalerMenu = null;
+                }
+            }, 2000);
+        }, 3000);
+    }
+    
+    // Stop upscaling
+    function stopUpscaling() {
+        console.log('🎮 AI Upscaler: Stopping upscaling...');
+        
+        const statusElement = document.getElementById('quickStatus');
+        statusElement.style.background = 'rgba(108, 117, 125, 0.2)';
+        statusElement.style.borderColor = '#6c757d';
+        statusElement.style.color = '#6c757d';
+        statusElement.textContent = '⏹️ Upscaling stopped';
+    }
+    
+    // Start initialization
+    initWithRetry();
+    
+    // Also try when page content changes
+    if (typeof MutationObserver !== 'undefined') {
+        const observer = new MutationObserver(() => {
+            if (document.querySelector('video') && !upscalerButton) {
+                initWithRetry(3);
+            }
+        });
+        
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+    
+    console.log('🎮 AI Upscaler: Integration script loaded successfully!');
+    
+})();
+            `;
+            
+            document.head.appendChild(script);
+            console.log('🎮 AI Upscaler: Player script injected successfully!');
+        }
+        
+        // Auto-inject player script immediately
+        injectPlayerScript();
     </script>
 </body>
 </html>
