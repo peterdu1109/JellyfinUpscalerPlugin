@@ -112,7 +112,6 @@ namespace JellyfinUpscalerPlugin
         {
             return new[]
             {
-                // Main configuration page
                 new PluginPageInfo
                 {
                     Name = "AI Upscaler Configuration",
