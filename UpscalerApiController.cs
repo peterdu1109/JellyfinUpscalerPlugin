@@ -197,12 +197,12 @@ namespace JellyfinUpscalerPlugin
                     TestPassed = hardwareProfile.Av1TestPassed,
                     GpuInfo = $"{hardwareProfile.GpuVendor} {hardwareProfile.GpuModel}",
                     MaxResolution = hardwareProfile.MaxAV1Resolution,
-                    RecommendedSettings = new Dictionary<string, object>
+                    RecommendedSettings = new List<CustomSetting>
                     {
-                        { "crf", hardwareProfile.LightModeRecommended ? 28 : 23 },
-                        { "preset", hardwareProfile.LightModeRecommended ? "fast" : "medium" },
-                        { "max_resolution", hardwareProfile.MaxAV1Resolution },
-                        { "concurrent_streams", hardwareProfile.MaxConcurrentStreams }
+                        new CustomSetting { Key = "crf", Value = (hardwareProfile.LightModeRecommended ? 28 : 23).ToString(), Type = "int" },
+                        new CustomSetting { Key = "preset", Value = hardwareProfile.LightModeRecommended ? "fast" : "medium", Type = "string" },
+                        new CustomSetting { Key = "max_resolution", Value = hardwareProfile.MaxAV1Resolution, Type = "string" },
+                        new CustomSetting { Key = "concurrent_streams", Value = hardwareProfile.MaxConcurrentStreams.ToString(), Type = "int" }
                     }
                 };
                 
@@ -447,7 +447,7 @@ namespace JellyfinUpscalerPlugin
         public bool TestPassed { get; set; }
         public string GpuInfo { get; set; }
         public string MaxResolution { get; set; }
-        public Dictionary<string, object> RecommendedSettings { get; set; }
+        public List<CustomSetting> RecommendedSettings { get; set; } = new List<CustomSetting>();
     }
 
     public class PresetResponse

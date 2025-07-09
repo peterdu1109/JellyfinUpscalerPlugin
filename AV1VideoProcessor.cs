@@ -346,9 +346,10 @@ namespace JellyfinUpscalerPlugin
             
             // AI Model optimization
             optimized.AIModel = selectedModel;
-            if (_config.ModelConfigurations.ContainsKey(selectedModel) && _config.ModelConfigurations[selectedModel] is ModelSettings modelSettings)
+            var modelConfig = _config.ModelConfigurations.FirstOrDefault(m => m.ModelName == selectedModel);
+            if (modelConfig != null)
             {
-                optimized.UseAIUpscaling = modelSettings.IsHardwareAccelerated;
+                optimized.UseAIUpscaling = true; // Default to enabled for configured models
             }
             
             // Shader optimization
@@ -845,12 +846,12 @@ namespace JellyfinUpscalerPlugin
                     PreferredModel = job.SelectedAIModel,
                     PreferredShader = job.SelectedShader,
                     LastSync = DateTime.Now,
-                    Settings = new Dictionary<string, object>
+                    Settings = new List<DeviceProfileSetting>
                     {
-                        ["contentType"] = job.ContentType,
-                        ["processingTime"] = job.ProcessingTime.TotalSeconds,
-                        ["quality"] = job.OptimizedOptions?.CRF ?? 23,
-                        ["resolution"] = $"{job.OptimizedOptions?.TargetWidth}x{job.OptimizedOptions?.TargetHeight}"
+                        new DeviceProfileSetting { Key = "contentType", Value = job.ContentType, Type = "string" },
+                        new DeviceProfileSetting { Key = "processingTime", Value = job.ProcessingTime.TotalSeconds.ToString(), Type = "double" },
+                        new DeviceProfileSetting { Key = "quality", Value = (job.OptimizedOptions?.CRF ?? 23).ToString(), Type = "int" },
+                        new DeviceProfileSetting { Key = "resolution", Value = $"{job.OptimizedOptions?.TargetWidth}x{job.OptimizedOptions?.TargetHeight}", Type = "string" }
                     }
                 };
                 

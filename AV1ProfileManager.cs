@@ -135,41 +135,41 @@ namespace JellyfinUpscalerPlugin
             return false;
         }
         
-        private Dictionary<string, object> GetAV1CustomSettings(VideoInfo video)
+        private List<CustomSetting> GetAV1CustomSettings(VideoInfo video)
         {
-            var settings = new Dictionary<string, object>();
+            var settings = new List<CustomSetting>();
             
             // AV1-specific preprocessing
-            settings["grain_synthesis"] = false; // Disable grain synthesis for AV1
-            settings["enable_restoration"] = true; // Enable in-loop restoration
-            settings["cdf_update_freq"] = 2; // AV1 CDF update frequency
-            settings["enable_warped_motion"] = true; // AV1 warped motion compensation
+            settings.Add(new CustomSetting { Key = "grain_synthesis", Value = "false", Type = "bool" });
+            settings.Add(new CustomSetting { Key = "enable_restoration", Value = "true", Type = "bool" });
+            settings.Add(new CustomSetting { Key = "cdf_update_freq", Value = "2", Type = "int" });
+            settings.Add(new CustomSetting { Key = "enable_warped_motion", Value = "true", Type = "bool" });
             
             // Quality settings based on AV1 characteristics
             if (video.BitRate < 5000) // Low bitrate AV1
             {
-                settings["denoise_strength"] = 0.8; // Strong denoising
-                settings["artifact_reduction"] = 0.9; // Strong artifact reduction
-                settings["sharpening"] = 0.3; // Moderate sharpening
+                settings.Add(new CustomSetting { Key = "denoise_strength", Value = "0.8", Type = "float" });
+                settings.Add(new CustomSetting { Key = "artifact_reduction", Value = "0.9", Type = "float" });
+                settings.Add(new CustomSetting { Key = "sharpening", Value = "0.3", Type = "float" });
             }
             else if (video.BitRate > 15000) // High bitrate AV1
             {
-                settings["denoise_strength"] = 0.2; // Light denoising
-                settings["artifact_reduction"] = 0.3; // Light artifact reduction
-                settings["sharpening"] = 0.7; // Strong sharpening for quality
+                settings.Add(new CustomSetting { Key = "denoise_strength", Value = "0.2", Type = "float" });
+                settings.Add(new CustomSetting { Key = "artifact_reduction", Value = "0.3", Type = "float" });
+                settings.Add(new CustomSetting { Key = "sharpening", Value = "0.7", Type = "float" });
             }
             else // Medium bitrate
             {
-                settings["denoise_strength"] = 0.5; // Balanced denoising
-                settings["artifact_reduction"] = 0.6; // Balanced artifact reduction
-                settings["sharpening"] = 0.5; // Balanced sharpening
+                settings.Add(new CustomSetting { Key = "denoise_strength", Value = "0.5", Type = "float" });
+                settings.Add(new CustomSetting { Key = "artifact_reduction", Value = "0.6", Type = "float" });
+                settings.Add(new CustomSetting { Key = "sharpening", Value = "0.5", Type = "float" });
             }
             
             // AV1 color space considerations
             if (video.ColorSpace == "bt2020")
             {
-                settings["color_primaries"] = "bt2020";
-                settings["enable_hdr_tone_mapping"] = true;
+                settings.Add(new CustomSetting { Key = "color_primaries", Value = "bt2020", Type = "string" });
+                settings.Add(new CustomSetting { Key = "enable_hdr_tone_mapping", Value = "true", Type = "bool" });
             }
             
             return settings;
@@ -327,7 +327,7 @@ namespace JellyfinUpscalerPlugin
         public bool EnableColorCorrection { get; set; }
         public bool EnableDenoising { get; set; }
         public bool EnableArtifactReduction { get; set; }
-        public Dictionary<string, object> CustomSettings { get; set; } = new Dictionary<string, object>();
+        public List<CustomSetting> CustomSettings { get; set; } = new List<CustomSetting>();
         
         // AV1-specific properties
         public bool IsAV1Optimized { get; set; }
