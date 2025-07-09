@@ -7,6 +7,8 @@ using MediaBrowser.Model.Plugins;
 using MediaBrowser.Model.Serialization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Jellyfin.Data.Enums;
+using MediaBrowser.Controller.Plugins;
 
 namespace JellyfinUpscalerPlugin
 {
@@ -20,12 +22,12 @@ namespace JellyfinUpscalerPlugin
         /// <summary>
         /// Plugin version constant
         /// </summary>
-        public const string PLUGIN_VERSION = "1.3.6.3";
+        public const string PLUGIN_VERSION = "1.3.6.4";
         
         /// <summary>
         /// Plugin display name with version
         /// </summary>
-        public override string Name => $"🎮 AI Upscaler Plugin v{PLUGIN_VERSION} ULTIMATE";
+        public override string Name => $"🎮 AI Upscaler Plugin v{PLUGIN_VERSION} - Configuration Fixed";
         
         /// <summary>
         /// Unique plugin identifier - NEVER change this!
@@ -110,14 +112,25 @@ namespace JellyfinUpscalerPlugin
         /// <returns>Collection of plugin pages</returns>
         public IEnumerable<PluginPageInfo> GetPages()
         {
-            return new[]
+            try
             {
-                new PluginPageInfo
+                var resourcePath = GetType().Namespace + ".Configuration.configurationpage.html";
+                System.Diagnostics.Debug.WriteLine($"AI Upscaler: Configuration resource path: {resourcePath}");
+                
+                return new[]
                 {
-                    Name = "AI Upscaler Configuration",
-                    EmbeddedResourcePath = GetType().Namespace + ".Configuration.configurationpage.html"
-                }
-            };
+                    new PluginPageInfo
+                    {
+                        Name = "AI Upscaler Configuration",
+                        EmbeddedResourcePath = resourcePath
+                    }
+                };
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"AI Upscaler: GetPages error: {ex.Message}");
+                return new PluginPageInfo[0];
+            }
         }
         
         /// <summary>
