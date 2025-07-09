@@ -1,30 +1,30 @@
 <div align="center">
 
-# 🎮 AI UPSCALER PLUGIN v1.3.6.3 ULTIMATE EDITION
+# 🎮 AI UPSCALER PLUGIN v1.3.6.4 - CONFIGURATION FIXED
 
-### *The Revolutionary Jellyfin Upscaling Solution - ALL CRITICAL FIXES APPLIED!*
+### *The Revolutionary Jellyfin Upscaling Solution - NATIVE DASHBOARD INTEGRATION!*
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge&logo=opensource)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-1.3.6.3%20Ultimate-gold.svg?style=for-the-badge&logo=semantic-release)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases)
+[![Version](https://img.shields.io/badge/Version-1.3.6.4%20Config%20Fixed-gold.svg?style=for-the-badge&logo=semantic-release)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases)
 [![Jellyfin](https://img.shields.io/badge/Jellyfin-10.10.0%2B-purple.svg?style=for-the-badge&logo=jellyfin)](https://jellyfin.org)
 [![.NET](https://img.shields.io/badge/.NET-8.0-orange.svg?style=for-the-badge&logo=dotnet)](https://dotnet.microsoft.com)
 [![Status](https://img.shields.io/badge/Status-PRODUCTION%20READY-brightgreen.svg?style=for-the-badge&logo=checkmarx)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin)
-[![Fixes](https://img.shields.io/badge/Critical%20Fixes-APPLIED-success.svg?style=for-the-badge&logo=bugcrowd)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/tag/v1.3.6.3-ultimate)
+[![Fixes](https://img.shields.io/badge/Configuration-FIXED-success.svg?style=for-the-badge&logo=bugcrowd)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/tag/v1.3.6.4-config-fixed)
 
 ---
 
-## **✨ KEY HIGHLIGHTS - v1.3.6.3 ULTIMATE**
+## **✨ KEY HIGHLIGHTS - v1.3.6.4 CONFIGURATION FIXED**
 
-🎮 **CRITICAL FIXES APPLIED** | ⚙️ **PLUGIN CONFIGURATION WORKING** | 🎯 **VIDEO PLAYER INTEGRATION FIXED**
+🎮 **NATIVE DASHBOARD INTEGRATION** | ⚙️ **NAS DEVICE SUPPORT** | 🎯 **ALL-PLATFORM CONFIGURATION**
 
-**✅ ALL MAJOR ISSUES RESOLVED** - Production-ready AI upscaling solution
+**✅ CONFIGURATION FULLY FIXED** - Works on ALL devices including NAS systems
 
-### 🔧 **CRITICAL FIXES IN v1.3.6.3:**
-- ✅ **Plugin Configuration** opens properly in Jellyfin Dashboard
-- ✅ **Video Player Quick Menu** (🎮 AI button) works perfectly
-- ✅ **JavaScript Integration** optimized for all platforms
-- ✅ **Build Errors** completely resolved (0 errors, production ready)
-- ✅ **Cross-Platform Compatibility** confirmed for Windows, Linux, macOS
+### 🔧 **MAJOR CONFIGURATION FIXES IN v1.3.6.4:**
+- ✅ **Native Jellyfin Dashboard Integration** - No external browser required
+- ✅ **NAS Device Support** - Works on Synology, QNAP, Unraid, etc.
+- ✅ **Professional UI Design** - Matches Jellyfin's native interface
+- ✅ **Cross-Platform Configuration** - Accessible from any Jellyfin client
+- ✅ **Enhanced Error Handling** - Robust fallback mechanisms implemented
 
 ![Downloads](https://img.shields.io/github/downloads/Kuschel-code/JellyfinUpscalerPlugin/total?label=Downloads&color=brightgreen&style=flat-square)
 ![Stars](https://img.shields.io/github/stars/Kuschel-code/JellyfinUpscalerPlugin?style=social)
@@ -39,7 +39,7 @@
 | Section | Description |
 |---------|-------------|
 | [🚀 Quick Start](#-quick-start---choose-your-installation) | Installation methods and getting started |
-| [🔧 Critical Fixes](#-critical-fixes-v1363) | All major issues resolved in v1.3.6.3 |
+| [🔧 Configuration Fixes](#-configuration-fixes-v1364) | Native dashboard integration in v1.3.6.4 |
 | [🎮 Video Player Integration](#-video-player-integration) | Quick menu and upscaling controls |
 | [⚙️ Plugin Configuration](#-plugin-configuration) | Dashboard settings and options |
 | [🌟 AI Features](#-ai-features) | 14 AI Models + 7 Shaders + 12 Manager Classes |
@@ -66,11 +66,11 @@
 </td>
 <td align="center" width="25%">
 <h4>🖥️ NAS USERS</h4>
-<a href="https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/download/v1.3.6.2-functional/JellyfinUpscalerPlugin-v1.3.6.2-Functional.zip">
-<img src="https://img.shields.io/badge/📁%20Direct%20ZIP-For%20NAS%20Devices-orange?style=for-the-badge&logo=download" alt="Direct ZIP Download" />
+<a href="https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/download/v1.3.6.4-config-fixed/JellyfinUpscalerPlugin-v1.3.6.4-Configuration-Fixed.zip">
+<img src="https://img.shields.io/badge/📁%20Direct%20ZIP-v1.3.6.4%20Config%20Fixed-orange?style=for-the-badge&logo=download" alt="Direct ZIP Download" />
 </a>
 <br/>
-<small>✅ Direct download link</small>
+<small>✅ Works on ALL NAS devices</small>
 </td>
 <td align="center" width="25%">
 <h4>🔧 DEVELOPERS</h4>
@@ -114,7 +114,7 @@ https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/repos
 1. **Open Jellyfin Dashboard** → **Plugins** → **Repositories** 
 2. **Click "Add Repository"** 
 3. **Paste URL above** → **Save**
-4. **Go to Catalog** → **Find "🎮 AI Upscaler Plugin v1.3.6.3 - ULTIMATE EDITION"**
+4. **Go to Catalog** → **Find "🎮 AI Upscaler Plugin v1.3.6.4 - CONFIGURATION FIXED"**
 5. **Click Install** → **Restart Jellyfin** → **Done!** 🎉
 
 ### **⚡ ALTERNATIVE: DIRECT REPOSITORY LINK**
@@ -138,16 +138,18 @@ curl -H "Content-Type: application/json" \
 
 ---
 
-## 🔧 **CRITICAL FIXES v1.3.6.3**
+## 🔧 **CONFIGURATION FIXES v1.3.6.4**
 
 <div style="background: linear-gradient(135deg, #00c851 0%, #007E33 100%); border-radius: 10px; padding: 20px; margin: 15px 0;">
 
-### **✅ ALL MAJOR ISSUES RESOLVED**
+### **✅ NATIVE DASHBOARD INTEGRATION COMPLETE**
 
-**🎯 Version 1.3.6.3 ULTIMATE Edition fixes all critical problems that users reported:**
+**🎯 Version 1.3.6.4 CONFIGURATION FIXED brings native Jellyfin dashboard integration:**
 
-#### **🔧 PLUGIN CONFIGURATION FIXES:**
-- ✅ **Dashboard Access Fixed** - Dashboard → Plugins → AI Upscaler Configuration now works
+#### **🔧 MAJOR CONFIGURATION IMPROVEMENTS:**
+- ✅ **Native Dashboard Integration** - Plugin configuration works on ALL devices
+- ✅ **NAS Device Support** - Perfect for Synology, QNAP, Unraid systems
+- ✅ **Professional UI Design** - Matches Jellyfin's native interface standards
 - ✅ **GetPages Registration** - Removed duplicate registrations causing conflicts
 - ✅ **Web Resources** - Properly embedded as EmbeddedResource for Jellyfin
 - ✅ **Save/Load Functionality** - Configuration now saves and loads correctly
