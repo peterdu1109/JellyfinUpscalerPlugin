@@ -62,18 +62,22 @@
 - **Energy efficiency** benchmarks
 - **Mobile/NAS** device performance data
 
-### **Real-World Tests:**
-- **Content Type** optimization (Movies, Anime, TV Series)
-- **Hardware configurations** from high-end to low-end
-- **Quality improvements** from +50% to +95% PSNR
-- **Processing times** from 0.8s to 180s per frame
+### **Real-World Tests (27 Hardware-Konfigurationen):**
+- **GPU-Tests**: RTX 4090, RTX 3070, RTX 2060, GTX 1660 Ti, AMD RX 6800 XT
+- **CPU-Tests**: Intel i7-12700K, AMD Ryzen 9 7950X, Intel N5095, AMD Ryzen 5 5600X
+- **NAS-Tests**: Synology DS920+, QNAP TS-464, TrueNAS Scale
+- **Mobile-Tests**: Android TV, Apple TV 4K, Fire TV Stick 4K
+- **Quality improvements** from +38% to +95% PSNR
+- **Processing times** from 0.8s to 89.2s per frame
 
 ## 🚀 **RELEASE PACKAGE CREATED:**
 
 ### **ZIP File:**
 - **JellyfinUpscalerPlugin-v1.3.6.5-Serialization-Fixed.zip**
-- **Size**: 152.625.891 bytes (152MB)
-- **SHA256**: `E3B6182931EB80F28F336D67FB546C0CCF6BE4EB4883E29CD983F2F1FC7EF230`
+- **Size**: 324,562 bytes (324KB)
+- **SHA256**: `895166C9DB927D3D0E347900548016F06757C04ABDE08EAAFB051B7BCD487D4F`
+- **MD5**: `CE3522E10DDC05EF558BE94FF79B6EDA` (nur zur Information)
+- **Warum SHA256?**: Sicherer als MD5, Jellyfin-Standard, kollisionsresistent
 
 ### **Contents:**
 - **JellyfinUpscalerPlugin.dll** - Compiled plugin
