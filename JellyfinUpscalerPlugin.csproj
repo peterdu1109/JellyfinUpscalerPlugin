@@ -5,9 +5,9 @@
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <AssemblyTitle>AI Upscaler Plugin v1.3.6.3 Ultimate</AssemblyTitle>
-    <AssemblyVersion>1.3.6.3</AssemblyVersion>
-    <FileVersion>1.3.6.3</FileVersion>
+    <AssemblyTitle>AI Upscaler Plugin v1.3.6.4 Configuration Fixed</AssemblyTitle>
+    <AssemblyVersion>1.3.6.4</AssemblyVersion>
+    <FileVersion>1.3.6.4</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
