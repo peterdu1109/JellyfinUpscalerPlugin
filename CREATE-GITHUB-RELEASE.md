@@ -1,12 +1,23 @@
-# 🚀 GitHub Release v1.3.6.1 - MANUAL CREATION REQUIRED
+# 🚀 GitHub Release v1.3.6.5 - SERIALIZATION FIXED (URGENT!)
+
+## ❗ **PROBLEM IDENTIFIZIERT:**
+
+Die crash.txt zeigt 404-Fehler bei der Plugin-Installation:
+```
+[2025-07-09 19:06:12.406 +02:00] [ERR] [90] Emby.Server.Implementations.Updates.InstallationManager: Package installation failed
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 404 (Not Found).
+URL: "/Packages/Installed/%F0%9F%8E%AE%20AI%20Upscaler%20Plugin%20v1.3.6.5%20-%20SERIALIZATION%20FIXED"
+```
+
+**Grund:** Die Download-URL existiert noch nicht auf GitHub, weil das Release noch nicht erstellt wurde.
 
 ## **✅ ALL FILES READY FOR RELEASE**
 
 ### **📦 ZIP File Details:**
-- **File**: `JellyfinUpscalerPlugin-v1.3.6.1-Ultimate.zip`
-- **Size**: 237,091 bytes (0.23 MB)
-- **SHA256**: `BA1A5D1FB99ABB503E3B36C081E6BC6BA8C4DA331B99355FACED5A67CD73FA18`
-- **Location**: `dist/JellyfinUpscalerPlugin-v1.3.6.1-Ultimate.zip`
+- **File**: `JellyfinUpscalerPlugin-v1.3.6.5-Serialization-Fixed.zip`
+- **Size**: 152,625,891 bytes (152 MB)
+- **SHA256**: `E3B6182931EB80F28F336D67FB546C0CCF6BE4EB4883E29CD983F2F1FC7EF230`
+- **Location**: `JellyfinUpscalerPlugin-v1.3.6.5-Serialization-Fixed.zip`
 
 ### **🔗 Manual GitHub Release Creation:**
 
@@ -16,12 +27,12 @@
    ```
 
 2. **Release Settings:**
-   - **Tag**: `v1.3.6.1`
+   - **Tag**: `v1.3.6.5-serialization-fixed`
    - **Target**: `main` branch
-   - **Title**: `🛠️ Critical Fixes v1.3.6.1 - ALL Issues Resolved`
-   - **Upload**: `dist/JellyfinUpscalerPlugin-v1.3.6.1-Ultimate.zip`
+   - **Title**: `🔧 AI Upscaler Plugin v1.3.6.5 - SERIALIZATION FIXED`
+   - **Upload**: `JellyfinUpscalerPlugin-v1.3.6.5-Serialization-Fixed.zip`
 
-3. **Copy Release Notes from:** `RELEASE-NOTES-v1.3.6.1.md`
+3. **Copy Release Notes from:** `RELEASE-NOTES-v1.3.6.5.md`
 
 4. **Settings:**
    - ✅ **Set as latest release**
