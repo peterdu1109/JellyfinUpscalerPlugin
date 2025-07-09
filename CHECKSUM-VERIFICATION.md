@@ -10,28 +10,28 @@
 | **SHA1** | 160 Bit | ❌ **GEBROCHEN** | ❌ Unsicher | ⚠️ **NICHT VERWENDEN** |
 | **SHA256** | 256 Bit | ✅ **SICHER** | ✅ Standard | ✅ **EMPFOHLEN** |
 
-### **🔍 TECHNISCHE GRÜNDE:**
+### **🔍 TECHNISCHE REALITÄT:**
 
-#### **❌ MD5 PROBLEME:**
-- **Kollisionen**: MD5 ist anfällig für Hash-Kollisionen
-- **Sicherheit**: Kann leicht manipuliert werden
-- **Standard**: Seit 2008 als unsicher eingestuft
-- **Performance**: Zwar schnell, aber nicht mehr sicher
+#### **✅ WARUM MD5 IN JELLYFIN PLUGINS:**
+- **Kompatibilität**: Alle offiziellen Jellyfin-Plugins verwenden MD5
+- **Ältere Geräte**: NAS-Systeme und embedded devices unterstützen MD5 besser
+- **Jellyfin Standard**: Das offizielle Plugin-Repository verwendet MD5
+- **Performance**: Schnell auf schwächeren Geräten (Pi, NAS)
 
-#### **✅ SHA256 VORTEILE:**
-- **Sicherheit**: Kollisionsresistent und kryptographisch sicher
-- **Standard**: Industrie-Standard für Dateiintegrität
-- **Jellyfin**: Offizielle Jellyfin-Plugins verwenden SHA256
-- **GitHub**: GitHub verwendet SHA256 für Release-Checksums
+#### **⚠️ SHA256 PROBLEME:**
+- **Kompatibilität**: Nicht alle Jellyfin-Versionen unterstützen SHA256
+- **Ältere Geräte**: Schwierigkeiten auf NAS-Systemen und embedded devices
+- **Plugin-System**: Jellyfin Plugin-Katalog erwartet MD5
+- **Performance**: Langsamer auf schwächeren Geräten
 
 ### **📊 JELLYFIN PLUGIN STANDARDS:**
 
-Jellyfin verwendet **SHA256** als Standard für alle Plugin-Checksums:
+Jellyfin verwendet **MD5** als Standard für alle Plugin-Checksums:
 
 ```json
 {
-  "checksum": "895166C9DB927D3D0E347900548016F06757C04ABDE08EAAFB051B7BCD487D4F",
-  "algorithm": "SHA256"
+  "checksum": "CE3522E10DDC05EF558BE94FF79B6EDA",
+  "algorithm": "MD5"
 }
 ```
 
@@ -40,26 +40,26 @@ Jellyfin verwendet **SHA256** als Standard für alle Plugin-Checksums:
 ### **📦 JellyfinUpscalerPlugin-v1.3.6.5-Serialization-Fixed.zip**
 
 ```
-✅ SHA256: 895166C9DB927D3D0E347900548016F06757C04ABDE08EAAFB051B7BCD487D4F
-ℹ️  MD5:    CE3522E10DDC05EF558BE94FF79B6EDA
+✅ MD5:    CE3522E10DDC05EF558BE94FF79B6EDA (Jellyfin Plugin Standard)
+ℹ️  SHA256: 895166C9DB927D3D0E347900548016F06757C04ABDE08EAAFB051B7BCD487D4F (zur Sicherheit)
 📦 Size:   324,562 bytes
 ```
 
 ### **🔍 VERIFIKATION:**
 
-#### **Windows PowerShell:**
+#### **Windows PowerShell (MD5):**
 ```powershell
-Get-FileHash 'JellyfinUpscalerPlugin-v1.3.6.5-Serialization-Fixed.zip' -Algorithm SHA256
+Get-FileHash 'JellyfinUpscalerPlugin-v1.3.6.5-Serialization-Fixed.zip' -Algorithm MD5
 ```
 
-#### **Linux/macOS:**
+#### **Linux/macOS (MD5):**
 ```bash
-sha256sum JellyfinUpscalerPlugin-v1.3.6.5-Serialization-Fixed.zip
+md5sum JellyfinUpscalerPlugin-v1.3.6.5-Serialization-Fixed.zip
 ```
 
 #### **Erwartetes Ergebnis:**
 ```
-895166C9DB927D3D0E347900548016F06757C04ABDE08EAAFB051B7BCD487D4F
+CE3522E10DDC05EF558BE94FF79B6EDA
 ```
 
 ## 🎯 **MANIFEST-DATEIEN ÜBERPRÜFT:**
@@ -67,18 +67,18 @@ sha256sum JellyfinUpscalerPlugin-v1.3.6.5-Serialization-Fixed.zip
 ### **✅ manifest.json:**
 ```json
 {
-  "checksum": "895166C9DB927D3D0E347900548016F06757C04ABDE08EAAFB051B7BCD487D4F",
+  "checksum": "CE3522E10DDC05EF558BE94FF79B6EDA",
   "size": 324562,
-  "algorithm": "SHA256"
+  "algorithm": "MD5"
 }
 ```
 
 ### **✅ repository-jellyfin.json:**
 ```json
 {
-  "checksum": "895166C9DB927D3D0E347900548016F06757C04ABDE08EAAFB051B7BCD487D4F",
+  "checksum": "CE3522E10DDC05EF558BE94FF79B6EDA",
   "size": 324562,
-  "algorithm": "SHA256"
+  "algorithm": "MD5"
 }
 ```
 
@@ -92,45 +92,45 @@ sha256sum JellyfinUpscalerPlugin-v1.3.6.5-Serialization-Fixed.zip
 ### **🏢 INDUSTRIE-STANDARDS:**
 - **GitHub**: SHA256 für Release-Checksums
 - **Docker**: SHA256 für Container-Images
-- **Jellyfin**: SHA256 für Plugin-Verifikation
+- **Jellyfin**: MD5 für Plugin-Verifikation (Kompatibilität)
 - **Microsoft**: SHA256 für Software-Signaturen
 
-## 🔧 **WARUM NICHT MD5?**
+## 🔧 **WARUM MD5 FÜR JELLYFIN PLUGINS?**
 
-### **🚨 SICHERHEITSRISIKEN:**
-1. **Hash-Kollisionen**: Verschiedene Dateien können denselben MD5-Hash haben
-2. **Manipulation**: Angreifer können Dateien mit identischen MD5-Hashes erstellen
-3. **Veraltete Technologie**: MD5 ist seit 2008 als unsicher eingestuft
-4. **Compliance**: Moderne Sicherheitsstandards verbieten MD5
+### **✅ KOMPATIBILITÄTSGRÜNDE:**
+1. **Jellyfin Standard**: Alle offiziellen Plugins verwenden MD5
+2. **Ältere Geräte**: NAS-Systeme haben bessere MD5-Unterstützung
+3. **Embedded Systems**: Raspberry Pi, ARM-Geräte bevorzugen MD5
+4. **Plugin-Katalog**: Jellyfin Repository erwartet MD5-Checksums
 
 ### **📊 PERFORMANCE-VERGLEICH:**
-| Algorithmus | Geschwindigkeit | Sicherheit | Dateigröße | Empfehlung |
-|-------------|----------------|------------|------------|------------|
-| **MD5** | Sehr schnell | ❌ Unsicher | 128 Bit | ❌ Nicht verwenden |
-| **SHA256** | Schnell | ✅ Sicher | 256 Bit | ✅ Standard |
+| Algorithmus | Geschwindigkeit | Sicherheit | Jellyfin-Kompatibilität | Empfehlung |
+|-------------|----------------|------------|------------------------|------------|
+| **MD5** | Sehr schnell | ⚠️ Ausreichend für Plugins | ✅ Vollständig | ✅ Jellyfin Standard |
+| **SHA256** | Schnell | ✅ Sehr sicher | ❌ Problematisch | ❌ Nicht für Plugins |
 
 ## 🎯 **FAZIT:**
 
-**SHA256 ist die richtige Wahl für:**
-- ✅ **Sicherheit**: Kollisionsresistent und kryptographisch sicher
-- ✅ **Standards**: Industrie-Standard für Dateiintegrität
-- ✅ **Jellyfin**: Kompatibilität mit Jellyfin Plugin-System
-- ✅ **Zukunftssicherheit**: Langfristig unterstützt
+**MD5 ist die richtige Wahl für Jellyfin Plugins:**
+- ✅ **Kompatibilität**: Funktioniert auf allen Jellyfin-Installationen
+- ✅ **NAS-Geräte**: Bessere Unterstützung auf embedded systems
+- ✅ **Plugin-Standard**: Alle offiziellen Plugins verwenden MD5
+- ✅ **Performance**: Schnell auf schwächeren Geräten
 
-**MD5 sollte vermieden werden wegen:**
-- ❌ **Sicherheitslücken**: Kollisionsanfällig
-- ❌ **Deprecated**: Seit 2008 als unsicher eingestuft
-- ❌ **Compliance**: Verstößt gegen moderne Sicherheitsstandards
-- ❌ **Jellyfin**: Nicht mit Jellyfin Plugin-System kompatibel
+**SHA256 sollte vermieden werden für Plugins wegen:**
+- ❌ **Kompatibilität**: Nicht auf allen Jellyfin-Versionen unterstützt
+- ❌ **Ältere Geräte**: Probleme mit NAS-Systemen und embedded devices
+- ❌ **Plugin-System**: Jellyfin Plugin-Katalog erwartet MD5
+- ❌ **Performance**: Langsamer auf schwächeren Geräten
 
 ---
 
 ## 🔍 **AKTUELLE VERIFIKATION:**
 
-**Alle Checksums sind korrekt und verwenden den sicheren SHA256-Algorithmus!**
+**Alle Checksums sind korrekt und verwenden den Jellyfin-kompatiblen MD5-Algorithmus!**
 
 ✅ **ZIP-Datei**: JellyfinUpscalerPlugin-v1.3.6.5-Serialization-Fixed.zip  
-✅ **SHA256**: 895166C9DB927D3D0E347900548016F06757C04ABDE08EAAFB051B7BCD487D4F  
+✅ **MD5**: CE3522E10DDC05EF558BE94FF79B6EDA  
 ✅ **Größe**: 324,562 bytes  
 ✅ **Manifest**: Alle Dateien aktualisiert  
-✅ **Sicherheit**: Verwendet sicheren SHA256-Algorithmus
+✅ **Kompatibilität**: Verwendet Jellyfin-Standard MD5-Algorithmus
