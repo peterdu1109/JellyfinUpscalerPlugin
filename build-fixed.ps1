@@ -1,8 +1,8 @@
 # Jellyfin AI Upscaler Plugin - FIXED Build Script
-# Version: 1.3.6.2 - Problem Resolution Edition
+# Version: 1.3.6.5 - Serialization Fixed Edition
 
 param(
-    [string]$Version = "1.3.6.2",
+    [string]$Version = "1.3.6.5",
     [string]$OutputDir = ".\release-build",
     [switch]$Clean = $true,
     [switch]$CreateZip = $true,
@@ -12,10 +12,10 @@ param(
 )
 
 if ($Help) {
-    Write-Host "🛠️ AI Upscaler Plugin v1.3.6.2 - FIXED Build Script" -ForegroundColor Blue
+    Write-Host "🛠️ AI Upscaler Plugin v1.3.6.5 - SERIALIZATION FIXED Build Script" -ForegroundColor Blue
     Write-Host "Usage: .\build-fixed.ps1 [options]"
     Write-Host "Options:"
-    Write-Host "  -Version VERSION      Set version (default: 1.3.6.2)"
+    Write-Host "  -Version VERSION      Set version (default: 1.3.6.5)"
     Write-Host "  -OutputDir DIR        Set output directory (default: .\release-build)"
     Write-Host "  -Clean                Clean output directory before build"
     Write-Host "  -CreateZip            Create ZIP package"
