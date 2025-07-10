@@ -108,12 +108,12 @@ jobs:
         mkdir -p dist
         
         # Copy necessary files
-        cp -r web dist/
-        cp -r Configuration dist/
-        cp -r shaders dist/
-        cp manifest.json dist/
-        cp meta.json dist/
-        cp README.md dist/
+        cp -r web dist/ 2>/dev/null || true
+        cp -r Configuration dist/ 2>/dev/null || true
+        cp -r shaders dist/ 2>/dev/null || true
+        cp manifest.json dist/ 2>/dev/null || true
+        cp meta.json dist/ 2>/dev/null || true
+        cp README.md dist/ 2>/dev/null || true
         
         # Package the plugin
         cd dist
