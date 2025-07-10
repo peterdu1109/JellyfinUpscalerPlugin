@@ -38,7 +38,7 @@ jobs:
     - name: 📋 Generate Release Notes
       id: release-notes
       run: |
-        cat > release-notes.md << 'EOF'
+        cat > release-notes.md << EOF
         # 🚀 Jellyfin AI Upscaler Plugin ${GITHUB_REF_NAME}
         
         ## ✅ Fixed Issues
@@ -51,9 +51,9 @@ jobs:
         ## 🔧 Installation
         
         **Plugin Catalog:**
-        ```
+        \`\`\`
         https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/repository-jellyfin.json
-        ```
+        \`\`\`
         
         **Manual Installation:**
         1. Download ZIP file

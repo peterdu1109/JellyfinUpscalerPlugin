@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  PLUGIN_VERSION: "1.3.6.4"
+  PLUGIN_VERSION: "1.3.6.5"
   DOTNET_VERSION: "8.0.x"
 
 jobs:
@@ -122,10 +122,10 @@ jobs:
         
         # Create ZIP
         cd dist
-        zip -r JellyfinUpscalerPlugin-v${{ env.PLUGIN_VERSION }}-Ultimate.zip JellyfinUpscalerPlugin_v${{ env.PLUGIN_VERSION }}/
+        zip -r JellyfinUpscalerPlugin-v${{ env.PLUGIN_VERSION }}-Serialization-Fixed.zip JellyfinUpscalerPlugin_v${{ env.PLUGIN_VERSION }}/
         
         # Calculate SHA256
-        sha256sum JellyfinUpscalerPlugin-v${{ env.PLUGIN_VERSION }}-Ultimate.zip > SHA256SUMS.txt
+        sha256sum JellyfinUpscalerPlugin-v${{ env.PLUGIN_VERSION }}-Serialization-Fixed.zip > SHA256SUMS.txt
         
         echo "📦 Package created:"
         ls -la *.zip

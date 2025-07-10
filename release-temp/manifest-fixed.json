@@ -1,0 +1,40 @@
+{
+  "guid": "f87f700e-679d-43e6-9c7c-b3a410dc3f22",
+  "name": "AI Upscaler Plugin",
+  "description": "Professional AI video upscaling with 9 models, cross-platform GPU acceleration, and advanced features for Jellyfin.",
+  "overview": "Transform your video library with AI-powered upscaling. Features: 9 AI models (Real-ESRGAN, Waifu2x, HAT, SwinIR, etc.), hardware acceleration, cross-platform support, and intelligent content detection.",
+  "owner": "Kuschel-code",
+  "category": "Video Processing",
+  "imageUrl": "https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/assets/plugin-icon.png",
+  "versions": [
+    {
+      "version": "1.3.6.2",
+      "changelog": "🔧 CRITICAL FIXES: Plugin functionality restored, settings now save correctly, improved compatibility with Jellyfin 10.10.x, fixed JSON manifest issues, resolved assembly conflicts.",
+      "targetAbi": "10.10.0.0",
+      "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/download/v1.3.6.2/JellyfinUpscalerPlugin-v1.3.6.2.zip",
+      "checksum": "TO_BE_CALCULATED",
+      "timestamp": "2025-01-02T18:00:00.000Z",
+      "filename": "JellyfinUpscalerPlugin-v1.3.6.2.zip"
+    },
+    {
+      "version": "1.3.6.1",
+      "changelog": "🛠️ Docker compatibility improvements, plugin catalog installation fixes, ARM64 support, CasaOS optimizations.",
+      "targetAbi": "10.10.0.0", 
+      "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/download/v1.3.6.1/JellyfinUpscalerPlugin-v1.3.6.1.zip",
+      "checksum": "TO_BE_CALCULATED",
+      "timestamp": "2025-01-02T12:00:00.000Z",
+      "filename": "JellyfinUpscalerPlugin-v1.3.6.1.zip"
+    },
+    {
+      "version": "1.3.5.0",
+      "changelog": "🚀 Major feature release: 14 AI models, 7 shaders, AI-based color correction, automatic upscaling zones, cross-device sync.",
+      "targetAbi": "10.10.0.0",
+      "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/download/v1.3.5/JellyfinUpscalerPlugin-v1.3.5.zip",
+      "checksum": "TO_BE_CALCULATED",
+      "timestamp": "2024-12-19T15:30:00.000Z",
+      "filename": "JellyfinUpscalerPlugin-v1.3.5.zip"
+    }
+  ],
+  "repositoryUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin",
+  "issueUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/issues"
+}
