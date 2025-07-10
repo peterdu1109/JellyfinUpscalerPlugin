@@ -248,7 +248,7 @@ namespace JellyfinUpscalerPlugin
             return _deviceDatabase["chrome"];
         }
         
-        private async Task<string> DetermineOptimalResolutionAsync(ClientInfo clientInfo, DeviceCapabilities capabilities)
+        private Task<string> DetermineOptimalResolutionAsync(ClientInfo clientInfo, DeviceCapabilities capabilities)
         {
             // If client provides screen resolution, use it
             if (clientInfo.ScreenWidth.HasValue && clientInfo.ScreenHeight.HasValue)
@@ -258,11 +258,11 @@ namespace JellyfinUpscalerPlugin
                 
                 _logger.LogDebug($"📐 Client screen resolution: {screenResolution} → Optimal streaming: {optimalResolution}");
                 
-                return optimalResolution;
+                return Task.FromResult(optimalResolution);
             }
             
             // Use device type defaults
-            return capabilities.PreferredMaxResolution;
+            return Task.FromResult(capabilities.PreferredMaxResolution);
         }
         
         private string MapScreenResolutionToStreamingResolution(string screenResolution)

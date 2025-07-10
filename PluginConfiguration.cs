@@ -5,7 +5,7 @@ using MediaBrowser.Model.Plugins;
 namespace JellyfinUpscalerPlugin
 {
     /// <summary>
-    /// Plugin Configuration - Functional Edition v1.3.6.2
+    /// Plugin Configuration - Serialization Fixed v1.3.6.5
     /// </summary>
     public class PluginConfiguration : BasePluginConfiguration
     {
@@ -107,7 +107,7 @@ namespace JellyfinUpscalerPlugin
         public bool EnableIntelQuickSync { get; set; } = true;
         public bool EnablePlugin { get; set; } = true;
         public bool EnableChromecastFix { get; set; } = true;
-        public Dictionary<string, object> ShaderConfigurations { get; set; } = new Dictionary<string, object>();
+        public List<CustomSetting> ShaderConfigurations { get; set; } = new List<CustomSetting>();
         
         // Cache and Performance Settings
         public bool AutoCleanupCache { get; set; } = true;
@@ -211,7 +211,7 @@ namespace JellyfinUpscalerPlugin
         public int RequiredVRAM { get; set; } = 512;
         public string ContentType { get; set; } = "general";
         public bool IsEnabled { get; set; } = true;
-        public Dictionary<string, object> Parameters { get; set; } = new Dictionary<string, object>();
+        public List<CustomSetting> Parameters { get; set; } = new List<CustomSetting>();
         
         // Additional properties for Plugin.cs compatibility
         public int OptimalScale { get; set; } = 2;
@@ -228,7 +228,7 @@ namespace JellyfinUpscalerPlugin
     {
         public string Name { get; set; } = "";
         public bool IsEnabled { get; set; } = true;
-        public Dictionary<string, object> Parameters { get; set; } = new Dictionary<string, object>();
+        public List<CustomSetting> Parameters { get; set; } = new List<CustomSetting>();
         
         // Additional properties for Plugin.cs compatibility
         public int PerformanceCost { get; set; } = 3;

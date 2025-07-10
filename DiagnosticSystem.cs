@@ -283,7 +283,7 @@ namespace JellyfinUpscalerPlugin
         /// <summary>
         /// Check memory usage
         /// </summary>
-        private async Task<DiagnosticResult> CheckMemoryUsage()
+        private Task<DiagnosticResult> CheckMemoryUsage()
         {
             try
             {
@@ -316,7 +316,7 @@ namespace JellyfinUpscalerPlugin
                     ? $"Memory usage normal: {totalMemory}MB"
                     : string.Join("; ", issues.Concat(warnings));
                 
-                return new DiagnosticResult
+                return Task.FromResult(new DiagnosticResult
                 {
                     Status = status,
                     Message = message,
@@ -327,22 +327,22 @@ namespace JellyfinUpscalerPlugin
                         ["issues"] = issues,
                         ["warnings"] = warnings
                     }
-                };
+                });
             }
             catch (Exception ex)
             {
-                return new DiagnosticResult
+                return Task.FromResult(new DiagnosticResult
                 {
                     Status = DiagnosticStatus.Error,
                     Message = $"Memory check failed: {ex.Message}"
-                };
+                });
             }
         }
         
         /// <summary>
         /// Check configuration validity
         /// </summary>
-        private async Task<DiagnosticResult> CheckConfiguration()
+        private Task<DiagnosticResult> CheckConfiguration()
         {
             try
             {
@@ -385,7 +385,7 @@ namespace JellyfinUpscalerPlugin
                     ? "Configuration is valid"
                     : string.Join("; ", issues.Concat(warnings));
                 
-                return new DiagnosticResult
+                return Task.FromResult(new DiagnosticResult
                 {
                     Status = status,
                     Message = message,
@@ -394,55 +394,55 @@ namespace JellyfinUpscalerPlugin
                         ["issues"] = issues,
                         ["warnings"] = warnings
                     }
-                };
+                });
             }
             catch (Exception ex)
             {
-                return new DiagnosticResult
+                return Task.FromResult(new DiagnosticResult
                 {
                     Status = DiagnosticStatus.Error,
                     Message = $"Configuration check failed: {ex.Message}"
-                };
+                });
             }
         }
         
         /// <summary>
         /// Check performance metrics
         /// </summary>
-        private async Task<DiagnosticResult> CheckPerformance()
+        private Task<DiagnosticResult> CheckPerformance()
         {
             // Simplified performance check
-            return new DiagnosticResult
+            return Task.FromResult(new DiagnosticResult
             {
                 Status = DiagnosticStatus.Healthy,
                 Message = "Performance monitoring active"
-            };
+            });
         }
         
         /// <summary>
         /// Check device compatibility
         /// </summary>
-        private async Task<DiagnosticResult> CheckDeviceCompatibility()
+        private Task<DiagnosticResult> CheckDeviceCompatibility()
         {
             // Simplified compatibility check
-            return new DiagnosticResult
+            return Task.FromResult(new DiagnosticResult
             {
                 Status = DiagnosticStatus.Healthy,
                 Message = "Device compatibility checks passed"
-            };
+            });
         }
         
         /// <summary>
         /// Check network performance
         /// </summary>
-        private async Task<DiagnosticResult> CheckNetworkPerformance()
+        private Task<DiagnosticResult> CheckNetworkPerformance()
         {
             // Simplified network check
-            return new DiagnosticResult
+            return Task.FromResult(new DiagnosticResult
             {
                 Status = DiagnosticStatus.Healthy,
                 Message = "Network performance acceptable"
-            };
+            });
         }
         
         /// <summary>
@@ -519,7 +519,7 @@ namespace JellyfinUpscalerPlugin
         }
         
         // Auto-fix methods
-        private async Task<bool> AutoFixMemoryUsage(DiagnosticResult result)
+        private Task<bool> AutoFixMemoryUsage(DiagnosticResult result)
         {
             try
             {
@@ -528,7 +528,7 @@ namespace JellyfinUpscalerPlugin
                 {
                     _config.CacheSizeMB = 5120; // Set to 5GB
                     Plugin.Instance.SaveConfiguration();
-                    return true;
+                    return Task.FromResult(true);
                 }
                 
                 // Force garbage collection
@@ -536,15 +536,15 @@ namespace JellyfinUpscalerPlugin
                 GC.WaitForPendingFinalizers();
                 GC.Collect();
                 
-                return true;
+                return Task.FromResult(true);
             }
             catch
             {
-                return false;
+                return Task.FromResult(false);
             }
         }
         
-        private async Task<bool> AutoFixModelCompatibility(DiagnosticResult result)
+        private Task<bool> AutoFixModelCompatibility(DiagnosticResult result)
         {
             try
             {
@@ -553,18 +553,18 @@ namespace JellyfinUpscalerPlugin
                 {
                     _config.Model = "fsrcnn"; // Minimal VRAM model
                     Plugin.Instance.SaveConfiguration();
-                    return true;
+                    return Task.FromResult(true);
                 }
                 
-                return false;
+                return Task.FromResult(false);
             }
             catch
             {
-                return false;
+                return Task.FromResult(false);
             }
         }
         
-        private async Task<bool> AutoFixPerformanceSettings(DiagnosticResult result)
+        private Task<bool> AutoFixPerformanceSettings(DiagnosticResult result)
         {
             try
             {
@@ -572,15 +572,15 @@ namespace JellyfinUpscalerPlugin
                 _config.EnableLightMode = true;
                 _config.Scale = Math.Min(_config.Scale, 2); // Limit scale factor
                 Plugin.Instance.SaveConfiguration();
-                return true;
+                return Task.FromResult(true);
             }
             catch
             {
-                return false;
+                return Task.FromResult(false);
             }
         }
         
-        private async Task<bool> AutoFixResetCache(DiagnosticResult result)
+        private Task<bool> AutoFixResetCache(DiagnosticResult result)
         {
             try
             {
@@ -589,11 +589,11 @@ namespace JellyfinUpscalerPlugin
                 _config.CacheSizeMB = 1024; // Reset to 1GB
                 _config.AutoCleanupCache = true;
                 Plugin.Instance.SaveConfiguration();
-                return true;
+                return Task.FromResult(true);
             }
             catch
             {
-                return false;
+                return Task.FromResult(false);
             }
         }
     }

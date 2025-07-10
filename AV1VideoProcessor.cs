@@ -333,7 +333,7 @@ namespace JellyfinUpscalerPlugin
         /// <summary>
         /// Optimize processing options with all enhancements
         /// </summary>
-        private async Task<VideoProcessingOptions> OptimizeProcessingOptionsAsync(
+        private Task<VideoProcessingOptions> OptimizeProcessingOptionsAsync(
             VideoProcessingOptions options,
             VideoInfo inputInfo,
             HardwareProfile hardware,
@@ -403,7 +403,7 @@ namespace JellyfinUpscalerPlugin
                 optimized.BackgroundShader = _config.BackgroundShader;
             }
             
-            return optimized;
+            return Task.FromResult(optimized);
         }
         
         /// <summary>
@@ -540,7 +540,7 @@ namespace JellyfinUpscalerPlugin
         /// <summary>
         /// Build enhanced video filters with AI models, shaders, and effects
         /// </summary>
-        private async Task<string> BuildEnhancedVideoFiltersAsync(
+        private Task<string> BuildEnhancedVideoFiltersAsync(
             VideoProcessingOptions options, HardwareProfile hardware, ProcessingJob job)
         {
             var filters = new List<string>();
@@ -615,7 +615,7 @@ namespace JellyfinUpscalerPlugin
                 filters.Add("minterpolate=fps=60:mi_mode=mci");
             }
             
-            return string.Join(",", filters);
+            return Task.FromResult(string.Join(",", filters));
         }
         
         /// <summary>

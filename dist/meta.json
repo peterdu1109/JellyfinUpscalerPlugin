@@ -11,5 +11,5 @@
     "imageUrl": "https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/assets/plugin-icon.png",
     "changelog": "CRITICAL FIXES v1.3.6.5: Serialization issues completely resolved, Plugin loads without errors on ALL systems, Dictionary<string,object> serialization fixed, XML compatibility ensured, All async method warnings fixed, Production-ready AI upscaling with 14 models, 7 shaders, and 12 revolutionary manager classes",
     "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/download/v1.3.6.5-serialization-fixed/JellyfinUpscalerPlugin-v1.3.6.5-Serialization-Fixed.zip",
-    "checksum": "93051F6A4DD8F7F1A56257A879DD9AF2"
+    "checksum": "CE3522E10DDC05EF558BE94FF79B6EDA"
 }

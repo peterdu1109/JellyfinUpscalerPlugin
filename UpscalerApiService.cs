@@ -67,7 +67,7 @@ namespace JellyfinUpscalerPlugin
         /// <summary>
         /// Get real-time processing statistics
         /// </summary>
-        public async Task<object> GetStatisticsAsync()
+        public Task<object> GetStatisticsAsync()
         {
             try
             {
@@ -77,31 +77,31 @@ namespace JellyfinUpscalerPlugin
                 // GPU stats from MultiGPUManager
                 var gpuStats = "GPU statistics available via MultiGPUManager";
                 
-                return new
+                return Task.FromResult<object>(new
                 {
                     Success = true,
                     Timestamp = DateTime.UtcNow,
                     ProcessingStats = stats,
                     GPUStats = gpuStats,
                     Message = "Statistics retrieved successfully"
-                };
+                });
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "❌ Failed to get statistics");
-                return new
+                return Task.FromResult<object>(new
                 {
                     Success = false,
                     Error = ex.Message,
                     Timestamp = DateTime.UtcNow
-                };
+                });
             }
         }
 
         /// <summary>
         /// Get available AI models and configurations
         /// </summary>
-        public async Task<object> GetModelsAsync()
+        public Task<object> GetModelsAsync()
         {
             try
             {
@@ -110,7 +110,7 @@ namespace JellyfinUpscalerPlugin
                 // Get available models from plugin configuration
                 var config = Plugin.Instance?.Configuration;
                 
-                return new
+                return Task.FromResult<object>(new
                 {
                     Success = true,
                     Timestamp = DateTime.UtcNow,
@@ -122,34 +122,34 @@ namespace JellyfinUpscalerPlugin
                     },
                     CurrentModel = config?.Model ?? "realesrgan",
                     Message = "AI models retrieved successfully"
-                };
+                });
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "❌ Failed to get models");
-                return new
+                return Task.FromResult<object>(new
                 {
                     Success = false,
                     Error = ex.Message,
                     Timestamp = DateTime.UtcNow
-                };
+                });
             }
         }
 
         /// <summary>
         /// Health check endpoint
         /// </summary>
-        public async Task<object> GetHealthAsync()
+        public Task<object> GetHealthAsync()
         {
             try
             {
                 _logger.LogInformation("❤️ API: Health check requested");
                 
-                return new
+                return Task.FromResult<object>(new
                 {
                     Success = true,
                     Status = "Healthy",
-                    Version = "1.3.6.1-Ultimate",
+                    Version = "1.3.6.5-Serialization-Fixed",
                     Timestamp = DateTime.UtcNow,
                     Components = new
                     {
@@ -164,18 +164,18 @@ namespace JellyfinUpscalerPlugin
                         IPv6Support = true,
                         JellyfinVersion = "10.10.6"
                     }
-                };
+                });
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "❌ Health check failed");
-                return new
+                return Task.FromResult<object>(new
                 {
                     Success = false,
                     Status = "Unhealthy",
                     Error = ex.Message,
                     Timestamp = DateTime.UtcNow
-                };
+                });
             }
         }
     }

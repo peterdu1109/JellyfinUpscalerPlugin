@@ -23,12 +23,12 @@ namespace JellyfinUpscalerPlugin
         /// <summary>
         /// Plugin version constant
         /// </summary>
-        public const string PLUGIN_VERSION = "1.3.6.4";
+        public const string PLUGIN_VERSION = "1.3.6.5";
         
         /// <summary>
         /// Plugin display name with version
         /// </summary>
-        public override string Name => $"🎮 AI Upscaler Plugin v{PLUGIN_VERSION} - Configuration Fixed";
+        public override string Name => $"🎮 AI Upscaler Plugin v{PLUGIN_VERSION} - Serialization Fixed";
         
         /// <summary>
         /// Unique plugin identifier - NEVER change this!
@@ -248,57 +248,63 @@ namespace JellyfinUpscalerPlugin
         {
             if (Configuration.ShaderConfigurations == null)
             {
-                Configuration.ShaderConfigurations = new Dictionary<string, object>();
+                Configuration.ShaderConfigurations = new List<CustomSetting>();
             }
             
-            var shaderConfigs = new Dictionary<string, object>
+            var shaderConfigs = new List<(string shader, string key, string value)>
             {
                 // Existing shaders
-                ["bicubic"] = new ShaderSettings 
-                { 
-                    PerformanceCost = 2, Quality = "3", UseCase = "general", 
-                    SupportsHardwareAcceleration = true 
-                },
-                ["bilinear"] = new ShaderSettings 
-                { 
-                    PerformanceCost = 1, Quality = "2", UseCase = "weak-hardware", 
-                    SupportsHardwareAcceleration = true 
-                },
-                ["lanczos"] = new ShaderSettings 
-                { 
-                    PerformanceCost = 3, Quality = "4", UseCase = "detailed", 
-                    SupportsHardwareAcceleration = true 
-                },
+                ("bicubic", "PerformanceCost", "2"),
+                ("bicubic", "Quality", "3"),
+                ("bicubic", "UseCase", "general"),
+                ("bicubic", "SupportsHardwareAcceleration", "true"),
+                
+                ("bilinear", "PerformanceCost", "1"),
+                ("bilinear", "Quality", "2"),
+                ("bilinear", "UseCase", "weak-hardware"),
+                ("bilinear", "SupportsHardwareAcceleration", "true"),
+                
+                ("lanczos", "PerformanceCost", "3"),
+                ("lanczos", "Quality", "4"),
+                ("lanczos", "UseCase", "detailed"),
+                ("lanczos", "SupportsHardwareAcceleration", "true"),
                 
                 // New shaders
-                ["mitchell-netravali"] = new ShaderSettings 
-                { 
-                    PerformanceCost = 2, Quality = "4", UseCase = "movies", 
-                    SupportsHardwareAcceleration = true 
-                },
-                ["catmull-rom"] = new ShaderSettings 
-                { 
-                    PerformanceCost = 3, Quality = "4", UseCase = "high-res", 
-                    SupportsHardwareAcceleration = true 
-                },
-                ["sinc"] = new ShaderSettings 
-                { 
-                    PerformanceCost = 5, Quality = "5", UseCase = "maximum-quality", 
-                    SupportsHardwareAcceleration = false 
-                },
-                ["nearest-neighbor"] = new ShaderSettings 
-                { 
-                    PerformanceCost = 1, Quality = "1", UseCase = "emergency", 
-                    SupportsHardwareAcceleration = true 
-                }
+                ("mitchell-netravali", "PerformanceCost", "2"),
+                ("mitchell-netravali", "Quality", "4"),
+                ("mitchell-netravali", "UseCase", "movies"),
+                ("mitchell-netravali", "SupportsHardwareAcceleration", "true"),
+                
+                ("catmull-rom", "PerformanceCost", "3"),
+                ("catmull-rom", "Quality", "4"),
+                ("catmull-rom", "UseCase", "high-res"),
+                ("catmull-rom", "SupportsHardwareAcceleration", "true"),
+                
+                ("sinc", "PerformanceCost", "5"),
+                ("sinc", "Quality", "5"),
+                ("sinc", "UseCase", "maximum-quality"),
+                ("sinc", "SupportsHardwareAcceleration", "false"),
+                
+                ("nearest-neighbor", "PerformanceCost", "1"),
+                ("nearest-neighbor", "Quality", "1"),
+                ("nearest-neighbor", "UseCase", "emergency"),
+                ("nearest-neighbor", "SupportsHardwareAcceleration", "true")
             };
             
             // Add missing configurations
-            foreach (var config in shaderConfigs)
+            foreach (var (shader, key, value) in shaderConfigs)
             {
-                if (!Configuration.ShaderConfigurations.ContainsKey(config.Key))
+                var configKey = $"{shader}.{key}";
+                var existingConfig = Configuration.ShaderConfigurations.FirstOrDefault(c => c.Key == configKey);
+                
+                if (existingConfig == null)
                 {
-                    Configuration.ShaderConfigurations[config.Key] = config.Value;
+                    Configuration.ShaderConfigurations.Add(new CustomSetting
+                    {
+                        Key = configKey,
+                        Value = value,
+                        Type = key == "PerformanceCost" ? "int" : (key.Contains("Supports") ? "bool" : "string")
+                    });
                 }
             }
         }
@@ -488,7 +494,7 @@ namespace JellyfinUpscalerPlugin
         /// <summary>
         /// Plugin version for compatibility checks
         /// </summary>
-        public static string PluginVersion => "1.3.5";
+        public static string PluginVersion => "1.3.6.5";
         
         /// <summary>
         /// Check if plugin is compatible with current Jellyfin version

@@ -372,7 +372,7 @@ namespace JellyfinUpscalerPlugin
             return workload.CurrentTasks.Sum(t => EstimateMemoryUsage(t.Request));
         }
         
-        private async Task AssignTaskToGPU(UpscalingTask task, GPUDevice gpu)
+        private Task AssignTaskToGPU(UpscalingTask task, GPUDevice gpu)
         {
             try
             {
@@ -388,12 +388,15 @@ namespace JellyfinUpscalerPlugin
                 
                 // Start processing on GPU
                 _ = Task.Run(() => ProcessTaskOnGPU(task, gpu));
+                
+                return Task.CompletedTask;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Failed to assign task to GPU {gpu.Name}");
                 task.Status = TaskStatus.Failed;
                 task.ErrorMessage = ex.Message;
+                return Task.CompletedTask;
             }
         }
         
