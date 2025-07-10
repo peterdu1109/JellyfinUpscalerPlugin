@@ -398,7 +398,7 @@ curl -H "Content-Type: application/json" \
 
 ### **✅ NATIVE DASHBOARD INTEGRATION COMPLETE**
 
-**🎯 Version 1.3.6.4 CONFIGURATION FIXED brings native Jellyfin dashboard integration:**
+**🎯 Version 1.3.6.5 SERIALIZATION FIXED brings native Jellyfin dashboard integration:**
 
 #### **🔧 MAJOR CONFIGURATION IMPROVEMENTS:**
 - ✅ **Native Dashboard Integration** - Plugin configuration works on ALL devices
@@ -798,7 +798,7 @@ After installation, verify the plugin is working:
 
 ## 📝 **CHANGELOG**
 
-### **🎮 v1.3.6.3 - ULTIMATE EDITION (2025-01-08)**
+### **🎮 v1.3.6.5 - SERIALIZATION FIXED (2025-01-09)**
 
 #### **🔧 CRITICAL FIXES:**
 - ✅ **Plugin Serialization Fixed** - Dictionary serialization errors resolved
@@ -820,7 +820,7 @@ After installation, verify the plugin is working:
 - ✅ **Cross-Platform** - Confirmed compatibility with Windows, Linux, macOS
 - ✅ **Professional UI** - Matches Jellyfin's native plugin standards
 
-### **🚀 v1.3.6.2 - FUNCTIONAL EDITION (2025-01-02)**
+### **🚀 v1.3.6.2 - FUNCTIONAL EDITION (2025-01-02)** *(Legacy)*
 
 #### **🔧 FUNCTIONALITY FIXES:**
 - ✅ Plugin now works with videos - Real upscaling processing implemented
@@ -834,7 +834,7 @@ After installation, verify the plugin is working:
 - ✅ Real-time quality adjustment - 2x/3x/4x scaling during playback
 - ✅ One-click upscaling activation - No complicated settings
 
-### **🎯 v1.3.6.1 - ULTIMATE EDITION (2024-12-30)**
+### **🎯 v1.3.6.1 - ULTIMATE EDITION (2024-12-30)** *(Legacy)*
 
 #### **🔧 CRITICAL FIXES:**
 - ✅ Docker compatibility issues resolved
