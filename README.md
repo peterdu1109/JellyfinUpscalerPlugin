@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎮 AI UPSCALER PLUGIN v1.3.6.5 - SERIALIZATION FIXED ✅
+# 🎮 AI UPSCALER PLUGIN v1.3.6.5 - SERIALIZATION FIXED 
 
 ### *The Revolutionary Jellyfin Upscaling Solution - ZERO INSTALLATION ERRORS!*
 
