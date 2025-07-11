@@ -28,11 +28,16 @@
         // Wait for Jellyfin player to be available
         waitForPlayer: function() {
             const checkPlayer = () => {
-                if (window.ApiClient && window.playbackManager) {
-                    console.log('AI Upscaler: Jellyfin player detected, integrating...');
-                    this.integrateWithPlayer();
-                } else {
-                    setTimeout(checkPlayer, 1000);
+                try {
+                    if (window.ApiClient && window.playbackManager) {
+                        console.log('AI Upscaler: Jellyfin player detected, integrating...');
+                        this.integrateWithPlayer();
+                    } else {
+                        setTimeout(checkPlayer, 1000);
+                    }
+                } catch (error) {
+                    console.error('AI Upscaler: Error waiting for player:', error);
+                    setTimeout(checkPlayer, 2000);
                 }
             };
             checkPlayer();
@@ -40,14 +45,18 @@
         
         // Integrate with Jellyfin player
         integrateWithPlayer: function() {
-            // Add upscaler button to player controls
-            this.addPlayerButton();
-            
-            // Monitor playback events
-            this.monitorPlayback();
-            
-            // Add keyboard shortcuts
-            this.addKeyboardShortcuts();
+            try {
+                // Add upscaler button to player controls
+                this.addPlayerButton();
+                
+                // Monitor playback events
+                this.monitorPlayback();
+                
+                // Add keyboard shortcuts
+                this.addKeyboardShortcuts();
+            } catch (error) {
+                console.error('AI Upscaler: Error integrating with player:', error);
+            }
         },
         
         // Add upscaler button to player controls
