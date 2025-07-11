@@ -18,11 +18,7 @@
     <PackageReference Include="System.Text.Json" Version="8.0.5" />
   </ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="Configuration\**" />
-    <EmbeddedResource Include="web\**" />
-    <EmbeddedResource Include="assets\**" />
-  </ItemGroup>
+  <!-- No embedded resources needed for basic plugin -->
 
   <ItemGroup>
     <None Include="thumb.jpg" CopyToOutputDirectory="Always" />
@@ -38,8 +34,6 @@
     <Compile Remove="archive/**" />
     <Compile Remove="docs/**" />
     <Compile Remove="**/archive/**" />
-    
-    <!-- CRITICAL: Exclude duplicate directories that cause conflicts -->
     <Compile Remove="dist/**" />
     <Compile Remove="GitHub-Upload/**" />
     <Compile Remove="publish-output/**" />
@@ -47,11 +41,27 @@
     <Compile Remove="bin/**" />
     <Compile Remove="obj/**" />
     <Compile Remove=".backups/**" />
+    <Compile Remove="release-v*/**" />
+    <Compile Remove="wiki/**" />
+    <Compile Remove="Configuration/**" />
+    <Compile Remove="web/**" />
+    <Compile Remove="src/**" />
+    <Compile Remove="shaders/**" />
+    <Compile Remove="_exclude/**" />
     
-    <!-- Include only the main enhanced files -->
-    <Compile Remove="Plugin-Enhanced-v1.3.5.cs" />
-    <Compile Remove="PluginConfiguration-Enhanced-v1.3.5.cs" />
-    <Compile Remove="AV1VideoProcessor-Enhanced-v1.3.5.cs" />
+    <!-- Exclude complex manager classes that cause build issues -->
+    <Compile Remove="*Manager.cs" />
+    <Compile Remove="*Processor.cs" />
+    <Compile Remove="*ApiController.cs" />
+    <Compile Remove="*ApiService.cs" />
+    <Compile Remove="*Core.cs" />
+    <Compile Remove="*Compatibility.cs" />
+    <Compile Remove="Plugin-Complex.cs" />
+    <Compile Remove="PluginConfiguration-Complex.cs" />
+    <Compile Remove="Plugin-Enhanced-*.cs" />
+    <Compile Remove="PluginConfiguration-Enhanced-*.cs" />
+    <Compile Remove="AV1VideoProcessor-Enhanced-*.cs" />
+    <Compile Remove="IPluginServiceRegistrator.cs" />
   </ItemGroup>
 
 </Project>
