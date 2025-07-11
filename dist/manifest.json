@@ -11,10 +11,10 @@
       "changelog": "v1.3.6.7: Enhanced Compatibility - Universal compatibility achieved! Perfect Quick Menu (18,798 bytes JavaScript), seamless Player Integration (24,029 bytes JavaScript), works on ALL 24 platforms. Smart TVs, Desktop, Mobile, NAS - all verified. Enterprise-grade security, zero crashes, touch-optimized design. Performance: < 1s load time, < 50MB memory, comprehensive testing passed.",
       "targetAbi": "10.10.0.0",
       "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/download/v1.3.6.7-enhanced/JellyfinUpscalerPlugin-v1.3.6.7-Enhanced.zip",
-      "checksum": "5E2BD94437EED0BB86AC059B5A8E9783",
+      "checksum": "F70C0C72E848FF5DB58A1885166A2A40",
       "timestamp": "2025-07-11T04:55:00.000Z",
       "filename": "JellyfinUpscalerPlugin-v1.3.6.7-Enhanced.zip",
-      "size": 52716
+      "size": 53095
     }
   ],
   "repositoryUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin",

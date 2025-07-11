@@ -4,13 +4,14 @@ using MediaBrowser.Common.Configuration;
 using MediaBrowser.Common.Plugins;
 using MediaBrowser.Model.Plugins;
 using MediaBrowser.Model.Serialization;
+using MediaBrowser.Controller.Plugins;
 
 namespace JellyfinUpscalerPlugin
 {
     /// <summary>
     /// AI Upscaler Plugin for Jellyfin v1.3.6.7 - Enhanced with Crash Prevention
     /// </summary>
-    public class Plugin : BasePlugin<PluginConfiguration>
+    public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
     {
         /// <summary>
         /// Plugin version
@@ -87,5 +88,20 @@ namespace JellyfinUpscalerPlugin
         /// Static instance
         /// </summary>
         public static Plugin Instance { get; private set; }
+        
+        /// <summary>
+        /// Get plugin web pages for configuration
+        /// </summary>
+        public IEnumerable<PluginPageInfo> GetPages()
+        {
+            return new[]
+            {
+                new PluginPageInfo
+                {
+                    Name = "AI Upscaler Plugin",
+                    EmbeddedResourcePath = "JellyfinUpscalerPlugin.Configuration.configurationpage.html"
+                }
+            };
+        }
     }
 }
