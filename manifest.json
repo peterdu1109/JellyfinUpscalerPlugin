@@ -11,10 +11,10 @@
       "changelog": "v1.3.6.7: Enhanced with crash prevention system, advanced error handling, cross-platform compatibility, device-specific optimizations, hardware acceleration support, performance monitoring, auto-recovery features, comprehensive diagnostics, production-ready stability",
       "targetAbi": "10.10.0.0",
       "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/download/v1.3.6.7-enhanced/JellyfinUpscalerPlugin-v1.3.6.7-Enhanced.zip",
-      "checksum": "4C275A4301224E21413FE4197F9A09DF",
-      "timestamp": "2025-07-11T04:45:00.000Z",
+      "checksum": "5E2BD94437EED0BB86AC059B5A8E9783",
+      "timestamp": "2025-07-11T04:55:00.000Z",
       "filename": "JellyfinUpscalerPlugin-v1.3.6.7-Enhanced.zip",
-      "size": 16205
+      "size": 52716
     }
   ],
   "repositoryUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin",
