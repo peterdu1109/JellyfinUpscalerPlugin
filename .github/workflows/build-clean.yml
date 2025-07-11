@@ -1,215 +1,55 @@
-name: 🔨 Build Clean - Simplified Plugin
+name: Build Plugin
 
 on:
   push:
     branches: [ main ]
-    tags: [ 'v*' ]
   pull_request:
     branches: [ main ]
   workflow_dispatch:
 
 env:
-  PLUGIN_VERSION: "1.3.6.5"
   DOTNET_VERSION: "8.0.x"
 
 jobs:
   build:
-    name: 🔨 Build Plugin
+    name: Build Plugin
     runs-on: ubuntu-latest
     
     steps:
-    - name: 📥 Checkout code
+    - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: 🔧 Setup .NET 8.0
+    - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
-    - name: 🧹 Clean previous builds
-      run: |
-        dotnet clean
-        rm -rf bin/ obj/ dist/
+    - name: Clean
+      run: dotnet clean
 
-    - name: 📦 Restore dependencies
+    - name: Restore dependencies
       run: dotnet restore
 
-    - name: 🔨 Build plugin
+    - name: Build
       run: dotnet build --configuration Release --no-restore
 
-    - name: ✅ Verify build output
+    - name: Verify build output
       run: |
-        echo "🎉 Build completed successfully!"
-        echo "📦 Build artifacts:"
-        find bin/Release/net8.0/ -type f -name "*.dll" -o -name "*.json"
-        
-        # Check main plugin DLL
+        echo "Build completed successfully!"
+        echo "Checking for DLL:"
+        ls -la bin/Release/net8.0/
         if [ -f "bin/Release/net8.0/JellyfinUpscalerPlugin.dll" ]; then
-          echo "✅ Main plugin DLL found!"
-          ls -la bin/Release/net8.0/JellyfinUpscalerPlugin.dll
-          echo "📊 DLL size: $(stat -c%s bin/Release/net8.0/JellyfinUpscalerPlugin.dll) bytes"
+          echo "Plugin DLL found!"
         else
-          echo "❌ Main plugin DLL not found"
+          echo "Plugin DLL not found!"
           exit 1
         fi
 
-    - name: 📦 Create plugin package
-      run: |
-        # Create dist directory
-        mkdir -p dist
-        
-        # Copy built DLL and essential files
-        cp bin/Release/net8.0/JellyfinUpscalerPlugin.dll dist/
-        cp bin/Release/net8.0/JellyfinUpscalerPlugin.deps.json dist/
-        cp bin/Release/net8.0/meta.json dist/
-        cp bin/Release/net8.0/thumb.jpg dist/
-        
-        # Copy plugin metadata
-        cp manifest.json dist/ 2>/dev/null || echo "manifest.json not found"
-        cp README.md dist/ 2>/dev/null || echo "README.md not found"
-        cp LICENSE dist/ 2>/dev/null || echo "LICENSE not found"
-        
-        # Create ZIP package
-        cd dist
-        zip -r JellyfinUpscalerPlugin-v${{ env.PLUGIN_VERSION }}-Clean.zip . -x "*.zip"
-        
-        # Generate checksums
-        md5sum *.zip > checksums.md5
-        sha256sum *.zip > checksums.sha256
-        
-        echo "📦 Package created:"
-        ls -la *.zip
-        echo "🔐 Checksums:"
-        cat checksums.md5
-        cat checksums.sha256
-
-    - name: 🧪 Test plugin package
-      run: |
-        cd dist
-        # Verify ZIP structure
-        unzip -l *.zip
-        
-        # Verify DLL integrity
-        if [ -f "JellyfinUpscalerPlugin.dll" ]; then
-          echo "✅ Plugin DLL verified"
-        else
-          echo "❌ Plugin DLL missing in package"
-          exit 1
-        fi
-
-    - name: 📤 Upload build artifacts
+    - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: plugin-package-v${{ env.PLUGIN_VERSION }}-clean
+        name: plugin-build
         path: |
-          dist/*.zip
-          dist/checksums.md5
-          dist/checksums.sha256
-
-  test-compatibility:
-    name: 🧪 Test on ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    
-    steps:
-    - name: 📥 Checkout code
-      uses: actions/checkout@v4
-
-    - name: 🔧 Setup .NET 8.0
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: ${{ env.DOTNET_VERSION }}
-
-    - name: 🧹 Clean build environment
-      run: |
-        dotnet clean
-        dotnet restore
-
-    - name: 📦 Test build
-      run: dotnet build --configuration Release --no-restore
-
-    - name: ✅ Verify build success
-      run: |
-        echo "✅ Successfully built on ${{ matrix.os }}!"
-        if [ -f "bin/Release/net8.0/JellyfinUpscalerPlugin.dll" ]; then
-          echo "✅ Plugin DLL generated successfully"
-        else
-          echo "❌ Plugin DLL not found"
-          exit 1
-        fi
-
-  create-release:
-    name: 🚀 Create GitHub Release
-    runs-on: ubuntu-latest
-    needs: [build, test-compatibility]
-    if: startsWith(github.ref, 'refs/tags/v')
-    permissions:
-      contents: write
-    
-    steps:
-    - name: 📥 Checkout code
-      uses: actions/checkout@v4
-
-    - name: 📥 Download build artifacts
-      uses: actions/download-artifact@v4
-      with:
-        name: plugin-package-v${{ env.PLUGIN_VERSION }}-clean
-        path: dist/
-
-    - name: 📋 Create release notes
-      run: |
-        cat > release-notes.md << 'EOF'
-        # 🚀 Jellyfin AI Upscaler Plugin v${{ env.PLUGIN_VERSION }}
-
-        ## ✅ MAJOR IMPROVEMENTS
-        - 🔧 **Build Issues Completely Fixed** - Clean compilation, no warnings
-        - 🎯 **Simplified Architecture** - Removed complex HTML configurations
-        - 📱 **Standard Plugin Structure** - Follows Jellyfin plugin best practices
-        - 🌐 **Cross-Platform Compatible** - Windows, Linux, macOS, Docker
-        - 🔐 **Production Ready** - Thoroughly tested and verified
-
-        ## 🎮 FEATURES
-        - AI-powered video upscaling with multiple models
-        - Hardware acceleration support
-        - Device compatibility fixes
-        - Performance optimization
-        - Standard Jellyfin plugin configuration
-
-        ## 📦 INSTALLATION
-        1. Download the ZIP file below
-        2. Extract to your Jellyfin plugins directory
-        3. Restart Jellyfin
-        4. Configure through Settings > Plugins
-
-        ## 🔧 TECHNICAL DETAILS
-        - .NET 8.0 target framework
-        - Jellyfin 10.10.0+ compatible
-        - No external dependencies
-        - Clean, lightweight implementation
-
-        ---
-        **This version fixes all previous build and compatibility issues!**
-        EOF
-
-    - name: 🚀 Create GitHub Release
-      uses: softprops/action-gh-release@v1
-      with:
-        name: "🚀 AI Upscaler Plugin v${{ env.PLUGIN_VERSION }} - Build Fixed"
-        body_path: release-notes.md
-        draft: false
-        prerelease: false
-        files: |
-          dist/*.zip
-          dist/checksums.md5
-          dist/checksums.sha256
-        generate_release_notes: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: 🎉 Release success
-      run: |
-        echo "🎉 Release v${{ env.PLUGIN_VERSION }} created successfully!"
-        echo "📥 Download: https://github.com/${{ github.repository }}/releases/tag/v${{ env.PLUGIN_VERSION }}"
-        echo "🔧 All build issues have been resolved!"
+          bin/Release/net8.0/*.dll
+          bin/Release/net8.0/*.json
+          bin/Release/net8.0/*.jpg
