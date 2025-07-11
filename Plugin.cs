@@ -8,14 +8,14 @@ using MediaBrowser.Model.Serialization;
 namespace JellyfinUpscalerPlugin
 {
     /// <summary>
-    /// AI Upscaler Plugin for Jellyfin v1.3.6.5 - Simplified & Fixed
+    /// AI Upscaler Plugin for Jellyfin v1.3.6.7 - Enhanced with Crash Prevention
     /// </summary>
     public class Plugin : BasePlugin<PluginConfiguration>
     {
         /// <summary>
         /// Plugin version
         /// </summary>
-        public const string PLUGIN_VERSION = "1.3.6.5";
+        public const string PLUGIN_VERSION = "1.3.6.7";
         
         /// <summary>
         /// Plugin name
@@ -40,14 +40,47 @@ namespace JellyfinUpscalerPlugin
         public Plugin(IApplicationPaths applicationPaths, IXmlSerializer xmlSerializer) 
             : base(applicationPaths, xmlSerializer)
         {
-            Instance = this;
-            
-            // Initialize default configuration
-            if (Configuration == null)
+            try
             {
-                Configuration = new PluginConfiguration();
-                SaveConfiguration();
+                Instance = this;
+                
+                // Initialize default configuration with error handling
+                InitializeConfiguration();
+                
+                // Log successful initialization
+                System.Diagnostics.Debug.WriteLine($"AI Upscaler Plugin v{PLUGIN_VERSION} initialized successfully");
             }
+            catch (Exception ex)
+            {
+                // Log initialization errors
+                System.Diagnostics.Debug.WriteLine($"AI Upscaler Plugin initialization error: {ex.Message}");
+                
+                // Fallback initialization
+                Instance = this;
+                Configuration = new PluginConfiguration();
+            }
+        }
+        
+        /// <summary>
+        /// Initialize plugin configuration safely
+        /// </summary>
+        private void InitializeConfiguration()
+        {
+            ErrorHandler.SafeExecute(() =>
+            {
+                if (Configuration == null)
+                {
+                    Configuration = new PluginConfiguration();
+                }
+                
+                // Initialize defaults
+                Configuration.InitializeDefaults();
+                
+                // Log platform information
+                System.Diagnostics.Debug.WriteLine($"AI Upscaler Plugin v{PLUGIN_VERSION} - Platform: {System.Runtime.InteropServices.RuntimeInformation.OSDescription}");
+                
+                SaveConfiguration();
+            }, "InitializeConfiguration");
         }
         
         /// <summary>

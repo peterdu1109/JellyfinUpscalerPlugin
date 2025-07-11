@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using MediaBrowser.Model.Plugins;
 
 namespace JellyfinUpscalerPlugin
 {
     /// <summary>
-    /// Plugin Configuration - Simple & Serializable
+    /// Plugin Configuration - Enhanced v1.3.6.7 with Crash Prevention
     /// </summary>
     public class PluginConfiguration : BasePluginConfiguration
     {
@@ -18,6 +19,10 @@ namespace JellyfinUpscalerPlugin
         public bool ShowPlayerButton { get; set; } = true;
         public bool EnableNotifications { get; set; } = true;
         public string Language { get; set; } = "en";
+        
+        // Version tracking
+        public string PluginVersion { get; set; } = "1.3.6.7";
+        public DateTime LastConfigUpdate { get; set; } = DateTime.UtcNow;
         
         // Available Models
         public List<string> AvailableAIModels { get; set; } = new List<string>
@@ -53,5 +58,55 @@ namespace JellyfinUpscalerPlugin
         public bool EnableCache { get; set; } = true;
         public bool AutoCleanupCache { get; set; } = true;
         public int MaxCacheAgeDays { get; set; } = 7;
+        
+        // Error Handling & Stability
+        public bool EnableErrorReporting { get; set; } = true;
+        public bool EnableAutoRecovery { get; set; } = true;
+        public int MaxRetryAttempts { get; set; } = 3;
+        public int RetryDelaySeconds { get; set; } = 5;
+        public bool EnableSafeMode { get; set; } = false;
+        public bool EnableFallbackMode { get; set; } = true;
+        
+        // Cross-Platform Compatibility
+        public bool EnableLinuxCompatibility { get; set; } = true;
+        public bool EnableMacOSCompatibility { get; set; } = true;
+        public bool EnableWindowsCompatibility { get; set; } = true;
+        public bool EnableDockerCompatibility { get; set; } = true;
+        public bool EnableARMCompatibility { get; set; } = true;
+        
+        // Advanced Diagnostics
+        public bool EnableHealthCheck { get; set; } = true;
+        public bool EnableMemoryMonitoring { get; set; } = true;
+        public bool EnableCPUMonitoring { get; set; } = true;
+        public bool EnableNetworkMonitoring { get; set; } = false;
+        public int DiagnosticIntervalMinutes { get; set; } = 15;
+        
+        // Device-Specific Enhancements
+        public bool EnableSmartTVOptimization { get; set; } = true;
+        public bool EnableMobileOptimization { get; set; } = true;
+        public bool EnableDesktopOptimization { get; set; } = true;
+        public bool EnableNASOptimization { get; set; } = true;
+        
+        // Initialize method for safe configuration
+        public void InitializeDefaults()
+        {
+            if (AvailableAIModels == null || AvailableAIModels.Count == 0)
+            {
+                AvailableAIModels = new List<string>
+                {
+                    "realesrgan", "esrgan", "swinir", "waifu2x", "srcnn", "bicubic"
+                };
+            }
+            
+            if (AvailableShaders == null || AvailableShaders.Count == 0)
+            {
+                AvailableShaders = new List<string>
+                {
+                    "bicubic", "bilinear", "lanczos"
+                };
+            }
+            
+            LastConfigUpdate = DateTime.UtcNow;
+        }
     }
 }
