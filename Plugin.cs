@@ -8,55 +8,53 @@ using MediaBrowser.Model.Serialization;
 namespace JellyfinUpscalerPlugin
 {
     /// <summary>
-    /// AI Upscaler Plugin for Jellyfin - Stable Version
+    /// AI Upscaler Plugin for Jellyfin - Production Stable Version
     /// </summary>
     public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
     {
         /// <summary>
-        /// Plugin name
+        /// Initializes a new instance of the Plugin class.
         /// </summary>
-        public override string Name => "AI Upscaler Plugin";
-        
-        /// <summary>
-        /// Plugin GUID
-        /// </summary>
-        public override Guid Id => new Guid("f87f700e-679d-43e6-9c7c-b3a410dc3f22");
-        
-        /// <summary>
-        /// Plugin version
-        /// </summary>
-        public new Version Version => new Version(1, 3, 6, 7);
-        
-        /// <summary>
-        /// Plugin description
-        /// </summary>
-        public override string Description => "AI-powered video upscaling with Quick Menu and Player Integration";
-        
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public Plugin(IApplicationPaths applicationPaths, IXmlSerializer xmlSerializer) 
+        /// <param name="applicationPaths">Application paths.</param>
+        /// <param name="xmlSerializer">XML serializer.</param>
+        public Plugin(IApplicationPaths applicationPaths, IXmlSerializer xmlSerializer)
             : base(applicationPaths, xmlSerializer)
         {
             Instance = this;
         }
-        
+
         /// <summary>
-        /// Static instance
+        /// Gets the plugin name.
         /// </summary>
-        public static Plugin Instance { get; private set; }
-        
+        public override string Name => "AI Upscaler Plugin";
+
         /// <summary>
-        /// Get plugin web pages
+        /// Gets the plugin description.
         /// </summary>
+        public override string Description => "AI-powered video upscaling with multiple models and Player Integration";
+
+        /// <summary>
+        /// Gets the plugin GUID.
+        /// </summary>
+        public override Guid Id => Guid.Parse("f87f700e-679d-43e6-9c7c-b3a410dc3f22");
+
+        /// <summary>
+        /// Gets the static plugin instance.
+        /// </summary>
+        public static Plugin? Instance { get; private set; }
+
+        /// <summary>
+        /// Gets the plugin web pages for configuration.
+        /// </summary>
+        /// <returns>Collection of plugin pages.</returns>
         public IEnumerable<PluginPageInfo> GetPages()
         {
             return new[]
             {
                 new PluginPageInfo
                 {
-                    Name = "AI Upscaler Plugin",
-                    EmbeddedResourcePath = "JellyfinUpscalerPlugin.Configuration.configurationpage.html"
+                    Name = this.Name,
+                    EmbeddedResourcePath = GetType().Namespace + ".Configuration.configPage.html"
                 }
             };
         }

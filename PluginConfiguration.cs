@@ -87,26 +87,6 @@ namespace JellyfinUpscalerPlugin
         public bool EnableDesktopOptimization { get; set; } = true;
         public bool EnableNASOptimization { get; set; } = true;
         
-        // Initialize method for safe configuration
-        public void InitializeDefaults()
-        {
-            if (AvailableAIModels == null || AvailableAIModels.Count == 0)
-            {
-                AvailableAIModels = new List<string>
-                {
-                    "realesrgan", "esrgan", "swinir", "waifu2x", "srcnn", "bicubic"
-                };
-            }
-            
-            if (AvailableShaders == null || AvailableShaders.Count == 0)
-            {
-                AvailableShaders = new List<string>
-                {
-                    "bicubic", "bilinear", "lanczos"
-                };
-            }
-            
-            LastConfigUpdate = DateTime.UtcNow;
-        }
+
     }
 }

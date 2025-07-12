@@ -57,18 +57,11 @@
     <Compile Remove="_exclude/**" />
     
     <!-- Exclude complex manager classes that cause build issues -->
-    <Compile Remove="*Manager.cs" />
-    <Compile Remove="*Processor.cs" />
-    <Compile Remove="*ApiController.cs" />
-    <Compile Remove="*ApiService.cs" />
-    <Compile Remove="*Core.cs" />
-    <Compile Remove="*Compatibility.cs" />
     <Compile Remove="Plugin-Complex.cs" />
     <Compile Remove="PluginConfiguration-Complex.cs" />
     <Compile Remove="Plugin-Enhanced-*.cs" />
     <Compile Remove="PluginConfiguration-Enhanced-*.cs" />
     <Compile Remove="AV1VideoProcessor-Enhanced-*.cs" />
-    <Compile Remove="IPluginServiceRegistrator.cs" />
   </ItemGroup>
 
 </Project>
