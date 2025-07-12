@@ -5,7 +5,7 @@ using MediaBrowser.Model.Plugins;
 namespace JellyfinUpscalerPlugin
 {
     /// <summary>
-    /// Plugin Configuration - Enhanced v1.3.6.7 with Crash Prevention
+    /// Plugin Configuration - v1.4.0 Stable Update with Hardware Benchmarking
     /// </summary>
     public class PluginConfiguration : BasePluginConfiguration
     {
@@ -21,8 +21,42 @@ namespace JellyfinUpscalerPlugin
         public string Language { get; set; } = "en";
         
         // Version tracking
-        public string PluginVersion { get; set; } = "1.3.6.7";
+        public string PluginVersion { get; set; } = "1.4.0";
         public DateTime LastConfigUpdate { get; set; } = DateTime.UtcNow;
+        
+        // v1.4.0 NEW: Hardware Benchmarking & Testing
+        public bool EnableAutoBenchmarking { get; set; } = true;
+        public bool EnableHardwareDetection { get; set; } = true;
+        public bool EnablePerformanceOptimization { get; set; } = true;
+        public bool ShowBenchmarkResults { get; set; } = true;
+        public bool EnableBenchmarkConsole { get; set; } = true;
+        public bool AutoSelectOptimalModel { get; set; } = true;
+        
+        // v1.4.0 NEW: Pre-Processing Cache
+        public bool EnablePreProcessingCache { get; set; } = false;
+        public int PreProcessCacheSizeMB { get; set; } = 2048;
+        public bool PreProcessOnIdle { get; set; } = true;
+        public List<string> PreProcessResolutions { get; set; } = new List<string> { "720p", "1080p" };
+        
+        // v1.4.0 NEW: Fallback System for Low-End Hardware
+        public bool EnableAutoFallback { get; set; } = true;
+        public int FallbackTriggerFPS { get; set; } = 20;
+        public int FallbackTriggerCPU { get; set; } = 85;
+        public string FallbackModel { get; set; } = "fsrcnn-light";
+        public bool ShowFallbackNotifications { get; set; } = true;
+        
+        // v1.4.0 NEW: TV Remote & WebOS Optimization
+        public bool EnableTVRemoteNavigation { get; set; } = true;
+        public bool EnableLargeTouchTargets { get; set; } = true;
+        public bool EnableFocusIndicators { get; set; } = true;
+        public bool EnableWebOSOptimization { get; set; } = true;
+        public bool EnableTizenOptimization { get; set; } = true;
+        
+        // v1.4.0 NEW: Comparison View
+        public bool EnableComparisonView { get; set; } = true;
+        public bool EnableBeforeAfterPreview { get; set; } = true;
+        public bool EnableQuickCompare { get; set; } = true;
+        public int PreviewFrameCount { get; set; } = 3;
         
         // Available Models
         public List<string> AvailableAIModels { get; set; } = new List<string>

@@ -1,11 +1,11 @@
 <div align="center">
 
-# 🎮 AI UPSCALER PLUGIN v1.3.6.7 - ENHANCED COMPATIBILITY
+# 🎮 AI UPSCALER PLUGIN v1.4.0 - STABLE UPDATE WITH HARDWARE BENCHMARKING
 
-### *The Revolutionary Jellyfin Upscaling Solution - UNIVERSAL COMPATIBILITY ACHIEVED!*
+### *The Revolutionary Jellyfin Upscaling Solution - NOW WITH AUTOMATED HARDWARE TESTING!*
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge&logo=opensource)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-1.3.6.7%20Enhanced-gold.svg?style=for-the-badge&logo=semantic-release)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases)
+[![Version](https://img.shields.io/badge/Version-1.4.0%20Stable-gold.svg?style=for-the-badge&logo=semantic-release)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases)
 [![Jellyfin](https://img.shields.io/badge/Jellyfin-10.10.0%2B-purple.svg?style=for-the-badge&logo=jellyfin)](https://jellyfin.org)
 [![.NET](https://img.shields.io/badge/.NET-8.0-orange.svg?style=for-the-badge&logo=dotnet)](https://dotnet.microsoft.com)
 [![Status](https://img.shields.io/badge/Status-PRODUCTION%20READY-brightgreen.svg?style=for-the-badge&logo=checkmarx)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin)
@@ -13,19 +13,20 @@
 
 ---
 
-## **✨ KEY HIGHLIGHTS - v1.3.6.7 ENHANCED COMPATIBILITY**
+## **✨ KEY HIGHLIGHTS - v1.4.0 STABLE UPDATE**
 
-🎮 **UNIVERSAL COMPATIBILITY** | 🎯 **PERFECT QUICK MENU** | 🌐 **SEAMLESS PLAYER INTEGRATION**
+🔬 **HARDWARE BENCHMARKING** | 🎯 **AUTOMATIC OPTIMIZATION** | 🖥️ **LOW-END HARDWARE SUPPORT**
 
-**✅ UNIVERSAL COMPATIBILITY ACHIEVED** - Plugin works flawlessly on ALL platforms and devices
+**✅ INTELLIGENT HARDWARE TESTING** - Plugin automatically detects and optimizes for your specific hardware
 
-### 🚀 **MAJOR ENHANCEMENTS IN v1.3.6.7:**
-- ✅ **Quick Menu System** - 18,798 bytes of perfect JavaScript (10/10 tests passed)
-- ✅ **Player Integration** - 24,029 bytes of perfect JavaScript (10/10 tests passed)
-- ✅ **Universal Compatibility** - Works on all Smart TVs, Desktop, Mobile, NAS devices
-- ✅ **Cross-Browser Support** - Chrome, Firefox, Safari, Edge, Opera - all verified
-- ✅ **Responsive Design** - Perfect on all screen sizes with touch support
-- ✅ **Enterprise Security** - Bulletproof error handling and input validation
+### 🚀 **NEW FEATURES IN v1.4.0:**
+- 🔬 **Automated Hardware Benchmarking** - Tests your system and recommends optimal settings
+- 🎯 **Intelligent Fallback System** - Automatically switches to lighter models on weak hardware
+- 💾 **Pre-Processing Cache** - Cache upscaled content for instant playback
+- 📺 **TV Remote Optimization** - Enhanced navigation for Smart TVs and set-top boxes
+- 🔍 **Comparison View** - Side-by-side before/after quality preview
+- 🏠 **NAS & ARM Optimization** - Specialized support for low-power devices
+- ⚙️ **Sidebar Settings Panel** - Native Jellyfin integration like Playback Reporting plugin
 
 ![Downloads](https://img.shields.io/github/downloads/Kuschel-code/JellyfinUpscalerPlugin/total?label=Downloads&color=brightgreen&style=flat-square)
 ![Stars](https://img.shields.io/github/stars/Kuschel-code/JellyfinUpscalerPlugin?style=social)
@@ -41,7 +42,7 @@
 |---------|-------------|
 | [🚀 Quick Start](#-quick-start---choose-your-installation) | Installation methods and getting started |
 | [🎮 Enhanced Features](#-enhanced-features-v1367) | Quick Menu and Player Integration in v1.3.6.7 |
-| [📊 Benchmark Tests](#-benchmark-tests) | Performance metrics and quality comparisons |
+| [📊 Performance Benchmarks](wiki/Performance-Benchmarks.md) | Hardware tests and quality comparisons |
 | [🎮 Video Player Integration](#-video-player-integration) | Quick menu and upscaling controls |
 | [⚙️ Plugin Configuration](#-plugin-configuration) | Dashboard settings and options |
 | [🌟 AI Features](#-ai-features) | 14 AI Models + 7 Shaders + 12 Manager Classes |
@@ -398,22 +399,15 @@ https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/repos
 
 </div>
 
-#### **📱 NAS & Mobile Device Tests:**
+#### **📊 Performance Overview**
 
-<div align="center">
+For detailed benchmark results, hardware compatibility tests, and performance comparisons across different devices, see our comprehensive **[Performance Benchmarks Wiki](wiki/Performance-Benchmarks.md)**.
 
-| Device Type | Test Configuration | Processing Time | Quality | Power Efficiency |
-|-------------|-------------------|-----------------|---------|------------------|
-| **Synology NAS** | DS920+ (N5095) + 16GB RAM | 28.7s (480p→720p) | +48% | ⭐⭐⭐⭐⭐ |
-| **QNAP NAS** | TS-464 (N5095) + 8GB RAM | 32.1s (480p→720p) | +46% | ⭐⭐⭐⭐⭐ |
-| **Unraid Server** | Ryzen 5 + GTX 1650 | 4.2s (720p→1080p) | +63% | ⭐⭐⭐⭐ |
-| **TrueNAS Scale** | Intel i3-10100 + 16GB | 18.5s (480p→720p) | +51% | ⭐⭐⭐⭐ |
-| **Asustor NAS** | Intel N4505 + 8GB | 38.2s (480p→720p) | +44% | ⭐⭐⭐⭐⭐ |
-| **Android TV** | NVIDIA Shield Pro | 12.5s (480p→720p) | +48% | ⭐⭐⭐ |
-| **Apple TV 4K** | M1 Chip | 6.8s (720p→1080p) | +58% | ⭐⭐⭐⭐ |
-| **Fire TV Stick 4K** | ARM Cortex-A53 | 89.2s (480p→720p) | +38% | ⭐⭐⭐ |
-
-</div>
+**Quick Summary:**
+- **High-End GPUs**: RTX 4090 processes 1080p→4K in 2.3s
+- **NAS Devices**: Intel N5095 processes 480p→720p in ~30s  
+- **ARM Devices**: Raspberry Pi 4 processes 480p→720p in ~45s
+- **Quality Improvement**: Up to +85% PSNR enhancement
 ---
 
 ## 🎯 **INSTALLATION GUIDE - SERIALIZATION FIXED v1.3.6.5**
@@ -450,45 +444,7 @@ https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/repos
 - **Size**: 324,562 bytes
 - **Jellyfin**: 10.10.0+ compatible
 
-### 🎯 **ENERGY EFFICIENCY BENCHMARKS**
 
-<div align="center">
-
-| Configuration | Power Consumption | Processing Speed | Efficiency Score |
-|---------------|-------------------|------------------|------------------|
-| **RTX 4090 + EcoMode** | 180W | 2.3s (1080p→4K) | ⭐⭐⭐⭐⭐ |
-| **RTX 3070 + Balanced** | 120W | 4.7s (1080p→4K) | ⭐⭐⭐⭐ |
-| **RTX 2060 + Light Mode** | 85W | 1.8s (720p→1080p) | ⭐⭐⭐⭐ |
-| **CPU Only (i7-12700K)** | 65W | 8.2s (480p→720p) | ⭐⭐⭐ |
-| **Raspberry Pi 4** | 8W | 45.3s (480p→720p) | ⭐⭐⭐⭐⭐ |
-
-</div>
-
-### 📱 **MOBILE/NAS PERFORMANCE**
-
-<div align="center">
-
-| Device | AI Model | Resolution | Processing Time | Quality | Status |
-|--------|----------|------------|-----------------|---------|--------|
-| **Synology DS920+** | fsrcnn | 480p→720p | 28.7s | +48% | ✅ Tested |
-| **QNAP TS-464** | fsrcnn | 480p→720p | 32.1s | +46% | ✅ Tested |
-| **Unraid (Ryzen 5)** | fsrcnn | 720p→1080p | 4.2s | +63% | ✅ Tested |
-| **TrueNAS Scale** | fsrcnn | 480p→720p | 18.5s | +51% | ✅ Tested |
-| **Android TV** | fsrcnn | 480p→720p | 12.5s | +48% | ✅ Tested |
-| **Fire TV Stick 4K** | fsrcnn | 480p→720p | 89.2s | +38% | ✅ Tested |
-
-</div>
-
-### 🏆 **BENCHMARK SUMMARY**
-
-- **🔥 Fastest GPU**: RTX 4090 (2.3s for 1080p→4K)
-- **🎯 Best Quality**: Real-ESRGAN (+85% PSNR improvement)
-- **⚡ Best Balance**: FSRCNN (speed + quality)
-- **🎮 Best for Anime**: Waifu2x (+95% detail enhancement)
-- **💚 Most Efficient**: Intel N5095 (6W power, 28.7s processing)
-- **🏅 Best for NAS**: Synology DS920+ (28.7s, +48% quality)
-
-> **Note**: All benchmarks performed on real hardware with typical Jellyfin content. Results may vary based on system configuration and content type.
 
 ### **⚡ ALTERNATIVE: DIRECT REPOSITORY LINK**
 For advanced users or automation:
