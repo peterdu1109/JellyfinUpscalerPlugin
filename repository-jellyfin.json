@@ -12,11 +12,11 @@
         "version": "1.4.0",
         "changelog": "v1.4.0 STABLE UPDATE: Automated hardware benchmarking system, intelligent fallback for low-end hardware (iGPUs, ARM, NAS), pre-processing cache for better performance, comparison view for quality testing, TV remote optimization (WebOS/Tizen), sidebar settings panel integration, comprehensive benchmark console with real-time testing, automatic model optimization based on hardware capabilities",
         "targetAbi": "10.10.0.0",
-        "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/download/v1.4.0/JellyfinUpscalerPlugin-v1.4.0.zip",
-        "checksum": "DB383C7F09932889CECB237426643B73",
+        "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/archive/refs/tags/v1.4.0.zip",
+        "checksum": "13803C04616CB09AC8C1AA4C99868347",
         "timestamp": "2025-01-23T18:00:00.000Z",
-        "filename": "JellyfinUpscalerPlugin-v1.4.0.zip",
-        "size": 87108
+        "filename": "v1.4.0.zip",
+        "size": 876850
       }
     ],
     "repositoryUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin",
