@@ -1,22 +1,22 @@
 [
   {
     "guid": "f87f700e-679d-43e6-9c7c-b3a410dc3f22",
-    "name": "🎮 AI Upscaler Plugin v1.3.6.7 - FUNCTIONAL PRODUCTION",
-    "description": "FUNCTIONAL PRODUCTION v1.3.6.7: Real AI upscaling with API endpoints, background service, and session monitoring. True plugin functionality with REST API, no HTML configuration mess. Production-ready with real video processing capabilities.",
-    "overview": "🎮 **v1.3.6.7 - FUNCTIONAL PRODUCTION!** Real AI upscaling plugin with API endpoints, background service monitoring, and actual video processing. Clean architecture without HTML configuration chaos. Ready for production deployment!",
+    "name": "AI Upscaler Plugin 1.4",
+    "description": "AI upscaling plugin with automated hardware benchmarking, intelligent fallback system, pre-processing cache, and advanced low-end hardware support. Features comprehensive performance testing, comparison view, TV remote optimization, and sidebar integration.",
+    "overview": "AI-Powered Video Upscaling Plugin v1.4.0 with Hardware Benchmarking. Automated hardware testing, intelligent fallback for low-end devices, pre-processing cache, comparison view, and sidebar integration like Playback Reporting plugin.",
     "owner": "Kuschel-code",
     "category": "Video Enhancement",
     "imageUrl": "https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/assets/logo.svg",
     "versions": [
       {
-        "version": "1.3.6.7",
-        "changelog": "🎮 **FUNCTIONAL PRODUCTION v1.3.6.7** - REAL AI UPSCALING PLUGIN!\n\n**🚀 ECHTE PLUGIN-FUNKTIONALITÄT:**\n• ✅ API Controller: REST Endpunkte (/api/upscaler/*)\n• ✅ Background Service: Session-Überwachung in Echtzeit\n• ✅ Service Registration: Korrekte Dependency Injection\n• ✅ Clean Architecture: Kein HTML/JS Konfigurationschaos\n\n**🎯 API ENDPUNKTE:**\n• ✅ GET /api/upscaler/models - Verfügbare AI-Modelle\n• ✅ GET /api/upscaler/status - Plugin-Status\n• ✅ POST /api/upscaler/settings - Einstellungen aktualisieren\n• ✅ POST /api/upscaler/test - AI Upscaling testen\n• ✅ GET /api/upscaler/info - Plugin-Informationen\n\n**🤖 AI UPSCALING MODELLE:**\n• ✅ Real-ESRGAN: High quality anime/photo upscaling\n• ✅ ESRGAN: Enhanced Super-Resolution GAN\n• ✅ SwinIR: Transformer-based image restoration\n• ✅ Waifu2x: Anime-style art upscaling\n• ✅ SRCNN: Super-Resolution CNN\n• ✅ Bicubic: Traditional interpolation fallback\n\n**⚡ BACKGROUND PROCESSING:**\n• ✅ Session Monitoring: Überwacht aktive Video-Streams\n• ✅ Real-time Processing: AI Upscaling im Hintergrund\n• ✅ Hardware Acceleration: GPU/CPU Optimierung\n• ✅ Performance Metrics: Detailed logging & monitoring\n\n**🏗️ PROFESSIONELLE ARCHITEKTUR:**\n• ✅ Minimal Code: 33,306 bytes (50% kleiner als vorher)\n• ✅ No HTML Dependencies: Alles im Plugin integriert\n• ✅ Standard Compliance: Wie andere Jellyfin Plugins\n• ✅ Error Handling: Graceful degradation\n\n**🚀 ENDLICH EIN ECHTES PLUGIN!**\nKeine HTML-Konfigurationsseiten mehr - echte API-driven Funktionalität wie professionelle Jellyfin Plugins!",
+        "version": "1.4.0",
+        "changelog": "v1.4.0 STABLE UPDATE: Automated hardware benchmarking system, intelligent fallback for low-end hardware (iGPUs, ARM, NAS), pre-processing cache for better performance, comparison view for quality testing, TV remote optimization (WebOS/Tizen), sidebar settings panel integration, comprehensive benchmark console with real-time testing, automatic model optimization based on hardware capabilities",
         "targetAbi": "10.10.0.0",
-        "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/download/v1.3.6.7-functional/JellyfinUpscalerPlugin-v1.3.6.7-Functional.zip",
-        "checksum": "882FC87C05A3B99BA99F2D092834163F",
-        "timestamp": "2025-01-23T12:30:00.000Z",
-        "filename": "JellyfinUpscalerPlugin-v1.3.6.7-Functional.zip",
-        "size": 33306
+        "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/download/v1.4.0/JellyfinUpscalerPlugin-v1.4.0.zip",
+        "checksum": "702008E02B9DEE7E6FB23643E1432150",
+        "timestamp": "2025-01-23T18:00:00.000Z",
+        "filename": "JellyfinUpscalerPlugin-v1.4.0.zip",
+        "size": 8008449
       }
     ],
     "repositoryUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin",
