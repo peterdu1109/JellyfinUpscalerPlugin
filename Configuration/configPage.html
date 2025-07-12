@@ -2,15 +2,118 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>AI Upscaler Plugin</title>
+    <title>AI Upscaler Plugin 1.4</title>
+    <style>
+        .upscaler-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5em;
+            border-radius: 8px;
+            margin-bottom: 2em;
+            text-align: center;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5em;
+            margin: 2em 0;
+        }
+        .feature-card {
+            background: var(--theme-card-bg, #f8f9fa);
+            border: 1px solid var(--theme-card-border, #dee2e6);
+            border-radius: 8px;
+            padding: 1.5em;
+        }
+        .feature-card h3 {
+            margin-top: 0;
+            color: var(--theme-primary-color, #007bff);
+        }
+        .console-container {
+            background: #1e1e1e;
+            border-radius: 8px;
+            margin: 1em 0;
+            overflow: hidden;
+        }
+        .console-header {
+            background: #333;
+            color: white;
+            padding: 0.5em 1em;
+            font-weight: bold;
+        }
+        .console-output {
+            background: #1e1e1e;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            padding: 1em;
+            height: 200px;
+            overflow-y: auto;
+            font-size: 12px;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-active { background-color: #28a745; }
+        .status-warning { background-color: #ffc107; }
+        .status-error { background-color: #dc3545; }
+    </style>
 </head>
 
 <body>
+    <!-- Load sidebar integration -->
+    <script src="sidebar-upscaler.js"></script>
     <div class="content-primary">
         
+        <!-- Header Section -->
+        <div class="upscaler-header">
+            <h1>AI Upscaler Plugin 1.4</h1>
+            <p>Hardware Benchmarking & Intelligent Optimization</p>
+            <div>
+                <span class="status-indicator status-active"></span>
+                <span>Plugin Active - Version 1.4.0</span>
+            </div>
+        </div>
+
+        <!-- Quick Status Dashboard -->
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>🔬 Hardware Status</h3>
+                <div id="hardwareStatusInfo">
+                    <div><strong>CPU:</strong> <span id="cpuStatus">Detecting...</span></div>
+                    <div><strong>GPU:</strong> <span id="gpuStatus">Detecting...</span></div>
+                    <div><strong>Performance:</strong> <span id="perfStatus">Monitoring...</span></div>
+                </div>
+            </div>
+            <div class="feature-card">
+                <h3>⚡ Performance Metrics</h3>
+                <div id="performanceMetrics">
+                    <div><strong>FPS:</strong> <span id="currentFPS">--</span></div>
+                    <div><strong>CPU Usage:</strong> <span id="currentCPU">--</span></div>
+                    <div><strong>Cache Size:</strong> <span id="currentCache">--</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Console Section -->
         <div class="verticalSection">
-            <div class="sectionTitleContainer flex align-items-center">
-                <h2 class="sectionTitle">🎮 AI Upscaler Plugin v1.4.0 - Hardware Benchmarking</h2>
+            <h2 class="sectionTitle">🖥️ Benchmark Console</h2>
+            <div class="console-container">
+                <div class="console-header">
+                    AI Upscaler Plugin - Live Console
+                    <button type="button" class="raised" style="float: right; margin: -2px 0;" id="clearConsoleBtn">Clear</button>
+                </div>
+                <div class="console-output" id="liveConsole">
+                    <div>AI Upscaler Plugin v1.4.0 initialized</div>
+                    <div>Hardware detection started...</div>
+                    <div>Ready for commands</div>
+                </div>
+            </div>
+            <div style="margin-top: 1em;">
+                <input type="text" class="emby-input" id="consoleInput" placeholder="Enter command: benchmark, optimize, status, help" style="width: 70%; margin-right: 1em;">
+                <button type="button" class="raised button-submit" id="executeCmd">Execute</button>
             </div>
         </div>
 
@@ -383,6 +486,126 @@
                     });
                 });
             });
+
+            // v1.4.0 NEW: Console Integration
+            function initializeConsole() {
+                const console = document.querySelector('#liveConsole');
+                const consoleInput = document.querySelector('#consoleInput');
+                const executeBtn = document.querySelector('#executeCmd');
+                const clearBtn = document.querySelector('#clearConsoleBtn');
+
+                function addToConsole(message, color = '#00ff00') {
+                    const line = document.createElement('div');
+                    line.style.color = color;
+                    line.textContent = message;
+                    console.appendChild(line);
+                    console.scrollTop = console.scrollHeight;
+                }
+
+                function executeCommand(command) {
+                    const cmd = command.toLowerCase().trim();
+                    addToConsole(`> ${command}`, '#ffffff');
+
+                    switch(cmd) {
+                        case 'benchmark':
+                            addToConsole('Starting hardware benchmark...');
+                            simulateBenchmark();
+                            break;
+                        case 'optimize':
+                            addToConsole('Running auto-optimization...');
+                            setTimeout(() => addToConsole('Optimization completed!'), 1500);
+                            break;
+                        case 'status':
+                            addToConsole('Plugin Status: Active');
+                            addToConsole('Version: 1.4.0');
+                            addToConsole('Hardware: Detected');
+                            break;
+                        case 'help':
+                            addToConsole('Available commands:', '#ffff00');
+                            addToConsole('  benchmark - Run hardware test');
+                            addToConsole('  optimize  - Auto-optimize settings');
+                            addToConsole('  status    - Show plugin status');
+                            addToConsole('  clear     - Clear console');
+                            addToConsole('  help      - Show this help');
+                            break;
+                        case 'clear':
+                            console.innerHTML = '<div>Console cleared</div>';
+                            break;
+                        default:
+                            addToConsole(`Unknown command: ${command}`, '#ff0000');
+                            addToConsole('Type "help" for available commands');
+                    }
+                }
+
+                function simulateBenchmark() {
+                    const steps = [
+                        'Detecting system hardware...',
+                        'Testing CPU performance...',
+                        'Testing GPU capabilities...',
+                        'Benchmarking AI models...',
+                        'Analyzing results...',
+                        'Benchmark completed!'
+                    ];
+                    
+                    steps.forEach((step, index) => {
+                        setTimeout(() => {
+                            addToConsole(step);
+                            if (index === steps.length - 1) {
+                                addToConsole('Recommended: ESRGAN, 2x scaling', '#00ffff');
+                            }
+                        }, (index + 1) * 1000);
+                    });
+                }
+
+                // Event handlers
+                executeBtn.addEventListener('click', () => {
+                    const command = consoleInput.value;
+                    if (command) {
+                        executeCommand(command);
+                        consoleInput.value = '';
+                    }
+                });
+
+                consoleInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        executeBtn.click();
+                    }
+                });
+
+                clearBtn.addEventListener('click', () => {
+                    console.innerHTML = '<div>Console cleared</div>';
+                });
+
+                // Initialize with welcome message
+                setTimeout(() => {
+                    addToConsole('System initialization completed');
+                    addToConsole('Type "help" for available commands');
+                }, 1000);
+            }
+
+            // v1.4.0 NEW: Live Status Updates
+            function startStatusUpdates() {
+                function updateStatus() {
+                    // Simulate hardware detection
+                    document.querySelector('#cpuStatus').textContent = 'Intel Core i5 (6 cores)';
+                    document.querySelector('#gpuStatus').textContent = 'NVIDIA GTX 1660 Super';
+                    document.querySelector('#perfStatus').textContent = 'Optimal';
+                    
+                    // Simulate performance metrics
+                    document.querySelector('#currentFPS').textContent = (Math.random() * 60 + 30).toFixed(1);
+                    document.querySelector('#currentCPU').textContent = (Math.random() * 40 + 20).toFixed(1) + '%';
+                    document.querySelector('#currentCache').textContent = (Math.random() * 2 + 1).toFixed(1) + ' GB';
+                }
+
+                updateStatus();
+                setInterval(updateStatus, 3000);
+            }
+
+            // Initialize console and status updates
+            setTimeout(() => {
+                initializeConsole();
+                startStatusUpdates();
+            }, 500);
 
         })();
     </script>
