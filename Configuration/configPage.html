@@ -10,7 +10,7 @@
         
         <div class="verticalSection">
             <div class="sectionTitleContainer flex align-items-center">
-                <h2 class="sectionTitle">AI Upscaler Plugin v1.3.4</h2>
+                <h2 class="sectionTitle">🎮 AI Upscaler Plugin v1.4.0 - Hardware Benchmarking</h2>
             </div>
         </div>
 
@@ -146,10 +146,93 @@
                 </div>
             </div>
             
+            <!-- v1.4.0 NEW: Hardware Benchmarking -->
+            <div class="verticalSection">
+                <h3 class="sectionTitle">🔬 Hardware Benchmarking (v1.4.0 NEW)</h3>
+                
+                <div class="inputContainer">
+                    <label class="inputLabel inputLabelUnfocused" for="EnableAutoBenchmarking">Auto Hardware Testing:</label>
+                    <input type="checkbox" is="emby-checkbox" id="EnableAutoBenchmarking" checked />
+                    <div class="fieldDescription">Automatically test your hardware and optimize settings for best performance.</div>
+                </div>
+                
+                <div class="inputContainer">
+                    <label class="inputLabel inputLabelUnfocused" for="EnableAutoFallback">Smart Fallback System:</label>
+                    <input type="checkbox" is="emby-checkbox" id="EnableAutoFallback" checked />
+                    <div class="fieldDescription">Automatically switch to lighter models when hardware is overloaded.</div>
+                </div>
+                
+                <div class="inputContainer">
+                    <button is="emby-button" type="button" class="raised" id="RunBenchmarkBtn">
+                        <span>🚀 Run Hardware Test</span>
+                    </button>
+                    <div class="fieldDescription">Test your system and get optimized settings recommendations.</div>
+                </div>
+            </div>
+            
+            <!-- v1.4.0 NEW: Pre-Processing Cache -->
+            <div class="verticalSection">
+                <h3 class="sectionTitle">💾 Pre-Processing Cache (v1.4.0 NEW)</h3>
+                
+                <div class="inputContainer">
+                    <label class="inputLabel inputLabelUnfocused" for="EnablePreProcessingCache">Enable Pre-Processing:</label>
+                    <input type="checkbox" is="emby-checkbox" id="EnablePreProcessingCache" />
+                    <div class="fieldDescription">Pre-upscale content during idle time for instant playback.</div>
+                </div>
+                
+                <div class="inputContainer">
+                    <label class="inputLabel inputLabelUnfocused" for="PreProcessCacheSize">Cache Size (MB):</label>
+                    <input type="number" is="emby-input" id="PreProcessCacheSize" value="2048" min="512" max="10240" step="512" />
+                    <div class="fieldDescription">Amount of storage to use for pre-processed content.</div>
+                </div>
+            </div>
+            
+            <!-- v1.4.0 NEW: Comparison View -->
+            <div class="verticalSection">
+                <h3 class="sectionTitle">🔍 Comparison View (v1.4.0 NEW)</h3>
+                
+                <div class="inputContainer">
+                    <label class="inputLabel inputLabelUnfocused" for="EnableComparisonView">Enable Quality Comparison:</label>
+                    <input type="checkbox" is="emby-checkbox" id="EnableComparisonView" checked />
+                    <div class="fieldDescription">Show before/after preview to compare upscaling quality.</div>
+                </div>
+                
+                <div class="inputContainer">
+                    <label class="inputLabel inputLabelUnfocused" for="PreviewFrameCount">Preview Frames:</label>
+                    <select is="emby-select" id="PreviewFrameCount" class="emby-select-withcolor emby-select">
+                        <option value="1">1 Frame</option>
+                        <option value="3" selected>3 Frames</option>
+                        <option value="5">5 Frames</option>
+                        <option value="10">10 Frames</option>
+                    </select>
+                    <div class="fieldDescription">Number of preview frames to generate for comparison.</div>
+                </div>
+            </div>
+            
+            <!-- v1.4.0 NEW: TV Remote Optimization -->
+            <div class="verticalSection">
+                <h3 class="sectionTitle">📺 TV Remote Optimization (v1.4.0 NEW)</h3>
+                
+                <div class="inputContainer">
+                    <label class="inputLabel inputLabelUnfocused" for="EnableTVRemoteNavigation">TV Remote Support:</label>
+                    <input type="checkbox" is="emby-checkbox" id="EnableTVRemoteNavigation" checked />
+                    <div class="fieldDescription">Optimize controls for TV remotes and directional navigation.</div>
+                </div>
+                
+                <div class="inputContainer">
+                    <label class="inputLabel inputLabelUnfocused" for="EnableLargeTouchTargets">Large Touch Targets:</label>
+                    <input type="checkbox" is="emby-checkbox" id="EnableLargeTouchTargets" checked />
+                    <div class="fieldDescription">Use larger buttons for better TV and touch navigation.</div>
+                </div>
+            </div>
+            
             <br />
             <div>
                 <button is="emby-button" type="submit" class="raised button-submit block">
-                    <span>Save</span>
+                    <span>💾 Save Settings</span>
+                </button>
+                <button is="emby-button" type="button" class="raised" id="AutoOptimizeBtn" style="margin-top: 10px;">
+                    <span>🎯 Auto-Optimize for My Hardware</span>
                 </button>
             </div>
             
@@ -176,6 +259,16 @@
                 document.querySelector('#PreUpscaling').checked = config.PreUpscaling !== false;
                 document.querySelector('#DebugMode').checked = config.DebugMode === true;
                 document.querySelector('#PerformanceMonitoring').checked = config.PerformanceMonitoring !== false;
+                
+                // v1.4.0 NEW Settings
+                document.querySelector('#EnableAutoBenchmarking').checked = config.EnableAutoBenchmarking !== false;
+                document.querySelector('#EnableAutoFallback').checked = config.EnableAutoFallback !== false;
+                document.querySelector('#EnablePreProcessingCache').checked = config.EnablePreProcessingCache === true;
+                document.querySelector('#PreProcessCacheSize').value = config.PreProcessCacheSizeMB || 2048;
+                document.querySelector('#EnableComparisonView').checked = config.EnableComparisonView !== false;
+                document.querySelector('#PreviewFrameCount').value = config.PreviewFrameCount || 3;
+                document.querySelector('#EnableTVRemoteNavigation').checked = config.EnableTVRemoteNavigation !== false;
+                document.querySelector('#EnableLargeTouchTargets').checked = config.EnableLargeTouchTargets !== false;
             });
 
             document.querySelector('.AIUpscalerConfigForm').addEventListener('submit', function (e) {
@@ -195,7 +288,17 @@
                     EnableMobileSupport: document.querySelector('#EnableMobileSupport').checked,
                     PreUpscaling: document.querySelector('#PreUpscaling').checked,
                     DebugMode: document.querySelector('#DebugMode').checked,
-                    PerformanceMonitoring: document.querySelector('#PerformanceMonitoring').checked
+                    PerformanceMonitoring: document.querySelector('#PerformanceMonitoring').checked,
+                    
+                    // v1.4.0 NEW Settings
+                    EnableAutoBenchmarking: document.querySelector('#EnableAutoBenchmarking').checked,
+                    EnableAutoFallback: document.querySelector('#EnableAutoFallback').checked,
+                    EnablePreProcessingCache: document.querySelector('#EnablePreProcessingCache').checked,
+                    PreProcessCacheSizeMB: parseInt(document.querySelector('#PreProcessCacheSize').value),
+                    EnableComparisonView: document.querySelector('#EnableComparisonView').checked,
+                    PreviewFrameCount: parseInt(document.querySelector('#PreviewFrameCount').value),
+                    EnableTVRemoteNavigation: document.querySelector('#EnableTVRemoteNavigation').checked,
+                    EnableLargeTouchTargets: document.querySelector('#EnableLargeTouchTargets').checked
                 };
 
                 ApiClient.updatePluginConfiguration(pluginId, config).then(function () {
@@ -204,6 +307,79 @@
                     // Show success message
                     require(['toast'], function(toast) {
                         toast('Settings saved successfully!');
+                    });
+                });
+            });
+            
+            // v1.4.0 NEW: Hardware Benchmark Button
+            document.querySelector('#RunBenchmarkBtn').addEventListener('click', function() {
+                var btn = this;
+                btn.disabled = true;
+                btn.innerHTML = '<span>🔄 Running Benchmark...</span>';
+                
+                require(['toast'], function(toast) {
+                    toast('Starting hardware benchmark...');
+                });
+                
+                // Call benchmark API
+                ApiClient.ajax({
+                    type: 'POST',
+                    url: '/api/upscaler/benchmark',
+                    dataType: 'json'
+                }).then(function(response) {
+                    btn.disabled = false;
+                    btn.innerHTML = '<span>🚀 Run Hardware Test</span>';
+                    
+                    require(['toast'], function(toast) {
+                        toast('Benchmark completed! Check the console for results.');
+                    });
+                    
+                    console.log('Benchmark Results:', response);
+                }).catch(function(error) {
+                    btn.disabled = false;
+                    btn.innerHTML = '<span>🚀 Run Hardware Test</span>';
+                    
+                    require(['toast'], function(toast) {
+                        toast('Benchmark failed: ' + error.message);
+                    });
+                });
+            });
+            
+            // v1.4.0 NEW: Auto-Optimize Button
+            document.querySelector('#AutoOptimizeBtn').addEventListener('click', function() {
+                var btn = this;
+                btn.disabled = true;
+                btn.innerHTML = '<span>🔄 Optimizing...</span>';
+                
+                require(['toast'], function(toast) {
+                    toast('Getting hardware recommendations...');
+                });
+                
+                // Get recommendations and apply them
+                ApiClient.getJSON('/api/upscaler/recommendations').then(function(response) {
+                    // Apply recommended settings
+                    if (response.recommended.model) {
+                        document.querySelector('#PreferredModel').value = response.recommended.model;
+                    }
+                    if (response.recommended.quality) {
+                        document.querySelector('#DefaultProfile').value = response.recommended.quality;
+                    }
+                    if (response.recommended.enableFallback !== undefined) {
+                        document.querySelector('#EnableAutoFallback').checked = response.recommended.enableFallback;
+                    }
+                    
+                    btn.disabled = false;
+                    btn.innerHTML = '<span>🎯 Auto-Optimize for My Hardware</span>';
+                    
+                    require(['toast'], function(toast) {
+                        toast('Settings optimized for your hardware! Click Save to apply.');
+                    });
+                }).catch(function(error) {
+                    btn.disabled = false;
+                    btn.innerHTML = '<span>🎯 Auto-Optimize for My Hardware</span>';
+                    
+                    require(['toast'], function(toast) {
+                        toast('Auto-optimization failed: ' + error.message);
                     });
                 });
             });

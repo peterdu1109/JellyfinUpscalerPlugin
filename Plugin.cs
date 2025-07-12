@@ -26,7 +26,7 @@ namespace JellyfinUpscalerPlugin
         /// <summary>
         /// Gets the plugin name.
         /// </summary>
-        public override string Name => "AI Upscaler Plugin";
+        public override string Name => "AI Upscaler Plugin 1.4";
 
         /// <summary>
         /// Gets the plugin description.

@@ -19,6 +19,10 @@ namespace JellyfinUpscalerPlugin
         {
             // Register the AI Upscaler background service
             serviceCollection.AddHostedService<UpscalerService>();
+            
+            // Register the Hardware Benchmark service (v1.4.0 NEW)
+            serviceCollection.AddSingleton<HardwareBenchmarkService>();
+            serviceCollection.AddHostedService<HardwareBenchmarkService>(provider => provider.GetService<HardwareBenchmarkService>());
         }
     }
 }
