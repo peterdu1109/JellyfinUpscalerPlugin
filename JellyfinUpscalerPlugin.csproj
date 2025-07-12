@@ -18,7 +18,14 @@
     <PackageReference Include="System.Text.Json" Version="8.0.5" />
   </ItemGroup>
 
-  <!-- No embedded resources needed for basic plugin -->
+  <!-- Embedded resources for configuration -->
+  <ItemGroup>
+    <EmbeddedResource Include="Configuration\configurationpage.html" />
+    <EmbeddedResource Include="Configuration\config.js" />
+    <EmbeddedResource Include="Configuration\quick-menu.js" />
+    <EmbeddedResource Include="Configuration\player-integration.js" />
+    <EmbeddedResource Include="Configuration\beginner-presets.html" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Include="thumb.jpg" CopyToOutputDirectory="Always" />
@@ -43,7 +50,7 @@
     <Compile Remove=".backups/**" />
     <Compile Remove="release-v*/**" />
     <Compile Remove="wiki/**" />
-    <Compile Remove="Configuration/**" />
+
     <Compile Remove="web/**" />
     <Compile Remove="src/**" />
     <Compile Remove="shaders/**" />

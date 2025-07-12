@@ -5,6 +5,7 @@ using MediaBrowser.Common.Plugins;
 using MediaBrowser.Model.Plugins;
 using MediaBrowser.Model.Serialization;
 using MediaBrowser.Controller.Plugins;
+using System.IO;
 
 namespace JellyfinUpscalerPlugin
 {
@@ -100,6 +101,21 @@ namespace JellyfinUpscalerPlugin
                 {
                     Name = "AI Upscaler Plugin",
                     EmbeddedResourcePath = "JellyfinUpscalerPlugin.Configuration.configurationpage.html"
+                },
+                new PluginPageInfo
+                {
+                    Name = "aiupscaler-config.js",
+                    EmbeddedResourcePath = "JellyfinUpscalerPlugin.Configuration.config.js"
+                },
+                new PluginPageInfo
+                {
+                    Name = "aiupscaler-quickmenu.js", 
+                    EmbeddedResourcePath = "JellyfinUpscalerPlugin.Configuration.quick-menu.js"
+                },
+                new PluginPageInfo
+                {
+                    Name = "aiupscaler-player.js",
+                    EmbeddedResourcePath = "JellyfinUpscalerPlugin.Configuration.player-integration.js"
                 }
             };
         }

@@ -546,6 +546,38 @@
             } else {
                 init();
             }
+
+            // Load Quick Menu and Player Integration
+            function loadJavaScriptComponents() {
+                try {
+                    // Load Quick Menu
+                    fetch('/web/ConfigurationPage?name=aiupscaler-quickmenu.js')
+                        .then(response => response.text())
+                        .then(script => {
+                            const scriptElement = document.createElement('script');
+                            scriptElement.textContent = script;
+                            document.head.appendChild(scriptElement);
+                            console.log('AI Upscaler: Quick Menu loaded');
+                        })
+                        .catch(error => console.log('Quick Menu load error:', error));
+
+                    // Load Player Integration  
+                    fetch('/web/ConfigurationPage?name=aiupscaler-player.js')
+                        .then(response => response.text())
+                        .then(script => {
+                            const scriptElement = document.createElement('script');
+                            scriptElement.textContent = script;
+                            document.head.appendChild(scriptElement);
+                            console.log('AI Upscaler: Player Integration loaded');
+                        })
+                        .catch(error => console.log('Player Integration load error:', error));
+                } catch (error) {
+                    console.log('JavaScript components load error:', error);
+                }
+            }
+
+            // Load components after page init
+            setTimeout(loadJavaScriptComponents, 1000);
         })();
     </script>
 </body>
