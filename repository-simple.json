@@ -1,0 +1,24 @@
+[
+  {
+    "guid": "f87f700e-679d-43e6-9c7c-b3a410dc3f22",
+    "name": "AI Upscaler Plugin 1.4",
+    "description": "AI upscaling plugin with automated hardware benchmarking and intelligent fallback system",
+    "overview": "AI-Powered Video Upscaling Plugin v1.4.0 with Hardware Benchmarking",
+    "owner": "Kuschel-code",
+    "category": "Video Enhancement",
+    "versions": [
+      {
+        "version": "1.4.0-final",
+        "changelog": "v1.4.0 FINAL STABLE: Configuration crash fixed, automated hardware benchmarking system, intelligent fallback for low-end hardware",
+        "targetAbi": "10.10.0.0",
+        "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/archive/refs/tags/v1.4.0-final.zip",
+        "checksum": "D2B20D426D138C1CEB4E48FCBF042340",
+        "timestamp": "2025-01-23T20:00:00.000Z",
+        "filename": "v1.4.0-final.zip",
+        "size": 878099
+      }
+    ],
+    "repositoryUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin",
+    "repositoryName": "Kuschel-code/JellyfinUpscalerPlugin"
+  }
+]
