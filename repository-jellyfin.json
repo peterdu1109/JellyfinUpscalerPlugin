@@ -9,14 +9,14 @@
     "imageUrl": "https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/assets/logo.svg",
     "versions": [
       {
-        "version": "1.4.0",
-        "changelog": "v1.4.0 STABLE UPDATE: Automated hardware benchmarking system, intelligent fallback for low-end hardware (iGPUs, ARM, NAS), pre-processing cache for better performance, comparison view for quality testing, TV remote optimization (WebOS/Tizen), sidebar settings panel integration, comprehensive benchmark console with real-time testing, automatic model optimization based on hardware capabilities",
+        "version": "1.4.0-final",
+        "changelog": "v1.4.0 FINAL STABLE: Configuration crash fixed, automated hardware benchmarking system, intelligent fallback for low-end hardware (iGPUs, ARM, NAS), pre-processing cache for better performance, comparison view for quality testing, TV remote optimization (WebOS/Tizen), sidebar settings panel integration, comprehensive benchmark console with real-time testing, automatic model optimization based on hardware capabilities",
         "targetAbi": "10.10.0.0",
-        "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/archive/refs/tags/v1.4.0.zip",
-        "checksum": "13803C04616CB09AC8C1AA4C99868347",
-        "timestamp": "2025-01-23T18:00:00.000Z",
-        "filename": "v1.4.0.zip",
-        "size": 876850
+        "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/archive/refs/tags/v1.4.0-final.zip",
+        "checksum": "8F2D1E9A4B7C3F6A5D8E9F2B3C4D5E6F",
+        "timestamp": "2025-01-23T20:00:00.000Z",
+        "filename": "v1.4.0-final.zip",
+        "size": 877000
       }
     ],
     "repositoryUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin",
