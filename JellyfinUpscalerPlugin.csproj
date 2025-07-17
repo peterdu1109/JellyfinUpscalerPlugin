@@ -30,7 +30,7 @@
     <PackageReference Include="CliWrap" Version="3.6.4" />
     
     <!-- Image Processing -->
-    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.5" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.9" />
     <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="2.1.4" />
     
     <!-- Performance -->
@@ -43,6 +43,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Configuration\configPage.html" />
     <EmbeddedResource Include="Configuration\configurationpage.html" />
+    <EmbeddedResource Include="Configuration\configurationpage-enhanced.html" />
     <EmbeddedResource Include="Configuration\config.js" />
     <EmbeddedResource Include="Configuration\quick-menu.js" />
     <EmbeddedResource Include="Configuration\player-integration.js" />
