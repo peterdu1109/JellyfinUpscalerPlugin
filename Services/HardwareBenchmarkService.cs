@@ -18,13 +18,18 @@ namespace JellyfinUpscalerPlugin.Services
     {
         private readonly ILogger<HardwareBenchmarkService> _logger;
         private readonly IApplicationPaths _appPaths;
+        private readonly UpscalerCore _upscalerCore;
         private Timer? _benchmarkTimer;
         private readonly PluginConfiguration _config;
         
-        public HardwareBenchmarkService(ILogger<HardwareBenchmarkService> logger, IApplicationPaths appPaths)
+        public HardwareBenchmarkService(
+            ILogger<HardwareBenchmarkService> logger, 
+            IApplicationPaths appPaths,
+            UpscalerCore upscalerCore)
         {
             _logger = logger;
             _appPaths = appPaths;
+            _upscalerCore = upscalerCore;
             _config = Plugin.Instance?.Configuration ?? new PluginConfiguration();
         }
 
@@ -72,9 +77,7 @@ namespace JellyfinUpscalerPlugin.Services
             {
                 StartTime = DateTime.UtcNow,
                 SystemInfo = await DetectSystemInfo(),
-                GPUInfo = await DetectGPUInfo(),
-                CPUInfo = await DetectCPUInfo(),
-                MemoryInfo = await DetectMemoryInfo()
+                Hardware = await _upscalerCore.DetectHardwareAsync()
             };
 
             // Test different models on current hardware
@@ -533,6 +536,7 @@ namespace JellyfinUpscalerPlugin.Services
         public DateTime EndTime { get; set; }
         public TimeSpan TotalDuration { get; set; }
         public SystemInfo SystemInfo { get; set; } = new();
+        public HardwareProfile Hardware { get; set; } = new();
         public GPUInfo GPUInfo { get; set; } = new();
         public CPUInfo CPUInfo { get; set; } = new();
         public MemoryInfo MemoryInfo { get; set; } = new();

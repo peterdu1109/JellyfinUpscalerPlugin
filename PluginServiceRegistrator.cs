@@ -17,10 +17,19 @@ namespace JellyfinUpscalerPlugin
         /// <param name="serverApplicationHost">Server application host</param>
         public void RegisterServices(IServiceCollection serviceCollection, IServerApplicationHost serverApplicationHost)
         {
-            // Register the AI Upscaler background service
+            // Core AI Services (Phase 1)
+            serviceCollection.AddSingleton<UpscalerCore>();
+            
+            // Video Processing Services (Phase 2)
+            serviceCollection.AddSingleton<VideoProcessor>();
+            
+            // Cache Management Services (Phase 3)
+            serviceCollection.AddSingleton<CacheManager>();
+            
+            // Background Services
             serviceCollection.AddHostedService<UpscalerService>();
             
-            // Register the Hardware Benchmark service (v1.4.0 NEW)
+            // Hardware Benchmark Service (v1.4.0)
             serviceCollection.AddSingleton<HardwareBenchmarkService>();
             serviceCollection.AddHostedService<HardwareBenchmarkService>(provider => provider.GetService<HardwareBenchmarkService>());
         }
