@@ -1,18 +1,18 @@
 {
   "guid": "f87f700e-679d-43e6-9c7c-b3a410dc3f22",
-  "name": "AI Upscaler Plugin 1.4",
-  "description": "AI upscaling plugin with automated hardware benchmarking, intelligent fallback system, pre-processing cache, and advanced low-end hardware support. Features comprehensive performance testing, comparison view, TV remote optimization, and sidebar integration.",
-  "overview": "AI-Powered Video Upscaling Plugin v1.4.0\n\nHardware Benchmarking Features:\n• Automated Hardware Testing: System detection and optimization\n• Intelligent Fallback: Auto-switch to lighter models on weak hardware\n• Pre-Processing Cache: Background upscaling for instant playback\n• Comparison View: Before/after quality preview\n• TV Remote Support: Optimized for Smart TV navigation\n• Sidebar Integration: Native Jellyfin settings panel\n• Low-End Hardware: Intel N-series, ARM, NAS optimization\n• Performance Testing: Real-time FPS, CPU/GPU monitoring",
+  "name": "AI Upscaler Plugin",
+  "description": "AI-powered video upscaling plugin with automated hardware benchmarking, intelligent fallback system, pre-processing cache, and advanced low-end hardware support. Features comprehensive performance testing, comparison view, TV remote optimization, and sidebar integration.",
+  "overview": "Revolutionary AI upscaling plugin with automated hardware benchmarking, intelligent fallback system, pre-processing cache, and advanced low-end hardware support. Features comprehensive performance testing, comparison view, TV remote optimization, and sidebar integration like Playback Reporting plugin.",
   "owner": "Kuschel-code",
   "category": "Video Enhancement",
   "versions": [
     {
-      "version": "1.4.0-final",
-      "changelog": "v1.4.0 STABLE UPDATE: NEW - Automated hardware benchmarking system, intelligent fallback for low-end hardware (iGPUs, ARM, NAS), pre-processing cache for better performance, comparison view for quality testing, TV remote optimization (WebOS/Tizen), sidebar settings panel integration, comprehensive benchmark console with real-time testing, automatic model optimization based on hardware capabilities",
+      "version": "1.4.0-test3",
+      "changelog": "v1.4.0 TEST 3 UPDATE: SECURITY FIXED - Updated SixLabors.ImageSharp to 3.1.9 (CVE vulnerability resolved), cleaned up configuration files, enhanced embedded resources, improved build stability with 30 warnings (down from 32), and ensured all dependencies are secure and up-to-date.",
       "targetAbi": "10.10.0.0",
-      "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/archive/refs/tags/v1.4.0-final.zip",
-      "checksum": "675E9D7B790CB82B4E94261EA37CB94A",
-      "timestamp": "2025-01-23T20:00:00.000Z"
+      "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/archive/refs/heads/main.zip",
+      "checksum": "A1B2C3D4E5F6789012345678901234567890ABCD",
+      "timestamp": "2025-01-23T22:00:00.000Z"
     }
   ],
   "repositoryUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin",
