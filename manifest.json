@@ -1,20 +1,23 @@
-{
-  "guid": "f87f700e-679d-43e6-9c7c-b3a410dc3f22",
-  "name": "AI Upscaler Plugin",
-  "description": "AI-powered video upscaling plugin with automated hardware benchmarking, intelligent fallback system, pre-processing cache, and advanced low-end hardware support. Features comprehensive performance testing, comparison view, TV remote optimization, and sidebar integration.",
-  "overview": "Revolutionary AI upscaling plugin with automated hardware benchmarking, intelligent fallback system, pre-processing cache, and advanced low-end hardware support. Features comprehensive performance testing, comparison view, TV remote optimization, and sidebar integration like Playback Reporting plugin.",
-  "owner": "Kuschel-code",
-  "category": "Video Enhancement",
-  "versions": [
-    {
-      "version": "1.4.0-test3",
-      "changelog": "v1.4.0 TEST 3 UPDATE: SECURITY FIXED - Updated SixLabors.ImageSharp to 3.1.9 (CVE vulnerability resolved), cleaned up configuration files, enhanced embedded resources, improved build stability with 30 warnings (down from 32), and ensured all dependencies are secure and up-to-date.",
-      "targetAbi": "10.10.0.0",
-      "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/archive/refs/heads/main.zip",
-      "checksum": "A1B2C3D4E5F6789012345678901234567890ABCD",
-      "timestamp": "2025-01-23T22:00:00.000Z"
-    }
-  ],
-  "repositoryUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin",
-  "repositoryName": "Kuschel-code/JellyfinUpscalerPlugin"
-}
+[
+  {
+    "guid": "f87f700e-679d-43e6-9c7c-b3a410dc3f22",
+    "name": "AI Upscaler Plugin",
+    "description": "AI-powered upscaling integration for Jellyfin with benchmarking, caching, and player controls.",
+    "overview": "Provides AI model selection, adaptive fallbacks, and configuration UI for Jellyfin 10.10.6 servers.",
+    "owner": "Kuschel-code",
+    "category": "Video Enhancement",
+    "imageUrl": "https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/thumb.jpg",
+    "readmeUrl": "https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/README.md",
+    "repositoryUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin",
+    "versions": [
+      {
+        "version": "1.4.0",
+        "targetAbi": "10.10.6.0",
+        "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/download/v1.4.0/JellyfinUpscalerPlugin_1.4.0.zip",
+        "checksum": "4D1F657618479170E8F956449FF4C910B92F4430C674D56FFC2BA28F4E4C8C63",
+        "timestamp": "2024-09-21T00:00:00Z",
+        "changelog": "Stable 1.4.0 release delivering hardware benchmarking, adaptive fallback logic, caching improvements, and refreshed metadata for Jellyfin 10.10.6."
+      }
+    ]
+  }
+]
