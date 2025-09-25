@@ -1,12 +1,12 @@
 <div align="center">
 
-# 🎮 AI UPSCALER PLUGIN v1.4.0-test3
+# 🎮 AI UPSCALER PLUGIN v1.4.0
 
-### *Revolutionary AI-Powered Video Upscaling for Jellyfin with Hardware Benchmarking & Optimization*
+### *Stable 1.4.0 release of the AI upscaler for Jellyfin 10.10.6+ with hardware benchmarking and optimization*
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge&logo=opensource)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-1.4.0--test3-gold.svg?style=for-the-badge&logo=semantic-release)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases)
-[![Jellyfin](https://img.shields.io/badge/Jellyfin-10.10.0%2B-purple.svg?style=for-the-badge&logo=jellyfin)](https://jellyfin.org)
+[![Version](https://img.shields.io/badge/Version-1.4.0-gold.svg?style=for-the-badge&logo=semantic-release)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/tag/v1.4.0)
+[![Jellyfin](https://img.shields.io/badge/Jellyfin-10.10.6%2B-purple.svg?style=for-the-badge&logo=jellyfin)](https://jellyfin.org)
 [![.NET](https://img.shields.io/badge/.NET-8.0-orange.svg?style=for-the-badge&logo=dotnet)](https://dotnet.microsoft.com)
 [![Status](https://img.shields.io/badge/Status-STABLE-brightgreen.svg?style=for-the-badge&logo=checkmarx)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin)
 [![Security](https://img.shields.io/badge/Security-FIXED-success.svg?style=for-the-badge&logo=shield)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin)
@@ -17,7 +17,7 @@
 
 ---
 
-## **✨ v1.4.0-test3 HIGHLIGHTS**
+## **✨ v1.4.0 HIGHLIGHTS**
 
 🔬 **HARDWARE BENCHMARKING** | 🎯 **AUTOMATIC OPTIMIZATION** | 🖥️ **LOW-END HARDWARE SUPPORT** | 🔐 **SECURITY FIXED**
 
@@ -70,28 +70,29 @@ https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/repos
 3. **Catalog** → Find "🎮 AI Upscaler Plugin" → **Install**
 4. **Restart Jellyfin** → **Done!** 🎉
 
-### **📦 MANUAL INSTALLATION**
+### **📦 MANUAL INSTALLATION (.JFUPKG)**
 
-1. **Download Latest Release**
+1. **Download the stable package**
    ```
-   https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/latest
+   https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/download/v1.4.0/JellyfinUpscalerPlugin_1.4.0.jfupkg
    ```
 
-2. **Extract to Plugin Directory**
+2. **Copy to the Jellyfin plugin package directory**
    ```bash
-   # Linux/macOS
-   sudo unzip JellyfinUpscalerPlugin.zip -d /var/lib/jellyfin/plugins/JellyfinUpscalerPlugin/
-   
+   # Linux (default data path)
+   sudo mkdir -p /var/lib/jellyfin/plugins/packages
+   sudo cp JellyfinUpscalerPlugin_1.4.0.jfupkg /var/lib/jellyfin/plugins/packages/
+
    # Windows
-   Extract to: C:\ProgramData\Jellyfin\Server\plugins\JellyfinUpscalerPlugin\
+   Copy the file to: C:\ProgramData\Jellyfin\Server\plugins\packages\JellyfinUpscalerPlugin_1.4.0.jfupkg
    ```
 
-3. **Restart Jellyfin**
+3. **Restart Jellyfin** so it picks up the new package
    ```bash
    sudo systemctl restart jellyfin
    ```
 
-4. **Configure Plugin**
+4. **Configure the plugin**
    - Dashboard → Plugins → AI Upscaler Plugin
    - Run Hardware Benchmark → Apply Recommended Settings
 
@@ -100,7 +101,7 @@ https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/repos
 ## 💻 **SYSTEM REQUIREMENTS**
 
 ### **📋 MINIMUM REQUIREMENTS**
-- **Jellyfin:** 10.10.0 or higher
+- **Jellyfin:** 10.10.6 or higher
 - **OS:** Windows 10+, Linux (Ubuntu 20.04+), macOS 10.15+
 - **RAM:** 4GB minimum, 8GB recommended
 - **Storage:** 2GB free space for cache
@@ -150,31 +151,32 @@ services:
 ### **⚙️ LINUX INSTALLATION**
 
 ```bash
-# Create plugin directory
-sudo mkdir -p /var/lib/jellyfin/plugins/JellyfinUpscalerPlugin
+# Ensure plugin package directory exists
+sudo mkdir -p /var/lib/jellyfin/plugins/packages
 
-# Download and extract
-wget https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/latest/download/JellyfinUpscalerPlugin.zip
-sudo unzip JellyfinUpscalerPlugin.zip -d /var/lib/jellyfin/plugins/JellyfinUpscalerPlugin/
+# Download the .jfupkg release asset
+wget https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/download/v1.4.0/JellyfinUpscalerPlugin_1.4.0.jfupkg
 
-# Set permissions
-sudo chown -R jellyfin:jellyfin /var/lib/jellyfin/plugins/JellyfinUpscalerPlugin/
-sudo chmod -R 755 /var/lib/jellyfin/plugins/JellyfinUpscalerPlugin/
+# Move it into Jellyfin's package folder (no extraction required)
+sudo mv JellyfinUpscalerPlugin_1.4.0.jfupkg /var/lib/jellyfin/plugins/packages/
 
-# Restart Jellyfin
+# Adjust ownership so Jellyfin can manage the package
+sudo chown jellyfin:jellyfin /var/lib/jellyfin/plugins/packages/JellyfinUpscalerPlugin_1.4.0.jfupkg
+
+# Restart Jellyfin to load the plugin
 sudo systemctl restart jellyfin
 ```
 
 ### **🪟 WINDOWS INSTALLATION**
 
 ```powershell
-# Download plugin
-Invoke-WebRequest -Uri "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/latest/download/JellyfinUpscalerPlugin.zip" -OutFile "JellyfinUpscalerPlugin.zip"
+# Download the .jfupkg release asset
+Invoke-WebRequest -Uri "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/download/v1.4.0/JellyfinUpscalerPlugin_1.4.0.jfupkg" -OutFile "JellyfinUpscalerPlugin_1.4.0.jfupkg"
 
-# Extract to plugin directory
-Expand-Archive -Path "JellyfinUpscalerPlugin.zip" -DestinationPath "C:\ProgramData\Jellyfin\Server\plugins\JellyfinUpscalerPlugin\"
+# Copy it into the Jellyfin plugins directory (no extraction required)
+Copy-Item -Path "JellyfinUpscalerPlugin_1.4.0.jfupkg" -Destination "C:\ProgramData\Jellyfin\Server\plugins\packages\"
 
-# Restart Jellyfin service
+# Restart the Jellyfin service
 Restart-Service JellyfinServer
 ```
 
@@ -482,26 +484,18 @@ Enable debug logging in plugin configuration:
 
 ## 📚 **CHANGELOG**
 
-### **v1.4.0-test3** (2025-01-23) - **SECURITY UPDATE**
-- 🔐 **SECURITY:** Fixed CVE vulnerability in SixLabors.ImageSharp (3.1.5 → 3.1.9)
-- 🧹 **CLEANUP:** Removed outdated configuration files and dependencies
-- 📦 **RESOURCES:** Enhanced embedded resource configuration
-- 🔧 **STABILITY:** Improved build stability (30 warnings, down from 32)
-- ✅ **DEPENDENCIES:** All packages secured and updated to latest versions
+### **v1.4.0** (2025-01-23) – **Stable Release**
+- 🔬 **Benchmarking Suite:** Detects GPU/CPU capabilities and recommends the optimal AI model automatically.
+- 🎯 **Adaptive Fallbacks:** Seamlessly downgrades to lighter profiles when hardware limits are detected.
+- 💾 **Pre-processing Cache:** Speeds up repeat playbacks with configurable cache sizing and cleanup rules.
+- 🖥️ **TV & Remote Enhancements:** Larger focus targets, navigation tweaks, and Smart TV optimizations.
+- 🔐 **Security Maintenance:** Bundles updated ImageSharp dependencies and refreshed metadata shipped with the `.jfupkg` package.
 
-### **v1.4.0-test2** (2025-01-22) - **UI ENHANCEMENT**
-- 🎮 **CONFIGURATION:** Professional tabbed interface with modern design
-- 🔧 **SETTINGS:** 25+ advanced settings with real-time validation
-- 📱 **MOBILE:** Responsive design optimized for all screen sizes
-- 📊 **MONITORING:** Real-time performance monitoring and progress bars
-- 🎯 **MODELS:** Visual model selection cards with detailed information
+---
 
-### **v1.4.0-test1** (2025-01-21) - **MAJOR FEATURES**
-- 🔬 **BENCHMARKING:** Automated hardware benchmarking system
-- 🎯 **OPTIMIZATION:** Intelligent fallback for low-end hardware support
-- 💾 **CACHING:** Pre-processing cache for improved performance
-- 🔍 **COMPARISON:** Side-by-side quality comparison tools
-- 📺 **TV SUPPORT:** Enhanced Smart TV and remote control optimization
+## 🤝 **MAINTAINER**
+
+Maintained by [Kuschel-code](https://github.com/Kuschel-code). Follow the repository for updates or open an [issue](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/issues) if you run into installation or packaging problems.
 
 ---
 
