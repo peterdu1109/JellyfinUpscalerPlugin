@@ -22,7 +22,7 @@ using SixLabors.ImageSharp.PixelFormats;
 namespace JellyfinUpscalerPlugin.Services
 {
     /// <summary>
-    /// Core upscaling engine with real AI hardware acceleration - Phase 1 Implementation
+    /// Moteur de suréchantillonnage avec accélération matérielle IA
     /// </summary>
     public class UpscalerCore : IDisposable
     {
@@ -32,15 +32,12 @@ namespace JellyfinUpscalerPlugin.Services
         private readonly IApplicationPaths _appPaths;
         private readonly PluginConfiguration _config;
         
-        // AI Model Sessions
         private readonly Dictionary<string, InferenceSession> _modelSessions = new();
         private readonly Dictionary<string, SessionOptions> _sessionOptions = new();
         
-        // Hardware detection cache
         private static Dictionary<string, object> _hardwareCache = new();
         private static DateTime _lastHardwareCheck = DateTime.MinValue;
         
-        // Performance monitoring
         private readonly Dictionary<string, PerformanceMetrics> _performanceMetrics = new();
         
         public UpscalerCore(
@@ -59,16 +56,12 @@ namespace JellyfinUpscalerPlugin.Services
             InitializeAIModels();
         }
 
-        /// <summary>
-        /// Initialize AI models with ONNX Runtime
-        /// </summary>
         private void InitializeAIModels()
         {
             try
             {
-                _logger.LogInformation("🚀 Initializing AI models with ONNX Runtime...");
+                _logger.LogInformation("🚀 Initialisation des modèles IA avec ONNX Runtime...");
                 
-                // Configure session options for GPU acceleration
                 var sessionOptions = new SessionOptions
                 {
                     LogSeverityLevel = OrtLoggingLevel.ORT_LOGGING_LEVEL_WARNING,
@@ -77,53 +70,45 @@ namespace JellyfinUpscalerPlugin.Services
                     GraphOptimizationLevel = GraphOptimizationLevel.ORT_ENABLE_ALL
                 };
 
-                // Try to enable GPU acceleration
                 try
                 {
                     if (_config.EnableHardwareAcceleration)
                     {
-                        // Try CUDA first
                         try
                         {
                             sessionOptions.AppendExecutionProvider_CUDA(0);
-                            _logger.LogInformation("✅ CUDA GPU acceleration enabled");
+                            _logger.LogInformation("✅ Accélération GPU CUDA activée");
                         }
                         catch
                         {
                             try
                             {
-                                // Fall back to DirectML (Windows)
                                 sessionOptions.AppendExecutionProvider_DML(0);
-                                _logger.LogInformation("✅ DirectML GPU acceleration enabled");
+                                _logger.LogInformation("✅ Accélération GPU DirectML activée");
                             }
                             catch
                             {
-                                _logger.LogWarning("⚠️ GPU acceleration not available, using CPU");
+                                _logger.LogWarning("⚠️ Accélération GPU non disponible, utilisation du CPU");
                             }
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogWarning(ex, "⚠️ Failed to enable hardware acceleration");
+                    _logger.LogWarning(ex, "⚠️ Échec de l'activation de l'accélération matérielle");
                 }
 
                 _sessionOptions["default"] = sessionOptions;
-                
-                // Load available models
                 LoadAvailableModels();
                 
-                _logger.LogInformation($"✅ AI Core initialized with {_modelSessions.Count} models");
+                _logger.LogInformation($"✅ Noyau IA initialisé avec {_modelSessions.Count} modèles");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "❌ Failed to initialize AI models");
+                _logger.LogError(ex, "❌ Échec de l'initialisation des modèles IA");
             }
         }
 
-        /// <summary>
-        /// Load available AI models from models directory
-        /// </summary>
         private void LoadAvailableModels()
         {
             var modelsPath = Path.Combine(_appPaths.DataPath, "plugins", "configurations", "JellyfinUpscalerPlugin", "models");
@@ -131,7 +116,7 @@ namespace JellyfinUpscalerPlugin.Services
             if (!Directory.Exists(modelsPath))
             {
                 Directory.CreateDirectory(modelsPath);
-                _logger.LogInformation($"📁 Created models directory: {modelsPath}");
+                _logger.LogInformation($"📁 Répertoire des modèles créé: {modelsPath}");
                 return;
             }
 
@@ -145,90 +130,65 @@ namespace JellyfinUpscalerPlugin.Services
                     var session = new InferenceSession(modelFile, _sessionOptions["default"]);
                     _modelSessions[modelName] = session;
                     
-                    _logger.LogInformation($"📦 Loaded AI model: {modelName}");
+                    _logger.LogInformation($"📦 Modèle IA chargé: {modelName}");
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogWarning(ex, $"⚠️ Failed to load model: {Path.GetFileName(modelFile)}");
+                    _logger.LogWarning(ex, $"⚠️ Échec du chargement du modèle: {Path.GetFileName(modelFile)}");
                 }
             }
             
-            // If no models found, create placeholder entries
             if (_modelSessions.Count == 0)
             {
-                _logger.LogWarning("⚠️ No ONNX models found. Please add AI models to the models directory.");
+                _logger.LogWarning("⚠️ Aucun modèle ONNX trouvé. Veuillez ajouter des modèles IA dans le répertoire models.");
                 CreatePlaceholderModels();
             }
         }
 
-        /// <summary>
-        /// Create placeholder model entries for development
-        /// </summary>
         private void CreatePlaceholderModels()
         {
-            var placeholderModels = new[] 
-            {
-                "realesrgan", "esrgan", "waifu2x", "srcnn", "fsrcnn", "edsr", "swinir", "hat"
-            };
+            var placeholderModels = new[] { "realesrgan", "esrgan", "waifu2x", "srcnn", "fsrcnn", "edsr", "swinir", "hat" };
             
             foreach (var model in placeholderModels)
             {
-                // Create placeholder session (will be replaced with actual models)
                 _modelSessions[model] = null;
-                _logger.LogDebug($"📝 Created placeholder for model: {model}");
+                _logger.LogDebug($"📝 Placeholder créé pour le modèle: {model}");
             }
         }
 
-        /// <summary>
-        /// Real hardware detection and optimization
-        /// </summary>
         public async Task<HardwareProfile> DetectHardwareAsync()
         {
-            // Cache hardware detection for 5 minutes
-            if (_hardwareCache.ContainsKey("profile") && 
-                DateTime.Now - _lastHardwareCheck < TimeSpan.FromMinutes(5))
+            if (_hardwareCache.ContainsKey("profile") && DateTime.Now - _lastHardwareCheck < TimeSpan.FromMinutes(5))
             {
                 return _hardwareCache["profile"] as HardwareProfile;
             }
 
-            _logger.LogInformation("🔍 Detecting hardware capabilities...");
+            _logger.LogInformation("🔍 Détection des capacités matérielles...");
             
             var profile = new HardwareProfile();
             
             try
             {
-                // 1. GPU Detection via ONNX Runtime
                 await DetectGpuCapabilities(profile);
-                
-                // 2. System Resources
                 await DetectSystemResources(profile);
-                
-                // 3. FFmpeg Hardware Acceleration
                 await DetectFFmpegAcceleration(profile);
-                
-                // 4. OpenCV Acceleration
                 await DetectOpenCVAcceleration(profile);
-                
-                // 5. Apply Hardware Optimizations
                 ApplyHardwareOptimizations(profile);
                 
                 _hardwareCache["profile"] = profile;
                 _lastHardwareCheck = DateTime.Now;
                 
-                _logger.LogInformation($"✅ Hardware Profile: {profile.GpuVendor} {profile.GpuModel}, CUDA: {profile.SupportsCUDA}");
+                _logger.LogInformation($"✅ Profil matériel: {profile.GpuVendor} {profile.GpuModel}, CUDA: {profile.SupportsCUDA}");
                 
                 return profile;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "❌ Hardware detection failed, using fallback profile");
+                _logger.LogError(ex, "❌ Échec de la détection matérielle, utilisation du profil de secours");
                 return GetFallbackProfile();
             }
         }
 
-        /// <summary>
-        /// Detect GPU capabilities using ONNX Runtime
-        /// </summary>
         private async Task DetectGpuCapabilities(HardwareProfile profile)
         {
             try
@@ -251,25 +211,21 @@ namespace JellyfinUpscalerPlugin.Services
                 else
                 {
                     profile.GpuVendor = "CPU";
-                    _logger.LogInformation("🖥️ Using CPU inference");
+                    _logger.LogInformation("🖥️ Utilisation de l'inférence CPU");
                 }
                 
-                _logger.LogInformation($"🔧 Available providers: {string.Join(", ", providers)}");
+                _logger.LogInformation($"🔧 Fournisseurs disponibles: {string.Join(", ", providers)}");
             }
             catch (Exception ex)
             {
-                _logger.LogWarning(ex, "⚠️ GPU detection failed");
+                _logger.LogWarning(ex, "⚠️ Échec de la détection GPU");
             }
         }
 
-        /// <summary>
-        /// Detect NVIDIA GPU specifics
-        /// </summary>
         private async Task DetectNvidiaGpu(HardwareProfile profile)
         {
             try
             {
-                // Try nvidia-smi for detailed info
                 var nvidiaSmiPath = FindNvidiaSmi();
                 if (!string.IsNullOrEmpty(nvidiaSmiPath))
                 {
@@ -297,65 +253,52 @@ namespace JellyfinUpscalerPlugin.Services
                     }
                 }
                 
-                _logger.LogInformation($"🎮 NVIDIA GPU: {profile.GpuModel} ({profile.VramMB}MB VRAM)");
+                _logger.LogInformation($"🎮 GPU NVIDIA: {profile.GpuModel} ({profile.VramMB}MB VRAM)");
             }
             catch (Exception ex)
             {
-                _logger.LogWarning(ex, "⚠️ NVIDIA GPU detection failed");
+                _logger.LogWarning(ex, "⚠️ Échec de la détection GPU NVIDIA");
             }
         }
 
-        /// <summary>
-        /// Detect DirectML GPU capabilities
-        /// </summary>
         private async Task DetectDirectMLGpu(HardwareProfile profile)
         {
             try
             {
-                profile.GpuModel = "DirectML Compatible GPU";
+                profile.GpuModel = "GPU Compatible DirectML";
                 profile.SupportsDirectML = true;
                 
-                _logger.LogInformation("🎮 DirectML GPU acceleration available");
+                _logger.LogInformation("🎮 Accélération GPU DirectML disponible");
                 await Task.CompletedTask;
             }
             catch (Exception ex)
             {
-                _logger.LogWarning(ex, "⚠️ DirectML detection failed");
+                _logger.LogWarning(ex, "⚠️ Échec de la détection DirectML");
             }
         }
 
-        /// <summary>
-        /// Detect system resources
-        /// </summary>
         private async Task DetectSystemResources(HardwareProfile profile)
         {
             try
             {
-                // RAM Detection
                 var totalMemory = GC.GetTotalMemory(false);
                 profile.SystemRamMB = (int)(totalMemory / 1024 / 1024);
-                
-                // CPU Detection
                 profile.CpuCores = Environment.ProcessorCount;
                 
-                // Available disk space
                 var tempPath = Path.GetTempPath();
                 var driveInfo = new DriveInfo(Path.GetPathRoot(tempPath));
                 profile.TempDiskSpaceGB = (int)(driveInfo.AvailableFreeSpace / 1024 / 1024 / 1024);
                 
-                _logger.LogInformation($"💾 System: {profile.SystemRamMB}MB RAM, {profile.CpuCores} CPU cores, {profile.TempDiskSpaceGB}GB temp space");
+                _logger.LogInformation($"💾 Système: {profile.SystemRamMB}MB RAM, {profile.CpuCores} cœurs CPU, {profile.TempDiskSpaceGB}GB temp");
                 
                 await Task.CompletedTask;
             }
             catch (Exception ex)
             {
-                _logger.LogWarning(ex, "⚠️ System resource detection failed");
+                _logger.LogWarning(ex, "⚠️ Échec de la détection des ressources système");
             }
         }
 
-        /// <summary>
-        /// Detect FFmpeg hardware acceleration
-        /// </summary>
         private async Task DetectFFmpegAcceleration(HardwareProfile profile)
         {
             try
@@ -363,7 +306,7 @@ namespace JellyfinUpscalerPlugin.Services
                 var ffmpegPath = _mediaEncoder.EncoderPath;
                 if (string.IsNullOrEmpty(ffmpegPath))
                 {
-                    _logger.LogWarning("⚠️ FFmpeg path not available");
+                    _logger.LogWarning("⚠️ Chemin FFmpeg non disponible");
                     return;
                 }
 
@@ -385,25 +328,20 @@ namespace JellyfinUpscalerPlugin.Services
                     .Select(line => line.Trim())
                     .ToList();
 
-                _logger.LogInformation($"🎬 FFmpeg HW Accels: {string.Join(", ", profile.AvailableHwAccels)}");
+                _logger.LogInformation($"🎬 Accélération FFmpeg: {string.Join(", ", profile.AvailableHwAccels)}");
             }
             catch (Exception ex)
             {
-                _logger.LogWarning(ex, "⚠️ FFmpeg acceleration detection failed");
+                _logger.LogWarning(ex, "⚠️ Échec de la détection d'accélération FFmpeg");
             }
         }
 
-        /// <summary>
-        /// Detect OpenCV acceleration
-        /// </summary>
         private async Task DetectOpenCVAcceleration(HardwareProfile profile)
         {
             try
             {
                 var buildInfo = Cv2.GetBuildInformation();
                 profile.OpenCVInfo = buildInfo;
-                
-                // Check for CUDA support in OpenCV
                 profile.OpenCVSupportsCUDA = buildInfo.Contains("CUDA");
                 
                 _logger.LogInformation($"🖼️ OpenCV: CUDA={profile.OpenCVSupportsCUDA}");
@@ -412,16 +350,12 @@ namespace JellyfinUpscalerPlugin.Services
             }
             catch (Exception ex)
             {
-                _logger.LogWarning(ex, "⚠️ OpenCV acceleration detection failed");
+                _logger.LogWarning(ex, "⚠️ Échec de la détection d'accélération OpenCV");
             }
         }
 
-        /// <summary>
-        /// Apply hardware-specific optimizations
-        /// </summary>
         private void ApplyHardwareOptimizations(HardwareProfile profile)
         {
-            // Optimize based on available hardware
             if (profile.SupportsCUDA && profile.VramMB > 4096)
             {
                 profile.RecommendedModel = "realesrgan";
@@ -447,12 +381,9 @@ namespace JellyfinUpscalerPlugin.Services
                 profile.RecommendedScale = 2;
             }
             
-            _logger.LogInformation($"🎯 Optimized: {profile.RecommendedModel} @ {profile.RecommendedScale}x, {profile.MaxConcurrentStreams} streams");
+            _logger.LogInformation($"🎯 Optimisé: {profile.RecommendedModel} @ {profile.RecommendedScale}x, {profile.MaxConcurrentStreams} flux");
         }
 
-        /// <summary>
-        /// Find nvidia-smi executable
-        /// </summary>
         private string FindNvidiaSmi()
         {
             var possiblePaths = new[]
@@ -466,15 +397,12 @@ namespace JellyfinUpscalerPlugin.Services
             return possiblePaths.FirstOrDefault(File.Exists) ?? "";
         }
 
-        /// <summary>
-        /// Get fallback hardware profile
-        /// </summary>
         private HardwareProfile GetFallbackProfile()
         {
             return new HardwareProfile
             {
                 GpuVendor = "CPU",
-                GpuModel = "Software Fallback",
+                GpuModel = "Secours Logiciel",
                 CpuCores = Environment.ProcessorCount,
                 SystemRamMB = 4096,
                 RecommendedModel = "bicubic",
@@ -483,60 +411,64 @@ namespace JellyfinUpscalerPlugin.Services
             };
         }
 
-        /// <summary>
-        /// Upscale image using AI model
-        /// </summary>
         public async Task<byte[]> UpscaleImageAsync(byte[] inputImage, string model, int scale = 2)
         {
+            if (inputImage == null || inputImage.Length == 0)
+                throw new ArgumentException("L'image d'entrée ne peut pas être null ou vide", nameof(inputImage));
+            
+            if (string.IsNullOrWhiteSpace(model))
+                throw new ArgumentException("Le nom du modèle ne peut pas être null ou vide", nameof(model));
+            
+            if (scale < 1 || scale > 8)
+                throw new ArgumentOutOfRangeException(nameof(scale), "L'échelle doit être entre 1 et 8");
+            
             try
             {
                 if (!_modelSessions.ContainsKey(model) || _modelSessions[model] == null)
                 {
-                    _logger.LogWarning($"⚠️ Model {model} not available, using fallback");
-                    return await FallbackUpscaleAsync(inputImage, scale);
+                    _logger.LogWarning($"⚠️ Modèle '{model}' non disponible, utilisation du suréchantillonnage de secours");
+                    return FallbackUpscaleAsync(inputImage, scale);
                 }
 
                 var session = _modelSessions[model];
-                
-                // Load image with ImageSharp
                 using var image = Image.Load<Rgb24>(inputImage);
                 
-                // Prepare input tensor
-                var inputTensor = PrepareInputTensor(image);
+                if (image.Width * image.Height > 16777216)
+                {
+                    _logger.LogWarning($"⚠️ Image trop grande ({image.Width}x{image.Height}), utilisation du secours");
+                    return FallbackUpscaleAsync(inputImage, scale);
+                }
                 
-                // Run inference
+                _logger.LogInformation($"🔄 Suréchantillonnage {image.Width}x{image.Height} avec '{model}' à {scale}x");
+                
+                var inputTensor = PrepareInputTensor(image);
                 var inputs = new List<NamedOnnxValue> { NamedOnnxValue.CreateFromTensor("input", inputTensor) };
                 var outputs = session.Run(inputs);
                 
-                // Process output
                 var outputTensor = outputs.First().AsEnumerable<float>().ToArray();
                 var outputImage = ProcessOutputTensor(outputTensor, image.Width * scale, image.Height * scale);
                 
-                // Convert back to byte array
                 using var outputStream = new MemoryStream();
                 outputImage.SaveAsJpeg(outputStream);
                 
+                _logger.LogInformation($"✅ Suréchantillonnage réussi vers {outputImage.Width}x{outputImage.Height}");
                 return outputStream.ToArray();
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"❌ AI upscaling failed for model {model}");
-                return await FallbackUpscaleAsync(inputImage, scale);
+                _logger.LogError(ex, $"❌ Échec du suréchantillonnage IA pour '{model}': {ex.Message}");
+                return FallbackUpscaleAsync(inputImage, scale);
             }
         }
 
-        /// <summary>
-        /// Fallback upscaling using traditional methods
-        /// </summary>
-        private async Task<byte[]> FallbackUpscaleAsync(byte[] inputImage, int scale)
+        private byte[] FallbackUpscaleAsync(byte[] inputImage, int scale)
         {
             try
             {
-                using var image = Image.Load(inputImage);
-                var newWidth = image.Width * scale;
-                var newHeight = image.Height * scale;
+                _logger.LogInformation($"📐 Utilisation du suréchantillonnage Lanczos3 de secours à {scale}x");
                 
-                image.Mutate(x => x.Resize(newWidth, newHeight, KnownResamplers.Lanczos3));
+                using var image = Image.Load(inputImage);
+                image.Mutate(x => x.Resize(image.Width * scale, image.Height * scale, KnownResamplers.Lanczos3));
                 
                 using var outputStream = new MemoryStream();
                 image.SaveAsJpeg(outputStream);
@@ -545,20 +477,15 @@ namespace JellyfinUpscalerPlugin.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "❌ Fallback upscaling failed");
+                _logger.LogError(ex, $"❌ Échec du suréchantillonnage de secours: {ex.Message}");
                 return inputImage;
             }
         }
 
-        /// <summary>
-        /// Prepare input tensor from image
-        /// </summary>
         private Microsoft.ML.OnnxRuntime.Tensors.Tensor<float> PrepareInputTensor(Image<Rgb24> image)
         {
-            // Convert image to RGB and normalize
             var width = image.Width;
             var height = image.Height;
-            
             var tensor = new Microsoft.ML.OnnxRuntime.Tensors.DenseTensor<float>(new[] { 1, 3, height, width });
             
             image.ProcessPixelRows(accessor =>
@@ -569,7 +496,6 @@ namespace JellyfinUpscalerPlugin.Services
                     for (int x = 0; x < width; x++)
                     {
                         var pixel = pixelRow[x];
-                        // Normalize to 0-1 range
                         tensor[0, 0, y, x] = pixel.R / 255.0f;
                         tensor[0, 1, y, x] = pixel.G / 255.0f;
                         tensor[0, 2, y, x] = pixel.B / 255.0f;
@@ -580,9 +506,6 @@ namespace JellyfinUpscalerPlugin.Services
             return tensor;
         }
 
-        /// <summary>
-        /// Process output tensor to image
-        /// </summary>
         private Image<Rgb24> ProcessOutputTensor(float[] tensorData, int width, int height)
         {
             var image = new Image<Rgb24>(width, height);
@@ -594,15 +517,11 @@ namespace JellyfinUpscalerPlugin.Services
                     var pixelRow = accessor.GetRowSpan(y);
                     for (int x = 0; x < width; x++)
                     {
-                        // CHW to HWC conversion and clamping
                         var r = Math.Clamp(tensorData[0 * height * width + y * width + x], 0.0f, 1.0f);
                         var g = Math.Clamp(tensorData[1 * height * width + y * width + x], 0.0f, 1.0f);
                         var b = Math.Clamp(tensorData[2 * height * width + y * width + x], 0.0f, 1.0f);
                         
-                        pixelRow[x] = new Rgb24(
-                            (byte)(r * 255),
-                            (byte)(g * 255),
-                            (byte)(b * 255));
+                        pixelRow[x] = new Rgb24((byte)(r * 255), (byte)(g * 255), (byte)(b * 255));
                     }
                 }
             });
@@ -626,9 +545,6 @@ namespace JellyfinUpscalerPlugin.Services
         }
     }
 
-    /// <summary>
-    /// Hardware profile information
-    /// </summary>
     public class HardwareProfile
     {
         public string GpuVendor { get; set; } = "";
@@ -652,9 +568,6 @@ namespace JellyfinUpscalerPlugin.Services
         public int MaxConcurrentStreams { get; set; } = 1;
     }
 
-    /// <summary>
-    /// Performance metrics
-    /// </summary>
     public class PerformanceMetrics
     {
         public string ModelName { get; set; } = "";
