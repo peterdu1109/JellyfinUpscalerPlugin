@@ -1,12 +1,12 @@
 {
     "guid": "f87f700e-679d-43e6-9c7c-b3a410dc3f22",
-    "name": "🎮 AI Upscaler Plugin v1.4.0 - TEST 3",
-    "overview": "AI-Powered Video Upscaling Plugin with Hardware Benchmarking & Optimization",
-    "description": "Revolutionary AI upscaling plugin with automated hardware benchmarking, intelligent fallback system, pre-processing cache, and advanced low-end hardware support. Features comprehensive performance testing, comparison view, TV remote optimization, and sidebar integration like Playback Reporting plugin.",
-    "version": "1.4.0-test3",
-    "targetAbi": "10.10.0.0",
+    "name": "🎮 Plugin de Suréchantillonnage IA v1.5.0",
+    "overview": "Plugin de Suréchantillonnage Vidéo IA avec Benchmarking et Optimisation Matérielle",
+    "description": "Plugin révolutionnaire de suréchantillonnage IA avec benchmarking matériel automatisé, système de repli intelligent, cache de prétraitement et support avancé du matériel bas de gamme. Fonctionnalités : tests de performance complets, vue comparative, optimisation télécommande TV et intégration dans la barre latérale comme le plugin de rapport de lecture.",
+    "version": "1.5.0",
+    "targetAbi": "10.10.6.0",
     "framework": "net8.0",
-    "owner": "Kuschel-code",
-    "category": "Video Enhancement",
-    "changelog": "v1.4.0 TEST 3 UPDATE: SECURITY FIXED - Updated SixLabors.ImageSharp to 3.1.9 (CVE vulnerability resolved), cleaned up configuration files, enhanced embedded resources, improved build stability with 30 warnings (down from 32), and ensured all dependencies are secure and up-to-date."
+    "owner": "peterdu1109",
+    "category": "Amélioration Vidéo",
+    "changelog": "v1.5.0 FRANÇAIS : Traduction complète en français de toute l'interface et des messages de log. Implémentation de la logique de traitement tensoriel IA (PrepareInputTensor, ProcessOutputTensor) avec intégration ImageSharp. Correction de la reconstruction vidéo avec framerate dynamique. Détection matérielle améliorée (CUDA, DirectML, QSV). Gestion d'erreurs robuste et mécanismes de repli intelligents."
 }
