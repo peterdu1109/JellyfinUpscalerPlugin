@@ -1,295 +1,295 @@
-// AI Upscaler Plugin - Sidebar Integration v1.4.0
-// Creates sidebar panel like Playback Reporting Plugin
+// Plugin Suréchantillonnage IA - Intégration Barre Latérale v1.6.0
+// Crée un panneau latéral comme le plugin Playback Reporting
 
-(function() {
+(function () {
     'use strict';
-    
-    // Plugin configuration
+
+    // Configuration du plugin
     const PLUGIN_ID = 'f87f700e-679d-43e6-9c7c-b3a410dc3f22';
-    const PLUGIN_VERSION = '1.4.0';
-    
-    // Sidebar Integration Manager
+    const PLUGIN_VERSION = '1.6.0';
+
+    // Gestionnaire d'intégration barre latérale
     const SidebarIntegration = {
-        
-        // Initialize sidebar integration
-        init: function() {
-            console.log('AI Upscaler: Initializing sidebar integration v1.4.0...');
-            
-            // Wait for Jellyfin to be ready
+
+        // Initialiser l'intégration barre latérale
+        init: function () {
+            console.log('Suréchantillonnage IA : Initialisation intégration barre latérale v1.6.0...');
+
+            // Attendre que Jellyfin soit prêt
             this.waitForJellyfin();
         },
-        
-        // Wait for Jellyfin dashboard to be available
-        waitForJellyfin: function() {
+
+        // Attendre que le tableau de bord Jellyfin soit disponible
+        waitForJellyfin: function () {
             const checkJellyfin = () => {
                 try {
                     if (window.Dashboard && window.ApiClient) {
-                        console.log('AI Upscaler: Jellyfin dashboard detected, integrating sidebar...');
+                        console.log('Suréchantillonnage IA : Tableau de bord Jellyfin détecté, intégration barre latérale...');
                         this.integrateSidebar();
                     } else {
                         setTimeout(checkJellyfin, 1000);
                     }
                 } catch (error) {
-                    console.error('AI Upscaler: Error waiting for Jellyfin:', error);
+                    console.error('Suréchantillonnage IA : Erreur attente Jellyfin :', error);
                     setTimeout(checkJellyfin, 2000);
                 }
             };
             checkJellyfin();
         },
-        
-        // Integrate with Jellyfin sidebar
-        integrateSidebar: function() {
+
+        // Intégrer avec la barre latérale Jellyfin
+        integrateSidebar: function () {
             try {
-                // Add CSS for sidebar styling
+                // Ajouter CSS pour le style de la barre latérale
                 this.addSidebarStyles();
-                
-                // Wait for sidebar to be available
+
+                // Attendre que la barre latérale soit disponible
                 this.waitForSidebar();
-                
+
             } catch (error) {
-                console.error('AI Upscaler: Error integrating sidebar:', error);
+                console.error('Suréchantillonnage IA : Erreur intégration barre latérale :', error);
             }
         },
-        
-        // Wait for sidebar navigation to be available
-        waitForSidebar: function() {
+
+        // Attendre que la navigation latérale soit disponible
+        waitForSidebar: function () {
             let attempts = 0;
             const maxAttempts = 50;
-            
+
             const checkSidebar = () => {
                 attempts++;
-                
+
                 try {
-                    const sidebar = document.querySelector('.mainDrawer-scrollContainer') || 
-                                  document.querySelector('.navDrawer-scrollContainer') ||
-                                  document.querySelector('.mainDrawerButton') ||
-                                  document.querySelector('.navMenuOption');
-                    
+                    const sidebar = document.querySelector('.mainDrawer-scrollContainer') ||
+                        document.querySelector('.navDrawer-scrollContainer') ||
+                        document.querySelector('.mainDrawerButton') ||
+                        document.querySelector('.navMenuOption');
+
                     if (sidebar) {
-                        console.log('AI Upscaler: Sidebar found, adding menu item...');
+                        console.log('Suréchantillonnage IA : Barre latérale trouvée, ajout élément menu...');
                         this.addSidebarMenuItem();
                     } else if (attempts < maxAttempts) {
                         setTimeout(checkSidebar, 500);
                     } else {
-                        console.warn('AI Upscaler: Could not find sidebar after', maxAttempts, 'attempts');
-                        // Try alternative method
+                        console.warn('Suréchantillonnage IA : Impossible de trouver la barre latérale après', maxAttempts, 'tentatives');
+                        // Essayer méthode alternative
                         this.addMenuItemAlternative();
                     }
                 } catch (error) {
-                    console.error('AI Upscaler: Error checking for sidebar:', error);
+                    console.error('Suréchantillonnage IA : Erreur vérification barre latérale :', error);
                     if (attempts < maxAttempts) {
                         setTimeout(checkSidebar, 1000);
                     }
                 }
             };
-            
+
             checkSidebar();
         },
-        
-        // Add sidebar menu item
-        addSidebarMenuItem: function() {
+
+        // Ajouter élément menu barre latérale
+        addSidebarMenuItem: function () {
             try {
-                // Find sidebar container
-                const sidebarContainer = document.querySelector('.mainDrawer-scrollContainer') || 
-                                       document.querySelector('.navDrawer-scrollContainer') ||
-                                       document.querySelector('.navMenuContent');
-                
+                // Trouver conteneur barre latérale
+                const sidebarContainer = document.querySelector('.mainDrawer-scrollContainer') ||
+                    document.querySelector('.navDrawer-scrollContainer') ||
+                    document.querySelector('.navMenuContent');
+
                 if (!sidebarContainer) {
-                    console.warn('AI Upscaler: Sidebar container not found');
+                    console.warn('Suréchantillonnage IA : Conteneur barre latérale non trouvé');
                     return;
                 }
-                
-                // Check if our menu item already exists
+
+                // Vérifier si notre élément de menu existe déjà
                 if (document.querySelector('#ai-upscaler-sidebar-item')) {
-                    console.log('AI Upscaler: Sidebar menu item already exists');
+                    console.log('Suréchantillonnage IA : Élément menu barre latérale existe déjà');
                     return;
                 }
-                
-                // Create menu item
+
+                // Créer élément menu
                 const menuItem = this.createSidebarMenuItem();
-                
-                // Find insertion point (after Plugins or Libraries)
+
+                // Trouver point d'insertion (après Plugins ou Bibliothèques)
                 const insertionPoint = this.findInsertionPoint(sidebarContainer);
-                
+
                 if (insertionPoint) {
                     insertionPoint.parentNode.insertBefore(menuItem, insertionPoint.nextSibling);
                 } else {
                     sidebarContainer.appendChild(menuItem);
                 }
-                
-                console.log('AI Upscaler: Sidebar menu item added successfully');
-                
+
+                console.log('Suréchantillonnage IA : Élément menu barre latérale ajouté avec succès');
+
             } catch (error) {
-                console.error('AI Upscaler: Error adding sidebar menu item:', error);
+                console.error('Suréchantillonnage IA : Erreur ajout élément menu barre latérale :', error);
             }
         },
-        
-        // Create sidebar menu item HTML
-        createSidebarMenuItem: function() {
+
+        // Créer HTML élément menu barre latérale
+        createSidebarMenuItem: function () {
             const menuItem = document.createElement('a');
             menuItem.id = 'ai-upscaler-sidebar-item';
             menuItem.className = 'navMenuOption';
             menuItem.href = '#';
-            
+
             menuItem.innerHTML = `
                 <div class="navMenuOptionIcon">
                     <span class="material-icons">🎮</span>
                 </div>
-                <div class="navMenuOptionText">AI Upscaler</div>
+                <div class="navMenuOptionText">Suréchantillonnage IA</div>
             `;
-            
-            // Add click handler
+
+            // Ajouter gestionnaire clic
             menuItem.addEventListener('click', (e) => {
                 e.preventDefault();
                 this.showUpscalerPanel();
             });
-            
+
             return menuItem;
         },
-        
-        // Find insertion point in sidebar
-        findInsertionPoint: function(container) {
-            // Look for Plugins, Libraries, or similar items
+
+        // Trouver point d'insertion dans barre latérale
+        findInsertionPoint: function (container) {
+            // Chercher Plugins, Bibliothèques ou éléments similaires
             const navItems = container.querySelectorAll('.navMenuOption');
-            
+
             for (let item of navItems) {
                 const text = item.textContent.toLowerCase();
                 if (text.includes('plugin') || text.includes('libraries') || text.includes('settings')) {
                     return item;
                 }
             }
-            
-            // If not found, return last item
+
+            // Si non trouvé, retourner dernier élément
             return navItems[navItems.length - 1];
         },
-        
-        // Alternative method to add menu item
-        addMenuItemAlternative: function() {
+
+        // Méthode alternative pour ajouter élément menu
+        addMenuItemAlternative: function () {
             try {
-                // Try to add to dashboard navigation
+                // Essayer d'ajouter à la navigation tableau de bord
                 setTimeout(() => {
                     this.addDashboardMenuItem();
                 }, 2000);
             } catch (error) {
-                console.error('AI Upscaler: Alternative menu integration failed:', error);
+                console.error('Suréchantillonnage IA : Intégration menu alternative échouée :', error);
             }
         },
-        
-        // Add menu item to dashboard
-        addDashboardMenuItem: function() {
+
+        // Ajouter élément menu au tableau de bord
+        addDashboardMenuItem: function () {
             try {
-                // Create floating action button if sidebar integration fails
+                // Créer bouton action flottant si intégration barre latérale échoue
                 const fab = document.createElement('div');
                 fab.id = 'ai-upscaler-fab';
                 fab.className = 'ai-upscaler-fab';
                 fab.innerHTML = '🎮';
-                fab.title = 'AI Upscaler Settings';
-                
+                fab.title = 'Paramètres Suréchantillonnage IA';
+
                 fab.addEventListener('click', () => {
                     this.showUpscalerPanel();
                 });
-                
+
                 document.body.appendChild(fab);
-                
-                console.log('AI Upscaler: Floating action button added as fallback');
-                
+
+                console.log('Suréchantillonnage IA : Bouton action flottant ajouté comme repli');
+
             } catch (error) {
-                console.error('AI Upscaler: Error adding dashboard menu item:', error);
+                console.error('Suréchantillonnage IA : Erreur ajout élément menu tableau de bord :', error);
             }
         },
-        
-        // Show upscaler settings panel
-        showUpscalerPanel: function() {
+
+        // Afficher panneau paramètres suréchantillonnage
+        showUpscalerPanel: function () {
             try {
-                console.log('AI Upscaler: Opening settings panel...');
-                
-                // Remove existing panel
+                console.log('Suréchantillonnage IA : Ouverture panneau paramètres...');
+
+                // Supprimer panneau existant
                 const existingPanel = document.getElementById('ai-upscaler-panel');
                 if (existingPanel) {
                     existingPanel.remove();
                 }
-                
-                // Create settings panel
+
+                // Créer panneau paramètres
                 const panel = this.createSettingsPanel();
                 document.body.appendChild(panel);
-                
-                // Load current settings
+
+                // Charger paramètres actuels
                 this.loadCurrentSettings();
-                
-                // Initialize panel functionality
+
+                // Initialiser fonctionnalités panneau
                 this.initializePanelFeatures();
-                
+
             } catch (error) {
-                console.error('AI Upscaler: Error showing upscaler panel:', error);
+                console.error('Suréchantillonnage IA : Erreur affichage panneau suréchantillonnage :', error);
             }
         },
-        
-        // Create settings panel HTML
-        createSettingsPanel: function() {
+
+        // Créer HTML panneau paramètres
+        createSettingsPanel: function () {
             const panel = document.createElement('div');
             panel.id = 'ai-upscaler-panel';
             panel.className = 'ai-upscaler-panel';
-            
+
             panel.innerHTML = `
                 <div class="ai-upscaler-panel-overlay" onclick="window.SidebarIntegration.closePanel()"></div>
                 <div class="ai-upscaler-panel-content">
                     <div class="ai-upscaler-panel-header">
-                        <h2>🎮 AI Upscaler Settings</h2>
+                        <h2>🎮 Paramètres Suréchantillonnage IA</h2>
                         <button class="ai-upscaler-close-btn" onclick="window.SidebarIntegration.closePanel()">×</button>
                     </div>
                     
                     <div class="ai-upscaler-panel-body">
                         <!-- Status Section -->
                         <div class="ai-upscaler-section">
-                            <h3>📊 System Status</h3>
+                            <h3>📊 État du Système</h3>
                             <div id="system-status" class="status-grid">
                                 <div class="status-item">
-                                    <span class="status-label">Plugin Status:</span>
-                                    <span class="status-value" id="plugin-status">Loading...</span>
+                                    <span class="status-label">État du Plugin :</span>
+                                    <span class="status-value" id="plugin-status">Chargement...</span>
                                 </div>
                                 <div class="status-item">
-                                    <span class="status-label">Hardware:</span>
-                                    <span class="status-value" id="hardware-status">Detecting...</span>
+                                    <span class="status-label">Matériel :</span>
+                                    <span class="status-value" id="hardware-status">Détection...</span>
                                 </div>
                                 <div class="status-item">
-                                    <span class="status-label">Performance:</span>
-                                    <span class="status-value" id="performance-status">Analyzing...</span>
+                                    <span class="status-label">Performance :</span>
+                                    <span class="status-value" id="performance-status">Analyse...</span>
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Quick Settings -->
                         <div class="ai-upscaler-section">
-                            <h3>⚡ Quick Settings</h3>
+                            <h3>⚡ Réglages Rapides</h3>
                             <div class="settings-grid">
                                 <div class="setting-item">
-                                    <label for="quick-enable">Enable AI Upscaling:</label>
+                                    <label for="quick-enable">Activer Suréchantillonnage IA :</label>
                                     <input type="checkbox" id="quick-enable" checked>
                                 </div>
                                 <div class="setting-item">
-                                    <label for="quick-model">AI Model:</label>
+                                    <label for="quick-model">Modèle IA :</label>
                                     <select id="quick-model">
-                                        <option value="fsrcnn">FSRCNN (Balanced)</option>
-                                        <option value="fsrcnn-light">FSRCNN Light (Fast)</option>
-                                        <option value="esrgan">ESRGAN (Quality)</option>
-                                        <option value="realesrgan">Real-ESRGAN (Best)</option>
+                                        <option value="fsrcnn">FSRCNN (Équilibré)</option>
+                                        <option value="fsrcnn-light">FSRCNN Light (Rapide)</option>
+                                        <option value="esrgan">ESRGAN (Qualité)</option>
+                                        <option value="realesrgan">Real-ESRGAN (Meilleur)</option>
                                         <option value="waifu2x">Waifu2x (Anime)</option>
                                     </select>
                                 </div>
                                 <div class="setting-item">
-                                    <label for="quick-scale">Scale Factor:</label>
+                                    <label for="quick-scale">Facteur d'Échelle :</label>
                                     <select id="quick-scale">
-                                        <option value="2">2x (Recommended)</option>
+                                        <option value="2">2x (Recommandé)</option>
                                         <option value="3">3x</option>
                                         <option value="4">4x</option>
                                     </select>
                                 </div>
                                 <div class="setting-item">
-                                    <label for="quick-quality">Quality:</label>
+                                    <label for="quick-quality">Qualité :</label>
                                     <select id="quick-quality">
                                         <option value="performance">Performance</option>
-                                        <option value="balanced" selected>Balanced</option>
-                                        <option value="quality">Quality</option>
+                                        <option value="balanced" selected>Équilibré</option>
+                                        <option value="quality">Qualité</option>
                                     </select>
                                 </div>
                             </div>
@@ -297,278 +297,278 @@
                         
                         <!-- Hardware Benchmark -->
                         <div class="ai-upscaler-section">
-                            <h3>🔬 Hardware Benchmark</h3>
+                            <h3>🔬 Benchmark Matériel</h3>
                             <div class="benchmark-controls">
                                 <button id="run-benchmark-btn" class="btn btn-primary">
-                                    Run Hardware Test
+                                    Lancer Test Matériel
                                 </button>
                                 <button id="view-results-btn" class="btn btn-secondary">
-                                    View Results
+                                    Voir Résultats
                                 </button>
                                 <button id="auto-optimize-btn" class="btn btn-success">
-                                    Auto-Optimize
+                                    Auto-Optimisation
                                 </button>
                             </div>
                             <div id="benchmark-console" class="benchmark-console" style="display: none;">
-                                <div class="console-header">Benchmark Console</div>
+                                <div class="console-header">Console Benchmark</div>
                                 <div id="console-output" class="console-output"></div>
                             </div>
                         </div>
                         
                         <!-- Advanced Features -->
                         <div class="ai-upscaler-section">
-                            <h3>🚀 Advanced Features</h3>
+                            <h3>🚀 Fonctionnalités Avancées</h3>
                             <div class="advanced-grid">
                                 <div class="feature-item">
                                     <input type="checkbox" id="enable-cache">
-                                    <label for="enable-cache">Pre-processing Cache</label>
+                                    <label for="enable-cache">Cache de Pré-traitement</label>
                                 </div>
                                 <div class="feature-item">
                                     <input type="checkbox" id="enable-fallback">
-                                    <label for="enable-fallback">Auto Fallback</label>
+                                    <label for="enable-fallback">Repli Automatique</label>
                                 </div>
                                 <div class="feature-item">
                                     <input type="checkbox" id="enable-comparison">
-                                    <label for="enable-comparison">Comparison View</label>
+                                    <label for="enable-comparison">Vue Comparaison</label>
                                 </div>
                                 <div class="feature-item">
                                     <input type="checkbox" id="enable-tv-optimization">
-                                    <label for="enable-tv-optimization">TV Remote Support</label>
+                                    <label for="enable-tv-optimization">Support Télécommande TV</label>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
                     <div class="ai-upscaler-panel-footer">
-                        <button id="save-settings-btn" class="btn btn-primary">Save Settings</button>
-                        <button id="reset-settings-btn" class="btn btn-secondary">Reset to Defaults</button>
-                        <button onclick="window.SidebarIntegration.closePanel()" class="btn btn-cancel">Cancel</button>
+                        <button id="save-settings-btn" class="btn btn-primary">Enregistrer Paramètres</button>
+                        <button id="reset-settings-btn" class="btn btn-secondary">Réinitialiser par Défaut</button>
+                        <button onclick="window.SidebarIntegration.closePanel()" class="btn btn-cancel">Annuler</button>
                     </div>
                 </div>
             `;
-            
+
             return panel;
         },
-        
-        // Initialize panel features
-        initializePanelFeatures: function() {
+
+        // Initialiser fonctionnalités panneau
+        initializePanelFeatures: function () {
             try {
-                // Benchmark button
+                // Bouton Benchmark
                 const benchmarkBtn = document.getElementById('run-benchmark-btn');
                 if (benchmarkBtn) {
                     benchmarkBtn.addEventListener('click', () => {
                         this.runBenchmark();
                     });
                 }
-                
-                // Auto-optimize button
+
+                // Bouton Auto-optimisation
                 const optimizeBtn = document.getElementById('auto-optimize-btn');
                 if (optimizeBtn) {
                     optimizeBtn.addEventListener('click', () => {
                         this.autoOptimize();
                     });
                 }
-                
-                // Save settings button
+
+                // Bouton Enregistrer
                 const saveBtn = document.getElementById('save-settings-btn');
                 if (saveBtn) {
                     saveBtn.addEventListener('click', () => {
                         this.saveSettings();
                     });
                 }
-                
-                // Reset settings button
+
+                // Bouton Réinitialiser
                 const resetBtn = document.getElementById('reset-settings-btn');
                 if (resetBtn) {
                     resetBtn.addEventListener('click', () => {
                         this.resetSettings();
                     });
                 }
-                
-                // View results button
+
+                // Bouton Voir Résultats
                 const resultsBtn = document.getElementById('view-results-btn');
                 if (resultsBtn) {
                     resultsBtn.addEventListener('click', () => {
                         this.viewBenchmarkResults();
                     });
                 }
-                
+
             } catch (error) {
-                console.error('AI Upscaler: Error initializing panel features:', error);
+                console.error('Suréchantillonnage IA : Erreur initialisation fonctionnalités panneau :', error);
             }
         },
-        
-        // Load current settings
-        loadCurrentSettings: function() {
+
+        // Charger paramètres actuels
+        loadCurrentSettings: function () {
             try {
-                // Make API call to get current settings
+                // Appel API pour obtenir paramètres actuels
                 if (window.ApiClient) {
                     window.ApiClient.getJSON('/api/upscaler/status')
                         .then(response => {
                             this.updateStatusDisplay(response);
                         })
                         .catch(error => {
-                            console.error('AI Upscaler: Error loading settings:', error);
+                            console.error('Suréchantillonnage IA : Erreur chargement paramètres :', error);
                         });
                 }
-                
-                // Get hardware recommendations
+
+                // Obtenir recommandations matérielles
                 if (window.ApiClient) {
                     window.ApiClient.getJSON('/api/upscaler/recommendations')
                         .then(response => {
                             this.updateRecommendations(response);
                         })
                         .catch(error => {
-                            console.error('AI Upscaler: Error loading recommendations:', error);
+                            console.error('Suréchantillonnage IA : Erreur chargement recommandations :', error);
                         });
                 }
-                
+
             } catch (error) {
-                console.error('AI Upscaler: Error in loadCurrentSettings:', error);
+                console.error('Suréchantillonnage IA : Erreur dans loadCurrentSettings :', error);
             }
         },
-        
-        // Update status display
-        updateStatusDisplay: function(status) {
+
+        // Mettre à jour affichage état
+        updateStatusDisplay: function (status) {
             try {
                 const pluginStatusEl = document.getElementById('plugin-status');
                 const hardwareStatusEl = document.getElementById('hardware-status');
                 const performanceStatusEl = document.getElementById('performance-status');
-                
+
                 if (pluginStatusEl) {
-                    pluginStatusEl.textContent = status.enabled ? 'Active' : 'Disabled';
+                    pluginStatusEl.textContent = status.enabled ? 'Actif' : 'Désactivé';
                     pluginStatusEl.className = 'status-value ' + (status.enabled ? 'status-active' : 'status-inactive');
                 }
-                
+
                 if (hardwareStatusEl) {
-                    hardwareStatusEl.textContent = status.hardwareAcceleration ? 'GPU Enabled' : 'CPU Only';
+                    hardwareStatusEl.textContent = status.hardwareAcceleration ? 'GPU Activé' : 'CPU Uniquement';
                     hardwareStatusEl.className = 'status-value ' + (status.hardwareAcceleration ? 'status-active' : 'status-warning');
                 }
-                
+
                 if (performanceStatusEl) {
-                    performanceStatusEl.textContent = status.performance || 'Good';
+                    performanceStatusEl.textContent = status.performance || 'Bonne';
                     performanceStatusEl.className = 'status-value status-active';
                 }
-                
+
             } catch (error) {
-                console.error('AI Upscaler: Error updating status display:', error);
+                console.error('Suréchantillonnage IA : Erreur mise à jour affichage état :', error);
             }
         },
-        
-        // Run hardware benchmark
-        runBenchmark: function() {
+
+        // Lancer benchmark matériel
+        runBenchmark: function () {
             try {
-                console.log('AI Upscaler: Starting hardware benchmark...');
-                
+                console.log('Suréchantillonnage IA : Démarrage benchmark matériel...');
+
                 const benchmarkBtn = document.getElementById('run-benchmark-btn');
                 const consoleEl = document.getElementById('benchmark-console');
                 const outputEl = document.getElementById('console-output');
-                
+
                 if (benchmarkBtn) {
                     benchmarkBtn.disabled = true;
-                    benchmarkBtn.textContent = 'Running Benchmark...';
+                    benchmarkBtn.textContent = 'Benchmark en cours...';
                 }
-                
+
                 if (consoleEl) {
                     consoleEl.style.display = 'block';
                 }
-                
+
                 if (outputEl) {
-                    outputEl.innerHTML = '<div class="console-line">Starting hardware benchmark...</div>';
+                    outputEl.innerHTML = '<div class="console-line">Démarrage benchmark matériel...</div>';
                 }
-                
-                // Make API call to run benchmark
+
+                // Appel API pour lancer benchmark
                 if (window.ApiClient) {
                     const addConsoleOutput = (message) => {
                         if (outputEl) {
-                            outputEl.innerHTML += `<div class="console-line">${new Date().toLocaleTimeString()}: ${message}</div>`;
+                            outputEl.innerHTML += `<div class="console-line">${new Date().toLocaleTimeString('fr-FR')}: ${message}</div>`;
                             outputEl.scrollTop = outputEl.scrollHeight;
                         }
                     };
-                    
-                    addConsoleOutput('Detecting system hardware...');
-                    
+
+                    addConsoleOutput('Détection matériel système...');
+
                     setTimeout(() => {
-                        addConsoleOutput('Testing AI models performance...');
+                        addConsoleOutput('Test performance modèles IA...');
                     }, 1000);
-                    
+
                     setTimeout(() => {
-                        addConsoleOutput('Benchmarking resolution scaling...');
+                        addConsoleOutput('Benchmark mise à l\'échelle...');
                     }, 2000);
-                    
+
                     setTimeout(() => {
                         window.ApiClient.ajax({
                             type: 'POST',
                             url: '/api/upscaler/benchmark',
                             dataType: 'json'
                         })
-                        .then(response => {
-                            addConsoleOutput('Benchmark completed successfully!');
-                            addConsoleOutput(`Total duration: ${response.results.duration.toFixed(1)}s`);
-                            addConsoleOutput(`Recommended model: ${response.results.optimalSettings.RecommendedModel}`);
-                            addConsoleOutput(`Recommended resolution: ${response.results.optimalSettings.RecommendedMaxResolution}`);
-                            
-                            if (benchmarkBtn) {
-                                benchmarkBtn.disabled = false;
-                                benchmarkBtn.textContent = 'Run Hardware Test';
-                            }
-                        })
-                        .catch(error => {
-                            addConsoleOutput('Benchmark failed: ' + error.message);
-                            console.error('AI Upscaler: Benchmark failed:', error);
-                            
-                            if (benchmarkBtn) {
-                                benchmarkBtn.disabled = false;
-                                benchmarkBtn.textContent = 'Run Hardware Test';
-                            }
-                        });
+                            .then(response => {
+                                addConsoleOutput('Benchmark terminé avec succès !');
+                                addConsoleOutput(`Durée totale : ${response.results.duration.toFixed(1)}s`);
+                                addConsoleOutput(`Modèle recommandé : ${response.results.optimalSettings.RecommendedModel}`);
+                                addConsoleOutput(`Résolution recommandée : ${response.results.optimalSettings.RecommendedMaxResolution}`);
+
+                                if (benchmarkBtn) {
+                                    benchmarkBtn.disabled = false;
+                                    benchmarkBtn.textContent = 'Lancer Test Matériel';
+                                }
+                            })
+                            .catch(error => {
+                                addConsoleOutput('Échec benchmark : ' + error.message);
+                                console.error('Suréchantillonnage IA : Échec benchmark :', error);
+
+                                if (benchmarkBtn) {
+                                    benchmarkBtn.disabled = false;
+                                    benchmarkBtn.textContent = 'Lancer Test Matériel';
+                                }
+                            });
                     }, 3000);
                 }
-                
+
             } catch (error) {
-                console.error('AI Upscaler: Error running benchmark:', error);
+                console.error('Suréchantillonnage IA : Erreur exécution benchmark :', error);
             }
         },
-        
-        // Auto-optimize settings
-        autoOptimize: function() {
+
+        // Auto-optimisation paramètres
+        autoOptimize: function () {
             try {
-                console.log('AI Upscaler: Auto-optimizing settings...');
-                
+                console.log('Suréchantillonnage IA : Auto-optimisation paramètres...');
+
                 if (window.ApiClient) {
                     window.ApiClient.getJSON('/api/upscaler/recommendations')
                         .then(response => {
-                            // Apply recommended settings
+                            // Appliquer paramètres recommandés
                             const modelSelect = document.getElementById('quick-model');
                             const qualitySelect = document.getElementById('quick-quality');
-                            
+
                             if (modelSelect && response.recommended.model) {
                                 modelSelect.value = response.recommended.model;
                             }
-                            
+
                             if (qualitySelect && response.recommended.quality) {
                                 qualitySelect.value = response.recommended.quality;
                             }
-                            
-                            // Show notification
-                            this.showNotification('Settings optimized for your hardware!', 'success');
+
+                            // Afficher notification
+                            this.showNotification('Paramètres optimisés pour votre matériel !', 'success');
                         })
                         .catch(error => {
-                            console.error('AI Upscaler: Error auto-optimizing:', error);
-                            this.showNotification('Auto-optimization failed', 'error');
+                            console.error('Suréchantillonnage IA : Erreur auto-optimisation :', error);
+                            this.showNotification('Échec auto-optimisation', 'error');
                         });
                 }
-                
+
             } catch (error) {
-                console.error('AI Upscaler: Error in autoOptimize:', error);
+                console.error('Suréchantillonnage IA : Erreur dans autoOptimize :', error);
             }
         },
-        
-        // Save settings
-        saveSettings: function() {
+
+        // Enregistrer paramètres
+        saveSettings: function () {
             try {
-                console.log('AI Upscaler: Saving settings...');
-                
+                console.log('Suréchantillonnage IA : Enregistrement paramètres...');
+
                 const settings = {
                     enabled: document.getElementById('quick-enable')?.checked,
                     model: document.getElementById('quick-model')?.value,
@@ -579,7 +579,7 @@
                     enableComparison: document.getElementById('enable-comparison')?.checked,
                     enableTVOptimization: document.getElementById('enable-tv-optimization')?.checked
                 };
-                
+
                 if (window.ApiClient) {
                     window.ApiClient.ajax({
                         type: 'POST',
@@ -588,98 +588,98 @@
                         contentType: 'application/json',
                         dataType: 'json'
                     })
-                    .then(response => {
-                        this.showNotification('Settings saved successfully!', 'success');
-                    })
-                    .catch(error => {
-                        console.error('AI Upscaler: Error saving settings:', error);
-                        this.showNotification('Failed to save settings', 'error');
-                    });
+                        .then(response => {
+                            this.showNotification('Paramètres enregistrés avec succès !', 'success');
+                        })
+                        .catch(error => {
+                            console.error('Suréchantillonnage IA : Erreur enregistrement paramètres :', error);
+                            this.showNotification('Échec enregistrement paramètres', 'error');
+                        });
                 }
-                
+
             } catch (error) {
-                console.error('AI Upscaler: Error saving settings:', error);
+                console.error('Suréchantillonnage IA : Erreur enregistrement paramètres :', error);
             }
         },
-        
-        // Reset settings to defaults
-        resetSettings: function() {
+
+        // Réinitialiser paramètres par défaut
+        resetSettings: function () {
             try {
-                // Reset form fields
+                // Réinitialiser champs formulaire
                 const quickEnable = document.getElementById('quick-enable');
                 const quickModel = document.getElementById('quick-model');
                 const quickScale = document.getElementById('quick-scale');
                 const quickQuality = document.getElementById('quick-quality');
-                
+
                 if (quickEnable) quickEnable.checked = true;
                 if (quickModel) quickModel.value = 'fsrcnn';
                 if (quickScale) quickScale.value = '2';
                 if (quickQuality) quickQuality.value = 'balanced';
-                
-                this.showNotification('Settings reset to defaults', 'info');
-                
+
+                this.showNotification('Paramètres réinitialisés par défaut', 'info');
+
             } catch (error) {
-                console.error('AI Upscaler: Error resetting settings:', error);
+                console.error('Suréchantillonnage IA : Erreur réinitialisation paramètres :', error);
             }
         },
-        
-        // View benchmark results
-        viewBenchmarkResults: function() {
+
+        // Voir résultats benchmark
+        viewBenchmarkResults: function () {
             try {
-                console.log('AI Upscaler: Opening benchmark results...');
-                
-                // In a real implementation, this would open a detailed results view
-                this.showNotification('Benchmark results will be displayed here', 'info');
-                
+                console.log('Suréchantillonnage IA : Ouverture résultats benchmark...');
+
+                // Dans une implémentation réelle, cela ouvrirait une vue détaillée
+                this.showNotification('Les résultats du benchmark seront affichés ici', 'info');
+
             } catch (error) {
-                console.error('AI Upscaler: Error viewing benchmark results:', error);
+                console.error('Suréchantillonnage IA : Erreur affichage résultats benchmark :', error);
             }
         },
-        
-        // Show notification
-        showNotification: function(message, type = 'info') {
+
+        // Afficher notification
+        showNotification: function (message, type = 'info') {
             try {
-                // Create notification element
+                // Créer élément notification
                 const notification = document.createElement('div');
                 notification.className = `ai-upscaler-notification notification-${type}`;
                 notification.textContent = message;
-                
+
                 document.body.appendChild(notification);
-                
-                // Remove after 3 seconds
+
+                // Supprimer après 3 secondes
                 setTimeout(() => {
                     if (notification.parentNode) {
                         notification.parentNode.removeChild(notification);
                     }
                 }, 3000);
-                
+
             } catch (error) {
-                console.error('AI Upscaler: Error showing notification:', error);
+                console.error('Suréchantillonnage IA : Erreur affichage notification :', error);
             }
         },
-        
-        // Close panel
-        closePanel: function() {
+
+        // Fermer panneau
+        closePanel: function () {
             try {
                 const panel = document.getElementById('ai-upscaler-panel');
                 if (panel) {
                     panel.remove();
                 }
             } catch (error) {
-                console.error('AI Upscaler: Error closing panel:', error);
+                console.error('Suréchantillonnage IA : Erreur fermeture panneau :', error);
             }
         },
-        
-        // Add CSS styles
-        addSidebarStyles: function() {
+
+        // Ajouter styles CSS
+        addSidebarStyles: function () {
             if (document.getElementById('ai-upscaler-sidebar-styles')) {
-                return; // Styles already added
+                return; // Styles déjà ajoutés
             }
-            
+
             const style = document.createElement('style');
             style.id = 'ai-upscaler-sidebar-styles';
             style.textContent = `
-                /* AI Upscaler Sidebar Styles */
+                /* Styles Barre Latérale Suréchantillonnage IA */
                 .ai-upscaler-fab {
                     position: fixed;
                     bottom: 20px;
@@ -1033,15 +1033,15 @@
                     }
                 }
             `;
-            
+
             document.head.appendChild(style);
         }
     };
-    
-    // Make closePanel globally available
+
+    // Rendre closePanel disponible globalement
     window.SidebarIntegration = SidebarIntegration;
-    
-    // Initialize when page loads
+
+    // Initialiser au chargement de la page
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => {
             SidebarIntegration.init();
@@ -1049,8 +1049,8 @@
     } else {
         SidebarIntegration.init();
     }
-    
-    // Also initialize on navigation changes (for SPA behavior)
+
+    // Initialiser aussi lors des changements de navigation (pour comportement SPA)
     let lastUrl = location.href;
     new MutationObserver(() => {
         const url = location.href;
@@ -1061,5 +1061,5 @@
             }, 1000);
         }
     }).observe(document, { subtree: true, childList: true });
-    
+
 })();

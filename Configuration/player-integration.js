@@ -1,126 +1,126 @@
-// AI Upscaler Plugin - Player Integration v1.3.6.7
-// Enhanced player button and streaming integration
+// Plugin de Suréchantillonnage IA - Intégration Lecteur v1.6.0
+// Bouton de lecteur amélioré et intégration de streaming
 
-(function() {
+(function () {
     'use strict';
-    
-    // Plugin configuration
+
+    // Configuration du plugin
     const PLUGIN_ID = 'f87f700e-679d-43e6-9c7c-b3a410dc3f22';
-    const PLUGIN_VERSION = '1.3.6.7';
-    
-    // Player integration manager
+    const PLUGIN_VERSION = '1.6.0';
+
+    // Gestionnaire d'intégration du lecteur
     const PlayerIntegration = {
-        
-        // Initialize player integration
-        init: function() {
-            console.log('AI Upscaler: Initializing player integration...');
-            
-            // Wait for Jellyfin player to be ready
+
+        // Initialiser l'intégration du lecteur
+        init: function () {
+            console.log('Suréchantillonnage IA : Initialisation intégration lecteur...');
+
+            // Attendre que le lecteur Jellyfin soit prêt
             this.waitForPlayer();
-            
-            // Add CSS styles
+
+            // Ajouter les styles CSS
             this.addStyles();
-            
-            // Listen for media changes
+
+            // Écouter les changements de média
             this.attachMediaListeners();
         },
-        
-        // Wait for Jellyfin player to be available
-        waitForPlayer: function() {
+
+        // Attendre que le lecteur Jellyfin soit disponible
+        waitForPlayer: function () {
             const checkPlayer = () => {
                 try {
                     if (window.ApiClient && window.playbackManager) {
-                        console.log('AI Upscaler: Jellyfin player detected, integrating...');
+                        console.log('Suréchantillonnage IA : Lecteur Jellyfin détecté, intégration...');
                         this.integrateWithPlayer();
                     } else {
                         setTimeout(checkPlayer, 1000);
                     }
                 } catch (error) {
-                    console.error('AI Upscaler: Error waiting for player:', error);
+                    console.error('Suréchantillonnage IA : Erreur attente lecteur :', error);
                     setTimeout(checkPlayer, 2000);
                 }
             };
             checkPlayer();
         },
-        
-        // Integrate with Jellyfin player
-        integrateWithPlayer: function() {
+
+        // Intégrer avec le lecteur Jellyfin
+        integrateWithPlayer: function () {
             try {
-                // Add upscaler button to player controls
+                // Ajouter le bouton de suréchantillonnage aux contrôles du lecteur
                 this.addPlayerButton();
-                
-                // Monitor playback events
+
+                // Surveiller les événements de lecture
                 this.monitorPlayback();
-                
-                // Add keyboard shortcuts
+
+                // Ajouter les raccourcis clavier
                 this.addKeyboardShortcuts();
             } catch (error) {
-                console.error('AI Upscaler: Error integrating with player:', error);
+                console.error('Suréchantillonnage IA : Erreur intégration lecteur :', error);
             }
         },
-        
-        // Add upscaler button to player controls
-        addPlayerButton: function() {
+
+        // Ajouter le bouton de suréchantillonnage aux contrôles du lecteur
+        addPlayerButton: function () {
             const playerContainer = document.querySelector('.videoOsdBottom, .osdControls');
             if (!playerContainer) {
                 setTimeout(() => this.addPlayerButton(), 2000);
                 return;
             }
-            
-            // Create upscaler button
+
+            // Créer le bouton de suréchantillonnage
             const upscalerButton = document.createElement('button');
             upscalerButton.id = 'aiUpscalerButton';
             upscalerButton.className = 'paper-icon-button-light';
             upscalerButton.setAttribute('type', 'button');
-            upscalerButton.setAttribute('title', 'AI Upscaler Settings');
+            upscalerButton.setAttribute('title', 'Paramètres Suréchantillonnage IA');
             upscalerButton.innerHTML = `
                 <span class="material-icons">auto_awesome</span>
-                <span class="upscaler-status">AI</span>
+                <span class="upscaler-status">IA</span>
             `;
-            
-            // Add click handler
+
+            // Ajouter le gestionnaire de clic
             upscalerButton.addEventListener('click', (e) => {
                 e.stopPropagation();
                 this.toggleUpscalerMenu();
             });
-            
-            // Insert button into player controls
+
+            // Insérer le bouton dans les contrôles du lecteur
             const controlsContainer = playerContainer.querySelector('.mediaButton, .btnToggleFullscreen');
             if (controlsContainer && controlsContainer.parentNode) {
                 controlsContainer.parentNode.insertBefore(upscalerButton, controlsContainer);
             } else {
                 playerContainer.appendChild(upscalerButton);
             }
-            
-            console.log('AI Upscaler: Player button added');
+
+            console.log('Suréchantillonnage IA : Bouton lecteur ajouté');
         },
-        
-        // Toggle upscaler quick menu
-        toggleUpscalerMenu: function() {
+
+        // Basculer le menu rapide de suréchantillonnage
+        toggleUpscalerMenu: function () {
             const existingMenu = document.querySelector('#aiUpscalerQuickMenu');
             if (existingMenu) {
                 existingMenu.remove();
                 return;
             }
-            
+
             const menu = document.createElement('div');
             menu.id = 'aiUpscalerQuickMenu';
             menu.className = 'aiUpscalerQuickMenu';
             menu.innerHTML = `
                 <div class="quick-menu-header">
-                    <span class="menu-title">🚀 AI Upscaler</span>
+                    <span class="menu-title">🚀 Suréchantillonnage IA</span>
                     <button class="menu-close" onclick="this.parentElement.parentElement.remove()">×</button>
                 </div>
                 <div class="quick-menu-content">
                     <div class="menu-section">
-                        <h4>Quick Settings</h4>
+                        <h4>Réglages Rapides</h4>
                         <div class="menu-item" onclick="PlayerIntegration.quickSetModel('realesrgan')">
                             <span class="menu-icon">🎨</span>
-                            <span>Real-ESRGAN (High Quality)</span>
+                            <span>Real-ESRGAN (Haute Qualité)</span>
                         </div>
                         <div class="menu-item" onclick="PlayerIntegration.quickSetModel('swinir')">
                             <span class="menu-icon">⚡</span>
-                            <span>SwinIR (Fast)</span>
+                            <span>SwinIR (Rapide)</span>
                         </div>
                         <div class="menu-item" onclick="PlayerIntegration.quickSetModel('waifu2x')">
                             <span class="menu-icon">🎭</span>
@@ -128,11 +128,11 @@
                         </div>
                         <div class="menu-item" onclick="PlayerIntegration.quickSetModel('bicubic')">
                             <span class="menu-icon">🔧</span>
-                            <span>Bicubic (Fallback)</span>
+                            <span>Bicubique (Repli)</span>
                         </div>
                     </div>
                     <div class="menu-section">
-                        <h4>Scale Factor</h4>
+                        <h4>Facteur d'Échelle</h4>
                         <div class="scale-buttons">
                             <button class="scale-btn" onclick="PlayerIntegration.setScale(2)">2x</button>
                             <button class="scale-btn" onclick="PlayerIntegration.setScale(3)">3x</button>
@@ -143,84 +143,84 @@
                         <h4>Actions</h4>
                         <div class="menu-item" onclick="PlayerIntegration.toggleUpscaling()">
                             <span class="menu-icon">🔄</span>
-                            <span>Toggle Upscaling</span>
+                            <span>Activer/Désactiver</span>
                         </div>
                         <div class="menu-item" onclick="PlayerIntegration.showCurrentStats()">
                             <span class="menu-icon">📊</span>
-                            <span>Show Statistics</span>
+                            <span>Afficher Statistiques</span>
                         </div>
                         <div class="menu-item" onclick="PlayerIntegration.openFullConfig()">
                             <span class="menu-icon">⚙️</span>
-                            <span>Full Configuration</span>
+                            <span>Configuration Complète</span>
                         </div>
                     </div>
                 </div>
             `;
-            
+
             document.body.appendChild(menu);
-            
-            // Auto-close after 10 seconds
+
+            // Fermeture automatique après 10 secondes
             setTimeout(() => {
                 if (menu.parentElement) {
                     menu.remove();
                 }
             }, 10000);
         },
-        
-        // Quick model selection
-        quickSetModel: function(model) {
-            console.log(`AI Upscaler: Setting model to ${model}`);
-            
-            // Update configuration
+
+        // Sélection rapide du modèle
+        quickSetModel: function (model) {
+            console.log(`Suréchantillonnage IA : Modèle défini sur ${model}`);
+
+            // Mettre à jour la configuration
             this.updatePluginConfig({ model: model });
-            
-            // Show notification
-            this.showPlayerNotification(`🎯 Model set to ${model}`, 'success');
-            
-            // Close menu
+
+            // Afficher notification
+            this.showPlayerNotification(`🎯 Modèle défini sur ${model}`, 'success');
+
+            // Fermer le menu
             const menu = document.querySelector('#aiUpscalerQuickMenu');
             if (menu) menu.remove();
         },
-        
-        // Set scale factor
-        setScale: function(scale) {
-            console.log(`AI Upscaler: Setting scale to ${scale}x`);
-            
+
+        // Définir le facteur d'échelle
+        setScale: function (scale) {
+            console.log(`Suréchantillonnage IA : Échelle définie sur ${scale}x`);
+
             this.updatePluginConfig({ scale: scale });
-            this.showPlayerNotification(`📏 Scale set to ${scale}x`, 'success');
-            
+            this.showPlayerNotification(`📏 Échelle définie sur ${scale}x`, 'success');
+
             const menu = document.querySelector('#aiUpscalerQuickMenu');
             if (menu) menu.remove();
         },
-        
-        // Toggle upscaling on/off
-        toggleUpscaling: function() {
+
+        // Basculer l'activation du suréchantillonnage
+        toggleUpscaling: function () {
             const currentState = this.getPluginConfig().enabled;
             const newState = !currentState;
-            
+
             this.updatePluginConfig({ enabled: newState });
             this.showPlayerNotification(
-                `🔄 Upscaling ${newState ? 'enabled' : 'disabled'}`, 
+                `🔄 Suréchantillonnage ${newState ? 'activé' : 'désactivé'}`,
                 newState ? 'success' : 'warning'
             );
-            
-            // Update button status
+
+            // Mettre à jour le statut du bouton
             this.updateButtonStatus(newState);
-            
+
             const menu = document.querySelector('#aiUpscalerQuickMenu');
             if (menu) menu.remove();
         },
-        
-        // Show current statistics
-        showCurrentStats: function() {
+
+        // Afficher les statistiques actuelles
+        showCurrentStats: function () {
             const stats = this.getCurrentStats();
-            
+
             const statsWindow = window.open('', '_blank', 'width=600,height=400');
             statsWindow.document.write(`
                 <!DOCTYPE html>
-                <html>
+                <html lang="fr">
                 <head>
-                    <title>AI Upscaler - Current Statistics</title>
+                    <title>Suréchantillonnage IA - Statistiques Actuelles</title>
                     <style>
                         body { font-family: monospace; background: #1a1a1a; color: #00ff00; padding: 20px; }
                         .header { color: #00d4ff; font-size: 1.5em; margin-bottom: 20px; }
@@ -233,118 +233,118 @@
                     </style>
                 </head>
                 <body>
-                    <div class="header">📊 AI Upscaler Statistics</div>
+                    <div class="header">📊 Statistiques Suréchantillonnage IA</div>
                     <div class="stat-item">
-                        <span class="stat-label">Status:</span>
+                        <span class="stat-label">Statut :</span>
                         <span class="stat-value ${stats.enabled ? 'good' : 'warning'}">
-                            ${stats.enabled ? '✅ Active' : '⚠️ Inactive'}
+                            ${stats.enabled ? '✅ Actif' : '⚠️ Inactif'}
                         </span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-label">Model:</span>
+                        <span class="stat-label">Modèle :</span>
                         <span class="stat-value">${stats.model}</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-label">Scale:</span>
+                        <span class="stat-label">Échelle :</span>
                         <span class="stat-value">${stats.scale}x</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-label">Quality:</span>
+                        <span class="stat-label">Qualité :</span>
                         <span class="stat-value">${stats.quality}</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-label">Hardware Acceleration:</span>
+                        <span class="stat-label">Accélération Matérielle :</span>
                         <span class="stat-value ${stats.hardwareAcceleration ? 'good' : 'warning'}">
-                            ${stats.hardwareAcceleration ? '✅ Enabled' : '⚠️ Disabled'}
+                            ${stats.hardwareAcceleration ? '✅ Activée' : '⚠️ Désactivée'}
                         </span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-label">Cache Size:</span>
-                        <span class="stat-value">${stats.cacheSizeMB} MB</span>
+                        <span class="stat-label">Taille Cache :</span>
+                        <span class="stat-value">${stats.cacheSizeMB} Mo</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-label">Performance:</span>
-                        <span class="stat-value good">✅ Optimal</span>
+                        <span class="stat-label">Performance :</span>
+                        <span class="stat-value good">✅ Optimale</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-label">Last Updated:</span>
-                        <span class="stat-value">${new Date().toLocaleString()}</span>
+                        <span class="stat-label">Dernière Mise à Jour :</span>
+                        <span class="stat-value">${new Date().toLocaleString('fr-FR')}</span>
                     </div>
                 </body>
                 </html>
             `);
-            
+
             const menu = document.querySelector('#aiUpscalerQuickMenu');
             if (menu) menu.remove();
         },
-        
-        // Open full configuration
-        openFullConfig: function() {
+
+        // Ouvrir la configuration complète
+        openFullConfig: function () {
             const configUrl = `/web/configurationpage?name=aiupscaler`;
             window.open(configUrl, '_blank');
-            
+
             const menu = document.querySelector('#aiUpscalerQuickMenu');
             if (menu) menu.remove();
         },
-        
-        // Monitor playback events
-        monitorPlayback: function() {
+
+        // Surveiller les événements de lecture
+        monitorPlayback: function () {
             if (window.playbackManager) {
-                // Listen for playback start
+                // Écouter le début de la lecture
                 window.playbackManager.addEventListener('playbackstart', () => {
-                    console.log('AI Upscaler: Playback started');
+                    console.log('Suréchantillonnage IA : Lecture commencée');
                     this.onPlaybackStart();
                 });
-                
-                // Listen for playback stop
+
+                // Écouter l'arrêt de la lecture
                 window.playbackManager.addEventListener('playbackstop', () => {
-                    console.log('AI Upscaler: Playback stopped');
+                    console.log('Suréchantillonnage IA : Lecture arrêtée');
                     this.onPlaybackStop();
                 });
             }
         },
-        
-        // Handle playback start
-        onPlaybackStart: function() {
+
+        // Gérer le début de la lecture
+        onPlaybackStart: function () {
             const config = this.getPluginConfig();
             if (config.enabled) {
-                this.showPlayerNotification('🚀 AI Upscaler active', 'info');
+                this.showPlayerNotification('🚀 Suréchantillonnage IA actif', 'info');
             }
         },
-        
-        // Handle playback stop
-        onPlaybackStop: function() {
-            // Cleanup if needed
+
+        // Gérer l'arrêt de la lecture
+        onPlaybackStop: function () {
+            // Nettoyage si nécessaire
         },
-        
-        // Add keyboard shortcuts
-        addKeyboardShortcuts: function() {
+
+        // Ajouter les raccourcis clavier
+        addKeyboardShortcuts: function () {
             document.addEventListener('keydown', (e) => {
-                // Alt + U = Toggle upscaling
+                // Alt + U = Basculer suréchantillonnage
                 if (e.altKey && e.key === 'u') {
                     e.preventDefault();
                     this.toggleUpscaling();
                 }
-                
-                // Alt + M = Open quick menu
+
+                // Alt + M = Ouvrir menu rapide
                 if (e.altKey && e.key === 'm') {
                     e.preventDefault();
                     this.toggleUpscalerMenu();
                 }
             });
         },
-        
-        // Attach media listeners
-        attachMediaListeners: function() {
-            // Listen for media quality changes
+
+        // Attacher les écouteurs de média
+        attachMediaListeners: function () {
+            // Écouter les changements de qualité média
             document.addEventListener('mediaqualitychange', (e) => {
-                console.log('AI Upscaler: Media quality changed', e.detail);
+                console.log('Suréchantillonnage IA : Qualité média changée', e.detail);
             });
         },
-        
-        // Configuration management
-        getPluginConfig: function() {
-            // Return mock configuration - in real implementation, fetch from server
+
+        // Gestion de la configuration
+        getPluginConfig: function () {
+            // Retourner une configuration simulée - en réel, récupérer depuis le serveur
             return {
                 enabled: true,
                 model: 'realesrgan',
@@ -354,22 +354,22 @@
                 cacheSizeMB: 1024
             };
         },
-        
-        updatePluginConfig: function(updates) {
-            // In real implementation, update server configuration
-            console.log('AI Upscaler: Updating config', updates);
+
+        updatePluginConfig: function (updates) {
+            // En réel, mettre à jour la configuration sur le serveur
+            console.log('Suréchantillonnage IA : Mise à jour config', updates);
         },
-        
-        getCurrentStats: function() {
+
+        getCurrentStats: function () {
             const config = this.getPluginConfig();
             return {
                 ...config,
                 timestamp: new Date().toISOString()
             };
         },
-        
-        // Update button status
-        updateButtonStatus: function(enabled) {
+
+        // Mettre à jour le statut du bouton
+        updateButtonStatus: function (enabled) {
             const button = document.querySelector('#aiUpscalerButton');
             if (button) {
                 const status = button.querySelector('.upscaler-status');
@@ -379,17 +379,17 @@
                 }
             }
         },
-        
-        // Show player notification
-        showPlayerNotification: function(message, type = 'info') {
+
+        // Afficher une notification dans le lecteur
+        showPlayerNotification: function (message, type = 'info') {
             const notification = document.createElement('div');
             notification.className = `ai-upscaler-notification notification-${type}`;
             notification.textContent = message;
-            
+
             const videoContainer = document.querySelector('.videoContainer, .playerContainer');
             if (videoContainer) {
                 videoContainer.appendChild(notification);
-                
+
                 setTimeout(() => {
                     if (notification.parentElement) {
                         notification.remove();
@@ -397,11 +397,11 @@
                 }, 3000);
             }
         },
-        
-        // Add styles for player integration
-        addStyles: function() {
+
+        // Ajouter les styles pour l'intégration lecteur
+        addStyles: function () {
             if (document.querySelector('#aiUpscalerPlayerStyles')) return;
-            
+
             const styles = document.createElement('style');
             styles.id = 'aiUpscalerPlayerStyles';
             styles.textContent = `
@@ -565,26 +565,26 @@
                     to { transform: translateX(0); opacity: 1; }
                 }
             `;
-            
+
             document.head.appendChild(styles);
         }
     };
-    
-    // Initialize player integration
-    document.addEventListener('DOMContentLoaded', function() {
+
+    // Initialiser l'intégration du lecteur
+    document.addEventListener('DOMContentLoaded', function () {
         PlayerIntegration.init();
-        
-        // Make available globally
+
+        // Rendre disponible globalement
         window.PlayerIntegration = PlayerIntegration;
-        
-        console.log(`AI Upscaler Player Integration v${PLUGIN_VERSION} loaded`);
+
+        console.log(`Intégration Lecteur Suréchantillonnage IA v${PLUGIN_VERSION} chargée`);
     });
-    
-    // Also try to initialize immediately if DOM is already loaded
+
+    // Essayer également d'initialiser immédiatement si le DOM est déjà chargé
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => PlayerIntegration.init());
     } else {
         PlayerIntegration.init();
     }
-    
+
 })();

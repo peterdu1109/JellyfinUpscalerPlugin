@@ -1,141 +1,134 @@
 <div align="center">
 
-# 🎮 AI UPSCALER PLUGIN v1.4.0-test3
+# 🎮 PLUGIN DE SURÉCHANTILLONNAGE IA v1.6.0
 
-### *Revolutionary AI-Powered Video Upscaling for Jellyfin with Hardware Benchmarking & Optimization*
+### *Suréchantillonnage vidéo révolutionnaire alimenté par l'IA pour Jellyfin avec benchmarking matériel et optimisation*
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge&logo=opensource)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-1.4.0--test3-gold.svg?style=for-the-badge&logo=semantic-release)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases)
+[![Version](https://img.shields.io/badge/Version-1.6.0-gold.svg?style=for-the-badge&logo=semantic-release)](https://github.com/peterdu1109/JellyfinUpscalerPlugin/releases)
 [![Jellyfin](https://img.shields.io/badge/Jellyfin-10.10.0%2B-purple.svg?style=for-the-badge&logo=jellyfin)](https://jellyfin.org)
 [![.NET](https://img.shields.io/badge/.NET-8.0-orange.svg?style=for-the-badge&logo=dotnet)](https://dotnet.microsoft.com)
-[![Status](https://img.shields.io/badge/Status-STABLE-brightgreen.svg?style=for-the-badge&logo=checkmarx)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin)
-[![Security](https://img.shields.io/badge/Security-FIXED-success.svg?style=for-the-badge&logo=shield)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin)
+[![Status](https://img.shields.io/badge/Status-STABLE-brightgreen.svg?style=for-the-badge&logo=checkmarx)](https://github.com/peterdu1109/JellyfinUpscalerPlugin)
 
-![Downloads](https://img.shields.io/github/downloads/Kuschel-code/JellyfinUpscalerPlugin/total?label=Downloads&color=brightgreen&style=flat-square)
-![Stars](https://img.shields.io/github/stars/Kuschel-code/JellyfinUpscalerPlugin?style=social)
-![Latest Release](https://img.shields.io/github/v/release/Kuschel-code/JellyfinUpscalerPlugin?label=Latest&color=success&style=flat-square)
+![Downloads](https://img.shields.io/github/downloads/peterdu1109/JellyfinUpscalerPlugin/total?label=Téléchargements&color=brightgreen&style=flat-square)
+![Stars](https://img.shields.io/github/stars/peterdu1109/JellyfinUpscalerPlugin?style=social)
 
 ---
 
-## **✨ v1.4.0-test3 HIGHLIGHTS**
+## **✨ POINTS FORTS v1.6.0**
 
-🔬 **HARDWARE BENCHMARKING** | 🎯 **AUTOMATIC OPTIMIZATION** | 🖥️ **LOW-END HARDWARE SUPPORT** | 🔐 **SECURITY FIXED**
+🔬 **BENCHMARKING MATÉRIEL** | 🎯 **OPTIMISATION AUTOMATIQUE** | 🖥️ **SUPPORT MATÉRIEL MODESTE** | 🇫🇷 **INTERFACE 100% FRANÇAISE**
 
-**✅ INTELLIGENT SYSTEM** - Automatically detects hardware and optimizes settings for your specific setup
+**✅ SYSTÈME INTELLIGENT** - Détecte automatiquement le matériel et optimise les paramètres pour votre configuration spécifique.
 
-### 🚀 **NEW FEATURES:**
-- 🔬 **Automated Hardware Benchmarking** - Tests your system and recommends optimal settings
-- 🎯 **Intelligent Fallback System** - Automatically switches to lighter models on weak hardware
-- 💾 **Pre-Processing Cache** - Cache upscaled content for instant playback
-- 📺 **TV Remote Optimization** - Enhanced navigation for Smart TVs and set-top boxes
-- 🔍 **Comparison View** - Side-by-side before/after quality preview
-- 🏠 **NAS & ARM Optimization** - Specialized support for low-power devices
-- ⚙️ **Professional Configuration UI** - Tabbed interface with 25+ advanced settings
-- 🔐 **Security Update** - Fixed CVE vulnerability in SixLabors.ImageSharp
+### 🚀 **NOUVELLES FONCTIONNALITÉS :**
+- 🇫🇷 **Interface 100% Française** - Configuration et menus entièrement traduits.
+- 🔬 **Benchmarking Matériel Automatisé** - Teste votre système et recommande les réglages optimaux.
+- 🎯 **Système de Repli Intelligent** - Bascule automatiquement vers des modèles plus légers sur le matériel moins puissant.
+- 💾 **Cache de Prétraitement** - Mise en cache du contenu suréchantillonné pour une lecture instantanée.
+- 📺 **Optimisation Télécommande TV** - Navigation améliorée pour les Smart TV et les boîtiers décodeurs.
+- 🔍 **Vue Comparative** - Aperçu avant/après côte à côte de la qualité.
+- 🏠 **Optimisation NAS & ARM** - Support spécialisé pour les appareils à faible puissance.
+- ⚙️ **Interface de Configuration Professionnelle** - Interface à onglets avec plus de 25 paramètres avancés.
 
 </div>
 
 ---
 
-## 📋 **TABLE OF CONTENTS**
+## 📋 **TABLE DES MATIÈRES**
 
 | Section | Description |
 |---------|-------------|
-| [🚀 Quick Start](#-quick-start) | Installation methods and getting started |
-| [💻 System Requirements](#-system-requirements) | Hardware and software requirements |
-| [🎯 Installation Guide](#-installation-guide) | Step-by-step setup instructions |
-| [⚙️ Configuration](#-configuration) | Plugin settings and customization |
-| [🌟 AI Features](#-ai-features) | AI models and upscaling capabilities |
-| [📊 Performance](#-performance) | Benchmarks and optimization |
-| [🔧 Compatibility](#-compatibility) | Supported platforms and formats |
-| [🛠️ API Reference](#-api-reference) | Developer documentation |
-| [🐛 Troubleshooting](#-troubleshooting) | Common issues and solutions |
-| [📚 Changelog](#-changelog) | Version history and updates |
+| [🚀 Démarrage Rapide](#-démarrage-rapide) | Méthodes d'installation et premiers pas |
+| [💻 Configuration Requise](#-configuration-requise) | Matériel et logiciel nécessaires |
+| [🎯 Guide d'Installation](#-guide-dinstallation) | Instructions étape par étape |
+| [⚙️ Configuration](#-configuration) | Paramètres du plugin et personnalisation |
+| [🌟 Fonctionnalités IA](#-fonctionnalités-ia) | Modèles IA et capacités de suréchantillonnage |
+| [📊 Performance](#-performance) | Benchmarks et optimisation |
+| [🔧 Compatibilité](#-compatibilité) | Plateformes et formats supportés |
+| [🐛 Dépannage](#-dépannage) | Problèmes courants et solutions |
 
 ---
 
-## 🚀 **QUICK START**
+## 🚀 **DÉMARRAGE RAPIDE**
 
-### **🎯 JELLYFIN REPOSITORY (RECOMMENDED)**
+### **🎯 DÉPÔT JELLYFIN (RECOMMANDÉ)**
 
-Add this repository URL to your Jellyfin plugin repositories:
+Ajoutez cette URL de dépôt à vos dépôts de plugins Jellyfin :
 
 ```
-https://raw.githubusercontent.com/Kuschel-code/JellyfinUpscalerPlugin/main/repository-jellyfin.json
+https://raw.githubusercontent.com/peterdu1109/JellyfinUpscalerPlugin/main/repository-jellyfin.json
 ```
 
-**Installation Steps:**
-1. **Jellyfin Dashboard** → **Plugins** → **Repositories**
-2. **Add Repository** → Paste URL above → **Save**
-3. **Catalog** → Find "🎮 AI Upscaler Plugin" → **Install**
-4. **Restart Jellyfin** → **Done!** 🎉
+**Étapes d'Installation :**
+1. **Tableau de bord Jellyfin** → **Plugins** → **Dépôts**
+2. **Ajouter un dépôt** → Coller l'URL ci-dessus → **Enregistrer**
+3. **Catalogue** → Trouver "Plugin de Suréchantillonnage IA" → **Installer**
+4. **Redémarrer Jellyfin** → **C'est prêt !** 🎉
 
-### **📦 MANUAL INSTALLATION**
+### **📦 INSTALLATION MANUELLE**
 
-1. **Download Latest Release**
+1. **Télécharger la Dernière Release**
    ```
-   https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/latest
+   https://github.com/peterdu1109/JellyfinUpscalerPlugin/releases/latest
    ```
 
-2. **Extract to Plugin Directory**
+2. **Extraire dans le Répertoire des Plugins**
    ```bash
    # Linux/macOS
    sudo unzip JellyfinUpscalerPlugin.zip -d /var/lib/jellyfin/plugins/JellyfinUpscalerPlugin/
    
    # Windows
-   Extract to: C:\ProgramData\Jellyfin\Server\plugins\JellyfinUpscalerPlugin\
+   Extraire vers : C:\ProgramData\Jellyfin\Server\plugins\JellyfinUpscalerPlugin\
    ```
 
-3. **Restart Jellyfin**
-   ```bash
-   sudo systemctl restart jellyfin
-   ```
+3. **Redémarrer Jellyfin**
 
-4. **Configure Plugin**
-   - Dashboard → Plugins → AI Upscaler Plugin
-   - Run Hardware Benchmark → Apply Recommended Settings
+4. **Configurer le Plugin**
+   - Tableau de bord → Plugins → Plugin de Suréchantillonnage IA
+   - Lancer le Benchmark Matériel → Appliquer les Paramètres Recommandés
 
 ---
 
-## 💻 **SYSTEM REQUIREMENTS**
+## 💻 **CONFIGURATION REQUISE**
 
-### **📋 MINIMUM REQUIREMENTS**
-- **Jellyfin:** 10.10.0 or higher
-- **OS:** Windows 10+, Linux (Ubuntu 20.04+), macOS 10.15+
-- **RAM:** 4GB minimum, 8GB recommended
-- **Storage:** 2GB free space for cache
-- **.NET:** 8.0 Runtime (included with Jellyfin)
+### **📋 MINIMUM REQUIS**
+- **Jellyfin :** 10.10.0 ou supérieur
+- **OS :** Windows 10+, Linux (Ubuntu 20.04+), macOS 10.15+
+- **RAM :** 4GB minimum, 8GB recommandé
+- **Stockage :** 2GB d'espace libre pour le cache
+- **.NET :** 8.0 Runtime (inclus avec Jellyfin)
 
-### **🚀 RECOMMENDED HARDWARE**
-- **GPU:** NVIDIA RTX 20xx+ / AMD RX 6000+ / Intel Arc A380+
-- **CPU:** Intel i5-8400 / AMD Ryzen 5 3600 or better
-- **RAM:** 16GB+ for 4K upscaling
-- **Storage:** SSD for optimal cache performance
+### **🚀 MATÉRIEL RECOMMANDÉ**
+- **GPU :** NVIDIA RTX 20xx+ / AMD RX 6000+ / Intel Arc A380+
+- **CPU :** Intel i5-8400 / AMD Ryzen 5 3600 ou mieux
+- **RAM :** 16GB+ pour le suréchantillonnage 4K
+- **Stockage :** SSD pour des performances de cache optimales
 
-### **🏠 LOW-END HARDWARE SUPPORT**
-- **NAS Devices:** Synology DS920+, QNAP TS-464+
-- **ARM Devices:** Raspberry Pi 4, Odroid N2+
-- **iGPU:** Intel UHD 630+, AMD Vega 8+
-- **Older GPUs:** GTX 1060+, RX 580+
+### **🏠 SUPPORT MATÉRIEL MODESTE**
+- **NAS :** Synology DS920+, QNAP TS-464+
+- **Appareils ARM :** Raspberry Pi 4, Odroid N2+
+- **iGPU :** Intel UHD 630+, AMD Vega 8+
+- **Anciens GPU :** GTX 1060+, RX 580+
 
 ---
 
-## 🎯 **INSTALLATION GUIDE**
+## 🎯 **GUIDE D'INSTALLATION**
 
 ### **📋 JELLYFIN PLUGIN REQUIREMENTS**
 
-This plugin follows Jellyfin's official plugin standards:
+Ce plugin suit les standards officiels des plugins Jellyfin :
 
-- **Plugin Structure:** Standard Jellyfin plugin format
-- **Dependencies:** All required packages included
-- **Configuration:** Embedded HTML configuration pages
-- **API Integration:** Full Jellyfin API compatibility
-- **Resource Management:** Proper cleanup and disposal
+- **Structure du Plugin :** Format de plugin Jellyfin standard
+- **Dépendances :** Tous les packages requis sont inclus
+- **Configuration :** Pages de configuration HTML intégrées
+- **Intégration API :** Compatibilité complète avec l'API Jellyfin
+- **Gestion des Ressources :** Nettoyage et élimination appropriés
 
-### **🔧 DOCKER INSTALLATION**
+### **🔧 INSTALLATION DOCKER**
 
 ```dockerfile
-# Add to your docker-compose.yml
+# Ajoutez à votre docker-compose.yml
 services:
   jellyfin:
     volumes:
@@ -147,34 +140,34 @@ services:
       - JELLYFIN_UPSCALER_CACHE_SIZE=5GB
 ```
 
-### **⚙️ LINUX INSTALLATION**
+### **⚙️ INSTALLATION LINUX**
 
 ```bash
-# Create plugin directory
+# Créer le répertoire du plugin
 sudo mkdir -p /var/lib/jellyfin/plugins/JellyfinUpscalerPlugin
 
-# Download and extract
-wget https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/latest/download/JellyfinUpscalerPlugin.zip
+# Télécharger et extraire
+wget https://github.com/peterdu1109/JellyfinUpscalerPlugin/releases/latest/download/JellyfinUpscalerPlugin.zip
 sudo unzip JellyfinUpscalerPlugin.zip -d /var/lib/jellyfin/plugins/JellyfinUpscalerPlugin/
 
-# Set permissions
+# Définir les permissions
 sudo chown -R jellyfin:jellyfin /var/lib/jellyfin/plugins/JellyfinUpscalerPlugin/
 sudo chmod -R 755 /var/lib/jellyfin/plugins/JellyfinUpscalerPlugin/
 
-# Restart Jellyfin
+# Redémarrer Jellyfin
 sudo systemctl restart jellyfin
 ```
 
-### **🪟 WINDOWS INSTALLATION**
+### **🪟 INSTALLATION WINDOWS**
 
 ```powershell
-# Download plugin
-Invoke-WebRequest -Uri "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/releases/latest/download/JellyfinUpscalerPlugin.zip" -OutFile "JellyfinUpscalerPlugin.zip"
+# Télécharger le plugin
+Invoke-WebRequest -Uri "https://github.com/peterdu1109/JellyfinUpscalerPlugin/releases/latest/download/JellyfinUpscalerPlugin.zip" -OutFile "JellyfinUpscalerPlugin.zip"
 
-# Extract to plugin directory
+# Extraire vers le répertoire du plugin
 Expand-Archive -Path "JellyfinUpscalerPlugin.zip" -DestinationPath "C:\ProgramData\Jellyfin\Server\plugins\JellyfinUpscalerPlugin\"
 
-# Restart Jellyfin service
+# Redémarrer le service Jellyfin
 Restart-Service JellyfinServer
 ```
 
@@ -182,352 +175,156 @@ Restart-Service JellyfinServer
 
 ## ⚙️ **CONFIGURATION**
 
-### **🎮 PROFESSIONAL CONFIGURATION UI**
+### **🎮 INTERFACE DE CONFIGURATION PROFESSIONNELLE**
 
-The plugin features a modern, tabbed interface with comprehensive settings:
+Le plugin dispose d'une interface moderne à onglets avec des paramètres complets :
 
-#### **📋 GENERAL TAB**
-- **Plugin Status:** Enable/disable plugin
-- **AI Model Selection:** Choose from 15+ models
-- **Upscaling Factor:** 2x, 3x, 4x options
-- **Quality Presets:** Speed/Balanced/Quality modes
+#### **📋 ONGLET GÉNÉRAL**
+- **État du Plugin :** Activer/désactiver le plugin
+- **Sélection du Modèle IA :** Choisissez parmi plus de 15 modèles
+- **Facteur de Suréchantillonnage :** Options 2x, 3x, 4x
+- **Préréglages de Qualité :** Modes Vitesse/Équilibré/Qualité
 
-#### **🤖 AI MODELS TAB**
-- **Model Management:** Download, update, delete models
-- **Performance Testing:** Benchmark different models
-- **Fallback Configuration:** Automatic model switching
-- **Model Information:** Size, quality, speed details
+#### **🤖 ONGLET MODÈLES IA**
+- **Gestion des Modèles :** Télécharger, mettre à jour, supprimer des modèles
+- **Tests de Performance :** Benchmark des différents modèles
+- **Configuration de Repli :** Changement automatique de modèle
+- **Informations Modèle :** Détails sur la taille, la qualité et la vitesse
 
-#### **⚡ PERFORMANCE TAB**
-- **Hardware Acceleration:** GPU/CPU selection
-- **Memory Management:** RAM usage controls
-- **Processing Options:** Batch size, thread count
-- **Cache Settings:** Size, location, cleanup policies
+#### **⚡ ONGLET PERFORMANCE**
+- **Accélération Matérielle :** Sélection GPU/CPU
+- **Gestion de la Mémoire :** Contrôles de l'utilisation RAM
+- **Options de Traitement :** Taille de lot, nombre de threads
+- **Paramètres de Cache :** Taille, emplacement, politiques de nettoyage
 
-#### **🔧 ADVANCED TAB**
-- **Debug Options:** Logging levels, profiling
-- **API Settings:** Rate limiting, authentication
-- **Experimental Features:** Beta functionality
-- **System Integration:** Jellyfin-specific options
-
-#### **📊 BENCHMARK TAB**
-- **Hardware Detection:** Automatic system analysis
-- **Performance Tests:** Speed and quality benchmarks
-- **Optimization Engine:** Auto-apply best settings
-- **Comparison Tools:** Before/after quality preview
-
-### **🎯 AUTO-OPTIMIZATION SYSTEM**
-
-The plugin automatically detects your hardware and applies optimal settings:
-
-```json
-{
-  "hardwareProfile": {
-    "gpu": "NVIDIA RTX 4070",
-    "vram": "12GB",
-    "cpu": "Intel i7-12700K",
-    "ram": "32GB"
-  },
-  "recommendedSettings": {
-    "model": "realesrgan-x4plus",
-    "scale": "4x",
-    "batchSize": 8,
-    "memoryLimit": "8GB",
-    "expectedPerformance": "2.3 fps"
-  }
-}
-```
+#### **📊 ONGLET BENCHMARK**
+- **Détection Matériel :** Analyse automatique du système
+- **Tests de Performance :** Benchmarks de vitesse et qualité
+- **Moteur d'Optimisation :** Application automatique des meilleurs réglages
+- **Outils de Comparaison :** Aperçu avant/après de la qualité
 
 ---
 
-## 🌟 **AI FEATURES**
+## 🌟 **FONCTIONNALITÉS IA**
 
-### **🤖 SUPPORTED AI MODELS**
+### **🤖 MODÈLES IA SUPPORTÉS**
 
-| Model | Type | Scale | Quality | Speed | Memory | Best For |
-|-------|------|-------|---------|-------|--------|----------|
-| **Real-ESRGAN** | General | 4x | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | 3.2GB | Photos, realistic content |
-| **ESRGAN** | General | 4x | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | 2.5GB | General purpose |
-| **Waifu2x** | Anime | 2x | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 1.8GB | Anime, cartoons |
-| **SRCNN** | Fast | 2x | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 1.2GB | Quick processing |
-| **FSRCNN** | Fast | 2x | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 1.0GB | Low-end hardware |
-| **EDSR** | Advanced | 4x | ⭐⭐⭐⭐⭐ | ⭐⭐ | 4.1GB | High-quality results |
-| **RCAN** | Advanced | 4x | ⭐⭐⭐⭐⭐ | ⭐⭐ | 3.8GB | Professional quality |
-| **SRResNet** | Balanced | 4x | ⭐⭐⭐⭐ | ⭐⭐⭐ | 2.8GB | Balanced approach |
+| Modèle | Type | Échelle | Qualité | Vitesse | Mémoire | Idéal Pour |
+|--------|------|---------|---------|---------|---------|------------|
+| **Real-ESRGAN** | Général | 4x | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | 3.2GB | Photos, contenu réaliste |
+| **ESRGAN** | Général | 4x | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | 2.5GB | Usage général |
+| **Waifu2x** | Anime | 2x | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 1.8GB | Anime, dessins animés |
+| **SRCNN** | Rapide | 2x | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 1.2GB | Traitement rapide |
+| **FSRCNN** | Rapide | 2x | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 1.0GB | Matériel modeste |
+| **EDSR** | Avancé | 4x | ⭐⭐⭐⭐⭐ | ⭐⭐ | 4.1GB | Résultats de haute qualité |
+| **RCAN** | Avancé | 4x | ⭐⭐⭐⭐⭐ | ⭐⭐ | 3.8GB | Qualité professionnelle |
+| **SRResNet** | Équilibré | 4x | ⭐⭐⭐⭐ | ⭐⭐⭐ | 2.8GB | Approche équilibrée |
 
-### **🎯 INTELLIGENT FALLBACK SYSTEM**
+### **🎯 SYSTÈME DE REPLI INTELLIGENT**
 
-The plugin automatically switches models based on hardware capabilities:
+Le plugin change automatiquement de modèle en fonction des capacités matérielles :
 
 ```
-High-End GPU (RTX 4070+) → Real-ESRGAN (4x, max quality)
-Mid-Range GPU (RTX 3060+) → ESRGAN (2x-4x, balanced)
-Low-End GPU (GTX 1660+) → Waifu2x (2x, optimized)
-iGPU/CPU Only → SRCNN (2x, fast)
-NAS/ARM Devices → FSRCNN (2x, lightweight)
+GPU Haut de Gamme (RTX 4070+) → Real-ESRGAN (4x, qualité max)
+GPU Milieu de Gamme (RTX 3060+) → ESRGAN (2x-4x, équilibré)
+GPU Entrée de Gamme (GTX 1660+) → Waifu2x (2x, optimisé)
+iGPU/CPU Seul → SRCNN (2x, rapide)
+NAS/Appareils ARM → FSRCNN (2x, léger)
 ```
 
-### **💾 SMART CACHING SYSTEM**
+### **💾 SYSTÈME DE CACHE INTELLIGENT**
 
-- **Intelligent Pre-processing:** Cache popular content automatically
-- **Instant Playback:** Pre-upscaled content loads immediately
-- **Storage Management:** Automatic cleanup of old cache files
-- **Performance Analytics:** Monitor cache hit rates and effectiveness
+- **Prétraitement Intelligent :** Met en cache automatiquement le contenu populaire
+- **Lecture Instantanée :** Le contenu pré-suréchantillonné se charge immédiatement
+- **Gestion du Stockage :** Nettoyage automatique des anciens fichiers de cache
+- **Analyse des Performances :** Surveille les taux d'accès au cache et l'efficacité
 
 ---
 
 ## 📊 **PERFORMANCE**
 
-### **🚀 BENCHMARK RESULTS**
+### **🚀 RÉSULTATS DE BENCHMARK**
 
-*Real-world tests with 1080p → 4K upscaling*
+*Tests réels avec suréchantillonnage 1080p → 4K*
 
-| Hardware Configuration | AI Model | Processing Time | Quality Gain (PSNR) | Memory Usage |
-|------------------------|----------|-----------------|-------------------|--------------|
-| **RTX 4090 + 32GB RAM** | Real-ESRGAN | 2.3 seconds | +85% | 3.2GB |
-| **RTX 4070 + 16GB RAM** | Real-ESRGAN | 3.4 seconds | +82% | 2.5GB |
-| **RTX 3070 + 16GB RAM** | Real-ESRGAN | 4.7 seconds | +80% | 2.8GB |
-| **RTX 3060 + 12GB RAM** | Waifu2x | 2.4 seconds | +72% | 1.9GB |
-| **GTX 1660 Ti + 16GB RAM** | Waifu2x | 3.1 seconds | +70% | 1.8GB |
-| **GTX 1060 + 8GB RAM** | FSRCNN | 5.8 seconds | +61% | 1.5GB |
-| **Intel i7-12700K (CPU)** | FSRCNN | 8.2 seconds | +55% | 2.1GB |
-| **Raspberry Pi 4 (ARM)** | FSRCNN | 45.2 seconds | +48% | 1.2GB |
-
-### **📈 OPTIMIZATION FEATURES**
-
-- **Hardware Detection:** Automatic GPU/CPU/Memory detection
-- **Real-time Monitoring:** Live FPS, memory usage, temperature
-- **Adaptive Quality:** Dynamic model switching based on performance
-- **Resource Management:** Intelligent CPU/GPU/Memory throttling
-- **Queue Management:** Efficient batch processing system
+| Configuration Matérielle | Modèle IA | Temps de Traitement | Gain de Qualité (PSNR) | Utilisation Mémoire |
+|------------------------|----------|-------------------|-------------------|-------------------|
+| **RTX 4090 + 32GB RAM** | Real-ESRGAN | 2.3 secondes | +85% | 3.2GB |
+| **RTX 4070 + 16GB RAM** | Real-ESRGAN | 3.4 secondes | +82% | 2.5GB |
+| **RTX 3070 + 16GB RAM** | Real-ESRGAN | 4.7 secondes | +80% | 2.8GB |
+| **RTX 3060 + 12GB RAM** | Waifu2x | 2.4 secondes | +72% | 1.9GB |
+| **GTX 1660 Ti + 16GB RAM** | Waifu2x | 3.1 secondes | +70% | 1.8GB |
+| **GTX 1060 + 8GB RAM** | FSRCNN | 5.8 secondes | +61% | 1.5GB |
+| **Intel i7-12700K (CPU)** | FSRCNN | 8.2 secondes | +55% | 2.1GB |
+| **Raspberry Pi 4 (ARM)** | FSRCNN | 45.2 secondes | +48% | 1.2GB |
 
 ---
 
-## 🔧 **COMPATIBILITY**
+## 🔧 **COMPATIBILITÉ**
 
-### **🖥️ SUPPORTED PLATFORMS**
+### **🖥️ PLATEFORMES SUPPORTÉES**
 
-| Platform | Status | GPU Acceleration | Notes |
+| Plateforme | Statut | Accélération GPU | Notes |
 |----------|--------|------------------|-------|
-| **Windows 10/11** | ✅ Full Support | NVIDIA/AMD/Intel | Complete feature set |
-| **Linux Ubuntu/Debian** | ✅ Full Support | CUDA/OpenCL | Optimal performance |
-| **macOS 10.15+** | ✅ Full Support | Metal | Native acceleration |
-| **Docker** | ✅ Full Support | GPU Passthrough | Container support |
-| **Synology DSM** | ✅ Optimized | CPU Only | NAS-optimized |
-| **QNAP QTS** | ✅ Optimized | CPU Only | NAS-optimized |
-| **Raspberry Pi** | ✅ Limited | CPU Only | ARM64 support |
+| **Windows 10/11** | ✅ Support Complet | NVIDIA/AMD/Intel | Ensemble de fonctionnalités complet |
+| **Linux Ubuntu/Debian** | ✅ Support Complet | CUDA/OpenCL | Performance optimale |
+| **macOS 10.15+** | ✅ Support Complet | Metal | Accélération native |
+| **Docker** | ✅ Support Complet | Passthrough GPU | Support des conteneurs |
+| **Synology DSM** | ✅ Optimisé | CPU Uniquement | Optimisé pour NAS |
+| **QNAP QTS** | ✅ Optimisé | CPU Uniquement | Optimisé pour NAS |
+| **Raspberry Pi** | ✅ Limité | CPU Uniquement | Support ARM64 |
 
-### **📺 CLIENT COMPATIBILITY**
+### **📺 COMPATIBILITÉ CLIENT**
 
-| Client | Configuration UI | API Support | Performance |
-|--------|------------------|-------------|-------------|
-| **Jellyfin Web** | ✅ Full Interface | ✅ Complete API | Optimal |
-| **Jellyfin Mobile** | ✅ Touch-Optimized | ✅ Complete API | Excellent |
-| **Android TV** | ✅ Remote-Friendly | ✅ Complete API | Excellent |
-| **Apple TV** | ✅ Native Controls | ✅ Complete API | Excellent |
-| **Smart TVs** | ✅ Universal | ✅ Complete API | Good |
-| **Kodi Plugin** | ⚠️ Limited | ✅ API Only | Good |
+| Client | Interface de Configuration | Support API | Performance |
+|--------|--------------------------|-------------|-------------|
+| **Jellyfin Web** | ✅ Interface Complète | ✅ API Complète | Optimale |
+| **Jellyfin Mobile** | ✅ Optimisé Tactile | ✅ API Complète | Excellente |
+| **Android TV** | ✅ Compatible Télécommande | ✅ API Complète | Excellente |
+| **Apple TV** | ✅ Contrôles Natiifs | ✅ API Complète | Excellente |
+| **Smart TVs** | ✅ Universel | ✅ API Complète | Bonne |
+| **Plugin Kodi** | ⚠️ Limité | ✅ API Uniquement | Bonne |
 
-### **🎬 SUPPORTED FORMATS**
+### **🎬 FORMATS SUPPORTÉS**
 
-| Format | Container | Codecs | Status |
+| Format | Conteneur | Codecs | Statut |
 |--------|-----------|--------|--------|
-| **MP4** | .mp4 | H.264, H.265, AV1 | ✅ Full Support |
-| **Matroska** | .mkv | All codecs | ✅ Full Support |
-| **AVI** | .avi | XviD, DivX | ✅ Full Support |
-| **MOV** | .mov | Apple codecs | ✅ Full Support |
-| **WebM** | .webm | VP8, VP9, AV1 | ✅ Full Support |
-| **FLV** | .flv | Flash Video | ✅ Full Support |
+| **MP4** | .mp4 | H.264, H.265, AV1 | ✅ Support Complet |
+| **Matroska** | .mkv | Tous les codecs | ✅ Support Complet |
+| **AVI** | .avi | XviD, DivX | ✅ Support Complet |
+| **MOV** | .mov | Codecs Apple | ✅ Support Complet |
+| **WebM** | .webm | VP8, VP9, AV1 | ✅ Support Complet |
+| **FLV** | .flv | Flash Video | ✅ Support Complet |
 
 ---
 
-## 🛠️ **API REFERENCE**
+## 🐛 **DÉPANNAGE**
 
-### **🔌 REST API ENDPOINTS**
+### **❌ PROBLÈMES COURANTS**
 
-The plugin provides a comprehensive REST API for integration:
+#### **🔧 Le Plugin ne charge pas**
+Vérifiez les permissions du dossier du plugin et assurez-vous que l'utilisateur Jellyfin a les droits de lecture/écriture.
 
-#### **⚙️ CONFIGURATION ENDPOINTS**
-```http
-GET    /api/upscaler/settings           # Get current settings
-POST   /api/upscaler/settings           # Update settings
-PUT    /api/upscaler/settings           # Replace settings
-DELETE /api/upscaler/settings/reset     # Reset to defaults
-```
+#### **🖥️ GPU Non Détecté**
+Assurez-vous que les pilotes graphiques sont à jour et que les bibliothèques de calcul (CUDA, OpenCL, ROCm) sont installées.
 
-#### **🤖 AI MODEL ENDPOINTS**
-```http
-GET    /api/upscaler/models             # List available models
-POST   /api/upscaler/models/download    # Download new model
-DELETE /api/upscaler/models/{id}        # Delete model
-GET    /api/upscaler/models/{id}/info   # Get model information
-```
-
-#### **📊 BENCHMARKING ENDPOINTS**
-```http
-POST   /api/upscaler/benchmark/start    # Start benchmark
-GET    /api/upscaler/benchmark/results  # Get benchmark results
-GET    /api/upscaler/benchmark/hardware # Get hardware info
-POST   /api/upscaler/optimize           # Apply optimization
-```
-
-#### **🎬 PROCESSING ENDPOINTS**
-```http
-POST   /api/upscaler/process            # Start upscaling job
-GET    /api/upscaler/queue              # Get processing queue
-DELETE /api/upscaler/queue/{id}         # Cancel job
-GET    /api/upscaler/status             # Get plugin status
-```
-
-### **📝 EXAMPLE USAGE**
-
-```javascript
-// Start hardware benchmark
-const benchmark = await fetch('/api/upscaler/benchmark/start', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer YOUR_API_KEY'
-  },
-  body: JSON.stringify({
-    testModels: ['realesrgan', 'waifu2x', 'srcnn'],
-    testResolutions: ['1080p', '4K'],
-    duration: 30
-  })
-});
-
-// Get optimization recommendations
-const optimization = await fetch('/api/upscaler/optimize', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer YOUR_API_KEY'
-  }
-});
-
-const settings = await optimization.json();
-console.log('Recommended settings:', settings);
-```
+#### **🐌 Problèmes de Performance**
+1. **Réduire les Réglages :** Diminuez le facteur de suréchantillonnage ou passez à un modèle plus léger.
+2. **Augmenter la Mémoire :** Augmentez les limites de mémoire dans la configuration.
+3. **Vérifier le Matériel :** Assurez-vous que l'accélération GPU fonctionne.
 
 ---
 
-## 🐛 **TROUBLESHOOTING**
+## 📄 **LICENCE**
 
-### **❌ COMMON ISSUES**
-
-#### **🔧 Plugin Not Loading**
-```bash
-# Check plugin directory
-ls -la /var/lib/jellyfin/plugins/JellyfinUpscalerPlugin/
-
-# Verify permissions
-sudo chown -R jellyfin:jellyfin /var/lib/jellyfin/plugins/
-sudo chmod -R 755 /var/lib/jellyfin/plugins/
-
-# Check Jellyfin logs
-sudo journalctl -u jellyfin -f
-```
-
-#### **🖥️ GPU Not Detected**
-```bash
-# NVIDIA: Install drivers and CUDA
-sudo apt update
-sudo apt install nvidia-driver-535 nvidia-cuda-toolkit
-nvidia-smi
-
-# AMD: Install ROCm
-sudo apt install rocm-dev rocm-libs
-rocm-smi
-
-# Intel: Install compute runtime
-sudo apt install intel-opencl-icd
-```
-
-#### **🐌 Performance Issues**
-1. **Lower Settings:** Reduce upscaling factor or switch to lighter model
-2. **Increase Memory:** Raise memory limits in configuration
-3. **Check Hardware:** Ensure GPU acceleration is working
-4. **Review Logs:** Check for bottlenecks in debug logs
-
-#### **💾 Cache Problems**
-```bash
-# Clear cache
-sudo rm -rf /var/lib/jellyfin/cache/upscaler/
-
-# Reset cache permissions
-sudo mkdir -p /var/lib/jellyfin/cache/upscaler/
-sudo chown jellyfin:jellyfin /var/lib/jellyfin/cache/upscaler/
-```
-
-### **📋 DEBUG INFORMATION**
-
-Enable debug logging in plugin configuration:
-
-```json
-{
-  "logLevel": "Debug",
-  "debugMode": true,
-  "logFile": "/var/log/jellyfin/upscaler.log",
-  "enableProfiling": true
-}
-```
-
-### **🆘 SUPPORT RESOURCES**
-
-- **GitHub Issues:** [Report bugs and request features](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/issues)
-- **Wiki Documentation:** [Comprehensive guides](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/wiki)
-- **Jellyfin Forum:** [Community support](https://forum.jellyfin.org/)
-
----
-
-## 📚 **CHANGELOG**
-
-### **v1.4.0-test3** (2025-01-23) - **SECURITY UPDATE**
-- 🔐 **SECURITY:** Fixed CVE vulnerability in SixLabors.ImageSharp (3.1.5 → 3.1.9)
-- 🧹 **CLEANUP:** Removed outdated configuration files and dependencies
-- 📦 **RESOURCES:** Enhanced embedded resource configuration
-- 🔧 **STABILITY:** Improved build stability (30 warnings, down from 32)
-- ✅ **DEPENDENCIES:** All packages secured and updated to latest versions
-
-### **v1.4.0-test2** (2025-01-22) - **UI ENHANCEMENT**
-- 🎮 **CONFIGURATION:** Professional tabbed interface with modern design
-- 🔧 **SETTINGS:** 25+ advanced settings with real-time validation
-- 📱 **MOBILE:** Responsive design optimized for all screen sizes
-- 📊 **MONITORING:** Real-time performance monitoring and progress bars
-- 🎯 **MODELS:** Visual model selection cards with detailed information
-
-### **v1.4.0-test1** (2025-01-21) - **MAJOR FEATURES**
-- 🔬 **BENCHMARKING:** Automated hardware benchmarking system
-- 🎯 **OPTIMIZATION:** Intelligent fallback for low-end hardware support
-- 💾 **CACHING:** Pre-processing cache for improved performance
-- 🔍 **COMPARISON:** Side-by-side quality comparison tools
-- 📺 **TV SUPPORT:** Enhanced Smart TV and remote control optimization
-
----
-
-## 📄 **LICENSE**
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-## 🙏 **ACKNOWLEDGMENTS**
-
-- **Jellyfin Team:** For creating an amazing open-source media server
-- **AI Research Community:** For developing the upscaling models
-- **Plugin Contributors:** For testing, feedback, and improvements
-- **Open Source Libraries:** SixLabors.ImageSharp, OpenCV, ONNX Runtime
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
 
 ---
 
 <div align="center">
 
-### **🎮 TRANSFORM YOUR MEDIA EXPERIENCE WITH AI UPSCALING!**
+### **🎮 TRANSFORMEZ VOTRE EXPÉRIENCE MÉDIA AVEC LE SURÉCHANTILLONNAGE IA !**
 
-[![GitHub Stars](https://img.shields.io/github/stars/Kuschel-code/JellyfinUpscalerPlugin?style=social)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin)
-[![GitHub Forks](https://img.shields.io/github/forks/Kuschel-code/JellyfinUpscalerPlugin?style=social)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin)
-[![GitHub Issues](https://img.shields.io/github/issues/Kuschel-code/JellyfinUpscalerPlugin?style=social)](https://github.com/Kuschel-code/JellyfinUpscalerPlugin/issues)
-
-**Made with ❤️ for the Jellyfin Community**
+**Fait avec ❤️ pour la Communauté Jellyfin**
 
 </div>

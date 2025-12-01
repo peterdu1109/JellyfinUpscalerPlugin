@@ -1,54 +1,54 @@
-// AI Upscaler Plugin - Sidebar Integration (like Playback Reporting)
-(function() {
+// Plugin Suréchantillonnage IA - Intégration Barre Latérale (type Playback Reporting)
+(function () {
     'use strict';
 
-    // Add sidebar menu item for AI Upscaler Plugin
+    // Ajouter élément menu barre latérale pour Plugin Suréchantillonnage IA
     function addSidebarItem() {
         const navDrawer = document.querySelector('.navDrawer-scrollContainer');
         if (!navDrawer || document.querySelector('#aiUpscalerSidebarItem')) {
             return;
         }
 
-        // Create the sidebar item
+        // Créer l'élément de la barre latérale
         const sidebarItem = document.createElement('a');
         sidebarItem.id = 'aiUpscalerSidebarItem';
         sidebarItem.className = 'navMenuOption lnkMediaFolder';
         sidebarItem.href = '#';
         sidebarItem.setAttribute('data-itemid', 'aiupscaler');
-        
+
         sidebarItem.innerHTML = `
             <span class="navMenuOptionIcon material-icons">smart_display</span>
-            <span class="navMenuOptionText">AI Upscaler</span>
+            <span class="navMenuOptionText">Suréchantillonnage IA</span>
         `;
 
-        // Find the right position (after Dashboard, before other plugins)
+        // Trouver la bonne position (après Tableau de bord, avant autres plugins)
         const dashboardItem = navDrawer.querySelector('a[href="#/dashboard.html"]');
         const parentNode = dashboardItem ? dashboardItem.parentNode : navDrawer;
-        
+
         if (dashboardItem && dashboardItem.nextSibling) {
             parentNode.insertBefore(sidebarItem, dashboardItem.nextSibling);
         } else {
             parentNode.appendChild(sidebarItem);
         }
 
-        // Add click handler
-        sidebarItem.addEventListener('click', function(e) {
+        // Ajouter gestionnaire clic
+        sidebarItem.addEventListener('click', function (e) {
             e.preventDefault();
             showUpscalerPanel();
         });
 
-        console.log('AI Upscaler: Sidebar item added successfully');
+        console.log('Suréchantillonnage IA : Élément barre latérale ajouté avec succès');
     }
 
-    // Show the AI Upscaler settings panel
+    // Afficher le panneau de paramètres Suréchantillonnage IA
     function showUpscalerPanel() {
-        // Remove existing panel if present
+        // Supprimer panneau existant si présent
         const existingPanel = document.querySelector('#aiUpscalerPanel');
         if (existingPanel) {
             existingPanel.remove();
         }
 
-        // Create main panel
+        // Créer panneau principal
         const panel = document.createElement('div');
         panel.id = 'aiUpscalerPanel';
         panel.className = 'page libraryPage backdropPage pageWithAbsoluteTabs withTabs';
@@ -69,7 +69,7 @@
                     <button type="button" class="headerBackButton" id="aiUpscalerBack">
                         <span class="material-icons">arrow_back</span>
                     </button>
-                    <h1 class="pageTitle">AI Upscaler Plugin 1.4</h1>
+                    <h1 class="pageTitle">Plugin Suréchantillonnage IA 1.6</h1>
                 </div>
             </div>
 
@@ -78,93 +78,93 @@
                     
                     <!-- System Status -->
                     <div class="verticalSection">
-                        <h2 class="sectionTitle">System Status</h2>
+                        <h2 class="sectionTitle">État du Système</h2>
                         <div class="cardBox visualCardBox" style="margin: 1em 0;">
                             <div class="cardText" id="systemStatus">
-                                <div>Status: <span id="pluginStatus" style="color: #00a4dc;">Loading...</span></div>
-                                <div>Version: 1.4.0</div>
-                                <div>Hardware: <span id="hardwareInfo">Detecting...</span></div>
-                                <div>Performance: <span id="performanceInfo">Monitoring...</span></div>
+                                <div>État : <span id="pluginStatus" style="color: #00a4dc;">Chargement...</span></div>
+                                <div>Version : 1.6.0</div>
+                                <div>Matériel : <span id="hardwareInfo">Détection...</span></div>
+                                <div>Performance : <span id="performanceInfo">Surveillance...</span></div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Quick Actions -->
                     <div class="verticalSection">
-                        <h2 class="sectionTitle">Quick Actions</h2>
+                        <h2 class="sectionTitle">Actions Rapides</h2>
                         <div style="display: flex; gap: 1em; flex-wrap: wrap; margin: 1em 0;">
                             <button type="button" class="raised button-submit" id="runBenchmarkBtn">
-                                <span>Run Hardware Test</span>
+                                <span>Lancer Test Matériel</span>
                             </button>
                             <button type="button" class="raised button-submit" id="autoOptimizeBtn">
-                                <span>Auto-Optimize</span>
+                                <span>Auto-Optimisation</span>
                             </button>
                             <button type="button" class="raised button-submit" id="clearCacheBtn">
-                                <span>Clear Cache</span>
+                                <span>Vider Cache</span>
                             </button>
                             <button type="button" class="raised button-submit" id="openSettingsBtn">
-                                <span>Open Settings</span>
+                                <span>Ouvrir Paramètres</span>
                             </button>
                         </div>
                     </div>
 
                     <!-- Benchmark Console -->
                     <div class="verticalSection">
-                        <h2 class="sectionTitle">Benchmark Console</h2>
+                        <h2 class="sectionTitle">Console Benchmark</h2>
                         <div class="cardBox visualCardBox" style="margin: 1em 0;">
                             <div style="background: #1a1a1a; color: #00ff00; font-family: 'Courier New', monospace; padding: 1em; border-radius: 4px; height: 300px; overflow-y: auto; font-size: 12px;" id="benchmarkConsole">
-                                <div>AI Upscaler Plugin v1.4.0 - Benchmark Console</div>
-                                <div>Ready for hardware testing...</div>
-                                <div>Type 'help' for available commands</div>
+                                <div>Plugin Suréchantillonnage IA v1.6.0 - Console Benchmark</div>
+                                <div>Prêt pour test matériel...</div>
+                                <div>Tapez 'help' pour les commandes disponibles</div>
                                 <div style="margin-top: 1em;">
                                     <span style="color: #ffff00;">upscaler@jellyfin:~$</span> <span id="consoleInput"></span>
                                 </div>
                             </div>
                             <div style="margin-top: 0.5em;">
-                                <input type="text" class="emby-input" id="consoleCommandInput" placeholder="Enter command (benchmark, status, optimize, clear, help)" style="width: 100%;">
+                                <input type="text" class="emby-input" id="consoleCommandInput" placeholder="Entrer commande (benchmark, status, optimize, clear, help)" style="width: 100%;">
                             </div>
                         </div>
                     </div>
 
                     <!-- Hardware Information -->
                     <div class="verticalSection">
-                        <h2 class="sectionTitle">Hardware Information</h2>
+                        <h2 class="sectionTitle">Information Matériel</h2>
                         <div class="cardBox visualCardBox" style="margin: 1em 0;">
                             <div class="cardText" id="hardwareDetails">
-                                <div><strong>CPU:</strong> <span id="cpuInfo">Detecting...</span></div>
-                                <div><strong>GPU:</strong> <span id="gpuInfo">Detecting...</span></div>
-                                <div><strong>RAM:</strong> <span id="ramInfo">Detecting...</span></div>
-                                <div><strong>Platform:</strong> <span id="platformInfo">Detecting...</span></div>
-                                <div><strong>Recommended Model:</strong> <span id="recommendedModel">Analyzing...</span></div>
+                                <div><strong>CPU :</strong> <span id="cpuInfo">Détection...</span></div>
+                                <div><strong>GPU :</strong> <span id="gpuInfo">Détection...</span></div>
+                                <div><strong>RAM :</strong> <span id="ramInfo">Détection...</span></div>
+                                <div><strong>Plateforme :</strong> <span id="platformInfo">Détection...</span></div>
+                                <div><strong>Modèle Recommandé :</strong> <span id="recommendedModel">Analyse...</span></div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Performance Metrics -->
                     <div class="verticalSection">
-                        <h2 class="sectionTitle">Performance Metrics</h2>
+                        <h2 class="sectionTitle">Métriques Performance</h2>
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1em; margin: 1em 0;">
                             <div class="cardBox visualCardBox">
                                 <div class="cardText">
-                                    <div><strong>FPS</strong></div>
+                                    <div><strong>IPS</strong></div>
                                     <div style="font-size: 24px; color: #00a4dc;" id="fpsDisplay">--</div>
                                 </div>
                             </div>
                             <div class="cardBox visualCardBox">
                                 <div class="cardText">
-                                    <div><strong>CPU Usage</strong></div>
+                                    <div><strong>Utilisation CPU</strong></div>
                                     <div style="font-size: 24px; color: #00a4dc;" id="cpuUsage">--</div>
                                 </div>
                             </div>
                             <div class="cardBox visualCardBox">
                                 <div class="cardText">
-                                    <div><strong>GPU Usage</strong></div>
+                                    <div><strong>Utilisation GPU</strong></div>
                                     <div style="font-size: 24px; color: #00a4dc;" id="gpuUsage">--</div>
                                 </div>
                             </div>
                             <div class="cardBox visualCardBox">
                                 <div class="cardText">
-                                    <div><strong>Cache Size</strong></div>
+                                    <div><strong>Taille Cache</strong></div>
                                     <div style="font-size: 24px; color: #00a4dc;" id="cacheSize">--</div>
                                 </div>
                             </div>
@@ -177,28 +177,28 @@
 
         document.body.appendChild(panel);
 
-        // Add event handlers
+        // Ajouter gestionnaires événements
         setupPanelHandlers();
         loadSystemInfo();
         startPerformanceMonitoring();
     }
 
-    // Setup event handlers for the panel
+    // Configurer gestionnaires événements pour le panneau
     function setupPanelHandlers() {
-        // Back button
-        document.getElementById('aiUpscalerBack').addEventListener('click', function() {
+        // Bouton Retour
+        document.getElementById('aiUpscalerBack').addEventListener('click', function () {
             document.getElementById('aiUpscalerPanel').remove();
         });
 
-        // Quick action buttons
+        // Boutons actions rapides
         document.getElementById('runBenchmarkBtn').addEventListener('click', runBenchmark);
         document.getElementById('autoOptimizeBtn').addEventListener('click', autoOptimize);
         document.getElementById('clearCacheBtn').addEventListener('click', clearCache);
         document.getElementById('openSettingsBtn').addEventListener('click', openSettings);
 
-        // Console input
+        // Entrée Console
         const consoleInput = document.getElementById('consoleCommandInput');
-        consoleInput.addEventListener('keypress', function(e) {
+        consoleInput.addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 executeConsoleCommand(this.value);
                 this.value = '';
@@ -206,97 +206,97 @@
         });
     }
 
-    // Console command execution
+    // Exécution commande console
     function executeConsoleCommand(command) {
         const console = document.getElementById('benchmarkConsole');
         const cmd = command.toLowerCase().trim();
-        
-        // Add command to console
+
+        // Ajouter commande à la console
         const commandLine = document.createElement('div');
         commandLine.innerHTML = `<span style="color: #ffff00;">upscaler@jellyfin:~$</span> ${command}`;
         console.appendChild(commandLine);
 
         const response = document.createElement('div');
-        
-        switch(cmd) {
+
+        switch (cmd) {
             case 'benchmark':
-                response.textContent = 'Starting hardware benchmark...';
+                response.textContent = 'Démarrage benchmark matériel...';
                 console.appendChild(response);
                 runBenchmark();
                 break;
             case 'status':
-                response.innerHTML = `Plugin Status: Active<br>Version: 1.4.0<br>Hardware: Auto-detected<br>Cache: Available`;
+                response.innerHTML = `État Plugin : Actif<br>Version : 1.6.0<br>Matériel : Auto-détecté<br>Cache : Disponible`;
                 console.appendChild(response);
                 break;
             case 'optimize':
-                response.textContent = 'Running auto-optimization...';
+                response.textContent = 'Exécution auto-optimisation...';
                 console.appendChild(response);
                 autoOptimize();
                 break;
             case 'clear':
-                console.innerHTML = `<div>AI Upscaler Plugin v1.4.0 - Benchmark Console</div>
-                                   <div>Console cleared</div>
+                console.innerHTML = `<div>Plugin Suréchantillonnage IA v1.6.0 - Console Benchmark</div>
+                                   <div>Console effacée</div>
                                    <div style="margin-top: 1em;">
                                        <span style="color: #ffff00;">upscaler@jellyfin:~$</span>
                                    </div>`;
                 return;
             case 'help':
-                response.innerHTML = `Available commands:<br>
-                - benchmark: Run hardware test<br>
-                - status: Show plugin status<br>
-                - optimize: Auto-optimize settings<br>
-                - clear: Clear console<br>
-                - help: Show this help`;
+                response.innerHTML = `Commandes disponibles :<br>
+                - benchmark : Lancer test matériel<br>
+                - status : Afficher état plugin<br>
+                - optimize : Auto-optimiser paramètres<br>
+                - clear : Effacer console<br>
+                - help : Afficher cette aide`;
                 console.appendChild(response);
                 break;
             default:
-                response.innerHTML = `Unknown command: ${command}<br>Type 'help' for available commands`;
+                response.innerHTML = `Commande inconnue : ${command}<br>Tapez 'help' pour les commandes disponibles`;
                 console.appendChild(response);
         }
-        
-        // Auto-scroll to bottom
+
+        // Auto-défilement vers le bas
         console.scrollTop = console.scrollHeight;
     }
 
-    // Load system information
+    // Charger informations système
     function loadSystemInfo() {
-        // Simulate API calls
+        // Simuler appels API
         setTimeout(() => {
-            document.getElementById('pluginStatus').textContent = 'Active';
-            document.getElementById('hardwareInfo').textContent = 'Detected';
+            document.getElementById('pluginStatus').textContent = 'Actif';
+            document.getElementById('hardwareInfo').textContent = 'Détecté';
             document.getElementById('performanceInfo').textContent = 'Optimal';
-            
-            document.getElementById('cpuInfo').textContent = 'Intel Core i5-12400 (6 cores)';
+
+            document.getElementById('cpuInfo').textContent = 'Intel Core i5-12400 (6 coeurs)';
             document.getElementById('gpuInfo').textContent = 'NVIDIA GTX 1660 Super';
-            document.getElementById('ramInfo').textContent = '16 GB DDR4';
+            document.getElementById('ramInfo').textContent = '16 Go DDR4';
             document.getElementById('platformInfo').textContent = 'Windows 11';
-            document.getElementById('recommendedModel').textContent = 'ESRGAN (Balanced)';
+            document.getElementById('recommendedModel').textContent = 'ESRGAN (Équilibré)';
         }, 1000);
     }
 
-    // Performance monitoring
+    // Surveillance performance
     function startPerformanceMonitoring() {
         setInterval(() => {
             document.getElementById('fpsDisplay').textContent = (Math.random() * 60 + 30).toFixed(1);
             document.getElementById('cpuUsage').textContent = (Math.random() * 40 + 20).toFixed(1) + '%';
             document.getElementById('gpuUsage').textContent = (Math.random() * 60 + 30).toFixed(1) + '%';
-            document.getElementById('cacheSize').textContent = (Math.random() * 2 + 1).toFixed(1) + ' GB';
+            document.getElementById('cacheSize').textContent = (Math.random() * 2 + 1).toFixed(1) + ' Go';
         }, 2000);
     }
 
-    // Quick action functions
+    // Fonctions actions rapides
     function runBenchmark() {
         const console = document.getElementById('benchmarkConsole');
         const steps = [
-            'Initializing benchmark...',
-            'Detecting hardware configuration...',
-            'Testing CPU performance...',
-            'Testing GPU performance...',
-            'Testing memory bandwidth...',
-            'Testing AI model performance...',
-            'Benchmark completed successfully!'
+            'Initialisation benchmark...',
+            'Détection configuration matérielle...',
+            'Test performance CPU...',
+            'Test performance GPU...',
+            'Test bande passante mémoire...',
+            'Test performance modèle IA...',
+            'Benchmark terminé avec succès !'
         ];
-        
+
         let stepIndex = 0;
         const interval = setInterval(() => {
             if (stepIndex < steps.length) {
@@ -309,11 +309,11 @@
                 clearInterval(interval);
                 const result = document.createElement('div');
                 result.innerHTML = `<div style="color: #00ff00; margin-top: 1em;">
-                    Recommended Settings:<br>
-                    - Model: ESRGAN<br>
-                    - Quality: High<br>
-                    - Scale: 2x<br>
-                    - Hardware Acceleration: Enabled
+                    Paramètres Recommandés :<br>
+                    - Modèle : ESRGAN<br>
+                    - Qualité : Haute<br>
+                    - Échelle : 2x<br>
+                    - Accélération Matérielle : Activée
                 </div>`;
                 console.appendChild(result);
                 console.scrollTop = console.scrollHeight;
@@ -322,35 +322,35 @@
     }
 
     function autoOptimize() {
-        require(['toast'], function(toast) {
-            toast('Auto-optimization completed! Settings updated for your hardware.');
+        require(['toast'], function (toast) {
+            toast('Auto-optimisation terminée ! Paramètres mis à jour pour votre matériel.');
         });
     }
 
     function clearCache() {
-        require(['toast'], function(toast) {
-            toast('Pre-processing cache cleared successfully.');
+        require(['toast'], function (toast) {
+            toast('Cache de pré-traitement vidé avec succès.');
         });
     }
 
     function openSettings() {
-        // Navigate to plugin settings
-        window.location.hash = '#/configurationpage?name=AI%20Upscaler%20Plugin%201.4';
+        // Naviguer vers paramètres plugin
+        window.location.hash = '#/configurationpage?name=AI%20Upscaler%20Plugin%201.6';
     }
 
-    // Initialize when DOM is ready
+    // Initialiser quand DOM est prêt
     function init() {
-        // Wait for Jellyfin UI to load
+        // Attendre chargement UI Jellyfin
         if (typeof require === 'undefined' || !document.querySelector('.navDrawer-scrollContainer')) {
             setTimeout(init, 1000);
             return;
         }
 
         addSidebarItem();
-        
-        // Re-add item when navigation changes
-        const observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
+
+        // Ré-ajouter élément quand navigation change
+        const observer = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
                 if (mutation.type === 'childList' && !document.querySelector('#aiUpscalerSidebarItem')) {
                     setTimeout(addSidebarItem, 500);
                 }
@@ -363,8 +363,8 @@
         }
     }
 
-    // Start initialization
+    // Démarrer initialisation
     init();
 
-    console.log('AI Upscaler Plugin: Sidebar integration loaded');
+    console.log('Plugin Suréchantillonnage IA : Intégration barre latérale chargée');
 })();

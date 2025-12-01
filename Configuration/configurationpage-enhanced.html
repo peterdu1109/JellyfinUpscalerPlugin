@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Upscaler Plugin Settings</title>
+    <title>Paramètres Plugin Suréchantillonnage IA</title>
     <style>
         .pluginConfigurationPage {
             max-width: 1200px;
@@ -40,7 +41,8 @@
             font-weight: 500;
         }
 
-        .inputContainer input, .inputContainer select {
+        .inputContainer input,
+        .inputContainer select {
             width: 100%;
             max-width: 400px;
             padding: 8px 12px;
@@ -51,7 +53,8 @@
             font-size: 14px;
         }
 
-        .inputContainer input:focus, .inputContainer select:focus {
+        .inputContainer input:focus,
+        .inputContainer select:focus {
             outline: none;
             border-color: #00a4dc;
             box-shadow: 0 0 0 2px rgba(0, 164, 220, 0.2);
@@ -248,96 +251,99 @@
             .performance-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .model-selection {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="pluginConfigurationPage">
-        <h1>🎮 AI Upscaler Plugin v1.4.0 - Advanced Configuration</h1>
-        
+        <h1>🎮 Plugin Suréchantillonnage IA v1.6.0 - Configuration Avancée</h1>
+
         <div id="notification" class="notification" style="display: none;"></div>
 
         <div class="tab-container">
-            <button class="tab active" onclick="showTab('general')">General Settings</button>
-            <button class="tab" onclick="showTab('ai-models')">AI Models</button>
+            <button class="tab active" onclick="showTab('general')">Paramètres Généraux</button>
+            <button class="tab" onclick="showTab('ai-models')">Modèles IA</button>
             <button class="tab" onclick="showTab('performance')">Performance</button>
-            <button class="tab" onclick="showTab('advanced')">Advanced</button>
+            <button class="tab" onclick="showTab('advanced')">Avancé</button>
             <button class="tab" onclick="showTab('benchmark')">Benchmark</button>
         </div>
 
         <!-- General Settings Tab -->
         <div id="general" class="tab-content active">
             <div class="settingsSection">
-                <h2>🎯 Basic Configuration</h2>
-                
+                <h2>🎯 Configuration de Base</h2>
+
                 <div class="inputContainer">
-                    <label for="enableUpscaling">Enable AI Upscaling</label>
+                    <label for="enableUpscaling">Activer le Suréchantillonnage IA</label>
                     <div class="checkbox-container">
                         <input type="checkbox" id="enableUpscaling" checked>
-                        <span>Enable real-time AI upscaling for video content</span>
+                        <span>Activer le suréchantillonnage IA en temps réel pour le contenu vidéo</span>
                     </div>
                 </div>
 
                 <div class="inputContainer">
-                    <label for="upscalingMode">Upscaling Mode</label>
+                    <label for="upscalingMode">Mode de Suréchantillonnage</label>
                     <select id="upscalingMode">
-                        <option value="realtime">Real-time (Low latency)</option>
-                        <option value="quality">Quality (Higher latency)</option>
-                        <option value="balanced" selected>Balanced (Recommended)</option>
+                        <option value="realtime">Temps Réel (Faible Latence)</option>
+                        <option value="quality">Qualité (Latence Plus Élevée)</option>
+                        <option value="balanced" selected>Équilibré (Recommandé)</option>
                     </select>
-                    <div class="info-text">Real-time mode prioritizes speed, Quality mode prioritizes visual quality</div>
+                    <div class="info-text">Le mode temps réel privilégie la vitesse, le mode qualité privilégie la
+                        qualité visuelle</div>
                 </div>
 
                 <div class="inputContainer">
-                    <label for="targetResolution">Target Resolution</label>
+                    <label for="targetResolution">Résolution Cible</label>
                     <select id="targetResolution">
-                        <option value="auto" selected>Auto (Based on content)</option>
+                        <option value="auto" selected>Auto (Basé sur le contenu)</option>
                         <option value="720p">720p HD</option>
                         <option value="1080p">1080p Full HD</option>
                         <option value="1440p">1440p QHD</option>
                         <option value="2160p">2160p 4K</option>
                     </select>
-                    <div class="info-text">Higher resolutions require more powerful hardware</div>
+                    <div class="info-text">Les résolutions plus élevées nécessitent un matériel plus puissant</div>
                 </div>
 
                 <div class="inputContainer">
-                    <label for="upscalingFactor">Upscaling Factor</label>
+                    <label for="upscalingFactor">Facteur de Suréchantillonnage</label>
                     <select id="upscalingFactor">
                         <option value="1.5">1.5x</option>
-                        <option value="2" selected>2x (Recommended)</option>
+                        <option value="2" selected>2x (Recommandé)</option>
                         <option value="3">3x</option>
                         <option value="4">4x</option>
                     </select>
-                    <div class="info-text">Higher factors provide better upscaling but require more processing power</div>
+                    <div class="info-text">Des facteurs plus élevés offrent un meilleur suréchantillonnage mais
+                        nécessitent plus de puissance</div>
                 </div>
 
                 <div class="inputContainer">
-                    <label for="sharpness">Sharpness Enhancement</label>
+                    <label for="sharpness">Amélioration de la Nurteté</label>
                     <input type="range" id="sharpness" min="0" max="100" value="50">
-                    <div class="info-text">Current: <span id="sharpnessValue">50</span>%</div>
+                    <div class="info-text">Actuel : <span id="sharpnessValue">50</span>%</div>
                 </div>
 
                 <div class="inputContainer">
-                    <label for="denoising">Noise Reduction</label>
+                    <label for="denoising">Réduction de Bruit</label>
                     <input type="range" id="denoising" min="0" max="100" value="30">
-                    <div class="info-text">Current: <span id="denoisingValue">30</span>%</div>
+                    <div class="info-text">Actuel : <span id="denoisingValue">30</span>%</div>
                 </div>
 
                 <div class="inputContainer">
-                    <label for="colorEnhancement">Color Enhancement</label>
+                    <label for="colorEnhancement">Amélioration des Couleurs</label>
                     <input type="range" id="colorEnhancement" min="0" max="100" value="20">
-                    <div class="info-text">Current: <span id="colorEnhancementValue">20</span>%</div>
+                    <div class="info-text">Actuel : <span id="colorEnhancementValue">20</span>%</div>
                 </div>
 
                 <div class="inputContainer">
-                    <label for="edgePreservation">Edge Preservation</label>
+                    <label for="edgePreservation">Préservation des Bords</label>
                     <div class="checkbox-container">
                         <input type="checkbox" id="edgePreservation" checked>
-                        <span>Preserve fine details and edges during upscaling</span>
+                        <span>Préserver les détails fins et les bords pendant le suréchantillonnage</span>
                     </div>
                 </div>
             </div>
@@ -346,53 +352,53 @@
         <!-- AI Models Tab -->
         <div id="ai-models" class="tab-content">
             <div class="settingsSection">
-                <h2>🤖 AI Model Selection</h2>
-                
+                <h2>🤖 Sélection du Modèle IA</h2>
+
                 <div class="model-selection">
                     <div class="model-option selected" data-model="esrgan">
-                        <h4>ESRGAN (Default)</h4>
-                        <p>Best for anime and cartoon content</p>
+                        <h4>ESRGAN (Défaut)</h4>
+                        <p>Idéal pour les animes et dessins animés</p>
                     </div>
                     <div class="model-option" data-model="realesrgan">
                         <h4>Real-ESRGAN</h4>
-                        <p>Optimized for real-world images</p>
+                        <p>Optimisé pour les images réelles</p>
                     </div>
                     <div class="model-option" data-model="waifu2x">
                         <h4>Waifu2x</h4>
-                        <p>Excellent for 2D artwork</p>
+                        <p>Excellent pour l'art 2D</p>
                     </div>
                     <div class="model-option" data-model="srcnn">
                         <h4>SRCNN</h4>
-                        <p>Fast, lightweight model</p>
+                        <p>Modèle rapide et léger</p>
                     </div>
                     <div class="model-option" data-model="edsr">
                         <h4>EDSR</h4>
-                        <p>High-quality, slower processing</p>
+                        <p>Haute qualité, traitement plus lent</p>
                     </div>
                     <div class="model-option" data-model="rdn">
                         <h4>RDN</h4>
-                        <p>Balanced performance</p>
+                        <p>Performance équilibrée</p>
                     </div>
                 </div>
 
                 <div class="inputContainer">
-                    <label for="autoModelSelection">Auto Model Selection</label>
+                    <label for="autoModelSelection">Sélection Auto du Modèle</label>
                     <div class="checkbox-container">
                         <input type="checkbox" id="autoModelSelection" checked>
-                        <span>Automatically select best model based on content type</span>
+                        <span>Sélectionner automatiquement le meilleur modèle selon le type de contenu</span>
                     </div>
                 </div>
 
                 <div class="inputContainer">
-                    <label for="modelDownloadPath">Model Download Path</label>
+                    <label for="modelDownloadPath">Chemin de Téléchargement des Modèles</label>
                     <input type="text" id="modelDownloadPath" value="/var/lib/jellyfin/plugins/upscaler/models">
-                    <div class="info-text">Directory where AI models are stored</div>
+                    <div class="info-text">Répertoire où les modèles IA sont stockés</div>
                 </div>
 
                 <div class="inputContainer">
-                    <button class="button-primary" onclick="downloadModels()">Download Missing Models</button>
-                    <button class="button-secondary" onclick="updateModels()">Update All Models</button>
-                    <button class="button-secondary" onclick="clearModelCache()">Clear Model Cache</button>
+                    <button class="button-primary" onclick="downloadModels()">Télécharger Modèles Manquants</button>
+                    <button class="button-secondary" onclick="updateModels()">Mettre à Jour Tous les Modèles</button>
+                    <button class="button-secondary" onclick="clearModelCache()">Vider Cache Modèles</button>
                 </div>
             </div>
         </div>
@@ -400,74 +406,75 @@
         <!-- Performance Tab -->
         <div id="performance" class="tab-content">
             <div class="settingsSection">
-                <h2>⚡ Hardware Configuration</h2>
-                
+                <h2>⚡ Configuration Matérielle</h2>
+
                 <div class="inputContainer">
-                    <label for="gpuAcceleration">GPU Acceleration</label>
+                    <label for="gpuAcceleration">Accélération GPU</label>
                     <select id="gpuAcceleration">
-                        <option value="auto" selected>Auto-detect</option>
+                        <option value="auto" selected>Détection Auto</option>
                         <option value="cuda">NVIDIA CUDA</option>
                         <option value="directml">DirectML</option>
                         <option value="opencl">OpenCL</option>
-                        <option value="cpu">CPU Only</option>
+                        <option value="cpu">CPU Uniquement</option>
                     </select>
-                    <div class="info-text">GPU acceleration significantly improves performance</div>
+                    <div class="info-text">L'accélération GPU améliore considérablement les performances</div>
                 </div>
 
                 <div class="inputContainer">
-                    <label for="maxConcurrentStreams">Max Concurrent Streams</label>
+                    <label for="maxConcurrentStreams">Flux Simultanés Max</label>
                     <input type="number" id="maxConcurrentStreams" min="1" max="10" value="3">
-                    <div class="info-text">Maximum number of simultaneous upscaling processes</div>
+                    <div class="info-text">Nombre maximum de processus de suréchantillonnage simultanés</div>
                 </div>
 
                 <div class="inputContainer">
-                    <label for="memoryLimit">Memory Limit (GB)</label>
+                    <label for="memoryLimit">Limite Mémoire (Go)</label>
                     <input type="number" id="memoryLimit" min="1" max="32" value="4">
-                    <div class="info-text">Maximum memory usage for upscaling processes</div>
+                    <div class="info-text">Utilisation mémoire maximale pour les processus de suréchantillonnage</div>
                 </div>
 
                 <div class="inputContainer">
-                    <label for="enableCaching">Enable Result Caching</label>
+                    <label for="enableCaching">Activer le Cache de Résultats</label>
                     <div class="checkbox-container">
                         <input type="checkbox" id="enableCaching" checked>
-                        <span>Cache upscaled frames to improve repeat performance</span>
+                        <span>Mettre en cache les images suréchantillonnées pour améliorer les performances
+                            répétées</span>
                     </div>
                 </div>
 
                 <div class="inputContainer">
-                    <label for="cacheSize">Cache Size (GB)</label>
+                    <label for="cacheSize">Taille du Cache (Go)</label>
                     <input type="number" id="cacheSize" min="1" max="100" value="10">
-                    <div class="info-text">Disk space used for caching upscaled content</div>
+                    <div class="info-text">Espace disque utilisé pour le cache de contenu suréchantillonné</div>
                 </div>
 
                 <div class="performance-grid">
                     <div class="performance-card">
-                        <h4>GPU Usage</h4>
+                        <h4>Utilisation GPU</h4>
                         <div class="progress-bar">
                             <div class="progress-fill" style="width: 45%"></div>
                         </div>
                         <span>45% - RTX 4080</span>
                     </div>
                     <div class="performance-card">
-                        <h4>Memory Usage</h4>
+                        <h4>Utilisation Mémoire</h4>
                         <div class="progress-bar">
                             <div class="progress-fill" style="width: 32%"></div>
                         </div>
-                        <span>3.2GB / 10GB</span>
+                        <span>3.2Go / 10Go</span>
                     </div>
                     <div class="performance-card">
-                        <h4>Cache Hit Rate</h4>
+                        <h4>Taux de Succès Cache</h4>
                         <div class="progress-bar">
                             <div class="progress-fill" style="width: 78%"></div>
                         </div>
-                        <span>78% efficiency</span>
+                        <span>78% efficacité</span>
                     </div>
                     <div class="performance-card">
-                        <h4>Processing Speed</h4>
+                        <h4>Vitesse de Traitement</h4>
                         <div class="progress-bar">
                             <div class="progress-fill" style="width: 85%"></div>
                         </div>
-                        <span>2.3 fps average</span>
+                        <span>2.3 fps moyen</span>
                     </div>
                 </div>
             </div>
@@ -476,84 +483,84 @@
         <!-- Advanced Tab -->
         <div id="advanced" class="tab-content">
             <div class="settingsSection">
-                <h2>🔧 Advanced Settings</h2>
-                
+                <h2>🔧 Paramètres Avancés</h2>
+
                 <div class="advanced-settings">
-                    <h3>Processing Options</h3>
-                    
+                    <h3>Options de Traitement</h3>
+
                     <div class="inputContainer">
-                        <label for="batchSize">Batch Size</label>
+                        <label for="batchSize">Taille du Lot (Batch Size)</label>
                         <input type="number" id="batchSize" min="1" max="64" value="4">
-                        <div class="info-text">Number of frames processed simultaneously</div>
+                        <div class="info-text">Nombre d'images traitées simultanément</div>
                     </div>
 
                     <div class="inputContainer">
-                        <label for="threadCount">Thread Count</label>
+                        <label for="threadCount">Nombre de Threads</label>
                         <input type="number" id="threadCount" min="1" max="32" value="8">
-                        <div class="info-text">Number of processing threads (0 = auto)</div>
+                        <div class="info-text">Nombre de threads de traitement (0 = auto)</div>
                     </div>
 
                     <div class="inputContainer">
-                        <label for="tileSize">Tile Size</label>
+                        <label for="tileSize">Taille de Tuile</label>
                         <input type="number" id="tileSize" min="64" max="1024" value="256">
-                        <div class="info-text">Size of processing tiles for large images</div>
+                        <div class="info-text">Taille des tuiles de traitement pour les grandes images</div>
                     </div>
 
                     <div class="inputContainer">
-                        <label for="enablePreprocessing">Enable Preprocessing</label>
+                        <label for="enablePreprocessing">Activer le Pré-traitement</label>
                         <div class="checkbox-container">
                             <input type="checkbox" id="enablePreprocessing" checked>
-                            <span>Apply preprocessing filters before upscaling</span>
+                            <span>Appliquer des filtres de pré-traitement avant le suréchantillonnage</span>
                         </div>
                     </div>
 
                     <div class="inputContainer">
-                        <label for="enablePostprocessing">Enable Postprocessing</label>
+                        <label for="enablePostprocessing">Activer le Post-traitement</label>
                         <div class="checkbox-container">
                             <input type="checkbox" id="enablePostprocessing" checked>
-                            <span>Apply postprocessing filters after upscaling</span>
+                            <span>Appliquer des filtres de post-traitement après le suréchantillonnage</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="advanced-settings">
-                    <h3>Fallback Options</h3>
-                    
+                    <h3>Options de Repli (Fallback)</h3>
+
                     <div class="inputContainer">
-                        <label for="enableFallback">Enable Fallback</label>
+                        <label for="enableFallback">Activer le Repli</label>
                         <div class="checkbox-container">
                             <input type="checkbox" id="enableFallback" checked>
-                            <span>Use traditional upscaling when AI models fail</span>
+                            <span>Utiliser le suréchantillonnage traditionnel quand les modèles IA échouent</span>
                         </div>
                     </div>
 
                     <div class="inputContainer">
-                        <label for="fallbackMethod">Fallback Method</label>
+                        <label for="fallbackMethod">Méthode de Repli</label>
                         <select id="fallbackMethod">
-                            <option value="bicubic" selected>Bicubic</option>
+                            <option value="bicubic" selected>Bicubique</option>
                             <option value="lanczos">Lanczos</option>
-                            <option value="bilinear">Bilinear</option>
-                            <option value="nearest">Nearest Neighbor</option>
+                            <option value="bilinear">Bilinéaire</option>
+                            <option value="nearest">Plus Proche Voisin</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="advanced-settings">
-                    <h3>Debug Options</h3>
-                    
+                    <h3>Options de Débogage</h3>
+
                     <div class="inputContainer">
-                        <label for="enableDebugLogging">Enable Debug Logging</label>
+                        <label for="enableDebugLogging">Activer les Logs de Débogage</label>
                         <div class="checkbox-container">
                             <input type="checkbox" id="enableDebugLogging">
-                            <span>Enable detailed logging for troubleshooting</span>
+                            <span>Activer les logs détaillés pour le dépannage</span>
                         </div>
                     </div>
 
                     <div class="inputContainer">
-                        <label for="saveDebugFrames">Save Debug Frames</label>
+                        <label for="saveDebugFrames">Sauvegarder les Images de Débogage</label>
                         <div class="checkbox-container">
                             <input type="checkbox" id="saveDebugFrames">
-                            <span>Save input/output frames for debugging</span>
+                            <span>Sauvegarder les images d'entrée/sortie pour le débogage</span>
                         </div>
                     </div>
                 </div>
@@ -563,12 +570,12 @@
         <!-- Benchmark Tab -->
         <div id="benchmark" class="tab-content">
             <div class="settingsSection">
-                <h2>🏆 Hardware Benchmark</h2>
-                
+                <h2>🏆 Benchmark Matériel</h2>
+
                 <div class="inputContainer">
-                    <button class="button-primary" onclick="runBenchmark()">Run Full Benchmark</button>
-                    <button class="button-secondary" onclick="runQuickBenchmark()">Quick Test</button>
-                    <button class="button-secondary" onclick="clearBenchmarkResults()">Clear Results</button>
+                    <button class="button-primary" onclick="runBenchmark()">Lancer Benchmark Complet</button>
+                    <button class="button-secondary" onclick="runQuickBenchmark()">Test Rapide</button>
+                    <button class="button-secondary" onclick="clearBenchmarkResults()">Effacer Résultats</button>
                 </div>
 
                 <div id="benchmarkProgress" class="progress-bar" style="display: none;">
@@ -576,25 +583,26 @@
                 </div>
 
                 <div class="inputContainer">
-                    <label for="autoOptimize">Auto-Optimize Settings</label>
+                    <label for="autoOptimize">Optimisation Auto des Paramètres</label>
                     <div class="checkbox-container">
                         <input type="checkbox" id="autoOptimize" checked>
-                        <span>Automatically optimize settings based on hardware</span>
+                        <span>Optimiser automatiquement les paramètres selon le matériel</span>
                     </div>
                 </div>
 
                 <div class="inputContainer">
-                    <button class="button-primary" onclick="applyOptimalSettings()">Apply Optimal Settings</button>
-                    <button class="button-secondary" onclick="resetToDefaults()">Reset to Defaults</button>
+                    <button class="button-primary" onclick="applyOptimalSettings()">Appliquer Paramètres
+                        Optimaux</button>
+                    <button class="button-secondary" onclick="resetToDefaults()">Réinitialiser par Défaut</button>
                 </div>
             </div>
         </div>
 
         <!-- Save/Reset Buttons -->
         <div class="settingsSection">
-            <button class="button-primary" onclick="saveSettings()">Save Settings</button>
-            <button class="button-secondary" onclick="resetSettings()">Reset to Defaults</button>
-            <button class="button-secondary" onclick="testConfiguration()">Test Configuration</button>
+            <button class="button-primary" onclick="saveSettings()">Enregistrer Paramètres</button>
+            <button class="button-secondary" onclick="resetSettings()">Réinitialiser par Défaut</button>
+            <button class="button-secondary" onclick="testConfiguration()">Tester Configuration</button>
         </div>
     </div>
 
@@ -604,18 +612,18 @@
             document.querySelectorAll('.tab-content').forEach(content => {
                 content.classList.remove('active');
             });
-            
+
             document.querySelectorAll('.tab').forEach(tab => {
                 tab.classList.remove('active');
             });
-            
+
             document.getElementById(tabName).classList.add('active');
             event.target.classList.add('active');
         }
 
         // Model selection
         document.querySelectorAll('.model-option').forEach(option => {
-            option.addEventListener('click', function() {
+            option.addEventListener('click', function () {
                 document.querySelectorAll('.model-option').forEach(opt => {
                     opt.classList.remove('selected');
                 });
@@ -624,15 +632,15 @@
         });
 
         // Range slider updates
-        document.getElementById('sharpness').addEventListener('input', function() {
+        document.getElementById('sharpness').addEventListener('input', function () {
             document.getElementById('sharpnessValue').textContent = this.value;
         });
 
-        document.getElementById('denoising').addEventListener('input', function() {
+        document.getElementById('denoising').addEventListener('input', function () {
             document.getElementById('denoisingValue').textContent = this.value;
         });
 
-        document.getElementById('colorEnhancement').addEventListener('input', function() {
+        document.getElementById('colorEnhancement').addEventListener('input', function () {
             document.getElementById('colorEnhancementValue').textContent = this.value;
         });
 
@@ -673,156 +681,134 @@
                 },
                 body: JSON.stringify(settings)
             })
-            .then(response => response.json())
-            .then(data => {
-                showNotification('Settings saved successfully!', 'success');
-            })
-            .catch(error => {
-                showNotification('Failed to save settings: ' + error.message, 'error');
-            });
+                .then(response => response.json())
+                .then(data => {
+                    showNotification('Paramètres enregistrés avec succès !', 'success');
+                })
+                .catch(error => {
+                    showNotification('Échec de l\'enregistrement : ' + error.message, 'error');
+                });
         }
 
         function resetSettings() {
-            if (confirm('Are you sure you want to reset all settings to defaults?')) {
+            if (confirm('Êtes-vous sûr de vouloir réinitialiser tous les paramètres par défaut ?')) {
                 fetch('/api/upscaler/settings/reset', {
                     method: 'POST'
                 })
-                .then(response => response.json())
-                .then(data => {
-                    showNotification('Settings reset to defaults', 'success');
-                    location.reload();
-                })
-                .catch(error => {
-                    showNotification('Failed to reset settings: ' + error.message, 'error');
-                });
+                    .then(response => response.json())
+                    .then(data => {
+                        showNotification('Paramètres réinitialisés par défaut', 'success');
+                        location.reload();
+                    })
+                    .catch(error => {
+                        showNotification('Échec de la réinitialisation : ' + error.message, 'error');
+                    });
             }
         }
 
         function testConfiguration() {
-            showNotification('Testing configuration...', 'warning');
-            
+            showNotification('Test de la configuration...', 'warning');
+
             fetch('/api/upscaler/test', {
                 method: 'POST'
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    showNotification('Configuration test passed!', 'success');
-                } else {
-                    showNotification('Configuration test failed: ' + data.message, 'error');
-                }
-            })
-            .catch(error => {
-                showNotification('Test failed: ' + error.message, 'error');
-            });
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showNotification('Test de configuration réussi !', 'success');
+                    } else {
+                        showNotification('Échec du test de configuration : ' + data.message, 'error');
+                    }
+                })
+                .catch(error => {
+                    showNotification('Test échoué : ' + error.message, 'error');
+                });
         }
 
         function runBenchmark() {
             const progressBar = document.getElementById('benchmarkProgress');
             const progressFill = document.getElementById('benchmarkProgressFill');
-            
+
             progressBar.style.display = 'block';
             progressFill.style.width = '0%';
-            
-            showNotification('Running hardware benchmark...', 'warning');
-            
+
+            showNotification('Exécution du benchmark matériel...', 'warning');
+
             fetch('/api/upscaler/benchmark', {
                 method: 'POST'
             })
-            .then(response => response.json())
-            .then(data => {
-                progressBar.style.display = 'none';
-                showNotification('Benchmark completed successfully!', 'success');
-            })
-            .catch(error => {
-                progressBar.style.display = 'none';
-                showNotification('Benchmark failed: ' + error.message, 'error');
-            });
+                .then(response => response.json())
+                .then(data => {
+                    progressBar.style.display = 'none';
+                    showNotification('Benchmark terminé avec succès !', 'success');
+                })
+                .catch(error => {
+                    progressBar.style.display = 'none';
+                    showNotification('Échec du benchmark : ' + error.message, 'error');
+                });
         }
 
         function runQuickBenchmark() {
-            showNotification('Running quick benchmark...', 'warning');
-            
+            showNotification('Exécution du benchmark rapide...', 'warning');
+
             fetch('/api/upscaler/benchmark/quick', {
                 method: 'POST'
             })
-            .then(response => response.json())
-            .then(data => {
-                showNotification('Quick benchmark completed!', 'success');
-            })
-            .catch(error => {
-                showNotification('Quick benchmark failed: ' + error.message, 'error');
-            });
+                .then(response => response.json())
+                .then(data => {
+                    showNotification('Benchmark rapide terminé !', 'success');
+                })
+                .catch(error => {
+                    showNotification('Échec du benchmark rapide : ' + error.message, 'error');
+                });
         }
 
         function downloadModels() {
-            showNotification('Downloading AI models...', 'warning');
-            
+            showNotification('Téléchargement des modèles IA...', 'warning');
+
             fetch('/api/upscaler/models/download', {
                 method: 'POST'
             })
-            .then(response => response.json())
-            .then(data => {
-                showNotification('Models downloaded successfully!', 'success');
-            })
-            .catch(error => {
-                showNotification('Model download failed: ' + error.message, 'error');
-            });
+                .then(response => response.json())
+                .then(data => {
+                    showNotification('Modèles téléchargés avec succès !', 'success');
+                })
+                .catch(error => {
+                    showNotification('Échec du téléchargement des modèles : ' + error.message, 'error');
+                });
         }
 
         function updateModels() {
-            showNotification('Updating AI models...', 'warning');
-            
+            showNotification('Mise à jour des modèles IA...', 'warning');
+
             fetch('/api/upscaler/models/update', {
                 method: 'POST'
             })
-            .then(response => response.json())
-            .then(data => {
-                showNotification('Models updated successfully!', 'success');
-            })
-            .catch(error => {
-                showNotification('Model update failed: ' + error.message, 'error');
-            });
+                .then(response => response.json())
+                .then(data => {
+                    showNotification('Modèles mis à jour avec succès !', 'success');
+                })
+                .catch(error => {
+                    showNotification('Échec de la mise à jour des modèles : ' + error.message, 'error');
+                });
         }
 
         function applyOptimalSettings() {
-            showNotification('Applying optimal settings...', 'warning');
-            
+            showNotification('Application des paramètres optimaux...', 'warning');
+
             fetch('/api/upscaler/optimize', {
                 method: 'POST'
             })
-            .then(response => response.json())
-            .then(data => {
-                showNotification('Optimal settings applied!', 'success');
-                location.reload();
-            })
-            .catch(error => {
-                showNotification('Optimization failed: ' + error.message, 'error');
-            });
-        }
-
-        function showNotification(message, type) {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
-            notification.className = `notification ${type}`;
-            notification.style.display = 'block';
-            
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 5000);
-        }
-
-        // Load settings on page load
-        window.addEventListener('load', function() {
-            fetch('/api/upscaler/settings')
                 .then(response => response.json())
                 .then(data => {
-                    console.log('Loaded settings:', data);
+                    showNotification('Paramètres optimaux appliqués !', 'success');
+                    location.reload();
                 })
                 .catch(error => {
-                    console.error('Failed to load settings:', error);
+                    showNotification('Échec de l\'optimisation : ' + error.message, 'error');
                 });
-        });
+        }
     </script>
 </body>
+
 </html>
