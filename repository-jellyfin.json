@@ -12,7 +12,7 @@
         "changelog": "v1.5.0 FRANÇAIS : Traduction complète en français de toute l'interface utilisateur et des messages de log. Implémentation de la logique de traitement tensoriel IA (PrepareInputTensor, ProcessOutputTensor). Correction de la reconstruction vidéo avec framerate dynamique. Détection matérielle améliorée (CUDA, DirectML, QSV). Messages de log plus informatifs en français. Gestion d'erreurs robuste et mécanismes de repli intelligents.",
         "targetAbi": "10.10.6.0",
         "sourceUrl": "https://github.com/peterdu1109/JellyfinUpscalerPlugin/releases/download/v1.5.0/JellyfinUpscalerPlugin.zip",
-        "checksum": "FD024D994DD27F2EFE710A80DD89262F",
+        "checksum": "BE7E0B979ADD311A90FBB6D437C1D321",
         "timestamp": "2025-12-01T16:00:00.000Z"
       }
     ],
