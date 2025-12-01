@@ -397,7 +397,7 @@ namespace JellyfinUpscalerPlugin.Services
                     await ProcessFramesAsync(framesDir, processedDir, job.OptimizedOptions, cancellationToken);
                     
                     // 3. Reconstruct video
-                    await ReconstructVideoAsync(processedDir, inputPath, outputPath, job.OptimizedOptions, cancellationToken);
+                    await ReconstructVideoAsync(processedDir, inputPath, outputPath, job.OptimizedOptions, job.InputInfo.FrameRate, cancellationToken);
                     
                     return new VideoProcessingResult
                     {
@@ -412,7 +412,10 @@ namespace JellyfinUpscalerPlugin.Services
                     // Cleanup temp directory
                     try
                     {
-                        Directory.Delete(tempDir, true);
+                        if (Directory.Exists(tempDir))
+                        {
+                            Directory.Delete(tempDir, true);
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -431,10 +434,6 @@ namespace JellyfinUpscalerPlugin.Services
                 };
             }
         }
-
-        /// <summary>
-        /// Batch processing for efficiency
-        /// </summary>
         private async Task<VideoProcessingResult> ProcessBatchAsync(
             string inputPath,
             string outputPath,
@@ -529,7 +528,6 @@ namespace JellyfinUpscalerPlugin.Services
             
             await Task.WhenAll(processingTasks);
         }
-
         /// <summary>
         /// Reconstruct video from processed frames
         /// </summary>
@@ -538,6 +536,7 @@ namespace JellyfinUpscalerPlugin.Services
             string originalPath,
             string outputPath,
             VideoProcessingOptions options,
+            double frameRate,
             CancellationToken cancellationToken)
         {
             // Get audio from original video
@@ -545,7 +544,8 @@ namespace JellyfinUpscalerPlugin.Services
             await Cli.Wrap(_ffmpegPath).WithArguments(audioArgs).ExecuteAsync(cancellationToken);
             
             // Reconstruct video with audio
-            var reconstructArgs = $"-framerate 30 -i \"{processedDir}/frame_%06d.png\" -i \"{Path.Combine(Path.GetTempPath(), "temp_audio.aac")}\" -c:v libx264 -c:a copy -pix_fmt yuv420p -y \"{outputPath}\"";
+            var fps = frameRate > 0 ? frameRate : 30;
+            var reconstructArgs = $"-framerate {fps} -i \"{processedDir}/frame_%06d.png\" -i \"{Path.Combine(Path.GetTempPath(), "temp_audio.aac")}\" -c:v libx264 -c:a copy -pix_fmt yuv420p -y \"{outputPath}\"";
             
             var result = await Cli.Wrap(_ffmpegPath)
                 .WithArguments(reconstructArgs)
@@ -559,7 +559,7 @@ namespace JellyfinUpscalerPlugin.Services
         }
 
         /// <summary>
-        /// Build FFmpeg command for processing
+        /// Build FFmpeg command arguments
         /// </summary>
         private string BuildFFmpegCommand(
             string inputPath,

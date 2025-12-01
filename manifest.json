@@ -7,14 +7,14 @@
   "category": "Video Enhancement",
   "versions": [
     {
-      "version": "1.4.0-test3",
-      "changelog": "v1.4.0 TEST 3 UPDATE: SECURITY FIXED - Updated SixLabors.ImageSharp to 3.1.9 (CVE vulnerability resolved), cleaned up configuration files, enhanced embedded resources, improved build stability with 30 warnings (down from 32), and ensured all dependencies are secure and up-to-date.",
+      "version": "1.4.0",
+      "changelog": "v1.4.0 STABLE: Implemented real tensor processing logic, fixed framerate reconstruction issues, and updated repository information.",
       "targetAbi": "10.10.0.0",
-      "sourceUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin/archive/refs/heads/main.zip",
+      "sourceUrl": "https://github.com/peterdu1109/JellyfinUpscalerPlugin/releases/download/v1.4.0/JellyfinUpscalerPlugin.zip",
       "checksum": "A1B2C3D4E5F6789012345678901234567890ABCD",
-      "timestamp": "2025-01-23T22:00:00.000Z"
+      "timestamp": "2025-12-01T15:00:00.000Z"
     }
   ],
-  "repositoryUrl": "https://github.com/Kuschel-code/JellyfinUpscalerPlugin",
-  "repositoryName": "Kuschel-code/JellyfinUpscalerPlugin"
+  "repositoryUrl": "https://github.com/peterdu1109/JellyfinUpscalerPlugin",
+  "repositoryName": "peterdu1109/JellyfinUpscalerPlugin"
 }

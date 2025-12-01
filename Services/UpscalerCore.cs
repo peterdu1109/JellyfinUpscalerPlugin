@@ -17,6 +17,7 @@ using System.Text.Json;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 using Image = SixLabors.ImageSharp.Image;
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace JellyfinUpscalerPlugin.Services
 {
@@ -498,7 +499,7 @@ namespace JellyfinUpscalerPlugin.Services
                 var session = _modelSessions[model];
                 
                 // Load image with ImageSharp
-                using var image = Image.Load(inputImage);
+                using var image = Image.Load<Rgb24>(inputImage);
                 
                 // Prepare input tensor
                 var inputTensor = PrepareInputTensor(image);
@@ -545,14 +546,14 @@ namespace JellyfinUpscalerPlugin.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex, "❌ Fallback upscaling failed");
-                return inputImage; // Return original if all else fails
+                return inputImage;
             }
         }
 
         /// <summary>
-        /// Prepare input tensor for ONNX model
+        /// Prepare input tensor from image
         /// </summary>
-        private Microsoft.ML.OnnxRuntime.Tensors.Tensor<float> PrepareInputTensor(Image image)
+        private Microsoft.ML.OnnxRuntime.Tensors.Tensor<float> PrepareInputTensor(Image<Rgb24> image)
         {
             // Convert image to RGB and normalize
             var width = image.Width;
@@ -560,26 +561,55 @@ namespace JellyfinUpscalerPlugin.Services
             
             var tensor = new Microsoft.ML.OnnxRuntime.Tensors.DenseTensor<float>(new[] { 1, 3, height, width });
             
-            // This is a simplified version - in reality, you'd need proper preprocessing
-            // based on the specific model requirements
+            image.ProcessPixelRows(accessor =>
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    var pixelRow = accessor.GetRowSpan(y);
+                    for (int x = 0; x < width; x++)
+                    {
+                        var pixel = pixelRow[x];
+                        // Normalize to 0-1 range
+                        tensor[0, 0, y, x] = pixel.R / 255.0f;
+                        tensor[0, 1, y, x] = pixel.G / 255.0f;
+                        tensor[0, 2, y, x] = pixel.B / 255.0f;
+                    }
+                }
+            });
             
             return tensor;
         }
 
         /// <summary>
-        /// Process output tensor from ONNX model
+        /// Process output tensor to image
         /// </summary>
-        private Image ProcessOutputTensor(float[] tensor, int width, int height)
+        private Image<Rgb24> ProcessOutputTensor(float[] tensorData, int width, int height)
         {
-            // This is a simplified version - in reality, you'd need proper postprocessing
-            // based on the specific model output format
+            var image = new Image<Rgb24>(width, height);
             
-            return new Image<SixLabors.ImageSharp.PixelFormats.Rgb24>(width, height);
+            image.ProcessPixelRows(accessor =>
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    var pixelRow = accessor.GetRowSpan(y);
+                    for (int x = 0; x < width; x++)
+                    {
+                        // CHW to HWC conversion and clamping
+                        var r = Math.Clamp(tensorData[0 * height * width + y * width + x], 0.0f, 1.0f);
+                        var g = Math.Clamp(tensorData[1 * height * width + y * width + x], 0.0f, 1.0f);
+                        var b = Math.Clamp(tensorData[2 * height * width + y * width + x], 0.0f, 1.0f);
+                        
+                        pixelRow[x] = new Rgb24(
+                            (byte)(r * 255),
+                            (byte)(g * 255),
+                            (byte)(b * 255));
+                    }
+                }
+            });
+            
+            return image;
         }
 
-        /// <summary>
-        /// Dispose resources
-        /// </summary>
         public void Dispose()
         {
             foreach (var session in _modelSessions.Values)
