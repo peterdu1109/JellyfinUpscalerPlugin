@@ -10,7 +10,6 @@ using MediaBrowser.Common.Configuration;
 using MediaBrowser.Controller.MediaEncoding;
 using MediaBrowser.Model.IO;
 using Microsoft.ML.OnnxRuntime;
-using OpenCvSharp;
 using FFMpegCore;
 using System.Drawing;
 using System.Text.Json;
@@ -44,14 +43,13 @@ namespace JellyfinUpscalerPlugin.Services
             ILogger<UpscalerCore> logger,
             IMediaEncoder mediaEncoder,
             IFileSystem fileSystem,
-            IApplicationPaths appPaths,
-            PluginConfiguration config)
+            IApplicationPaths appPaths)
         {
             _logger = logger;
             _mediaEncoder = mediaEncoder;
             _fileSystem = fileSystem;
             _appPaths = appPaths;
-            _config = config;
+            _config = Plugin.Instance?.Configuration ?? new PluginConfiguration();
             
             InitializeAIModels();
         }
@@ -172,7 +170,7 @@ namespace JellyfinUpscalerPlugin.Services
                 await DetectGpuCapabilities(profile);
                 await DetectSystemResources(profile);
                 await DetectFFmpegAcceleration(profile);
-                await DetectOpenCVAcceleration(profile);
+                // OpenCV detection removed to avoid native DLL loading issues
                 ApplyHardwareOptimizations(profile);
                 
                 _hardwareCache["profile"] = profile;
@@ -336,23 +334,8 @@ namespace JellyfinUpscalerPlugin.Services
             }
         }
 
-        private async Task DetectOpenCVAcceleration(HardwareProfile profile)
-        {
-            try
-            {
-                var buildInfo = Cv2.GetBuildInformation();
-                profile.OpenCVInfo = buildInfo;
-                profile.OpenCVSupportsCUDA = buildInfo.Contains("CUDA");
-                
-                _logger.LogInformation($"🖼️ OpenCV: CUDA={profile.OpenCVSupportsCUDA}");
-                
-                await Task.CompletedTask;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogWarning(ex, "⚠️ Échec de la détection d'accélération OpenCV");
-            }
-        }
+        // OpenCV detection removed - not essential for plugin functionality
+        // OpenCV natives cause BadImageFormatException when Jellyfin tries to load them as .NET assemblies
 
         private void ApplyHardwareOptimizations(HardwareProfile profile)
         {

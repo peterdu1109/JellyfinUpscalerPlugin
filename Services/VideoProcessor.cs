@@ -47,13 +47,12 @@ namespace JellyfinUpscalerPlugin.Services
         public VideoProcessor(
             ILogger<VideoProcessor> logger,
             IMediaEncoder mediaEncoder,
-            UpscalerCore upscalerCore,
-            PluginConfiguration config)
+            UpscalerCore upscalerCore)
         {
             _logger = logger;
             _mediaEncoder = mediaEncoder;
             _upscalerCore = upscalerCore;
-            _config = config;
+            _config = Plugin.Instance?.Configuration ?? new PluginConfiguration();
             
             // Limit concurrent processing based on hardware
             _processingSemaphore = new SemaphoreSlim(_config.MaxConcurrentStreams);

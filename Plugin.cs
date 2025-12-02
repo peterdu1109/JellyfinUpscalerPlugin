@@ -8,7 +8,7 @@ using MediaBrowser.Model.Serialization;
 namespace JellyfinUpscalerPlugin
 {
     /// <summary>
-    /// AI Upscaler Plugin for Jellyfin v1.4.0 - Stable Update with Hardware Benchmarking
+    /// Plugin de Suréchantillonnage IA pour Jellyfin v1.7.0 - Correction DI et Traduction Française
     /// </summary>
     public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
     {
@@ -26,12 +26,12 @@ namespace JellyfinUpscalerPlugin
         /// <summary>
         /// Gets the plugin name.
         /// </summary>
-        public override string Name => "AI Upscaler Plugin 1.4";
+        public override string Name => "Plugin de Suréchantillonnage IA 1.7";
 
         /// <summary>
         /// Gets the plugin description.
         /// </summary>
-        public override string Description => "AI-powered video upscaling with multiple models and Player Integration";
+        public override string Description => "Suréchantillonnage vidéo alimenté par l'IA avec correction DI et interface française complète";
 
         /// <summary>
         /// Gets the plugin GUID.

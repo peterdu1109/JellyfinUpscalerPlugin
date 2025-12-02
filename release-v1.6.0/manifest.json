@@ -9,9 +9,9 @@
     {
       "version": "1.6.0",
       "changelog": "v1.6.0 FRANÇAIS : Interface de configuration entièrement traduite en français. Tous les fichiers HTML/JS de configuration traduits (configPage.html, config.js, quick-menu.js, etc.). Expérience utilisateur 100% française pour la configuration du plugin. Amélioration continue de la stabilité et des performances.",
-      "targetAbi": "10.10.6.0",
+      "targetAbi": "10.11.4.0",
       "sourceUrl": "https://github.com/peterdu1109/JellyfinUpscalerPlugin/releases/download/v1.6.0/JellyfinUpscalerPlugin.zip",
-      "checksum": "11C91C03A30CD12FDAF6CBA8D2274771",
+      "checksum": "CA0EB8E5820403A5A8BF711E1FA4ACDB",
       "timestamp": "2025-12-01T17:00:00.000Z"
     }
   ],

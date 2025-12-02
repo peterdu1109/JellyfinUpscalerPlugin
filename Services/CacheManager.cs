@@ -43,13 +43,12 @@ namespace JellyfinUpscalerPlugin.Services
         public CacheManager(
             ILogger<CacheManager> logger,
             IApplicationPaths appPaths,
-            IFileSystem fileSystem,
-            PluginConfiguration config)
+            IFileSystem fileSystem)
         {
             _logger = logger;
             _appPaths = appPaths;
             _fileSystem = fileSystem;
-            _config = config;
+            _config = Plugin.Instance?.Configuration ?? new PluginConfiguration();
             
             // Initialize cache directory
             _cacheDirectory = Path.Combine(_appPaths.CachePath, "JellyfinUpscaler");
