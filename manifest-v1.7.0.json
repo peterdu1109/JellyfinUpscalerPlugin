@@ -1,18 +1,18 @@
 {
     "guid": "f87f700e-679d-43e6-9c7c-b3a410dc3f22",
     "name": "Plugin de Suréchantillonnage IA",
-    "description": "Plugin de suréchantillonnage vidéo alimenté par l'IA avec interface française complète et détection GPU automatique.",
-    "overview": "Suréchantillonnage IA avec benchmarking matériel, système de repli intelligent et interface 100% française.",
+    "description": "Plugin de suréchantillonnage vidéo alimenté par l'IA avec interface française complète.",
+    "overview": "Suréchantillonnage IA avec benchmarking matériel et interface française.",
     "owner": "peterdu1109",
     "category": "Amélioration Vidéo",
     "versions": [
         {
             "version": "1.7.0",
-            "changelog": "v1.7.0 STABLE: Page configuration fonctionnelle + Logs debug + Correction DI + Interface française. CPU-only. Compatible Jellyfin 10.11.4+.",
+            "changelog": "v1.7.0 : Corrections DI + Page config Jellyfin standard + Interface française. Compatible Jellyfin 10.11.4+.",
             "targetAbi": "10.11.4.0",
             "sourceUrl": "https://github.com/peterdu1109/JellyfinUpscalerPlugin/releases/download/v1.7.0/JellyfinUpscalerPlugin.zip",
-            "checksum": "404C27B13B148B142815FD91EF4925D1",
-            "timestamp": "2025-12-02T10:35:00.000Z"
+            "checksum": "PLACEHOLDER",
+            "timestamp": "2025-12-02T10:00:00.000Z"
         }
     ],
     "repositoryUrl": "https://github.com/peterdu1109/JellyfinUpscalerPlugin",

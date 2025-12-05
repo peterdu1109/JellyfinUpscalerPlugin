@@ -5,7 +5,7 @@ using MediaBrowser.Model.Plugins;
 namespace JellyfinUpscalerPlugin
 {
     /// <summary>
-    /// Plugin Configuration - v1.4.0 Stable Update with Hardware Benchmarking
+    /// Plugin Configuration - v1.6.1 Stable Update with Fixes
     /// </summary>
     public class PluginConfiguration : BasePluginConfiguration
     {
@@ -21,7 +21,7 @@ namespace JellyfinUpscalerPlugin
         public string Language { get; set; } = "en";
         
         // Version tracking
-        public string PluginVersion { get; set; } = "1.4.0";
+        public string PluginVersion { get; set; } = "1.6.2.0";
         public DateTime LastConfigUpdate { get; set; } = DateTime.UtcNow;
         
         // v1.4.0 NEW: Hardware Benchmarking & Testing
@@ -120,7 +120,20 @@ namespace JellyfinUpscalerPlugin
         public bool EnableMobileOptimization { get; set; } = true;
         public bool EnableDesktopOptimization { get; set; } = true;
         public bool EnableNASOptimization { get; set; } = true;
-        
 
+        // v1.6.0 NEW: Advanced Processing Options
+        public int Sharpness { get; set; } = 50;
+        public int Denoising { get; set; } = 30;
+        public int ColorEnhancement { get; set; } = 20;
+        public bool EdgePreservation { get; set; } = true;
+        public string ModelDownloadPath { get; set; } = "/var/lib/jellyfin/plugins/upscaler/models";
+        public string GpuAccelerationMode { get; set; } = "auto";
+        public int MemoryLimitGB { get; set; } = 4;
+        public int BatchSize { get; set; } = 4;
+        public int ThreadCount { get; set; } = 8;
+        public int TileSize { get; set; } = 256;
+        public bool EnablePostProcessing { get; set; } = true;
+        public bool SaveDebugFrames { get; set; } = false;
+        public string TargetResolution { get; set; } = "auto";
     }
 }

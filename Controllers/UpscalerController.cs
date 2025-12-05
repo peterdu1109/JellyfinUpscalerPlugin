@@ -722,24 +722,7 @@ namespace JellyfinUpscalerPlugin.Controllers
         /// <summary>
         /// Save plugin settings
         /// </summary>
-        [HttpPost("settings")]
-        public async Task<ActionResult> SaveSettings([FromBody] object settings)
-        {
-            try
-            {
-                _logger.LogInformation("💾 Saving plugin settings");
-                
-                // In a real implementation, save settings to configuration
-                // For now, just return success
-                
-                return Ok(new { success = true, message = "Settings saved successfully" });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "❌ Error saving settings");
-                return StatusCode(500, new { error = ex.Message });
-            }
-        }
+
 
         /// <summary>
         /// Test configuration

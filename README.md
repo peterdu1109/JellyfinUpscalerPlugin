@@ -1,11 +1,11 @@
 <div align="center">
 
-# 🎮 PLUGIN DE SURÉCHANTILLONNAGE IA v1.6.0
+# 🎮 PLUGIN DE SURÉCHANTILLONNAGE IA v1.6.1
 
 ### *Suréchantillonnage vidéo révolutionnaire alimenté par l'IA pour Jellyfin avec benchmarking matériel et optimisation*
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge&logo=opensource)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-1.6.0-gold.svg?style=for-the-badge&logo=semantic-release)](https://github.com/peterdu1109/JellyfinUpscalerPlugin/releases)
+[![Version](https://img.shields.io/badge/Version-1.6.1-gold.svg?style=for-the-badge&logo=semantic-release)](https://github.com/peterdu1109/JellyfinUpscalerPlugin/releases)
 [![Jellyfin](https://img.shields.io/badge/Jellyfin-10.10.0%2B-purple.svg?style=for-the-badge&logo=jellyfin)](https://jellyfin.org)
 [![.NET](https://img.shields.io/badge/.NET-8.0-orange.svg?style=for-the-badge&logo=dotnet)](https://dotnet.microsoft.com)
 [![Status](https://img.shields.io/badge/Status-STABLE-brightgreen.svg?style=for-the-badge&logo=checkmarx)](https://github.com/peterdu1109/JellyfinUpscalerPlugin)
@@ -15,13 +15,14 @@
 
 ---
 
-## **✨ POINTS FORTS v1.6.0**
+## **✨ POINTS FORTS v1.6.1**
 
 🔬 **BENCHMARKING MATÉRIEL** | 🎯 **OPTIMISATION AUTOMATIQUE** | 🖥️ **SUPPORT MATÉRIEL MODESTE** | 🇫🇷 **INTERFACE 100% FRANÇAISE**
 
 **✅ SYSTÈME INTELLIGENT** - Détecte automatiquement le matériel et optimise les paramètres pour votre configuration spécifique.
 
 ### 🚀 **NOUVELLES FONCTIONNALITÉS :**
+- ✅ **CORRECTIF CRITIQUE** - Sauvegarde des paramètres corrigée et fiable.
 - 🇫🇷 **Interface 100% Française** - Configuration et menus entièrement traduits.
 - 🔬 **Benchmarking Matériel Automatisé** - Teste votre système et recommande les réglages optimaux.
 - 🎯 **Système de Repli Intelligent** - Bascule automatiquement vers des modèles plus légers sur le matériel moins puissant.

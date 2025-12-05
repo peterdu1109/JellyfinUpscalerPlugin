@@ -1,12 +1,12 @@
 {
     "guid": "f87f700e-679d-43e6-9c7c-b3a410dc3f22",
-    "name": "🎮 Plugin de Suréchantillonnage IA v1.6.2",
+    "name": "🎮 Plugin de Suréchantillonnage IA v1.6.1",
     "overview": "Plugin de Suréchantillonnage Vidéo IA avec Benchmarking et Optimisation Matérielle",
     "description": "Plugin révolutionnaire de suréchantillonnage IA avec benchmarking matériel automatisé, système de repli intelligent, cache de prétraitement et support avancé du matériel bas de gamme. Interface de configuration entièrement traduite en français. Fonctionnalités : tests de performance complets, vue comparative, optimisation télécommande TV et intégration dans la barre latérale.",
-    "version": "1.6.2.0",
+    "version": "1.6.1.0",
     "targetAbi": "10.11.4.0",
-    "framework": "net9.0",
+    "framework": "net8.0",
     "owner": "peterdu1109",
     "category": "Amélioration Vidéo",
-    "changelog": "v1.6.2 FIX: Correction de crash avec Jellyfin 10.11.4 (Mise à jour des dépendances). v1.6.1 FIX: Correction de l'enregistrement des paramètres."
+    "changelog": "v1.6.1 FIX: Correction de l'enregistrement des paramètres de configuration. Les paramètres sont maintenant correctement sauvegardés et persistés. v1.6.0 FRANÇAIS : Interface de configuration entièrement traduite en français."
 }

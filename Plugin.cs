@@ -8,7 +8,7 @@ using MediaBrowser.Model.Serialization;
 namespace JellyfinUpscalerPlugin
 {
     /// <summary>
-    /// Plugin de Suréchantillonnage IA pour Jellyfin v1.7.0 - Correction DI et Traduction Française
+    /// Plugin de Suréchantillonnage IA pour Jellyfin v1.6.2 - Correction DI et Traduction Française
     /// </summary>
     public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
     {
@@ -26,7 +26,7 @@ namespace JellyfinUpscalerPlugin
         /// <summary>
         /// Gets the plugin name.
         /// </summary>
-        public override string Name => "Plugin de Suréchantillonnage IA 1.7";
+        public override string Name => "Plugin de Suréchantillonnage IA 1.6.2";
 
         /// <summary>
         /// Gets the plugin description.
@@ -54,7 +54,17 @@ namespace JellyfinUpscalerPlugin
                 new PluginPageInfo
                 {
                     Name = this.Name,
-                    EmbeddedResourcePath = GetType().Namespace + ".Configuration.configurationpage.html"
+                    EmbeddedResourcePath = string.Format("{0}.Configuration.configurationpage.html", GetType().Namespace)
+                },
+                new PluginPageInfo
+                {
+                    Name = "Préréglages (Débutant)",
+                    EmbeddedResourcePath = string.Format("{0}.Configuration.beginner-presets.html", GetType().Namespace)
+                },
+                new PluginPageInfo
+                {
+                    Name = "Avancé (Enhanced)",
+                    EmbeddedResourcePath = string.Format("{0}.Configuration.configurationpage-enhanced.html", GetType().Namespace)
                 }
             };
         }
